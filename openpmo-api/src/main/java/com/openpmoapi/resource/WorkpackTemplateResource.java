@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.openpmoapi.event.RecursoCriadoEvent;
 import com.openpmoapi.model.WorkpackTemplate;
 import com.openpmoapi.repository.WorkpackTemplateRepository;
-import com.openpmoapi.sevice.WorkpackTemplateService;
 
 /**
 * Type here a brief description of the class.
@@ -35,11 +34,7 @@ public class WorkpackTemplateResource {
 	private WorkpackTemplateRepository wptmplRepository;
 	
 	@Autowired
-	private WorkpackTemplateService workpackTemplateService;
-	
-	@Autowired
 	private ApplicationEventPublisher publisher;
-	
 	
 	
 	/**
@@ -76,7 +71,7 @@ public class WorkpackTemplateResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<WorkpackTemplate> update(@Valid @RequestBody WorkpackTemplate wpTmpl) {
-		WorkpackTemplate wpTmplSalvo = workpackTemplateService.update(wpTmpl);
+		WorkpackTemplate wpTmplSalvo =  wptmplRepository.save(wpTmpl);
 		return ResponseEntity.ok(wpTmplSalvo);
 	}
 	
@@ -86,7 +81,7 @@ public class WorkpackTemplateResource {
 	 */
 	@PostMapping
 	public ResponseEntity<WorkpackTemplate> save(@Valid @RequestBody WorkpackTemplate wpTmpl, HttpServletResponse response) {
-		WorkpackTemplate wpTmplSalvo = workpackTemplateService.save(wpTmpl);
+		WorkpackTemplate wpTmplSalvo = wptmplRepository.save(wpTmpl);
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, wpTmplSalvo.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(wptmplRepository.save(wpTmpl));
 	}
