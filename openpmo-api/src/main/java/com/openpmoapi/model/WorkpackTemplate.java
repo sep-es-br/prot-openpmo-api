@@ -60,12 +60,12 @@ public class WorkpackTemplate {
 	 * Relationship linking its children 
 	 */
 	@Relationship(type="IS_IN", direction=Relationship.INCOMING)
-	private Set<WorkpackTemplate> subworkpackTemplates = new HashSet<>();
-	public Set<WorkpackTemplate> getSubworkpackTemplates() {
-		return subworkpackTemplates;
+	private Set<WorkpackTemplate> children = new HashSet<>();
+	public Set<WorkpackTemplate> getChildren() {
+		return children;
 	}
-	public void setSubworkpackTemplates(Set<WorkpackTemplate> subworkpackTemplates) {
-		this.subworkpackTemplates = subworkpackTemplates;
+	public void setChildren(Set<WorkpackTemplate> children) {
+		this.children = children;
 	}
 	
 	
