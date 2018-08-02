@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.openpmoapi.sevice;
+package com.openpmoapi.service;
 
 import org.springframework.stereotype.Service;
 

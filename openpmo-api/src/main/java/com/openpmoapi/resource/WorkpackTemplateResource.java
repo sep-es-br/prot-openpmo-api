@@ -38,7 +38,7 @@ public class WorkpackTemplateResource {
 	
 	
 	/**
-	 * This is method delete WorkpackTemplate
+	 * This is method delete one WorkpackTemplate
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -47,7 +47,7 @@ public class WorkpackTemplateResource {
 	}
 	
 	/**
-	 * This is method delete WorkpackTemplate
+	 * This is method delete all WorkpackTemplate
 	 */
 	@DeleteMapping("/all")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -57,7 +57,7 @@ public class WorkpackTemplateResource {
 	
 	
 	/**
-	 * This is method delete WorkpackTemplate
+	 * This is method delete part WorkpackTemplate
 	 */
 	@DeleteMapping("/part")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
