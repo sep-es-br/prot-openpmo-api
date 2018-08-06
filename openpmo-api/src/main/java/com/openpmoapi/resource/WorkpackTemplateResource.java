@@ -1,8 +1,10 @@
 package com.openpmoapi.resource;
 
 import java.util.Optional;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
@@ -16,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.openpmoapi.event.RecursoCriadoEvent;
 import com.openpmoapi.model.WorkpackTemplate;
 import com.openpmoapi.repository.WorkpackTemplateRepository;
+import com.openpmoapi.service.WorkpackTemplateService;
 
 /**
 * Type here a brief description of the class.
@@ -32,6 +36,12 @@ public class WorkpackTemplateResource {
 	
 	@Autowired
 	private WorkpackTemplateRepository wptmplRepository;
+	
+	
+	@Autowired
+	private WorkpackTemplateService wptmpService;
+	
+
 	
 	@Autowired
 	private ApplicationEventPublisher publisher;
@@ -70,8 +80,8 @@ public class WorkpackTemplateResource {
 	 * This is method update WorkpackTemplate
 	 */
 	@PutMapping("/{id}")
-	public ResponseEntity<WorkpackTemplate> update(@Valid @RequestBody WorkpackTemplate wpTmpl) {
-		WorkpackTemplate wpTmplSalvo =  wptmplRepository.save(wpTmpl);
+	public ResponseEntity<WorkpackTemplate> update(@Valid Long id,  @RequestBody WorkpackTemplate wpTmpl) {
+		WorkpackTemplate wpTmplSalvo = wptmpService.atualizar(id, wpTmpl);
 		return ResponseEntity.ok(wpTmplSalvo);
 	}
 	

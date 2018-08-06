@@ -45,7 +45,7 @@ public class Workpack extends WorkpackTemplate{
 		return shortName;
 	}
 	public void setShortName(String shortName) {
-		this.shortName = shortName.toLowerCase().trim().replaceAll("[^a-zZ-Z1-9 ]", "");
+		this.shortName = shortName;
 	}
 	
 	/**
