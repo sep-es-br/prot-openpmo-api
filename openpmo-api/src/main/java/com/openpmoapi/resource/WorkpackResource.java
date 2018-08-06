@@ -1,5 +1,4 @@
 package com.openpmoapi.resource;
-
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -102,6 +101,4 @@ public class WorkpackResource {
 		Optional<Workpack> workPack = workPackRepository.findById(id);
 		return workPack.get() != null ? ResponseEntity.ok(workPack.get()) : ResponseEntity.notFound().build();
 	}
-	
-	
 }

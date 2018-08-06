@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+
 import javax.validation.constraints.NotNull;
 
 import org.neo4j.ogm.annotation.GeneratedValue;
@@ -81,13 +82,4 @@ public class WorkpackTemplate {
 	public void setChildren(Set<WorkpackTemplate> children) {
 		this.children = children;
 	}
-	
-	
-	
-
-	
-	
-	
-	
-	
 }

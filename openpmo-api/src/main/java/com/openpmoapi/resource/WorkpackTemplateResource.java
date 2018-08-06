@@ -1,5 +1,4 @@
 package com.openpmoapi.resource;
-
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -114,9 +113,4 @@ public class WorkpackTemplateResource {
 		Optional<WorkpackTemplate> wpTmpl = wptmplRepository.findById(id);
 		return wpTmpl.get() != null ? ResponseEntity.ok(wpTmpl.get()) : ResponseEntity.notFound().build();
 	}
-	
-	
-
-
-	
 }
