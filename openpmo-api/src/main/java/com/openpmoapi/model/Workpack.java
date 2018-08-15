@@ -1,6 +1,8 @@
 package com.openpmoapi.model;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import javax.validation.constraints.NotNull;
@@ -8,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Properties;
 import org.neo4j.ogm.annotation.Relationship;
 
 /**
@@ -17,7 +20,7 @@ import org.neo4j.ogm.annotation.Relationship;
 * @since 2018-jul-31
 */
 @NodeEntity(label="Workpack")
-public class Workpack extends WorkpackTemplate{
+public class Workpack {
 	
 	/**
 	 * Self generated node id
@@ -48,18 +51,59 @@ public class Workpack extends WorkpackTemplate{
 		this.shortName = shortName;
 	}
 	
+	
+	/**
+	 * The workpack profile name
+	 */
+
+	@NotNull
+	private String profile;
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
+
+	@NotNull
+	private String shortProfile;
+	public String getShortProfile() {
+		return shortProfile;
+	}
+	public void setShortProfile(String shortProfile) {
+		this.shortProfile = shortProfile;
+	}
+	
+	
+	
+	
+	
+	/**
+	 * Map (attribute/value) of single properties defined for the workpack
+	 */
+	@Properties(prefix="property", allowCast=true)
+	private Map<String, Object> properties = new HashMap<>();
+	public Map<String, Object> getProperties() {
+		return properties;
+	}
+	public void setProperties(Map<String, Object> properties) {
+		this.properties = properties;
+	}
+	
+	
+	
 	/**
 	 * Relationship linking its templates 
 	 */
-	@Relationship(type="IS_AN_INSTANCE")
-	private WorkpackTemplate template;
-	
-	public WorkpackTemplate getTemplate() {
-		return template;
+	@Relationship(type="IS_INSTANCE_OF")
+	private Set<WorkpackTemplate> workpackTemplates= new HashSet<>();	
+	public Set<WorkpackTemplate> getWorkpackTemplates() {
+		return workpackTemplates;
 	}
-	public void setTemplate(WorkpackTemplate template) {
-		this.template = template;
+	public void setWorkpackTemplates(Set<WorkpackTemplate> workpackTemplates) {
+		this.workpackTemplates = workpackTemplates;
 	}
+
 
 	/**
 	 * Relationship linking its children 
@@ -72,6 +116,9 @@ public class Workpack extends WorkpackTemplate{
 	public void setComponents(Set<Workpack> components) {
 		this.components = components;
 	}
+	
+	
+	
 	
 	
 	

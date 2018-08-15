@@ -1,4 +1,5 @@
 package com.openpmoapi.resource;
+import java.util.Collection;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -20,15 +21,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.openpmoapi.event.RecursoCriadoEvent;
 import com.openpmoapi.model.Workpack;
-import com.openpmoapi.model.WorkpackTemplate;
 import com.openpmoapi.repository.WorkpackRepository;
+import com.openpmoapi.service.WorkpackService;
 
 @RestController
-@RequestMapping("/workpacks")
+@RequestMapping("/api/workpacks")
 public class WorkpackResource {
 	
 	@Autowired
 	private WorkpackRepository workPackRepository;
+	
+	
+	@Autowired
+	private WorkpackService wpService;
 	
 	@Autowired
 	private ApplicationEventPublisher publisher;
@@ -67,9 +72,9 @@ public class WorkpackResource {
 	 * This is method update Workpack
 	 */
 	@PutMapping("/{id}")
-	public ResponseEntity<Workpack> update(@Valid @RequestBody Workpack workpack) {
-		Workpack workpackSalvo =  workPackRepository.save(workpack);
-		return ResponseEntity.ok(workpackSalvo);
+	public ResponseEntity<Workpack> update(@PathVariable Long id, @Valid @RequestBody Workpack workpack) {
+		Workpack wpSalvo = wpService.atualizar(id, workpack);
+		return ResponseEntity.ok(wpSalvo);
 	}
 	
 	
@@ -77,7 +82,7 @@ public class WorkpackResource {
 		This is method save Workpack
 	 */
 	@PostMapping
-	public ResponseEntity<WorkpackTemplate> save(@Valid @RequestBody Workpack workPack, HttpServletResponse response) {
+	public ResponseEntity<Workpack> save(@Valid @RequestBody Workpack workPack, HttpServletResponse response) {
 		Workpack workPackSalvo = workPackRepository.save(workPack);
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, workPackSalvo.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(workPackRepository.save(workPack));
@@ -89,7 +94,7 @@ public class WorkpackResource {
 	 */
 	@GetMapping
 	public Iterable<Workpack> findByAll() {
-		 return workPackRepository.findAll();
+		 return workPackRepository.findAll(1);
 	}
 	
 	
@@ -98,7 +103,18 @@ public class WorkpackResource {
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Workpack> findById(@PathVariable Long id) {
-		Optional<Workpack> workPack = workPackRepository.findById(id);
+		Optional<Workpack> workPack = workPackRepository.findById(id,1);
 		return workPack.get() != null ? ResponseEntity.ok(workPack.get()) : ResponseEntity.notFound().build();
 	}
+	
+		
+		/**
+		This is method find by one Schema
+	*/
+	@GetMapping("/listworkpacks/{id}")
+	public Collection<Workpack> findWpByIdSchema(@PathVariable Long id) {
+		return wpService.findWpByIdSchema(id);
+	}
+
+	
 }

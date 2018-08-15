@@ -1,4 +1,5 @@
 package com.openpmoapi.resource;
+import java.util.Collection;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -30,7 +31,7 @@ import com.openpmoapi.service.WorkpackTemplateService;
 * @since 2018-08-02
 */
 @RestController
-@RequestMapping("/workpacktemplates")
+@RequestMapping("/api/workpacktemplates")
 public class WorkpackTemplateResource {
 	
 	@Autowired
@@ -79,7 +80,7 @@ public class WorkpackTemplateResource {
 	 * This is method update WorkpackTemplate
 	 */
 	@PutMapping("/{id}")
-	public ResponseEntity<WorkpackTemplate> update(@Valid Long id,  @RequestBody WorkpackTemplate wpTmpl) {
+	public ResponseEntity<WorkpackTemplate> update(@PathVariable  Long id,@Valid  @RequestBody WorkpackTemplate wpTmpl) {
 		WorkpackTemplate wpTmplSalvo = wptmpService.atualizar(id, wpTmpl);
 		return ResponseEntity.ok(wpTmplSalvo);
 	}
@@ -101,7 +102,7 @@ public class WorkpackTemplateResource {
 	 */
 	@GetMapping
 	public Iterable<WorkpackTemplate> findByAll() {
-		 return wptmplRepository.findAll();
+		 return wptmplRepository.findAll(1);
 	}
 	
 	
@@ -110,7 +111,18 @@ public class WorkpackTemplateResource {
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<WorkpackTemplate> findById(@PathVariable Long id) {
-		Optional<WorkpackTemplate> wpTmpl = wptmplRepository.findById(id);
+		Optional<WorkpackTemplate> wpTmpl = wptmplRepository.findById(id,1);
 		return wpTmpl.get() != null ? ResponseEntity.ok(wpTmpl.get()) : ResponseEntity.notFound().build();
 	}
+	
+		
+		/**
+		This is method find by one or more WorkPack Templates
+	*/
+	@GetMapping("/listworkpacktemplates/{id}")
+	public Collection<WorkpackTemplate> findWptpByIdSchemaTmpl(@PathVariable Long id) {
+		return wptmpService.findWptpByIdSchemaTmpl(id);
+	}
+		
+	
 }

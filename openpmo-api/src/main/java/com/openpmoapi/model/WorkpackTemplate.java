@@ -13,6 +13,7 @@ import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Properties;
 import org.neo4j.ogm.annotation.Relationship;
+import org.springframework.boot.test.autoconfigure.data.neo4j.AutoConfigureDataNeo4j;
 
 /**
 * This class models a template for a Workpack object. 
@@ -23,6 +24,8 @@ import org.neo4j.ogm.annotation.Relationship;
 * @since 2018-jul-31
 */
 @NodeEntity(label="WorkpackTemplate")
+
+@AutoConfigureDataNeo4j
 public class WorkpackTemplate {
 	
 	/**
@@ -75,11 +78,12 @@ public class WorkpackTemplate {
 	 * Relationship linking its children 
 	 */
 	@Relationship(type="IS_IN", direction=Relationship.INCOMING)
-	private Set<WorkpackTemplate> children = new HashSet<>();
-	public Set<WorkpackTemplate> getChildren() {
-		return children;
+	private Set<WorkpackTemplate> components = new HashSet<>();
+	public Set<WorkpackTemplate> getComponents() {
+		return components;
 	}
-	public void setChildren(Set<WorkpackTemplate> children) {
-		this.children = children;
+	public void setComponents(Set<WorkpackTemplate> components) {
+		this.components = components;
 	}
+	
 }
