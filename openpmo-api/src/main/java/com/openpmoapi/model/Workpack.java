@@ -1,6 +1,7 @@
 package com.openpmoapi.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Properties;
 import org.neo4j.ogm.annotation.Relationship;
+import org.neo4j.ogm.annotation.typeconversion.DateString;
 
 /**
 * Class of the real workpack created from a workpack template.
@@ -52,32 +54,26 @@ public class Workpack {
 	}
 	
 	
-	/**
-	 * The workpack profile name
-	 */
-
-	@NotNull
-	private String profile;
-	public String getProfile() {
-		return profile;
+	@DateString
+	private Date dataInicio;
+	public Date getDataInicio() {
+		return dataInicio;
 	}
-	public void setProfile(String profile) {
-		this.profile = profile;
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
 	}
 
-	@NotNull
-	private String shortProfile;
-	public String getShortProfile() {
-		return shortProfile;
+
+	@DateString
+	private Date dataFim;
+	public Date getDataFim() {
+		return dataFim;
 	}
-	public void setShortProfile(String shortProfile) {
-		this.shortProfile = shortProfile;
+	public void setDataFim(Date dataFim) {
+		this.dataFim = dataFim;
 	}
-	
-	
-	
-	
-	
+
+
 	/**
 	 * Map (attribute/value) of single properties defined for the workpack
 	 */
