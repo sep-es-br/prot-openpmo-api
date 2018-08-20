@@ -73,7 +73,7 @@ public class WorkpackResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<Workpack> update(@PathVariable Long id, @Valid @RequestBody Workpack workpack) {
-		Workpack wpSalvo = wpService.atualizar(id, workpack);
+		Workpack wpSalvo = wpService.update(id, workpack);
 		return ResponseEntity.ok(wpSalvo);
 	}
 	

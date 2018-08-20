@@ -75,7 +75,7 @@ public class SchemaTemplateResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<SchemaTemplate> update(@PathVariable Long id, @Valid @RequestBody SchemaTemplate schemaTemplate) {
-		SchemaTemplate schemaTmplSalvo = schemaTmplService.atualizar(id, schemaTemplate);
+		SchemaTemplate schemaTmplSalvo = schemaTmplService.update(id, schemaTemplate);
 		return ResponseEntity.ok(schemaTmplSalvo);
 	}
 	

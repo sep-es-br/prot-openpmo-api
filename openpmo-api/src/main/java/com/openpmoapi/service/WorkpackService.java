@@ -35,7 +35,7 @@ public class WorkpackService {
 	 * this method verify if exits the data to update 
 	
 	 */
-	public Workpack atualizar(Long id, Workpack wp) {
+	public Workpack update(Long id, Workpack wp) {
 		Workpack wpSalvo = buscarPessoaPeloCodigo(id);
 		BeanUtils.copyProperties(wp, wpSalvo, "id", "wp");
 		return wpRepository.save(wpSalvo);

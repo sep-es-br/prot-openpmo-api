@@ -3,8 +3,8 @@
  */
 package com.openpmoapi.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
@@ -58,36 +58,28 @@ public class Environment {
 	/**
 	 *    Relationship linking all the schemasTemplate the environment 
 	 */
-	@Relationship(  type="IS_ADOPTED_BY", direction = Relationship.INCOMING)
-	private Set<SchemaTemplate> schemaTemplates = new HashSet<>(); 
-	public Set<SchemaTemplate> getSchemaTemplates() {
+	@Relationship(type="IS_ADOPTED_BY", direction = Relationship.INCOMING)
+	private List<SchemaTemplate> schemaTemplates = new ArrayList<>(); 
+	public List<SchemaTemplate> getSchemaTemplates() {
 		return schemaTemplates;
 	}
-	public void setSchemaTemplates(Set<SchemaTemplate> schemaTemplates) {
+	public void setSchemaTemplates(List<SchemaTemplate> schemaTemplates) {
 		this.schemaTemplates = schemaTemplates;
 	}
-	
-	
+
+
+
 	/**
 	 *    Relationship linking all the schemas the environment 
 	 */
-	@Relationship(  type="IS_ADOPTED_BY", direction = Relationship.INCOMING)
-	private Set<Schema> schemas = new HashSet<>(); 
-	public Set<Schema> getSchemas() {
+	@Relationship(type="IS_ADOPTED_BY", direction = Relationship.INCOMING)
+	private List<Schema> schemas = new ArrayList<>(); 
+	public List<Schema> getSchemas() {
 		return schemas;
 	}
-	public void setSchemas(Set<Schema> schemas) {
+	public void setSchemas(List<Schema> schemas) {
 		this.schemas = schemas;
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

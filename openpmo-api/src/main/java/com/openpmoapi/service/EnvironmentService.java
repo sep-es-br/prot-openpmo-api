@@ -36,8 +36,8 @@ public class EnvironmentService {
 	
 	 */
 	@Transactional(readOnly = false)
-	public Environment atualizar(Long id, Environment env) {
-		Environment envSalvo = buscarPessoaPeloCodigo(id);
+	public Environment update(Long id, Environment env) {
+		Environment envSalvo = findEnvById(id);
 		BeanUtils.copyProperties(env, envSalvo, "id", "env");
 		return envRepository.save(envSalvo);
 	}
@@ -50,7 +50,7 @@ public class EnvironmentService {
 	 * @return
 	 */
 	@Transactional(readOnly = true)
-	public Environment buscarPessoaPeloCodigo(Long id) {
+	public Environment findEnvById(Long id) {
 		Optional<Environment> envSalvo = envRepository.findById(id);
 		if (!envSalvo.isPresent()) {
 			throw new EmptyResultDataAccessException(1);

@@ -65,7 +65,7 @@ public class EnvironmentRoleResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<EnvironmentRole> update(@PathVariable Long id, @Valid @RequestBody EnvironmentRole role) {
-		EnvironmentRole roleSalva = roleService.atualizar(id, role);
+		EnvironmentRole roleSalva = roleService.update(id, role);
 		return ResponseEntity.ok(roleSalva);
 	}
 	
@@ -105,7 +105,7 @@ public class EnvironmentRoleResource {
 	 * This is method find by name Role
 	 * 
 	 */
-	@GetMapping("/{name}")
+	@GetMapping("/like/{name}")
 	public Collection<EnvironmentRole> findByNameLike(@PathVariable String name) {
 	     return roleService.findByNameLike(name);
 	 }

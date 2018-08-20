@@ -81,7 +81,7 @@ public class WorkpackTemplateResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<WorkpackTemplate> update(@PathVariable  Long id,@Valid  @RequestBody WorkpackTemplate wpTmpl) {
-		WorkpackTemplate wpTmplSalvo = wptmpService.atualizar(id, wpTmpl);
+		WorkpackTemplate wpTmplSalvo = wptmpService.update(id, wpTmpl);
 		return ResponseEntity.ok(wpTmplSalvo);
 	}
 	

@@ -104,7 +104,7 @@ public class WorkpackRoleResource {
 	 * This is method find by name WorkpackRoles
 	 * 
 	 */
-	@GetMapping("/{name}")
+	@GetMapping("/like/{name}")
 	public Collection<WorkpackRole> findByNameLike(@PathVariable String name) {
 	     return workpackRoleService.findByNameLike(name);
 	 }

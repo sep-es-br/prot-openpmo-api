@@ -37,7 +37,7 @@ public class PersonService {
 	
 	 */
 	@Transactional(readOnly = false)
-	public Person atualizar(Long id, Person person) {
+	public Person update(Long id, Person person) {
 		Person personSalva = findPersonById(id);
 		BeanUtils.copyProperties(person, personSalva, "id", "person");
 		return personRepository.save(personSalva);

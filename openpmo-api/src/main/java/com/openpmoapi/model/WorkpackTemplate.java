@@ -1,10 +1,9 @@
 package com.openpmoapi.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 
 import javax.validation.constraints.NotNull;
 
@@ -78,12 +77,13 @@ public class WorkpackTemplate {
 	 * Relationship linking its children 
 	 */
 	@Relationship(type="IS_IN", direction=Relationship.INCOMING)
-	private Set<WorkpackTemplate> components = new HashSet<>();
-	public Set<WorkpackTemplate> getComponents() {
+	private List<WorkpackTemplate> components = new ArrayList<>();
+	public List<WorkpackTemplate> getComponents() {
 		return components;
 	}
-	public void setComponents(Set<WorkpackTemplate> components) {
+	public void setComponents(List<WorkpackTemplate> components) {
 		this.components = components;
 	}
+	
 	
 }

@@ -3,11 +3,13 @@
  */
 package com.openpmoapi.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.validation.constraints.NotNull;
-
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
 
 
 /**
@@ -41,7 +43,23 @@ public class Organization {
 		this.name = name;
 	}
 	
-
+	
+	
+	/**
+	 * Relationship linking its children 
+	 */
+	@Relationship(type="BELONGS_TO", direction=Relationship.INCOMING)
+	private List<Organization> components = new ArrayList<>();
+	public List<Organization> getComponents() {
+		return components;
+	}
+	public void setComponents(List<Organization> components) {
+		this.components = components;
+	}
+	
+	
+	
+	
 	
 	@Override
 	public int hashCode() {

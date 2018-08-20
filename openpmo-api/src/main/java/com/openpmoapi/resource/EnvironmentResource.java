@@ -76,7 +76,7 @@ public class EnvironmentResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<Environment> update(@PathVariable Long id, @Valid @RequestBody Environment env) {
-		Environment envSalvo = envService.atualizar(id, env);
+		Environment envSalvo = envService.update(id, env);
 		return ResponseEntity.ok(envSalvo);
 	}
 	

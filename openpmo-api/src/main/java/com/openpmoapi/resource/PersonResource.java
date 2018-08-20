@@ -1,5 +1,7 @@
 package com.openpmoapi.resource;
 
+
+import java.text.Normalizer;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -24,6 +26,7 @@ import com.openpmoapi.event.RecursoCriadoEvent;
 import com.openpmoapi.model.Person;
 import com.openpmoapi.repository.PersonRepository;
 import com.openpmoapi.service.PersonService;
+
 
 
 @RestController
@@ -65,7 +68,7 @@ public class PersonResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<Person> update(@PathVariable Long id, @Valid @RequestBody Person person) {
-		Person personSalva = personService.atualizar(id, person);
+		Person personSalva = personService.update(id, person);
 		return ResponseEntity.ok(personSalva);
 	}
 	
@@ -100,17 +103,29 @@ public class PersonResource {
 	}
 	
 	  
-	
 	/**
 	 * This is method find by name Person
 	 * 
 	 */
-	@GetMapping("/{name}")
-	public Collection<Person> findByNameLike(@PathVariable String name) {
-	     return personService.findByNameLike(name);
-	 }
+	@GetMapping(path ="/like/{name}")
+	public Collection<Person> findByNameLike(@PathVariable("name") String name) {
+		
+		return personService.findByNameLike(name);
+	 
+	}
 	
 	
+	public static String removeAcentos(String string) {
+	    if (string != null){
+	        string = Normalizer.normalize(string, Normalizer.Form.NFD);
+	        string = string.replaceAll("[^\\p{ASCII}]", "");
+	    }
+	    return string;
+	}
+	
+	 
+
+
 
 	
 }

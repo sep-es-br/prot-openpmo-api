@@ -11,7 +11,7 @@ import com.openpmoapi.model.Workpack;
 public interface WorkpackRepository extends Neo4jRepository <Workpack, Long>{
 	
 	
-	@Query("MATCH (w:Workpack)-[:IS_ROOT_OF]->(s:Schema) WHERE id(s) = {id} RETURN w")
+	@Query("MATCH (w:Workpack)-[:IS_ROOT_OF | :IS_IN]->(n) WHERE id(n) = {id} RETURN w")
 	Collection<Workpack> findWpByIdSchema(@Param("id") Long id);
 	
 

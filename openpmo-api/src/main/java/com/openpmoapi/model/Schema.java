@@ -3,8 +3,8 @@
  */
 package com.openpmoapi.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
@@ -33,48 +33,6 @@ public class Schema {
 		return id;
 	}
 	
-	
-//	/**
-//	 *    Relationship linking to the first level of workpack templates
-//	 * in the schema 
-//	 */
-//	@Relationship(type="IS_ROOT_OF", direction=Relationship.INCOMING)
-//	private Set<WorkpackTemplate> workpackTemplates = new HashSet<>();
-//	public Set<WorkpackTemplate> getWorkpackTemplates() {
-//		return workpackTemplates;
-//	}
-//	public void setWorkpackTemplates(Set<WorkpackTemplate> workpackTemplates) {
-//		this.workpackTemplates = workpackTemplates;
-//	}
-	
-	
-	/**
-	 *    Relationship linking to the first level of workpack
-	 * in the schema 
-	 */
-	@Relationship(type="IS_ROOT_OF", direction=Relationship.INCOMING)
-	private Set<Workpack> workpacks= new HashSet<>();	
-	public Set<Workpack> getWorkpacks() {
-		return workpacks;
-	}
-	public void setWorkpacks(Set<Workpack> workpacks) {
-		this.workpacks = workpacks;
-	}
-	
-	
-	/**
-	 * Relationship linking its Schema templates 
-	 */
-	@Relationship(type="IS_INSTANCE_OF")
-	
-	private Set<SchemaTemplate> schemaTemplates = new HashSet<>();
-	public Set<SchemaTemplate> getSchemaTemplate() {
-		return schemaTemplates;
-	}
-	public void setSchemaTemplateS(Set<SchemaTemplate> schemaTemplates) {
-		this.schemaTemplates = schemaTemplates;
-	}
-
 
 	@NotNull
 	private String name;
@@ -95,6 +53,59 @@ public class Schema {
 		this.shortName = shortName;
 	}
 	
+
+	/**
+	 *    Relationship linking to the first level of workpack
+	 * in the schema 
+	 */
+	@Relationship( type="IS_ROOT_OF", direction = Relationship.INCOMING)
+	private List<Workpack> workpacks= new ArrayList<>();	
+	public List<Workpack> getWorkpacks() {
+		return workpacks;
+	}
+	public void setWorkpacks(List<Workpack> workpacks) {
+		this.workpacks = workpacks;
+	}
+
+
+	/**
+	 * Relationship linking its Schema templates 
+	 */
+	@Relationship(type="IS_INSTANCE_OF", direction=Relationship.OUTGOING)
+	private SchemaTemplate schemaTemplates;
+	public SchemaTemplate getSchemaTemplates() {
+		return schemaTemplates;
+	}
+	public void setSchemaTemplates(SchemaTemplate schemaTemplates) {
+		this.schemaTemplates = schemaTemplates;
+	}
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Schema other = (Schema) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
+
 
 
 }

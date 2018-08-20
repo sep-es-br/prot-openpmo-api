@@ -37,7 +37,7 @@ public class OrganizationService {
 	
 	 */
 	@Transactional(readOnly = false)
-	public Organization atualizar(Long id, Organization organization) {
+	public Organization update(Long id, Organization organization) {
 		Organization organizationSalva = findOrganizationById(id);
 		BeanUtils.copyProperties(organization, organizationSalva, "id", "organization");
 		return organizationRepository.save(organizationSalva);

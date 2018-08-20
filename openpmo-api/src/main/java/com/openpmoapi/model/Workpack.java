@@ -1,9 +1,9 @@
 package com.openpmoapi.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.validation.constraints.NotNull;
 
@@ -81,7 +81,7 @@ public class Workpack {
 	/**
 	 * Map (attribute/value) of single properties defined for the workpack
 	 */
-	@Properties(prefix="property", allowCast=true)
+	@Properties
 	private Map<String, Object> properties = new HashMap<>();
 	public Map<String, Object> getProperties() {
 		return properties;
@@ -95,13 +95,26 @@ public class Workpack {
 	/**
 	 * Relationship linking its templates 
 	 */
-	@Relationship(type="IS_INSTANCE_OF")
-	private Set<WorkpackTemplate> workpackTemplates= new HashSet<>();	
-	public Set<WorkpackTemplate> getWorkpackTemplates() {
+	@Relationship(type="IS_INSTANCE_OF", direction=Relationship.OUTGOING)
+	private List<WorkpackTemplate> workpackTemplates= new ArrayList<>();	
+	public List<WorkpackTemplate> getWorkpackTemplates() {
 		return workpackTemplates;
 	}
-	public void setWorkpackTemplates(Set<WorkpackTemplate> workpackTemplates) {
+	public void setWorkpackTemplates(List<WorkpackTemplate> workpackTemplates) {
 		this.workpackTemplates = workpackTemplates;
+	}
+
+
+	/**
+	 * Relationship linking its Organizations 
+	 */
+	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
+	private List<Organization> organizations= new ArrayList<>();	
+	public List<Organization> getOrganizations() {
+		return organizations;
+	}
+	public void setOrganizations(List<Organization> organizations) {
+		this.organizations = organizations;
 	}
 
 
@@ -109,19 +122,13 @@ public class Workpack {
 	 * Relationship linking its children 
 	 */
 	@Relationship(type="IS_IN", direction=Relationship.INCOMING)
-	private Set<Workpack> components = new HashSet<>();
-	public Set<Workpack> getComponents() {
+	private List<Workpack> components = new ArrayList<>();
+	public List<Workpack> getComponents() {
 		return components;
 	}
-	public void setComponents(Set<Workpack> components) {
+	public void setComponents(List<Workpack> components) {
 		this.components = components;
 	}
-	
-	
-	
-	
-	
-	
 	
 	
 	
@@ -129,7 +136,7 @@ public class Workpack {
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = super.hashCode();
+		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
@@ -137,7 +144,7 @@ public class Workpack {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
+		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
@@ -149,6 +156,7 @@ public class Workpack {
 			return false;
 		return true;
 	}
+	
 	
 	
 

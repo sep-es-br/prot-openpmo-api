@@ -3,6 +3,7 @@
  */
 package com.openpmoapi.model;
 
+
 import javax.validation.constraints.NotNull;
 
 import org.neo4j.ogm.annotation.GeneratedValue;
@@ -66,7 +67,6 @@ public class Person {
 			return false;
 		return true;
 	}
-	
 	
 	
 	

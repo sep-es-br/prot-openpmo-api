@@ -9,7 +9,7 @@ import com.openpmoapi.model.WorkpackTemplate;
 public interface WorkpackTemplateRepository extends Neo4jRepository <WorkpackTemplate, Long>{
 
 	
-	@Query("MATCH (wptp:WorkpackTemplate)-[:IS_ROOT_OF]->(s:SchemaTemplate) WHERE id(s) = {id} RETURN wptp")
+	@Query("MATCH (wptp:WorkpackTemplate)-[:IS_ROOT_OF | :IS_IN]->(s) WHERE id(s) = {id} RETURN wptp")
 	Collection<WorkpackTemplate> findWptpByIdSchemaTmpl(@Param("id") Long id);
 	
 }

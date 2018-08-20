@@ -65,7 +65,7 @@ public class OrganizationRoleResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<OrganizationRole> update(@PathVariable Long id, @Valid @RequestBody OrganizationRole organizationRole) {
-		OrganizationRole organizationRoleSalva = organizationRoleService.atualizar(id, organizationRole);
+		OrganizationRole organizationRoleSalva = organizationRoleService.update(id, organizationRole);
 		return ResponseEntity.ok(organizationRoleSalva);
 	}
 	
@@ -105,7 +105,7 @@ public class OrganizationRoleResource {
 	 * This is method find by name organizationRole
 	 * 
 	 */
-	@GetMapping("/{name}")
+	@GetMapping("/like/{name}")
 	public Collection<OrganizationRole> findByNameLike(@PathVariable String name) {
 	     return organizationRoleService.findByNameLike(name);
 	 }

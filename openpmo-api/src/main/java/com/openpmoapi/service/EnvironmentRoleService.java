@@ -37,7 +37,7 @@ public class EnvironmentRoleService {
 	
 	 */
 	@Transactional(readOnly = false)
-	public EnvironmentRole atualizar(Long id, EnvironmentRole role) {
+	public EnvironmentRole update(Long id, EnvironmentRole role) {
 		EnvironmentRole roleSalva = findRoleById(id);
 		BeanUtils.copyProperties(role, roleSalva, "id", "role");
 		return roleRepository.save(roleSalva);

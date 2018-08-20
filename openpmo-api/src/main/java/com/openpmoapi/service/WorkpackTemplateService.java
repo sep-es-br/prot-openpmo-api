@@ -33,7 +33,7 @@ public class WorkpackTemplateService {
 	 * this method verify if exits the data to update 
 	
 	 */
-	public WorkpackTemplate atualizar(Long id, WorkpackTemplate wptl) {
+	public WorkpackTemplate update(Long id, WorkpackTemplate wptl) {
 		WorkpackTemplate wptlSalvo = buscarPessoaPeloCodigo(id);
 		BeanUtils.copyProperties(wptl, wptlSalvo, "id", "wptl");
 		return wptlRepository.save(wptlSalvo);

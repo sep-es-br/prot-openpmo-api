@@ -30,15 +30,13 @@ public class SchemaService {
 	private SchemaRepository schemaRepository;
 	
 	
-	
-	
 	/**
 	
 	 * this method verify if exits the data to update 
 	
 	 */
-	public Schema atualizar(Long id, Schema schema) {
-		Schema schemaSalvo = buscarPessoaPeloCodigo(id);
+	public Schema update(Long id, Schema schema) {
+		Schema schemaSalvo = findSchemaById(id);
 		BeanUtils.copyProperties(schema, schemaSalvo, "id", "schema");
 		return schemaRepository.save(schemaSalvo);
 	}
@@ -48,8 +46,8 @@ public class SchemaService {
 	 * this method find by id a data type Environment, if not exist it treats the exception 
 	 * @return
 	 */
-	public Schema buscarPessoaPeloCodigo(Long id) {
-		Optional<Schema> schemaSalvo = schemaRepository.findById(id);
+	public Schema findSchemaById(Long id) {
+		Optional<Schema> schemaSalvo = schemaRepository.findById(id,0);
 		if (!schemaSalvo.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}

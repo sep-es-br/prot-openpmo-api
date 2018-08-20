@@ -37,7 +37,7 @@ public class OrganizationRoleService {
 	
 	 */
 	@Transactional(readOnly = false)
-	public OrganizationRole atualizar(Long id, OrganizationRole organizationRole) {
+	public OrganizationRole update(Long id, OrganizationRole organizationRole) {
 		OrganizationRole organizationRoleSalva = findOrganizationRoleById(id);
 		BeanUtils.copyProperties(organizationRole, organizationRoleSalva, "id", "organizationRole");
 		return organizationRoleRepository.save(organizationRoleSalva);

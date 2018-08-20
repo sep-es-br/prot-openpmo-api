@@ -3,8 +3,8 @@
  */
 package com.openpmoapi.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
@@ -65,15 +65,16 @@ public class SchemaTemplate {
 	 * in the schema 
 	 */
 	@Relationship(type="IS_ROOT_OF", direction=Relationship.INCOMING)
-	private Set<WorkpackTemplate> workpackTemplates= new HashSet<>();	
-	public Set<WorkpackTemplate> getWorkpackTemplates() {
+	private List<WorkpackTemplate> workpackTemplates= new ArrayList<>();	
+	public List<WorkpackTemplate> getWorkpackTemplates() {
 		return workpackTemplates;
 	}
-	public void setWorkpackTemplates(Set<WorkpackTemplate> workpackTemplates) {
+	public void setWorkpackTemplates(List<WorkpackTemplate> workpackTemplates) {
 		this.workpackTemplates = workpackTemplates;
 	}
 	
-
+	
+	
 	
 	@Override
 	public int hashCode() {

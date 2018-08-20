@@ -75,7 +75,7 @@ public class SchemaResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<Schema> update(@PathVariable Long id, @Valid @RequestBody Schema schema) {
-		Schema schemaSalvo = schemaService.atualizar(id, schema);
+		Schema schemaSalvo = schemaService.update(id, schema);
 		return ResponseEntity.ok(schemaSalvo);
 	}
 	

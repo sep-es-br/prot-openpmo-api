@@ -34,7 +34,7 @@ public class SchemaTemplateService {
 	 * this method verify if exits the data to update 
 	
 	 */
-	public SchemaTemplate atualizar(Long id, SchemaTemplate schemaTemplate) {
+	public SchemaTemplate update(Long id, SchemaTemplate schemaTemplate) {
 		SchemaTemplate schemaTmplSalvo = buscarPessoaPeloCodigo(id);
 		BeanUtils.copyProperties(schemaTemplate, schemaTmplSalvo, "id", "schemaTemplate");
 		return schemaTmplRepository.save(schemaTmplSalvo);
