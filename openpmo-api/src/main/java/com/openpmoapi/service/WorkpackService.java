@@ -3,6 +3,7 @@
  */
 package com.openpmoapi.service;
 
+import java.text.Normalizer;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -30,14 +31,17 @@ public class WorkpackService {
 	private WorkpackRepository wpRepository;
 	
 	
+	
 	/**
 	
 	 * this method verify if exits the data to update 
 	
 	 */
-	public Workpack update(Long id, Workpack wp) {
+	public Workpack update(Long id, Workpack workpack) {
+		
 		Workpack wpSalvo = buscarPessoaPeloCodigo(id);
-		BeanUtils.copyProperties(wp, wpSalvo, "id", "wp");
+		
+		BeanUtils.copyProperties(workpack, wpSalvo, "id", "workpack");
 		return wpRepository.save(wpSalvo);
 	}
 	
@@ -60,6 +64,17 @@ public class WorkpackService {
       Collection<Workpack> wp = wpRepository.findWpByIdSchema(id);
       return wp;
     }
+	
+	
+	public static String removeAcentos(String string) {
+	    if (string != null){
+	        string = Normalizer.normalize(string, Normalizer.Form.NFD);
+	        string = string.replaceAll("[^\\p{ASCII}]", "");
+	        string = string.replaceAll(" ", "");
+	        string = string.toLowerCase();
+	    }
+	    return string;
+	}
 	
 	
 }

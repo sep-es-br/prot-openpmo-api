@@ -73,7 +73,9 @@ public class WorkpackResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<Workpack> update(@PathVariable Long id, @Valid @RequestBody Workpack workpack) {
+		
 		Workpack wpSalvo = wpService.update(id, workpack);
+		
 		return ResponseEntity.ok(wpSalvo);
 	}
 	
@@ -82,10 +84,12 @@ public class WorkpackResource {
 		This is method save Workpack
 	 */
 	@PostMapping
-	public ResponseEntity<Workpack> save(@Valid @RequestBody Workpack workPack, HttpServletResponse response) {
-		Workpack workPackSalvo = workPackRepository.save(workPack);
+	public ResponseEntity<Workpack> save(@Valid @RequestBody Workpack workpack, HttpServletResponse response) {
+		
+		Workpack workPackSalvo = workPackRepository.save(workpack);
+		
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, workPackSalvo.getId()));
-		return ResponseEntity.status(HttpStatus.CREATED).body(workPackRepository.save(workPack));
+		return ResponseEntity.status(HttpStatus.CREATED).body(workPackRepository.save(workpack));
 	}
 	
 	
@@ -115,6 +119,9 @@ public class WorkpackResource {
 	public Collection<Workpack> findWpByIdSchema(@PathVariable Long id) {
 		return wpService.findWpByIdSchema(id);
 	}
+	
+	
+	
 
 	
 }

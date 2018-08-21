@@ -1,5 +1,6 @@
 package com.openpmoapi.model;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -50,7 +51,7 @@ public class Workpack {
 		return shortName;
 	}
 	public void setShortName(String shortName) {
-		this.shortName = shortName;
+		this.shortName = removeAccents(shortName);
 	}
 	
 	
@@ -124,6 +125,18 @@ public class Workpack {
 	}
 	public void setComponents(List<Workpack> components) {
 		this.components = components;
+	}
+	
+	
+
+	public static String removeAccents(String string) {
+	    if (string != null){
+	        string = Normalizer.normalize(string, Normalizer.Form.NFD);
+	        string = string.replaceAll("[^\\p{ASCII}]", "");
+	        string = string.replaceAll(" ", "");
+	        string = string.toLowerCase();
+	    }
+	    return string;
 	}
 	
 	
