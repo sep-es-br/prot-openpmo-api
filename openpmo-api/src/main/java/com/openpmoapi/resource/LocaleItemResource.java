@@ -27,7 +27,7 @@ import com.openpmoapi.service.LocaleItemService;
 
 
 @RestController
-@RequestMapping("/api/localeItens")
+@RequestMapping("/api/localeItem")
 public class LocaleItemResource {
 	
 	@Autowired

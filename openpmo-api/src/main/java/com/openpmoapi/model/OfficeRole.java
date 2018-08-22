@@ -22,7 +22,7 @@ import org.neo4j.ogm.annotation.typeconversion.DateString;
 */
 
 @RelationshipEntity(type="PERFORMS_A_ROLE")
-public class EnvironmentRole {
+public class OfficeRole {
 
 	
 	@Id @GeneratedValue   
@@ -57,11 +57,11 @@ public class EnvironmentRole {
 
 
 	@EndNode   
-    private Environment environment;
-    public Environment getEnvironment() {
+    private Office environment;
+    public Office getEnvironment() {
 		return environment;
 	}
-	public void setEnvironment(Environment environment) {
+	public void setEnvironment(Office environment) {
 		this.environment = environment;
 	}
 
@@ -96,7 +96,7 @@ public class EnvironmentRole {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		EnvironmentRole other = (EnvironmentRole) obj;
+		OfficeRole other = (OfficeRole) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

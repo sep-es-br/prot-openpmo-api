@@ -1,5 +1,7 @@
 package com.openpmoapi.resource;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +22,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.openpmoapi.event.RecursoCriadoEvent;
+import com.openpmoapi.model.AddressProperty;
+import com.openpmoapi.model.NumberProperty;
+import com.openpmoapi.model.TextListProperty;
+import com.openpmoapi.model.TextProperty;
 import com.openpmoapi.model.WorkpackTemplate;
 import com.openpmoapi.repository.WorkpackTemplateRepository;
 import com.openpmoapi.service.WorkpackTemplateService;
@@ -31,7 +37,7 @@ import com.openpmoapi.service.WorkpackTemplateService;
 * @since 2018-08-02
 */
 @RestController
-@RequestMapping("/api/workpacktemplates")
+@RequestMapping("/api/workpacktemplate")
 public class WorkpackTemplateResource {
 	
 	@Autowired
@@ -123,6 +129,21 @@ public class WorkpackTemplateResource {
 	public Collection<WorkpackTemplate> findWptpByIdSchemaTmpl(@PathVariable Long id) {
 		return wptmpService.findWptpByIdSchemaTmpl(id);
 	}
-		
 	
+	@GetMapping
+	public Object findAllProperty() {
+		
+		Map<String,Object> properties = new HashMap<>();
+         
+		properties.put("Text", new TextProperty());
+		properties.put("TextList", new TextListProperty());
+		properties.put("Number", new NumberProperty());
+		properties.put("Address", new AddressProperty());
+		
+     return properties;
+        		
+		
+	}
+
+
 }

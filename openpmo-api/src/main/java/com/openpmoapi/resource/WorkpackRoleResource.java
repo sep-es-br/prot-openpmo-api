@@ -27,7 +27,7 @@ import com.openpmoapi.service.WorkpackRoleService;
 
 
 @RestController
-@RequestMapping("/api/workpackroles")
+@RequestMapping("/api/workpackrole")
 public class WorkpackRoleResource {
 	
 	@Autowired

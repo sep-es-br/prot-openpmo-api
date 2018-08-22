@@ -38,11 +38,11 @@ public class Adoption {
 	}
 	
 	@EndNode
-	private Environment environment;
-	public Environment getEnvironment() {
+	private Office environment;
+	public Office getEnvironment() {
 		return environment;
 	}
-	public void setEnvironment(Environment environment) {
+	public void setEnvironment(Office environment) {
 		this.environment = environment;
 	}
 

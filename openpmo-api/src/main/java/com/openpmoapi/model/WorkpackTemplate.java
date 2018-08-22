@@ -12,7 +12,6 @@ import javax.validation.constraints.NotNull;
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Properties;
 import org.neo4j.ogm.annotation.Relationship;
 import org.neo4j.ogm.annotation.typeconversion.DateString;
 import org.springframework.boot.test.autoconfigure.data.neo4j.AutoConfigureDataNeo4j;
@@ -88,7 +87,7 @@ public class WorkpackTemplate {
 	/**
 	 * Map (attribute/value) of single properties defined for the template
 	 */
-	@Properties(prefix="property", allowCast=true)
+	
 	private Map<String, Object> properties = new HashMap<>();
 	public Map<String, Object> getProperties() {
 		return properties;
@@ -98,6 +97,7 @@ public class WorkpackTemplate {
 	}
 	
 	
+
 	/**
 	 * Relationship linking its children 
 	 */
@@ -110,6 +110,7 @@ public class WorkpackTemplate {
 		this.components = components;
 	}
 	
+
 	
 	public static String removeAccents(String string) {
 	    if (string != null){

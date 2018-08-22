@@ -27,7 +27,7 @@ import com.openpmoapi.service.LocaleService;
 
 
 @RestController
-@RequestMapping("/api/locales")
+@RequestMapping("/api/locale")
 public class LocaleResource {
 	
 	@Autowired

@@ -21,22 +21,21 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.openpmoapi.event.RecursoCriadoEvent;
-import com.openpmoapi.model.Environment;
-import com.openpmoapi.repository.EnvironmentRepository;
-import com.openpmoapi.repository.projection.EnvironmentProjection;
-import com.openpmoapi.service.EnvironmentService;
+import com.openpmoapi.model.Office;
+import com.openpmoapi.repository.OfficeRepository;
+import com.openpmoapi.service.OfficeService;
 
 
 @RestController
-@RequestMapping("/api/environments")
-public class EnvironmentResource {
+@RequestMapping("/api/office")
+public class OfficeResource {
 	
 	@Autowired
-	private EnvironmentRepository envRepository;
+	private OfficeRepository envRepository;
 	
 	
 	@Autowired
-	private EnvironmentService envService;
+	private OfficeService envService;
 	
 	@Autowired
 	private ApplicationEventPublisher publisher;
@@ -66,7 +65,7 @@ public class EnvironmentResource {
 	 */
 	@DeleteMapping("/part")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteLista(@PathVariable  Iterable<? extends Environment>  env ) {
+	public void deleteLista(@PathVariable  Iterable<? extends Office>  env ) {
 		envRepository.deleteAll(env);
 	}
 	
@@ -75,8 +74,8 @@ public class EnvironmentResource {
 	 * This is method update Environment
 	 */
 	@PutMapping("/{id}")
-	public ResponseEntity<Environment> update(@PathVariable Long id, @Valid @RequestBody Environment env) {
-		Environment envSalvo = envService.update(id, env);
+	public ResponseEntity<Office> update(@PathVariable Long id, @Valid @RequestBody Office env) {
+		Office envSalvo = envService.update(id, env);
 		return ResponseEntity.ok(envSalvo);
 	}
 	
@@ -85,8 +84,8 @@ public class EnvironmentResource {
 		This is method save Environment
 	 */
 	@PostMapping
-	public ResponseEntity<Environment> save(@Valid @RequestBody Environment env, HttpServletResponse response) {
-		Environment envSalvo = envRepository.save(env);
+	public ResponseEntity<Office> save(@Valid @RequestBody Office env, HttpServletResponse response) {
+		Office envSalvo = envRepository.save(env);
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, envSalvo.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(envRepository.save(env));
 	}
@@ -96,7 +95,7 @@ public class EnvironmentResource {
 	 * This is method find by all Environment
 	 */
 	@GetMapping
-	public Iterable<Environment> findByAll() {
+	public Iterable<Office> findByAll() {
 		 return envRepository.findAll(-1);
 	}
 	
@@ -105,31 +104,31 @@ public class EnvironmentResource {
 			This is method find by one Environment
 	 */
 	@GetMapping("/{id}")
-	public ResponseEntity<Environment> findById(@PathVariable Long id) {
-		Optional<Environment> env = envRepository.findById(id,1);
+	public ResponseEntity<Office> findById(@PathVariable Long id) {
+		Optional<Office> env = envRepository.findById(id,1);
 		return env.get() != null ? ResponseEntity.ok(env.get()) : ResponseEntity.notFound().build();
 	}
 	
 	
 	@GetMapping("/teste/{name}")
-	public Environment findByName(@PathVariable String name) {
+	public Office findByName(@PathVariable String name) {
 	    return envService.findByName(name);
 	}
 	  
 	
 	@GetMapping("/testes/{name}")
-	public Collection<Environment> findByNameLike(@PathVariable String name) {
+	public Collection<Office> findByNameLike(@PathVariable String name) {
 	     return envService.findByNameLike(name);
 	 }
 	
 	
-	@GetMapping("/teste2/{shortName}")
-	public EnvironmentProjection findByShortName(@PathVariable String shortName) {
-	    return envService.findByShortName(shortName);
-	}
+//	@GetMapping("/teste2/{shortName}")
+//	public EnvironmentProjection findByShortName(@PathVariable String shortName) {
+//	    return envService.findByShortName(shortName);
+//	}
 	
 	@GetMapping("/testes3")
-	public Collection<Environment> find() {
+	public Collection<Office> find() {
 	     return envService.find();
 	}
 	

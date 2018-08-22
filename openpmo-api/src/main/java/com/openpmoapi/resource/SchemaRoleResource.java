@@ -27,7 +27,7 @@ import com.openpmoapi.service.SchemaRoleService;
 
 
 @RestController
-@RequestMapping("/api/schemaroles")
+@RequestMapping("/api/schemarole")
 public class SchemaRoleResource {
 	
 	@Autowired

@@ -25,7 +25,7 @@ import com.openpmoapi.repository.WorkpackRepository;
 import com.openpmoapi.service.WorkpackService;
 
 @RestController
-@RequestMapping("/api/workpacks")
+@RequestMapping("/api/workpack")
 public class WorkpackResource {
 	
 	@Autowired

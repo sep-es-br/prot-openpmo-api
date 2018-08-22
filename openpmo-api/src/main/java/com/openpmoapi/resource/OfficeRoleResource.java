@@ -21,21 +21,21 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.openpmoapi.event.RecursoCriadoEvent;
-import com.openpmoapi.model.EnvironmentRole;
-import com.openpmoapi.repository.EnvironmentRoleRepository;
-import com.openpmoapi.service.EnvironmentRoleService;
+import com.openpmoapi.model.OfficeRole;
+import com.openpmoapi.repository.OfficeRoleRepository;
+import com.openpmoapi.service.OfficeRoleService;
 
 
 @RestController
-@RequestMapping("/api/environmentroles")
-public class EnvironmentRoleResource {
+@RequestMapping("/api/officerole")
+public class OfficeRoleResource {
 	
 	@Autowired
-	private EnvironmentRoleRepository roleRepository;
+	private OfficeRoleRepository roleRepository;
 	
 	
 	@Autowired
-	private EnvironmentRoleService roleService;
+	private OfficeRoleService roleService;
 	
 	@Autowired
 	private ApplicationEventPublisher publisher;
@@ -64,8 +64,8 @@ public class EnvironmentRoleResource {
 	 * This is method update Role
 	 */
 	@PutMapping("/{id}")
-	public ResponseEntity<EnvironmentRole> update(@PathVariable Long id, @Valid @RequestBody EnvironmentRole role) {
-		EnvironmentRole roleSalva = roleService.update(id, role);
+	public ResponseEntity<OfficeRole> update(@PathVariable Long id, @Valid @RequestBody OfficeRole role) {
+		OfficeRole roleSalva = roleService.update(id, role);
 		return ResponseEntity.ok(roleSalva);
 	}
 	
@@ -74,8 +74,8 @@ public class EnvironmentRoleResource {
 		This is method save Role
 	 */
 	@PostMapping
-	public ResponseEntity<EnvironmentRole> save(@Valid @RequestBody EnvironmentRole role, HttpServletResponse response) {
-		EnvironmentRole roleSalva = roleRepository.save(role);
+	public ResponseEntity<OfficeRole> save(@Valid @RequestBody OfficeRole role, HttpServletResponse response) {
+		OfficeRole roleSalva = roleRepository.save(role);
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, roleSalva.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(roleRepository.save(role));
 	}
@@ -85,7 +85,7 @@ public class EnvironmentRoleResource {
 	 * This is method find by all Roles
 	 */
 	@GetMapping
-	public Iterable<EnvironmentRole> findByAll() {
+	public Iterable<OfficeRole> findByAll() {
 		 return roleRepository.findAll(-1);
 	}
 	
@@ -94,8 +94,8 @@ public class EnvironmentRoleResource {
 			This is method find by one Role
 	 */
 	@GetMapping("/{id}")
-	public ResponseEntity<EnvironmentRole> findById(@PathVariable Long id) {
-		Optional<EnvironmentRole> role = roleRepository.findById(id,1);
+	public ResponseEntity<OfficeRole> findById(@PathVariable Long id) {
+		Optional<OfficeRole> role = roleRepository.findById(id,1);
 		return role.get() != null ? ResponseEntity.ok(role.get()) : ResponseEntity.notFound().build();
 	}
 	
@@ -106,7 +106,7 @@ public class EnvironmentRoleResource {
 	 * 
 	 */
 	@GetMapping("/like/{name}")
-	public Collection<EnvironmentRole> findByNameLike(@PathVariable String name) {
+	public Collection<OfficeRole> findByNameLike(@PathVariable String name) {
 	     return roleService.findByNameLike(name);
 	 }
 	

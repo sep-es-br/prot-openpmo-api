@@ -27,7 +27,7 @@ import com.openpmoapi.service.SchemaService;
 
 
 @RestController
-@RequestMapping("/api/schemas")
+@RequestMapping("/api/schema")
 public class SchemaResource {
 	
 	@Autowired

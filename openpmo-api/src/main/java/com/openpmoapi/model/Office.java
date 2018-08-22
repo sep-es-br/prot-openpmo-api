@@ -22,8 +22,8 @@ import org.neo4j.ogm.annotation.Relationship;
 * @author vagner.cordeiro  
 * @since 2018-08-01
 */
-@NodeEntity(label="Environment")
-public class Environment {
+@NodeEntity(label="Office")
+public class Office {
 	
 	/**
 	 * Self generated node id
@@ -95,7 +95,7 @@ public class Environment {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Environment other = (Environment) obj;
+		Office other = (Office) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

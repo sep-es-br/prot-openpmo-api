@@ -27,7 +27,7 @@ import com.openpmoapi.service.OrganizationRoleService;
 
 
 @RestController
-@RequestMapping("/api/organizationroles")
+@RequestMapping("/api/organizationrole")
 public class OrganizationRoleResource {
 	
 	@Autowired

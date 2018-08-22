@@ -30,7 +30,7 @@ import com.openpmoapi.service.PersonService;
 
 
 @RestController
-@RequestMapping("/api/persons")
+@RequestMapping("/api/person")
 public class PersonResource {
 	
 	@Autowired

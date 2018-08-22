@@ -27,7 +27,7 @@ import com.openpmoapi.service.SchemaTemplateService;
 
 
 @RestController
-@RequestMapping("/api/schematemplates")
+@RequestMapping("/api/schematemplate")
 public class SchemaTemplateResource {
 	
 	@Autowired
