@@ -2,13 +2,13 @@ OPENPMO: SERVICES
 
 =================================================================
 
-RESOURCE ENVIRONMENT:
+RESOURCE OFFICE
 
-DELETE BY ID => http://localhost:8080/api/environments/{id}
+DELETE BY ID => http://localhost:8080/api/office/{id}
 
-DELETE ALL => http://localhost:8080/api/environments/all
+DELETE ALL => http://localhost:8080/api/office/all
 
-UPDATE BY ID => http://localhost:8080/api/environments/id
+UPDATE BY ID => http://localhost:8080/api/office/id
 
 CREATE => http://localhost:8080/api/environments
 
@@ -20,20 +20,20 @@ CREATE => http://localhost:8080/api/environments
 
 	      }
 
-GET ALL => http://localhost:8080/api/environments
-GET BY ID => http://localhost:8080/api/environments/{id}
+GET ALL => http://localhost:8080/api/office
+GET BY ID => http://localhost:8080/api/office/{id}
 
 ====================================================================
 
 RESOURCE SCHEMATEMPLATE:
 
-DELETE BY ID => http://localhost:8080/api/schematemplates/{id}
+DELETE BY ID => http://localhost:8080/api/schematemplate/{id}
 
-DELETE ALL => http://localhost:8080/api/schematemplates/all
+DELETE ALL => http://localhost:8080/api/schematemplate/all
 
-UPDATE BY ID => http://localhost:8080/api/schematemplates/id
+UPDATE BY ID => http://localhost:8080/api/schematemplate/id
 
-CREATE => http://localhost:8080/api/schematemplates
+CREATE => http://localhost:8080/api/schematemplate
 
 	JSON: {
 		"name":"MODELO 15-18",
@@ -42,21 +42,21 @@ CREATE => http://localhost:8080/api/schematemplates
 
 	      }
 
-GET ALL => http://localhost:8080/api/schematemplates
-GET BY ID => http://localhost:8080/api/schematemplates/{id}
-GET BY ID OF THE ENVIRONMENT => http://localhost:8080/api/schematemplates/listschematemplates{id of the environment}
+GET ALL => http://localhost:8080/api/schematemplate
+GET BY ID => http://localhost:8080/api/schematemplate/{id}
+GET BY ID OF THE ENVIRONMENT => http://localhost:8080/api/schematemplate/listschematemplates{id of the environment}
 
 ========================================================================================================
 
 RESOURCE SCHEMA:
 
-DELETE BY ID => http://localhost:8080/api/schemas/{id}
+DELETE BY ID => http://localhost:8080/api/schema/{id}
 
-DELETE ALL => http://localhost:8080/api/schemas/all
+DELETE ALL => http://localhost:8080/api/schema/all
 
-UPDATE BY ID => http://localhost:8080/api/schemas/{id}
+UPDATE BY ID => http://localhost:8080/api/schema/{id}
 
-CREATE => http://localhost:8080/api/schemas
+CREATE => http://localhost:8080/api/schema
 
 	JSON: {
 		"name":"MODELO 15-18",
@@ -66,21 +66,21 @@ CREATE => http://localhost:8080/api/schemas
 
 	      }
 
-GET ALL => http://localhost:8080/api/schemas
-GET BY ID => http://localhost:8080/api/schemas/{id}
-GET BY ID OF THE ENVIRONMENT => http://localhost:8080/api/schemas/listschemas{id of the environment}
+GET ALL => http://localhost:8080/api/schema
+GET BY ID => http://localhost:8080/api/schema/{id}
+GET BY ID OF THE ENVIRONMENT => http://localhost:8080/api/schema/listschemas{id of the environment}
 
 ========================================================================================================
 
 RESOURCE WORKPACKTEMPLATE:
 
-DELETE BY ID => http://localhost:8080/api/workpacktemplates/{id}
+DELETE BY ID => http://localhost:8080/api/workpacktemplate/{id}
 
-DELETE ALL => http://localhost:8080/api/workpacktemplates/all
+DELETE ALL => http://localhost:8080/api/workpacktemplate/all
 
-UPDATE BY ID => http://localhost:8080/api/workpacktemplates/{id}
+UPDATE BY ID => http://localhost:8080/api/workpacktemplate/{id}
 
-CREATE => http://localhost:8080/api/workpacktemplates
+CREATE => http://localhost:8080/api/workpacktemplate
 
 	JSON: {
 		"profile":"Projeto Estruturante",
@@ -90,21 +90,22 @@ CREATE => http://localhost:8080/api/workpacktemplates
 
 	      }
 
-GET ALL => http://localhost:8080/api/workpacktemplates
-GET BY ID => http://localhost:8080/api/workpacktemplates/{id}
-GET BY ID OF THE SCHEMATEMPLATE => http://localhost:8080/api/workpacktemplates/listworkpacktemplates{id of the schemaTemplate}
+GET ALL => http://localhost:8080/api/workpacktemplate
+GET BY ID => http://localhost:8080/api/workpacktemplate/{id}
+GET BY ID OF THE SCHEMATEMPLATE => http://localhost:8080/api/workpacktemplate/listworkpacktemplates{id of the schemaTemplate}
+GET ALL PROPERTIES => http://localhost:8080/api/workpacktemplate/properties
 
 ========================================================================================================
 
 RESOURCE WORKPACK:
 
-DELETE BY ID => http://localhost:8080/api/workpacks/{id}
+DELETE BY ID => http://localhost:8080/api/workpack/{id}
 
-DELETE ALL => http://localhost:8080/api/workpacks/all
+DELETE ALL => http://localhost:8080/api/workpack/all
 
-UPDATE BY ID => http://localhost:8080/api/workpacks/{id}
+UPDATE BY ID => http://localhost:8080/api/workpack/{id}
 
-CREATE => http://localhost:8080/api/workpacks
+CREATE => http://localhost:8080/api/workpack
 
 	JSON: {
 		"name":"Projeto Estruturante",
@@ -117,8 +118,8 @@ CREATE => http://localhost:8080/api/workpacks
 
 	      }
 
-GET ALL => http://localhost:8080/api/workpacks
-GET BY ID => http://localhost:8080/api/workpacks/{id}
+GET ALL => http://localhost:8080/api/workpack
+GET BY ID => http://localhost:8080/api/workpack/{id}
 GET BY ID => http://localhost:8080/api/workpack/listworkpacks/{environmentId} or {schemaId} or {workpackId}
 
 
@@ -126,152 +127,152 @@ GET BY ID => http://localhost:8080/api/workpack/listworkpacks/{environmentId} or
 
 RESOURCE PERSON
 
-DELETE BY ID => http://localhost:8080/api/persons/{id}
+DELETE BY ID => http://localhost:8080/api/person/{id}
 
-DELETE ALL => http://localhost:8080/api/persons/all
+DELETE ALL => http://localhost:8080/api/person/all
 
-UPDATE BY ID => http://localhost:8080/api/persons/{id}
+UPDATE BY ID => http://localhost:8080/api/person/{id}
 
-CREATE => http://localhost:8080/api/persons
+CREATE => http://localhost:8080/api/person
 
 	JSON: {
 		"name":"MARCOS" 
 
 	      }
 
-GET ALL => http://localhost:8080/api/persons
-GET BY ID => http://localhost:8080/api/persons/{id}
-GET BY NAME => http://localhost:8080/api/persons/like/{name}
+GET ALL => http://localhost:8080/api/person
+GET BY ID => http://localhost:8080/api/person/{id}
+GET BY NAME => http://localhost:8080/api/person/like/{name}
 
 
 ========================================================================================================
 
 RESOURCE ORGANIZATION
 
-DELETE BY ID => http://localhost:8080/api/organizations/{id}
+DELETE BY ID => http://localhost:8080/api/organization/{id}
 
-DELETE ALL => http://localhost:8080/api/organizations/all
+DELETE ALL => http://localhost:8080/api/organization/all
 
-UPDATE BY ID => http://localhost:8080/api/organizations/{id}
+UPDATE BY ID => http://localhost:8080/api/organization/{id}
 
-CREATE => http://localhost:8080/api/organizations
+CREATE => http://localhost:8080/api/organization
 
 	JSON: {
 		"name":"SEP" 
 
 	      }
 
-GET ALL => http://localhost:8080/api/organizations
-GET BY ID => http://localhost:8080/api/organizations/{id}
-GET BY NAME => http://localhost:8080/api/organizations/like/{name}
+GET ALL => http://localhost:8080/api/organization
+GET BY ID => http://localhost:8080/api/organization/{id}
+GET BY NAME => http://localhost:8080/api/organization/like/{name}
 
 ========================================================================================================
 
 RESOURCE LOCALE
 
-DELETE BY ID => http://localhost:8080/api/locales/{id}
+DELETE BY ID => http://localhost:8080/api/locale/{id}
 
-DELETE ALL => http://localhost:8080/api/locales/all
+DELETE ALL => http://localhost:8080/api/locale/all
 
-UPDATE BY ID => http://localhost:8080/api/locales/{id}
+UPDATE BY ID => http://localhost:8080/api/locale/{id}
 
-CREATE => http://localhost:8080/api/locales
+CREATE => http://localhost:8080/api/locale
 
 	JSON: {
 		"name":"Vitória" 
 
 	      }
 
-GET ALL => http://localhost:8080/api/locales
-GET BY ID => http://localhost:8080/api/locales/{id}
-GET BY NAME => http://localhost:8080/api/locales/like/{name}
+GET ALL => http://localhost:8080/api/locale
+GET BY ID => http://localhost:8080/api/locale/{id}
+GET BY NAME => http://localhost:8080/api/locale/like/{name}
 
 
 ========================================================================================================
 
-RESOURCE ENVIRONMENTROLE (RELATIONSHIP BETWEEN PERSON AND ENVIRONMENT)
+RESOURCE OFFICEROLE (RELATIONSHIP BETWEEN PERSON AND OFFICE
 
-DELETE BY ID => http://localhost:8080/api/environmentroles/{id}
+DELETE BY ID => http://localhost:8080/api/officeroles/{id}
 
-DELETE ALL => http://localhost:8080/api/environmentroles/all
+DELETE ALL => http://localhost:8080/api/officeroles/all
 
-UPDATE BY ID => http://localhost:8080/api/environmentroles/{id}
+UPDATE BY ID => http://localhost:8080/api/officeroles/{id}
 
-CREATE => http://localhost:8080/api/environmentroles
+CREATE => http://localhost:8080/api/officeroles
 
 	JSON: {
 		"name":"" 
 
 	      }
 
-GET ALL => http://localhost:8080/api/environmentroles
-GET BY ID => http://localhost:8080/api/environmentroles/{id}
-GET BY NAME => http://localhost:8080/api/environmentroles/like/{name}
+GET ALL => http://localhost:8080/api/officeroles
+GET BY ID => http://localhost:8080/api/officeroles/{id}
+GET BY NAME => http://localhost:8080/api/officeroles/like/{name}
 
 ========================================================================================================
 
 RESOURCE ORGANIZATIONROLE (RELATIONSHIP BETWEEN PERSON AND ORGANIZATION)
 
-DELETE BY ID => http://localhost:8080/api/organizationroles/{id}
+DELETE BY ID => http://localhost:8080/api/officeroles/{id}
 
-DELETE ALL => http://localhost:8080/api/organizationroles/all
+DELETE ALL => http://localhost:8080/api/officeroles/all
 
-UPDATE BY ID => http://localhost:8080/api/organizationroles/{id}
+UPDATE BY ID => http://localhost:8080/api/officeroles/{id}
 
-CREATE => http://localhost:8080/api/organizationroles
+CREATE => http://localhost:8080/api/officeroles
 
 	JSON: {
 		"name":"" 
 
 	      }
 
-GET ALL => http://localhost:8080/api/organizationroles
-GET BY ID => http://localhost:8080/api/organizationroles/{id}
-GET BY NAME => http://localhost:8080/api/organizationroles/like/{name}
+GET ALL => http://localhost:8080/api/officeroles
+GET BY ID => http://localhost:8080/api/officeroles/{id}
+GET BY NAME => http://localhost:8080/api/officeroles/like/{name}
 
 
 ========================================================================================================
 
 RESOURCE SCHEMAROLE (RELATIONSHIP BETWEEN PERSON AND SCHEMA)
 
-DELETE BY ID => http://localhost:8080/api/schemaroles/{id}
+DELETE BY ID => http://localhost:8080/api/schemarole/{id}
 
-DELETE ALL => http://localhost:8080/api/schemaroles/all
+DELETE ALL => http://localhost:8080/api/schemarole/all
 
-UPDATE BY ID => http://localhost:8080/api/schemaroles/{id}
+UPDATE BY ID => http://localhost:8080/api/schemarole/{id}
 
-CREATE => http://localhost:8080/api/schemaroles
+CREATE => http://localhost:8080/api/schemarole
 
 	JSON: {
 		"name":"" 
 
 	      }
 
-GET ALL => http://localhost:8080/api/schemaroles
-GET BY ID => http://localhost:8080/api/schemaroles/{id}
-GET BY NAME => http://localhost:8080/api/schemaroles/like/{name}
+GET ALL => http://localhost:8080/api/schemarole
+GET BY ID => http://localhost:8080/api/schemarole/{id}
+GET BY NAME => http://localhost:8080/api/schemarole/like/{name}
 
 
 ========================================================================================================
 
 RESOURCE WORKPACKROLE (RELATIONSHIP BETWEEN PERSON AND WORKPACK)
 
-DELETE BY ID => http://localhost:8080/api/workpackroles/{id}
+DELETE BY ID => http://localhost:8080/api/workpackrole/{id}
 
-DELETE ALL => http://localhost:8080/api/workpackroles/all
+DELETE ALL => http://localhost:8080/api/workpackrole/all
 
-UPDATE BY ID => http://localhost:8080/api/workpackroles/{id}
+UPDATE BY ID => http://localhost:8080/api/workpackrole/{id}
 
-CREATE => http://localhost:8080/api/workpackroles
+CREATE => http://localhost:8080/api/workpackrole
 
 	JSON: {
 		"name":"" 
 
 	      }
 
-GET ALL => http://localhost:8080/api/workpackroles
-GET BY ID => http://localhost:8080/api/workpackroles/{id}
-GET BY NAME => http://localhost:8080/api/workpackroles/like/{name}
+GET ALL => http://localhost:8080/api/workpackrole
+GET BY ID => http://localhost:8080/api/workpackrole/{id}
+GET BY NAME => http://localhost:8080/api/workpackrole/like/{name}
 
 
 
