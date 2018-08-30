@@ -12,6 +12,9 @@ import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.openpmoapi.util.Util;
 
 /**
 * 	A Schema is a set of workpack templates of different profiles,
@@ -23,6 +26,10 @@ import org.neo4j.ogm.annotation.Relationship;
 */
 @NodeEntity(label="Schema")
 public class Schema {
+	
+	@Autowired
+	private Util util;
+	
 	
 	/**
 	 * Self generated node id
@@ -49,8 +56,9 @@ public class Schema {
 	public String getShortName() {
 		return shortName;
 	}
+	@SuppressWarnings("static-access")
 	public void setShortName(String shortName) {
-		this.shortName = shortName;
+		this.shortName = util.retiraCaracteresEspeciais(shortName);
 	}
 	
 
@@ -72,13 +80,16 @@ public class Schema {
 	 * Relationship linking its Schema templates 
 	 */
 	@Relationship(type="IS_INSTANCE_OF", direction=Relationship.OUTGOING)
-	private SchemaTemplate schemaTemplates;
-	public SchemaTemplate getSchemaTemplates() {
+	private List<SchemaTemplate> schemaTemplates = new ArrayList<>();
+	public List<SchemaTemplate> getSchemaTemplates() {
 		return schemaTemplates;
 	}
-	public void setSchemaTemplates(SchemaTemplate schemaTemplates) {
+	public void setSchemaTemplates(List<SchemaTemplate> schemaTemplates) {
 		this.schemaTemplates = schemaTemplates;
 	}
+	
+	
+	
 	
 	
 	@Override
@@ -104,7 +115,8 @@ public class Schema {
 			return false;
 		return true;
 	}
-
+	
+	
 
 
 

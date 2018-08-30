@@ -9,7 +9,7 @@ import com.openpmoapi.model.Schema;
 public interface SchemaRepository extends Neo4jRepository <Schema, Long>{
 
 	
-	@Query("MATCH (s1:Schema)-[:IS_ADOPTED_BY]->(env:Environment) WHERE id(env) = {id} RETURN s1")
+	@Query("MATCH (s1:Schema)-[:IS_ADOPTED_BY]->(env:Office) WHERE id(env) = {id} RETURN s1")
 	Collection<Schema> findSchemaByIdEnveronment(@Param("id") Long id);
 	
 	

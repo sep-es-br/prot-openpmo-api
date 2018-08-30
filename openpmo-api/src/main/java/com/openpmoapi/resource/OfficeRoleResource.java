@@ -96,7 +96,7 @@ public class OfficeRoleResource {
 	@GetMapping("/{id}")
 	public ResponseEntity<OfficeRole> findById(@PathVariable Long id) {
 		Optional<OfficeRole> role = roleRepository.findById(id,1);
-		return role.get() != null ? ResponseEntity.ok(role.get()) : ResponseEntity.notFound().build();
+		return role.isPresent() ? ResponseEntity.ok(role.get()) : ResponseEntity.notFound().build();
 	}
 	
 	  

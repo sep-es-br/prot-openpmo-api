@@ -1,9 +1,10 @@
 /**
  * 
  */
-package com.openpmoapi.model;
+package com.openpmoapi.model.property;
 
-
+import java.util.ArrayList;
+import java.util.List;
 
 /**
 * Type here a brief description of the class.
@@ -11,32 +12,21 @@ package com.openpmoapi.model;
 * @author marcos.santos  
 * @since 2018-08-22
 */
+public class StatusListProperty extends Property{
 
-
-public class AddressProperty {
-
-
-	private String name;
 	
-	private final String typeName = "Address";
-
-	public String getName() {
-		return name;
+	public StatusListProperty() {
+		
+		this.setTypeName("StatusList");
+		
 	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getTypeName() {
-		return typeName;
-	}
-
+	
+	
 	private int max;
 	
 	private int min;
 	
-	private String value;
+	private List<String>  value = new ArrayList<>();
 
 	public int getMax() {
 		return max;
@@ -54,13 +44,15 @@ public class AddressProperty {
 		this.min = min;
 	}
 
-	public String getValue() {
+	public List<String> getValue() {
 		return value;
 	}
 
-	public void setValue(String value) {
+	public void setValue(List<String> value) {
 		this.value = value;
 	}
+
+	
 	
 	
 	

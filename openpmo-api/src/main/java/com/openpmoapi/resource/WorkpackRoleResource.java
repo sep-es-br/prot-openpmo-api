@@ -96,7 +96,7 @@ public class WorkpackRoleResource {
 	@GetMapping("/{id}")
 	public ResponseEntity<WorkpackRole> findById(@PathVariable Long id) {
 		Optional<WorkpackRole> workpackRole = workpackRoleRepository.findById(id,1);
-		return workpackRole.get() != null ? ResponseEntity.ok(workpackRole.get()) : ResponseEntity.notFound().build();
+		return workpackRole.isPresent() ? ResponseEntity.ok(workpackRole.get()) : ResponseEntity.notFound().build();
 	}
 	
 	

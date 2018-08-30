@@ -1,6 +1,5 @@
 package com.openpmoapi.model;
 
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,6 +14,9 @@ import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Properties;
 import org.neo4j.ogm.annotation.Relationship;
 import org.neo4j.ogm.annotation.typeconversion.DateString;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.openpmoapi.util.Util;
 
 /**
 * Class of the real workpack created from a workpack template.
@@ -24,6 +26,10 @@ import org.neo4j.ogm.annotation.typeconversion.DateString;
 */
 @NodeEntity(label="Workpack")
 public class Workpack {
+	
+	
+	@Autowired
+	private Util util;
 	
 	/**
 	 * Self generated node id
@@ -50,8 +56,9 @@ public class Workpack {
 	public String getShortName() {
 		return shortName;
 	}
+	@SuppressWarnings("static-access")
 	public void setShortName(String shortName) {
-		this.shortName = removeAccents(shortName);
+		this.shortName = util.retiraCaracteresEspeciais(shortName);
 	}
 	
 	
@@ -126,19 +133,6 @@ public class Workpack {
 	public void setComponents(List<Workpack> components) {
 		this.components = components;
 	}
-	
-	
-
-	public static String removeAccents(String string) {
-	    if (string != null){
-	        string = Normalizer.normalize(string, Normalizer.Form.NFD);
-	        string = string.replaceAll("[^\\p{ASCII}]", "");
-	        string = string.replaceAll(" ", "");
-	        string = string.toLowerCase();
-	    }
-	    return string;
-	}
-	
 	
 	
 	

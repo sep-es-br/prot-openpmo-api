@@ -106,7 +106,7 @@ public class SchemaTemplateResource {
 	@GetMapping("/{id}")
 	public ResponseEntity<SchemaTemplate> findById(@PathVariable Long id) {
 		Optional<SchemaTemplate> schemaTmpl = schemaTmplRepository.findById(id,1);
-		return schemaTmpl.get() != null ? ResponseEntity.ok(schemaTmpl.get()) : ResponseEntity.notFound().build();
+		return schemaTmpl.isPresent() ? ResponseEntity.ok(schemaTmpl.get()) : ResponseEntity.notFound().build();
 	}
 	
 	

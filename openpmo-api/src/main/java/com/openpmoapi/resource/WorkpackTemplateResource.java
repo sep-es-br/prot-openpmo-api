@@ -1,7 +1,7 @@
 package com.openpmoapi.resource;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -22,14 +22,16 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.openpmoapi.event.RecursoCriadoEvent;
-import com.openpmoapi.model.AddressProperty;
-import com.openpmoapi.model.CostProperty;
-import com.openpmoapi.model.NumberProperty;
-import com.openpmoapi.model.StatusProperty;
-import com.openpmoapi.model.TextListProperty;
-import com.openpmoapi.model.TextProperty;
-import com.openpmoapi.model.MeasurementProperty;
 import com.openpmoapi.model.WorkpackTemplate;
+import com.openpmoapi.model.property.AddressProperty;
+import com.openpmoapi.model.property.CostProperty;
+import com.openpmoapi.model.property.MeasureProperty;
+import com.openpmoapi.model.property.NumberListProperty;
+import com.openpmoapi.model.property.NumberProperty;
+import com.openpmoapi.model.property.StatusListProperty;
+import com.openpmoapi.model.property.StatusProperty;
+import com.openpmoapi.model.property.TextListProperty;
+import com.openpmoapi.model.property.TextProperty;
 import com.openpmoapi.repository.WorkpackTemplateRepository;
 import com.openpmoapi.service.WorkpackTemplateService;
 
@@ -106,6 +108,9 @@ public class WorkpackTemplateResource {
 	}
 	
 	
+	
+	
+	
 	/**
 	 * This is method find by all WorkpackTemplates
 	 */
@@ -121,7 +126,7 @@ public class WorkpackTemplateResource {
 	@GetMapping("/{id}")
 	public ResponseEntity<WorkpackTemplate> findById(@PathVariable Long id) {
 		Optional<WorkpackTemplate> wpTmpl = wptmplRepository.findById(id,1);
-		return wpTmpl.get() != null ? ResponseEntity.ok(wpTmpl.get()) : ResponseEntity.notFound().build();
+		return wpTmpl.isPresent() ? ResponseEntity.ok(wpTmpl.get()) : ResponseEntity.notFound().build();
 	}
 	
 		
@@ -133,29 +138,52 @@ public class WorkpackTemplateResource {
 		return wptmpService.findWptpByIdSchemaTmpl(id);
 	}
 	
-	
-	
 
+//	/**
+//	This is method find by all properties of the WorkPack Templates
+//*/
+//	@GetMapping("/listpropertytypesMap")
+//	public Object findAllPropertiesMap() {
+//		
+//		Map<String,Object> properties = new HashMap<>();
+//         
+//		properties.put("Text", new TextProperty());
+//		properties.put("TextList", new TextListProperty());
+//		properties.put("Number", new NumberProperty());
+//		properties.put("Address", new AddressProperty());
+//		properties.put("Measurement", new MeasureProperty());
+//		properties.put("Cost", new CostProperty());
+//		properties.put("Status", new StatusProperty());
+//		
+//     return properties;
+//        		
+//		
+//	}
+	
+	
 	/**
 	This is method find by all properties of the WorkPack Templates
 */
-	@GetMapping("/propertytypes")
-	public Object findAllProperties() {
+	@GetMapping("/listpropertytypes")
+	public Object findAllPropertiesList() {
 		
-		Map<String,Object> properties = new HashMap<>();
+		List<Object> properties = new ArrayList<>();
          
-		properties.put("Text", new TextProperty());
-		properties.put("TextList", new TextListProperty());
-		properties.put("Number", new NumberProperty());
-		properties.put("Address", new AddressProperty());
-		properties.put("Measurement", new MeasurementProperty());
-		properties.put("Cost", new CostProperty());
-		properties.put("Status", new StatusProperty());
+		properties.add(new TextProperty());
+		properties.add(new TextListProperty());
+		properties.add(new NumberProperty());
+		properties.add(new NumberListProperty());
+		properties.add(new AddressProperty());
+		properties.add(new MeasureProperty());
+		properties.add(new CostProperty());
+		properties.add(new StatusProperty());
+		properties.add(new StatusListProperty());
 		
      return properties;
         		
 		
 	}
+	
 
 
 }

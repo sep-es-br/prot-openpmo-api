@@ -1,7 +1,6 @@
 package com.openpmoapi.resource;
 
 
-import java.text.Normalizer;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -99,7 +98,7 @@ public class PersonResource {
 	@GetMapping("/{id}")
 	public ResponseEntity<Person> findById(@PathVariable Long id) {
 		Optional<Person> person = personRepository.findById(id,1);
-		return person.get() != null ? ResponseEntity.ok(person.get()) : ResponseEntity.notFound().build();
+		return person.isPresent() ? ResponseEntity.ok(person.get()) : ResponseEntity.notFound().build();
 	}
 	
 	  
@@ -109,23 +108,10 @@ public class PersonResource {
 	 */
 	@GetMapping(path ="/like/{name}")
 	public Collection<Person> findByNameLike(@PathVariable("name") String name) {
-		
 		return personService.findByNameLike(name);
 	 
 	}
 	
-	
-	public static String removeAcentos(String string) {
-	    if (string != null){
-	        string = Normalizer.normalize(string, Normalizer.Form.NFD);
-	        string = string.replaceAll("[^\\p{ASCII}]", "");
-	    }
-	    return string;
-	}
-	
-	 
-
-
 
 	
 }

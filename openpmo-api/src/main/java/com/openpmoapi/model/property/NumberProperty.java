@@ -1,76 +1,55 @@
 /**
  * 
  */
-package com.openpmoapi.model;
+package com.openpmoapi.model.property;
 
 /**
 * Type here a brief description of the class.
 *
 * @author marcos.santos  
-* @since 2018-08-21
+* @since 2018-08-22
 */
-public class StatusProperty {
+public class NumberProperty extends Property{
 
 	
-
-	private String name;
+	public NumberProperty() {
+		
+		this.setTypeName("Number");
+		
+	}
 	
-	private final String typeName = "Status";
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getTypeName() {
-		return typeName;
-	}
-
-
+	
 	private int max;
 	
 	private int min;
 	
 	private String value;
-	
-	
-	
-	
+
 	public int getMax() {
 		return max;
 	}
-
 
 	public void setMax(int max) {
 		this.max = max;
 	}
 
-
 	public int getMin() {
 		return min;
 	}
-
 
 	public void setMin(int min) {
 		this.min = min;
 	}
 
-
 	public String getValue() {
 		return value;
 	}
 
-
 	public void setValue(String value) {
 		this.value = value;
 	}
-
-
-
-
+	
+	
 	
 	
 	

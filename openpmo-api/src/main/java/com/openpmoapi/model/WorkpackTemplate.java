@@ -1,20 +1,19 @@
 package com.openpmoapi.model;
 
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.validation.constraints.NotNull;
-
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 import org.neo4j.ogm.annotation.typeconversion.DateString;
-import org.springframework.boot.test.autoconfigure.data.neo4j.AutoConfigureDataNeo4j;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.openpmoapi.model.property.Property;
+import com.openpmoapi.util.Util;
 
 /**
 * This class models a template for a Workpack object. 
@@ -25,9 +24,11 @@ import org.springframework.boot.test.autoconfigure.data.neo4j.AutoConfigureDataN
 * @since 2018-jul-31
 */
 @NodeEntity(label="WorkpackTemplate")
-
-@AutoConfigureDataNeo4j
 public class WorkpackTemplate {
+	
+	@Autowired
+	private Util util;
+	
 	
 	/**
 	 * Self generated node id
@@ -44,22 +45,26 @@ public class WorkpackTemplate {
 	 */
 
 	@NotNull
-	private String profile;
-	public String getProfile() {
-		return profile;
+	private String name;
+	public String getName() {
+		return name;
 	}
-	public void setProfile(String profile) {
-		this.profile = profile;
+	public void setName(String name) {
+		this.name = name;
 	}
 
+
 	@NotNull
-	private String shortProfile;
-	public String getShortProfile() {
-		return shortProfile;
+	private String shortName;
+	public String getShortName() {
+		return shortName;
 	}
-	public void setShortProfile(String shortProfile) {
-		this.shortProfile = removeAccents(shortProfile);
+	@SuppressWarnings("static-access")
+	public void setShortName(String shortName) {
+		this.shortName = util.retiraCaracteresEspeciais(shortName);
 	}
+	
+
 	
 	
 
@@ -88,15 +93,15 @@ public class WorkpackTemplate {
 	 * Map (attribute/value) of single properties defined for the template
 	 */
 	
-	private Map<String, Object> properties = new HashMap<>();
-	public Map<String, Object> getProperties() {
+	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
+	private List<Property> properties = new ArrayList<>();
+	public List<Property> getProperties() {
 		return properties;
 	}
-	public void setProperties(Map<String, Object> properties) {
+	public void setProperties(List<Property> properties) {
 		this.properties = properties;
 	}
-	
-	
+
 
 	/**
 	 * Relationship linking its children 
@@ -111,18 +116,6 @@ public class WorkpackTemplate {
 	}
 	
 
-	
-	public static String removeAccents(String string) {
-	    if (string != null){
-	        string = Normalizer.normalize(string, Normalizer.Form.NFD);
-	        string = string.replaceAll("[^\\p{ASCII}]", "");
-	        string = string.replaceAll(" ", "");
-	        string = string.toLowerCase();
-	    }
-	    return string;
-	}
-	
-	
 	
 	@Override
 	public int hashCode() {

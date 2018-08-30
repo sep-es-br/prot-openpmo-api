@@ -9,7 +9,7 @@ import com.openpmoapi.model.SchemaTemplate;
 public interface SchemaTemplateRepository extends Neo4jRepository <SchemaTemplate, Long>{
 
 	
-	@Query("MATCH (s1:SchemaTemplate)-[:IS_ADOPTED_BY]->(env:Environment) WHERE id(env) = {id} RETURN s1")
+	@Query("MATCH (s1:SchemaTemplate)-[:IS_ADOPTED_BY]->(env:Office) WHERE id(env) = {id} RETURN s1")
 	Collection<SchemaTemplate> findSchemaTmplByIdEnveronment(@Param("id") Long id);
 	
 	

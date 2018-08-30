@@ -106,7 +106,7 @@ public class SchemaResource {
 	@GetMapping("/{id}")
 	public ResponseEntity<Schema> findById(@PathVariable Long id) {
 		Optional<Schema> schema = schemaRepository.findById(id,1);
-		return schema.get() != null ? ResponseEntity.ok(schema.get()) : ResponseEntity.notFound().build();
+		return schema.isPresent() ? ResponseEntity.ok(schema.get()) : ResponseEntity.notFound().build();
 	}
 	
 	

@@ -96,7 +96,7 @@ public class LocaleItemResource {
 	@GetMapping("/{id}")
 	public ResponseEntity<LocaleItem> findById(@PathVariable Long id) {
 		Optional<LocaleItem> localeItem = localeItemRepository.findById(id,1);
-		return localeItem.get() != null ? ResponseEntity.ok(localeItem.get()) : ResponseEntity.notFound().build();
+		return localeItem.isPresent() ? ResponseEntity.ok(localeItem.get()) : ResponseEntity.notFound().build();
 	}
 	
 	  

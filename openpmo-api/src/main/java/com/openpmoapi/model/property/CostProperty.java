@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.openpmoapi.model;
+package com.openpmoapi.model.property;
 
 /**
 * Type here a brief description of the class.
@@ -9,33 +9,22 @@ package com.openpmoapi.model;
 * @author marcos.santos  
 * @since 2018-08-21
 */
-public class CostProperty {
+public class CostProperty extends Property{
 
 	
-
-	private String name;
 	
-	private final String typeName = "Cost";
-
-	public String getName() {
-		return name;
+	public CostProperty() {
+		
+		this.setTypeName("Cost");
+		
 	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getTypeName() {
-		return typeName;
-	}
-
-
+	
+	
 	private int max;
 	
 	private int min;
 	
 	private String value;
-	
 	
 	
 	

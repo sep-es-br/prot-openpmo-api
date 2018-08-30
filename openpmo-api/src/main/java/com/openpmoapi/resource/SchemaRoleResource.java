@@ -96,7 +96,7 @@ public class SchemaRoleResource {
 	@GetMapping("/{id}")
 	public ResponseEntity<SchemaRole> findById(@PathVariable Long id) {
 		Optional<SchemaRole> schemaRole = schemaRoleRepository.findById(id,1);
-		return schemaRole.get() != null ? ResponseEntity.ok(schemaRole.get()) : ResponseEntity.notFound().build();
+		return schemaRole.isPresent() ? ResponseEntity.ok(schemaRole.get()) : ResponseEntity.notFound().build();
 	}
 	
 	  

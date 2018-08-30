@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.openpmoapi.model;
+package com.openpmoapi.model.property;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,26 +12,16 @@ import java.util.List;
 * @author marcos.santos  
 * @since 2018-08-21
 */
-public class TextListProperty {
+public class TextListProperty extends Property{
 
 	
 
-	private String name;
+	public TextListProperty() {
+		
+		this.setTypeName("TextList");
+		
+	}
 	
-	private final String typeName = "Textlist";
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getTypeName() {
-		return typeName;
-	}
-
 
 	private int max;
 	

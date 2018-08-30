@@ -96,7 +96,7 @@ public class OfficeResource {
 	 */
 	@GetMapping
 	public Iterable<Office> findByAll() {
-		 return envRepository.findAll(-1);
+		 return envRepository.findAll(1);
 	}
 	
 	
@@ -106,7 +106,7 @@ public class OfficeResource {
 	@GetMapping("/{id}")
 	public ResponseEntity<Office> findById(@PathVariable Long id) {
 		Optional<Office> env = envRepository.findById(id,1);
-		return env.get() != null ? ResponseEntity.ok(env.get()) : ResponseEntity.notFound().build();
+		return env.isPresent() ? ResponseEntity.ok(env.get()) : ResponseEntity.notFound().build();
 	}
 	
 	
@@ -131,6 +131,11 @@ public class OfficeResource {
 	public Collection<Office> find() {
 	     return envService.find();
 	}
+	
+	
+	
+
+
 	
 	
 }

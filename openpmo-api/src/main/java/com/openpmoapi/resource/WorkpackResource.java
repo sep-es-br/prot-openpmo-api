@@ -108,7 +108,7 @@ public class WorkpackResource {
 	@GetMapping("/{id}")
 	public ResponseEntity<Workpack> findById(@PathVariable Long id) {
 		Optional<Workpack> workPack = workPackRepository.findById(id,1);
-		return workPack.get() != null ? ResponseEntity.ok(workPack.get()) : ResponseEntity.notFound().build();
+		return workPack.isPresent() ? ResponseEntity.ok(workPack.get()) : ResponseEntity.notFound().build();
 	}
 	
 		

@@ -12,6 +12,10 @@ import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.openpmoapi.util.Util;
+
 
 /**
 * The Environment is the root in the PMO environment hierarchy. 
@@ -24,6 +28,12 @@ import org.neo4j.ogm.annotation.Relationship;
 */
 @NodeEntity(label="Office")
 public class Office {
+	
+	
+	
+	@Autowired
+	private Util util;
+	
 	
 	/**
 	 * Self generated node id
@@ -50,13 +60,15 @@ public class Office {
 	public String getShortName() {
 		return shortName;
 	}
+	@SuppressWarnings("static-access")
 	public void setShortName(String shortName) {
-		this.shortName = shortName;
+		this.shortName = util.retiraCaracteresEspeciais(shortName);
 	}
 	
 	
+	
 	/**
-	 *    Relationship linking all the schemasTemplate the environment 
+	 *    Relationship linking all the schemasTemplate the OFFICE 
 	 */
 	@Relationship(type="IS_ADOPTED_BY", direction = Relationship.INCOMING)
 	private List<SchemaTemplate> schemaTemplates = new ArrayList<>(); 
@@ -70,7 +82,7 @@ public class Office {
 
 
 	/**
-	 *    Relationship linking all the schemas the environment 
+	 *    Relationship linking all the schemas the OFFICE 
 	 */
 	@Relationship(type="IS_ADOPTED_BY", direction = Relationship.INCOMING)
 	private List<Schema> schemas = new ArrayList<>(); 
@@ -80,6 +92,10 @@ public class Office {
 	public void setSchemas(List<Schema> schemas) {
 		this.schemas = schemas;
 	}
+	
+
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -103,6 +119,8 @@ public class Office {
 			return false;
 		return true;
 	}
+	
+	
 	
 	
 	

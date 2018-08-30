@@ -58,6 +58,19 @@ public class WorkpackTemplateService {
       Collection<WorkpackTemplate> wptp = wptlRepository.findWptpByIdSchemaTmpl(id);
       return wptp;
     }
+
+
+	/**
+	 * @param id
+	 * @param wpTmpl
+	 * @return
+	 */
+	public WorkpackTemplate update(Long id, Optional<WorkpackTemplate> wpTmpl) {
+		WorkpackTemplate wptlSalvo = buscarPessoaPeloCodigo(id);
+		BeanUtils.copyProperties(wpTmpl, wptlSalvo, "id", "wptl");
+		return wptlRepository.save(wptlSalvo);
+		
+	}
 	
 	
 }
