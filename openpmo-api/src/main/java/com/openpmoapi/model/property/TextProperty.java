@@ -18,20 +18,21 @@ import org.neo4j.ogm.annotation.NodeEntity;
 public class TextProperty extends Property {
 
 	
+
+	@Id @GeneratedValue   
+	private Long id;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	
 	public TextProperty() {
 		
 		this.setTypeName("Text");
 		
-	}
-	
-	/**
-	 * Self generated node id
-	 */
-	@Id @GeneratedValue
-	private Long id;
-	public Long getId() {
-		return id;
 	}
 	
 	

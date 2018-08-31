@@ -12,7 +12,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.openpmoapi.model.LocaleItem;
+import com.openpmoapi.model.LocaleRich;
 import com.openpmoapi.repository.LocaleItemRepository;
 
 
@@ -37,8 +37,8 @@ public class LocaleItemService {
 	
 	 */
 	@Transactional(readOnly = false)
-	public LocaleItem update(Long id, LocaleItem localeItem) {
-		LocaleItem localeItemSalvo = findLocaleItemById(id);
+	public LocaleRich update(Long id, LocaleRich localeItem) {
+		LocaleRich localeItemSalvo = findLocaleItemById(id);
 		BeanUtils.copyProperties(localeItem, localeItemSalvo, "id", "localeItem");
 		return localeItemRepository.save(localeItemSalvo);
 	}
@@ -50,8 +50,8 @@ public class LocaleItemService {
 	 * @return
 	 */
 	@Transactional(readOnly = true)
-	public LocaleItem findLocaleItemById(Long id) {
-		Optional<LocaleItem> localeItemSalvo = localeItemRepository.findById(id);
+	public LocaleRich findLocaleItemById(Long id) {
+		Optional<LocaleRich> localeItemSalvo = localeItemRepository.findById(id);
 		if (!localeItemSalvo.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
@@ -61,15 +61,15 @@ public class LocaleItemService {
 	
 
 	@Transactional(readOnly = true)
-	public LocaleItem findByName(String name) {
-		LocaleItem localeItem = localeItemRepository.findByName(name);
+	public LocaleRich findByName(String name) {
+		LocaleRich localeItem = localeItemRepository.findByName(name);
       return localeItem;
 	}
 	
 	
 	@Transactional(readOnly = true)
-    public Collection<LocaleItem> findByNameLike(String name) {
-      Collection<LocaleItem> localeItem = localeItemRepository.findByNameLike(name);
+    public Collection<LocaleRich> findByNameLike(String name) {
+      Collection<LocaleRich> localeItem = localeItemRepository.findByNameLike(name);
       return localeItem;
     }
 	

@@ -3,6 +3,9 @@
  */
 package com.openpmoapi.model.property;
 
+import org.neo4j.ogm.annotation.GeneratedValue;
+import org.neo4j.ogm.annotation.Id;
+
 /**
 * Type here a brief description of the class.
 *
@@ -11,7 +14,15 @@ package com.openpmoapi.model.property;
 */
 public class MeasureProperty extends Property {
 
-	
+
+	@Id @GeneratedValue   
+	private Long id;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	
 
 	public MeasureProperty() {

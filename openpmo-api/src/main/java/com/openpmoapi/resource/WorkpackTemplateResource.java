@@ -108,9 +108,6 @@ public class WorkpackTemplateResource {
 	}
 	
 	
-	
-	
-	
 	/**
 	 * This is method find by all WorkpackTemplates
 	 */

@@ -22,7 +22,7 @@ import org.neo4j.ogm.annotation.typeconversion.DateString;
 */
 
 @RelationshipEntity(type="IS_IMPACTED_BY")
-public class LocaleItem {
+public class LocaleRich {
 
 	
 	@Id @GeneratedValue   
@@ -94,7 +94,7 @@ public class LocaleItem {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		LocaleItem other = (LocaleItem) obj;
+		LocaleRich other = (LocaleRich) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

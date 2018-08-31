@@ -21,14 +21,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.openpmoapi.event.RecursoCriadoEvent;
-import com.openpmoapi.model.LocaleItem;
+import com.openpmoapi.model.LocaleRich;
 import com.openpmoapi.repository.LocaleItemRepository;
 import com.openpmoapi.service.LocaleItemService;
 
 
 @RestController
 @RequestMapping("/api/localeItem")
-public class LocaleItemResource {
+public class LocaleRichResource {
 	
 	@Autowired
 	private LocaleItemRepository localeItemRepository;
@@ -64,8 +64,8 @@ public class LocaleItemResource {
 	 * This is method update LocaleItem
 	 */
 	@PutMapping("/{id}")
-	public ResponseEntity<LocaleItem> update(@PathVariable Long id, @Valid @RequestBody LocaleItem localeItem) {
-		LocaleItem localeItemSalvo = localeItemService.update(id, localeItem);
+	public ResponseEntity<LocaleRich> update(@PathVariable Long id, @Valid @RequestBody LocaleRich localeItem) {
+		LocaleRich localeItemSalvo = localeItemService.update(id, localeItem);
 		return ResponseEntity.ok(localeItemSalvo);
 	}
 	
@@ -74,8 +74,8 @@ public class LocaleItemResource {
 		This is method save LocaleItem
 	 */
 	@PostMapping
-	public ResponseEntity<LocaleItem> save(@Valid @RequestBody LocaleItem localeItem, HttpServletResponse response) {
-		LocaleItem localeItemSalvo = localeItemRepository.save(localeItem);
+	public ResponseEntity<LocaleRich> save(@Valid @RequestBody LocaleRich localeItem, HttpServletResponse response) {
+		LocaleRich localeItemSalvo = localeItemRepository.save(localeItem);
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, localeItemSalvo.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(localeItemRepository.save(localeItem));
 	}
@@ -85,7 +85,7 @@ public class LocaleItemResource {
 	 * This is method find by all LocaleItens
 	 */
 	@GetMapping
-	public Iterable<LocaleItem> findByAll() {
+	public Iterable<LocaleRich> findByAll() {
 		 return localeItemRepository.findAll(-1);
 	}
 	
@@ -94,8 +94,8 @@ public class LocaleItemResource {
 			This is method find by one LocaleItens
 	 */
 	@GetMapping("/{id}")
-	public ResponseEntity<LocaleItem> findById(@PathVariable Long id) {
-		Optional<LocaleItem> localeItem = localeItemRepository.findById(id,1);
+	public ResponseEntity<LocaleRich> findById(@PathVariable Long id) {
+		Optional<LocaleRich> localeItem = localeItemRepository.findById(id,1);
 		return localeItem.isPresent() ? ResponseEntity.ok(localeItem.get()) : ResponseEntity.notFound().build();
 	}
 	
@@ -106,7 +106,7 @@ public class LocaleItemResource {
 	 * 
 	 */
 	@GetMapping("/{name}")
-	public Collection<LocaleItem> findByNameLike(@PathVariable String name) {
+	public Collection<LocaleRich> findByNameLike(@PathVariable String name) {
 	     return localeItemService.findByNameLike(name);
 	 }
 	
