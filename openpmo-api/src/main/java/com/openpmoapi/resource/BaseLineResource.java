@@ -85,7 +85,7 @@ public class BaseLineResource {
 	 */
 	@GetMapping
 	public Iterable<BaseLine> findByAll() {
-		 return baseLineRepository.findAll(-1);
+		 return baseLineRepository.findAll();
 	}
 	
 	

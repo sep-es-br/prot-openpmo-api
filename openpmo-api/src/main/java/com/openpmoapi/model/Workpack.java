@@ -120,6 +120,20 @@ public class Workpack {
 	public void setOrganizations(List<Organization> organizations) {
 		this.organizations = organizations;
 	}
+	
+	
+
+	/**
+	 * Relationship linking its Costs 
+	 */
+	@Relationship(type="APPLIES_TO", direction=Relationship.INCOMING)
+	private List<Cost> costs= new ArrayList<>();	
+	public List<Cost> getCosts() {
+		return costs;
+	}
+	public void setCosts(List<Cost> costs) {
+		this.costs = costs;
+	}
 
 
 	/**
