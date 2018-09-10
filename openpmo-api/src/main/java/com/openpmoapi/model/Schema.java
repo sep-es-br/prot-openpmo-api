@@ -80,16 +80,13 @@ public class Schema {
 	 * Relationship linking its Schema templates 
 	 */
 	@Relationship(type="IS_INSTANCE_OF", direction=Relationship.OUTGOING)
-	private List<SchemaTemplate> schemaTemplates = new ArrayList<>();
-	public List<SchemaTemplate> getSchemaTemplates() {
-		return schemaTemplates;
+	private SchemaTemplate template;
+	public SchemaTemplate getTemplate() {
+		return template;
 	}
-	public void setSchemaTemplates(List<SchemaTemplate> schemaTemplates) {
-		this.schemaTemplates = schemaTemplates;
+	public void setTemplate(SchemaTemplate template) {
+		this.template = template;
 	}
-	
-	
-	
 	
 	
 	@Override

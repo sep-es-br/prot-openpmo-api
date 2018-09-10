@@ -100,12 +100,12 @@ public class Workpack {
 	 * Relationship linking its templates 
 	 */
 	@Relationship(type="IS_INSTANCE_OF", direction=Relationship.OUTGOING)
-	private List<WorkpackTemplate> workpackTemplates= new ArrayList<>();	
-	public List<WorkpackTemplate> getWorkpackTemplates() {
-		return workpackTemplates;
+	private WorkpackTemplate template;
+	public WorkpackTemplate getTemplate() {
+		return template;
 	}
-	public void setWorkpackTemplates(List<WorkpackTemplate> workpackTemplates) {
-		this.workpackTemplates = workpackTemplates;
+	public void setTemplate(WorkpackTemplate template) {
+		this.template = template;
 	}
 
 
