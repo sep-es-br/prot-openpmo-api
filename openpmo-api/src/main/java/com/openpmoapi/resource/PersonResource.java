@@ -88,7 +88,7 @@ public class PersonResource {
 	 */
 	@GetMapping
 	public Iterable<Person> findByAll() {
-		 return personRepository.findAll(-1);
+		 return personRepository.findAll(2);
 	}
 	
 	
@@ -97,7 +97,7 @@ public class PersonResource {
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Person> findById(@PathVariable Long id) {
-		Optional<Person> person = personRepository.findById(id,1);
+		Optional<Person> person = personRepository.findById(id,2);
 		return person.isPresent() ? ResponseEntity.ok(person.get()) : ResponseEntity.notFound().build();
 	}
 	

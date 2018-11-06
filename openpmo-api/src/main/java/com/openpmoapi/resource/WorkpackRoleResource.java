@@ -86,7 +86,7 @@ public class WorkpackRoleResource {
 	 */
 	@GetMapping
 	public Iterable<WorkpackRole> findByAll() {
-		 return workpackRoleRepository.findAll(-1);
+		 return workpackRoleRepository.findAll(2);
 	}
 	
 	
@@ -95,7 +95,7 @@ public class WorkpackRoleResource {
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<WorkpackRole> findById(@PathVariable Long id) {
-		Optional<WorkpackRole> workpackRole = workpackRoleRepository.findById(id,1);
+		Optional<WorkpackRole> workpackRole = workpackRoleRepository.findById(id,2);
 		return workpackRole.isPresent() ? ResponseEntity.ok(workpackRole.get()) : ResponseEntity.notFound().build();
 	}
 	

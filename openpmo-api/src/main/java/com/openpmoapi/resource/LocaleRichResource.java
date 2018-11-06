@@ -86,7 +86,7 @@ public class LocaleRichResource {
 	 */
 	@GetMapping
 	public Iterable<LocaleRich> findByAll() {
-		 return localeItemRepository.findAll(-1);
+		 return localeItemRepository.findAll(2);
 	}
 	
 	
@@ -95,7 +95,7 @@ public class LocaleRichResource {
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<LocaleRich> findById(@PathVariable Long id) {
-		Optional<LocaleRich> localeItem = localeItemRepository.findById(id,1);
+		Optional<LocaleRich> localeItem = localeItemRepository.findById(id,2);
 		return localeItem.isPresent() ? ResponseEntity.ok(localeItem.get()) : ResponseEntity.notFound().build();
 	}
 	

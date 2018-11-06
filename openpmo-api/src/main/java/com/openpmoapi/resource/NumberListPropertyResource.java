@@ -50,7 +50,7 @@ public class NumberListPropertyResource {
 	@PutMapping("/{id}")
 	public ResponseEntity<WorkpackTemplate> update(@PathVariable  Long id,@Valid  @RequestBody NumberListProperty numberList, WorkpackTemplate wpTmpl ) {
 		
-		Optional<WorkpackTemplate> wp = wptmplRepository.findById(id,0);
+		Optional<WorkpackTemplate> wp = wptmplRepository.findById(id,2);
 		
 		wp.get().getProperties().add(numberList);
 		

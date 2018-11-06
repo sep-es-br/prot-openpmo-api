@@ -67,5 +67,12 @@ public class SchemaService {
     }
 	
 	
+	@Transactional(readOnly = true)
+    public Collection<Schema> findSchemaByIdTree(Long id) {
+      Collection<Schema> schemas = schemaRepository.findSchemaByIdTree(id);
+      return schemas;
+    }
+	
+	
 	
 }

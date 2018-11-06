@@ -65,6 +65,12 @@ public class SchemaTemplateService {
       return schemaTemplates;
     }
 	
+	@Transactional(readOnly = true)
+    public Collection<SchemaTemplate> findSchemaTmplByIdTree(Long id) {
+      Collection<SchemaTemplate> schemaTemplates = schemaTmplRepository.findSchemaTmplByIdTree(id);
+      return schemaTemplates;
+    }
+	
 	
 	
 }

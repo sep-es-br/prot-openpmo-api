@@ -87,6 +87,19 @@ public class OfficeService {
     }
 	
 	
+
+	@Transactional(readOnly = true)
+    public Collection<Office> findWpByIdTree(Long id) {
+      Collection<Office> office = envRepository.findWpByIdTree(id);
+      return office;
+    }
+	
+	@Transactional(readOnly = true)
+    public Collection<Office> findWpByIdTemplateTree(Long id) {
+      Collection<Office> office = envRepository.findWpByIdTemplateTree(id);
+      return office;
+    }
+	
 	
 	
 	

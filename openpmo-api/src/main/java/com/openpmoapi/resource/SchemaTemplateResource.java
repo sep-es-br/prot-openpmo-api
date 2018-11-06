@@ -92,30 +92,38 @@ public class SchemaTemplateResource {
 	
 	
 	/**
-	 * This is method find by all Schema
+	 * This is method find by all Schema template
 	 */
 	@GetMapping
 	public Iterable<SchemaTemplate> findByAll() {
-		 return schemaTmplRepository.findAll(1);
+		 return schemaTmplRepository.findAll(2);
 	}
 	
 	
 	/**
-			This is method find by one Schema
+			This is method find by one Schema template
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<SchemaTemplate> findById(@PathVariable Long id) {
-		Optional<SchemaTemplate> schemaTmpl = schemaTmplRepository.findById(id,1);
+		Optional<SchemaTemplate> schemaTmpl = schemaTmplRepository.findById(id,2);
 		return schemaTmpl.isPresent() ? ResponseEntity.ok(schemaTmpl.get()) : ResponseEntity.notFound().build();
 	}
 	
 	
 		/**
-		This is method find by one Schema
+		This is method find by one Schema template
 	*/
 	@GetMapping("/listschematemplates/{id}")
 	public Collection<SchemaTemplate> findSchemaTemplates(@PathVariable Long id) {
 		return schemaTmplService.findSchemaTmplByIdEnveronment(id);
+	}
+	
+	/**
+		This is method find by one Schema template tree
+	*/
+	@GetMapping("/tree/{id}")
+	public Collection<SchemaTemplate> findSchemaTmplTree(@PathVariable Long id) {
+		return schemaTmplService.findSchemaTmplByIdTree(id);
 	}
 	
 }

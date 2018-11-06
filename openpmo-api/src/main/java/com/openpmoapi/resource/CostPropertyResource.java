@@ -50,7 +50,7 @@ public class CostPropertyResource {
 	@PutMapping("/{id}")
 	public ResponseEntity<WorkpackTemplate> update(@PathVariable  Long id,@Valid  @RequestBody CostProperty cost, WorkpackTemplate wpTmpl ) {
 		
-		Optional<WorkpackTemplate> wp = wptmplRepository.findById(id,0);
+		Optional<WorkpackTemplate> wp = wptmplRepository.findById(id,2);
 		
 		wp.get().getProperties().add(cost);
 		

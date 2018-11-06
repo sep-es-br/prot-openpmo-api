@@ -98,7 +98,7 @@ public class WorkpackResource {
 	 */
 	@GetMapping
 	public Iterable<Workpack> findByAll() {
-		 return workPackRepository.findAll(1);
+		 return workPackRepository.findAll(2);
 	}
 	
 	
@@ -107,7 +107,7 @@ public class WorkpackResource {
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Workpack> findById(@PathVariable Long id) {
-		Optional<Workpack> workPack = workPackRepository.findById(id,1);
+		Optional<Workpack> workPack = workPackRepository.findById(id,2);
 		return workPack.isPresent() ? ResponseEntity.ok(workPack.get()) : ResponseEntity.notFound().build();
 	}
 	
@@ -120,6 +120,15 @@ public class WorkpackResource {
 		return wpService.findWpByIdSchema(id);
 	}
 	
+	
+		
+	/**
+		This is method find by one Workpack tree
+	*/
+	@GetMapping("/tree/{id}")
+	public Collection<Workpack> findWpByIdWorkpack(@PathVariable Long id) {
+		return wpService.findWpByIdWorkpack(id);
+	}
 	
 	
 

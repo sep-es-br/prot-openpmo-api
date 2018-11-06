@@ -50,7 +50,7 @@ public class MeasurePropertyResource {
 	@PutMapping("/{id}")
 	public ResponseEntity<WorkpackTemplate> update(@PathVariable  Long id,@Valid  @RequestBody MeasureProperty measure, WorkpackTemplate wpTmpl ) {
 		
-		Optional<WorkpackTemplate> wp = wptmplRepository.findById(id,0);
+		Optional<WorkpackTemplate> wp = wptmplRepository.findById(id,2);
 		
 		wp.get().getProperties().add(measure);
 		

@@ -86,7 +86,7 @@ public class OfficeRoleResource {
 	 */
 	@GetMapping
 	public Iterable<OfficeRole> findByAll() {
-		 return roleRepository.findAll(-1);
+		 return roleRepository.findAll(2);
 	}
 	
 	
@@ -95,7 +95,7 @@ public class OfficeRoleResource {
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<OfficeRole> findById(@PathVariable Long id) {
-		Optional<OfficeRole> role = roleRepository.findById(id,1);
+		Optional<OfficeRole> role = roleRepository.findById(id,2);
 		return role.isPresent() ? ResponseEntity.ok(role.get()) : ResponseEntity.notFound().build();
 	}
 	

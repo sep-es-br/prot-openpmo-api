@@ -86,7 +86,7 @@ public class OrganizationResource {
 	 */
 	@GetMapping
 	public Iterable<Organization> findByAll() {
-		 return organizationRepository.findAll(-1);
+		 return organizationRepository.findAll(2);
 	}
 	
 	
@@ -95,7 +95,7 @@ public class OrganizationResource {
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Organization> findById(@PathVariable Long id) {
-		Optional<Organization> organization = organizationRepository.findById(id,1);
+		Optional<Organization> organization = organizationRepository.findById(id,2);
 		return organization.isPresent() ? ResponseEntity.ok(organization.get()) : ResponseEntity.notFound().build();
 	}
 	

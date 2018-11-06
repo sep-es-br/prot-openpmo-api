@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.openpmoapi.event.RecursoCriadoEvent;
 import com.openpmoapi.model.WorkpackTemplate;
-import com.openpmoapi.model.property.AddressProperty;
+import com.openpmoapi.model.property.AdressProperty;
 import com.openpmoapi.model.property.CostProperty;
 import com.openpmoapi.model.property.MeasureProperty;
 import com.openpmoapi.model.property.NumberListProperty;
@@ -92,6 +92,17 @@ public class WorkpackTemplateResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<WorkpackTemplate> update(@PathVariable  Long id,@Valid  @RequestBody WorkpackTemplate wpTmpl) {
+		
+		for(int i =0; i < wpTmpl.getProperties().size();i++) {
+						
+			if ( wpTmpl.getProperties().get(i).getId() == null) {
+				
+				wpTmpl.getProperties().remove(i);
+				
+			}
+				
+		}	
+		
 		WorkpackTemplate wpTmplSalvo = wptmpService.update(id, wpTmpl);
 		return ResponseEntity.ok(wpTmplSalvo);
 	}
@@ -101,11 +112,29 @@ public class WorkpackTemplateResource {
 		This is method save WorkpackTemplate
 	 */
 	@PostMapping
-	public ResponseEntity<WorkpackTemplate> save(@Valid @RequestBody WorkpackTemplate wpTmpl, HttpServletResponse response) {
-		WorkpackTemplate wpTmplSalvo = wptmplRepository.save(wpTmpl);
+	public ResponseEntity<WorkpackTemplate> save( @Valid @RequestBody WorkpackTemplate wpTmpl, HttpServletResponse response) {
+		
+		for(int i =0; i < wpTmpl.getProperties().size();i++) {
+			
+			if ( wpTmpl.getProperties().get(i).getId() == null) {
+				
+				wpTmpl.getProperties().remove(i);
+				
+			}
+			
+		}	
+		WorkpackTemplate wpTmplSalvo = wptmplRepository.save(wpTmpl,0);
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, wpTmplSalvo.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(wptmplRepository.save(wpTmpl));
 	}
+	
+	
+//	@PostMapping
+//	public String greetingJson(HttpEntity<String> httpEntity) {
+//	    String json = httpEntity.getBody();
+//	    // json contains the plain json string
+//	    return json;
+//	}
 	
 	
 	/**
@@ -113,19 +142,41 @@ public class WorkpackTemplateResource {
 	 */
 	@GetMapping
 	public Iterable<WorkpackTemplate> findByAll() {
-		 return wptmplRepository.findAll(1);
+		 return wptmplRepository.findAll(2);
 	}
+	
+	
+	/**
+	 * This is method find by all WorkpackTemplates
+	 */
+	@GetMapping("/listworkpacktemplatesbyid/{id}/{depth")
+	public Iterable<WorkpackTemplate> findByAllById(@PathVariable Iterable<Long> id,int depth) {
+		 return wptmplRepository.findAllById(id, depth);
+	}
+	
+	
 	
 	
 	/**
 			This is method find by one WorkpackTemplate
 	 */
-	@GetMapping("/{id}")
-	public ResponseEntity<WorkpackTemplate> findById(@PathVariable Long id) {
-		Optional<WorkpackTemplate> wpTmpl = wptmplRepository.findById(id,1);
+	@GetMapping("/{id}/{depth}")
+	public ResponseEntity<WorkpackTemplate> findById(@PathVariable Long id,@PathVariable int depth) {
+		Optional<WorkpackTemplate> wpTmpl = wptmplRepository.findById(id,depth);
 		return wpTmpl.isPresent() ? ResponseEntity.ok(wpTmpl.get()) : ResponseEntity.notFound().build();
 	}
 	
+	
+		/**
+		This is method find by one WorkpackTemplate
+	*/
+	@GetMapping("/{id}")
+		public ResponseEntity<WorkpackTemplate> findById(@PathVariable Long id) {
+		Optional<WorkpackTemplate> wpTmpl = wptmplRepository.findById(id,2);
+		return wpTmpl.isPresent() ? ResponseEntity.ok(wpTmpl.get()) : ResponseEntity.notFound().build();
+	}
+		
+		
 		
 		/**
 		This is method find by one or more WorkPack Templates
@@ -136,6 +187,21 @@ public class WorkpackTemplateResource {
 	}
 	
 
+	
+		
+		/**
+		This is method find by one WorkpackTemplate
+	*/
+	@GetMapping("/tree/{id}")
+	public ResponseEntity<WorkpackTemplate> findByIdWptm(@PathVariable Long id) {
+		Optional<WorkpackTemplate> wpTmpl = wptmplRepository.findById(id,100);
+		return wpTmpl.isPresent() ? ResponseEntity.ok(wpTmpl.get()) : ResponseEntity.notFound().build();
+	}
+
+	
+	
+	
+	
 //	/**
 //	This is method find by all properties of the WorkPack Templates
 //*/
@@ -159,7 +225,7 @@ public class WorkpackTemplateResource {
 	
 	
 	/**
-	This is method find by all properties of the WorkPack Templates
+	This is method find by all properties of the WorkPackTemplates
 */
 	@GetMapping("/listpropertytypes")
 	public Object findAllPropertiesList() {
@@ -170,7 +236,7 @@ public class WorkpackTemplateResource {
 		properties.add(new TextListProperty());
 		properties.add(new NumberProperty());
 		properties.add(new NumberListProperty());
-		properties.add(new AddressProperty());
+		properties.add(new AdressProperty());
 		properties.add(new MeasureProperty());
 		properties.add(new CostProperty());
 		properties.add(new StatusProperty());

@@ -66,6 +66,14 @@ public class WorkpackService {
     }
 	
 	
+	@Transactional(readOnly = true)
+    public Collection<Workpack> findWpByIdWorkpack(Long id) {
+      Collection<Workpack> wp = wpRepository.findWpByIdWorkpack(id);
+      return wp;
+    }
+	
+	
+	
 	public static String removeAcentos(String string) {
 	    if (string != null){
 	        string = Normalizer.normalize(string, Normalizer.Form.NFD);

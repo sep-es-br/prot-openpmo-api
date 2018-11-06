@@ -14,7 +14,7 @@ import org.neo4j.ogm.annotation.Id;
 */
 
 
-public class AddressProperty extends Property{
+public class AdressProperty extends Property{
 
 
 	/**
@@ -32,7 +32,7 @@ public class AddressProperty extends Property{
 	
 	
 
-	public AddressProperty() {
+	public AdressProperty() {
 		
 		this.setTypeName("Address");
 		

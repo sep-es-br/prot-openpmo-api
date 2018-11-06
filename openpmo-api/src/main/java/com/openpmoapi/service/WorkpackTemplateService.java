@@ -39,6 +39,18 @@ public class WorkpackTemplateService {
 		return wptlRepository.save(wptlSalvo);
 	}
 	
+	/**
+	 * @param id
+	 * @param wpTmpl
+	 * @return
+	 */
+	public WorkpackTemplate update(Long id, Optional<WorkpackTemplate> wpTmpl) {
+		WorkpackTemplate wptlSalvo = buscarPessoaPeloCodigo(id);
+		BeanUtils.copyProperties(wpTmpl, wptlSalvo, "id", "wptl");
+		return wptlRepository.save(wptlSalvo);
+		
+	}
+	
 	
 	/**
 	 * this method find by id a data type Environment, if not exist it treats the exception 
@@ -58,19 +70,18 @@ public class WorkpackTemplateService {
       Collection<WorkpackTemplate> wptp = wptlRepository.findWptpByIdSchemaTmpl(id);
       return wptp;
     }
+	
+	
+
+	@Transactional(readOnly = true)
+    public Optional<WorkpackTemplate> findWptpByIdWorkpackTmpl(Long id) {
+      Optional<WorkpackTemplate> wptp = wptlRepository.findWpByIdWorkpackTmpl(id);
+      return wptp;
+    }
 
 
-	/**
-	 * @param id
-	 * @param wpTmpl
-	 * @return
-	 */
-	public WorkpackTemplate update(Long id, Optional<WorkpackTemplate> wpTmpl) {
-		WorkpackTemplate wptlSalvo = buscarPessoaPeloCodigo(id);
-		BeanUtils.copyProperties(wpTmpl, wptlSalvo, "id", "wptl");
-		return wptlRepository.save(wptlSalvo);
-		
-	}
+
+	
 	
 	
 }

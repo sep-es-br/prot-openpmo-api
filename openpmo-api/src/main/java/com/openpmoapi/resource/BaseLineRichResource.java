@@ -85,7 +85,7 @@ public class BaseLineRichResource {
 	 */
 	@GetMapping
 	public Iterable<BaseLineRich> findByAll() {
-		 return baseLineRichRepository.findAll(-1);
+		 return baseLineRichRepository.findAll(2);
 	}
 	
 	
@@ -94,7 +94,7 @@ public class BaseLineRichResource {
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<BaseLineRich> findById(@PathVariable Long id) {
-		Optional<BaseLineRich> baseLineRich = baseLineRichRepository.findById(id,1);
+		Optional<BaseLineRich> baseLineRich = baseLineRichRepository.findById(id,2);
 		return baseLineRich.isPresent() ? ResponseEntity.ok(baseLineRich.get()) : ResponseEntity.notFound().build();
 	}
 	

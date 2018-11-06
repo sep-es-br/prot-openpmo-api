@@ -15,4 +15,9 @@ public interface WorkpackRepository extends Neo4jRepository <Workpack, Long>{
 	Collection<Workpack> findWpByIdSchema(@Param("id") Long id);
 	
 
+	
+	@Query("match (n:Workpack)-[r:IS_IN*0..]->(m:Workpack) where id(m)={id} return ()-[r*0..]->()")
+	Collection<Workpack> findWpByIdWorkpack(@Param("id") Long id);
+	
+	
 }

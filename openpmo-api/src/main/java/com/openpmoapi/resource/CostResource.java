@@ -85,7 +85,7 @@ public class CostResource {
 	 */
 	@GetMapping
 	public Iterable<Cost> findByAll() {
-		 return costRepository.findAll(-1);
+		 return costRepository.findAll(2);
 	}
 	
 	
@@ -94,7 +94,7 @@ public class CostResource {
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Cost> findById(@PathVariable Long id) {
-		Optional<Cost> cost = costRepository.findById(id,1);
+		Optional<Cost> cost = costRepository.findById(id,2);
 		return cost.isPresent() ? ResponseEntity.ok(cost.get()) : ResponseEntity.notFound().build();
 	}
 	

@@ -86,7 +86,7 @@ public class SchemaRoleResource {
 	 */
 	@GetMapping
 	public Iterable<SchemaRole> findByAll() {
-		 return schemaRoleRepository.findAll(-1);
+		 return schemaRoleRepository.findAll(2);
 	}
 	
 	
@@ -95,7 +95,7 @@ public class SchemaRoleResource {
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<SchemaRole> findById(@PathVariable Long id) {
-		Optional<SchemaRole> schemaRole = schemaRoleRepository.findById(id,1);
+		Optional<SchemaRole> schemaRole = schemaRoleRepository.findById(id,2);
 		return schemaRole.isPresent() ? ResponseEntity.ok(schemaRole.get()) : ResponseEntity.notFound().build();
 	}
 	

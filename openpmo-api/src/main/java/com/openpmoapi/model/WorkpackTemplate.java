@@ -65,9 +65,6 @@ public class WorkpackTemplate {
 	}
 	
 
-	
-	
-
 	@DateString
 	private Date dataInicio;
 	public Date getDataInicio() {

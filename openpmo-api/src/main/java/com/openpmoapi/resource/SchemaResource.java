@@ -96,7 +96,7 @@ public class SchemaResource {
 	 */
 	@GetMapping
 	public Iterable<Schema> findByAll() {
-		 return schemaRepository.findAll(1);
+		 return schemaRepository.findAll(2);
 	}
 	
 	
@@ -105,7 +105,7 @@ public class SchemaResource {
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Schema> findById(@PathVariable Long id) {
-		Optional<Schema> schema = schemaRepository.findById(id,1);
+		Optional<Schema> schema = schemaRepository.findById(id,2);
 		return schema.isPresent() ? ResponseEntity.ok(schema.get()) : ResponseEntity.notFound().build();
 	}
 	
@@ -117,5 +117,16 @@ public class SchemaResource {
 	public Collection<Schema> findSchemas(@PathVariable Long id) {
 		return schemaService.findSchemaByIdEnveronment(id);
 	}
+	
+	
+
+	/**
+		This is method find by one Schema tree
+	*/
+	@GetMapping("/tree/{id}")
+	public Collection<Schema> findSchemasTree(@PathVariable Long id) {
+		return schemaService.findSchemaByIdTree(id);
+	}
+	
 	
 }
