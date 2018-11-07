@@ -2,21 +2,16 @@ package com.openpmoapi.model;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import javax.validation.constraints.NotNull;
-
+import javax.validation.constraints.Size;
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Properties;
 import org.neo4j.ogm.annotation.Relationship;
 import org.neo4j.ogm.annotation.typeconversion.DateString;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.openpmoapi.model.property.Property;
 
-import com.openpmoapi.util.Util;
 
 /**
 * Class of the real workpack created from a workpack template.
@@ -28,8 +23,8 @@ import com.openpmoapi.util.Util;
 public class Workpack {
 	
 	
-	@Autowired
-	private Util util;
+//	@Autowired
+//	private Util util;
 	
 	/**
 	 * Self generated node id
@@ -42,6 +37,7 @@ public class Workpack {
 	
 	
 	@NotNull
+	@Size(min=3,max=20)
 	private String name;
 	public String getName() {
 		return name;
@@ -52,16 +48,47 @@ public class Workpack {
 	
 	
 	@NotNull
-	private String shortName;
-	public String getShortName() {
-		return shortName;
+	private String fullName;
+	/**
+	 * @return the fullName
+	 */
+	public String getFullName() {
+		return fullName;
 	}
-	@SuppressWarnings("static-access")
-	public void setShortName(String shortName) {
-		this.shortName = util.retiraCaracteresEspeciais(shortName);
+	/**
+	 * @param fullName the fullName to set
+	 */
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 	
 	
+	private boolean visibility;
+	/**
+	 * @return the visibility
+	 */
+	public boolean isVisibility() {
+		return visibility;
+	}
+	/**
+	 * @param visibility the visibility to set
+	 */
+	public void setVisibility(boolean visibility) {
+		this.visibility = visibility;
+	}
+	
+	
+//	public String getShortName() {
+//		return shortName;
+//	}
+//	@SuppressWarnings("static-access")
+//	public void setShortName(String shortName) {
+//		this.shortName = util.retiraCaracteresEspeciais(shortName);
+//	}
+	
+	
+
+
 	@DateString
 	private Date dataInicio;
 	public Date getDataInicio() {
@@ -80,19 +107,34 @@ public class Workpack {
 	public void setDataFim(Date dataFim) {
 		this.dataFim = dataFim;
 	}
+	
+	
+	
 
 
-	/**
-	 * Map (attribute/value) of single properties defined for the workpack
-	 */
-	@Properties
-	private Map<String, Object> properties = new HashMap<>();
-	public Map<String, Object> getProperties() {
+//	/**
+//	 * Map (attribute/value) of single properties defined for the workpack
+//	 */
+//	@Properties
+//	private Map<String, Object> properties = new HashMap<>();
+//	public Map<String, Object> getProperties() {
+//		return properties;
+//	}
+//	public void setProperties(Map<String, Object> properties) {
+//		this.properties = properties;
+//	}
+	
+	
+
+	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
+	private List<Property> properties = new ArrayList<>();
+	public List<Property> getProperties() {
 		return properties;
 	}
-	public void setProperties(Map<String, Object> properties) {
+	public void setProperties(List<Property> properties) {
 		this.properties = properties;
 	}
+
 	
 	
 	
@@ -109,19 +151,39 @@ public class Workpack {
 	}
 
 
+//	/**
+//	 * Relationship linking its Organizations 
+//	 */
+//	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
+//	private List<Organization> organizations= new ArrayList<>();	
+//	public List<Organization> getOrganizations() {
+//		return organizations;
+//	}
+//	public void setOrganizations(List<Organization> organizations) {
+//		this.organizations = organizations;
+//	}
+	
+	
+
 	/**
 	 * Relationship linking its Organizations 
 	 */
 	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
-	private List<Organization> organizations= new ArrayList<>();	
-	public List<Organization> getOrganizations() {
-		return organizations;
+	private List<Stakeholder> stakeholder= new ArrayList<>();	
+
+	/**
+	 * @return the stakeholder
+	 */
+	public List<Stakeholder> getStakeholder() {
+		return stakeholder;
 	}
-	public void setOrganizations(List<Organization> organizations) {
-		this.organizations = organizations;
+	/**
+	 * @param stakeholder the stakeholder to set
+	 */
+	public void setStakeholder(List<Stakeholder> stakeholder) {
+		this.stakeholder = stakeholder;
 	}
-	
-	
+
 
 	/**
 	 * Relationship linking its Costs 

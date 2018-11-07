@@ -1,19 +1,14 @@
 package com.openpmoapi.model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
-import org.neo4j.ogm.annotation.typeconversion.DateString;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.openpmoapi.model.property.Property;
-import com.openpmoapi.util.Util;
 
 /**
 * This class models a template for a Workpack object. 
@@ -26,8 +21,8 @@ import com.openpmoapi.util.Util;
 @NodeEntity(label="WorkpackTemplate")
 public class WorkpackTemplate {
 	
-	@Autowired
-	private Util util;
+//	@Autowired
+//	private Util util;
 	
 	
 	/**
@@ -45,6 +40,7 @@ public class WorkpackTemplate {
 	 */
 
 	@NotNull
+	@Size(min=3,max=20)
 	private String name;
 	public String getName() {
 		return name;
@@ -55,36 +51,75 @@ public class WorkpackTemplate {
 
 
 	@NotNull
-	private String shortName;
-	public String getShortName() {
-		return shortName;
+	private String fullName;
+
+	/**
+	 * @return the fullName
+	 */
+	public String getFullName() {
+		return fullName;
 	}
-	@SuppressWarnings("static-access")
-	public void setShortName(String shortName) {
-		this.shortName = util.retiraCaracteresEspeciais(shortName);
+	/**
+	 * @param fullName the fullName to set
+	 */
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+	
+	
+	
+	private CostAtribute cost;
+
+	/**
+	 * @return the cost
+	 */
+	public CostAtribute getCost() {
+		return cost;
+	}
+	/**
+	 * @param cost the cost to set
+	 */
+	public void setCost(CostAtribute cost) {
+		this.cost = cost;
+	}
+
+
+	private boolean visibility;
+
+	/**
+	 * @return the visibility
+	 */
+	public boolean isVisibility() {
+		return visibility;
+	}
+	/**
+	 * @param visibility the visibility to set
+	 */
+	public void setVisibility(boolean visibility) {
+		this.visibility = visibility;
 	}
 	
 
-	@DateString
-	private Date dataInicio;
-	public Date getDataInicio() {
-		return dataInicio;
-	}
-	public void setDataInicio(Date dataInicio) {
-		this.dataInicio = dataInicio;
-	}
 
+	/**
+	 * Relationship linking its Organizations 
+	 */
+	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
+	private List<Stakeholder> stakeholder= new ArrayList<>();	
 
-	@DateString
-	private Date dataFim;
-	public Date getDataFim() {
-		return dataFim;
+	/**
+	 * @return the stakeholder
+	 */
+	public List<Stakeholder> getStakeholder() {
+		return stakeholder;
 	}
-	public void setDataFim(Date dataFim) {
-		this.dataFim = dataFim;
+	/**
+	 * @param stakeholder the stakeholder to set
+	 */
+	public void setStakeholder(List<Stakeholder> stakeholder) {
+		this.stakeholder = stakeholder;
 	}
-
-
+	
 
 	/**
 	 * Map (attribute/value) of single properties defined for the template

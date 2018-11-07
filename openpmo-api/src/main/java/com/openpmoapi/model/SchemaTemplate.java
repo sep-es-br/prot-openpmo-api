@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
@@ -40,6 +41,7 @@ public class SchemaTemplate {
 	 */
 
 	@NotNull
+	@Size(min=3,max=20)
 	private String name;
 	public String getName() {
 		return name;
@@ -50,12 +52,18 @@ public class SchemaTemplate {
 
 
 	@NotNull
-	private String shortName;
-	public String getShortName() {
-		return shortName;
+	private String fullName;
+	/**
+	 * @return the fullName
+	 */
+	public String getFullName() {
+		return fullName;
 	}
-	public void setShortName(String shortName) {
-		this.shortName = shortName;
+	/**
+	 * @param fullName the fullName to set
+	 */
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
 

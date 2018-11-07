@@ -3,24 +3,17 @@
  */
 package com.openpmoapi.resource;
 
-import java.util.Optional;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.openpmoapi.model.WorkpackTemplate;
-import com.openpmoapi.model.property.TextProperty;
-import com.openpmoapi.repository.WorkpackTemplateRepository;
-import com.openpmoapi.service.WorkpackTemplateService;
+import com.openpmoapi.repository.PropertyRepository;
 
 /**
 * Type here a brief description of the class.
@@ -33,42 +26,51 @@ import com.openpmoapi.service.WorkpackTemplateService;
 public class PropertyResource {
 
 	
-	@Autowired
-	private WorkpackTemplateRepository wptmplRepository;
+//	@Autowired
+//	private WorkpackTemplateRepository wptmplRepository;
 	
 	
 	@Autowired
-	WorkpackTemplateResource wptemplate;
+	private PropertyRepository propertyRepository;
 	
-	@Autowired
-	private WorkpackTemplateService wptmpService;
+	
+//	@Autowired
+//	WorkpackTemplateResource wptemplate;
+	
+//	@Autowired
+//	private WorkpackTemplateService wptmpService;
+	
 	
 	
 	
 
 	/**
-	 * This is method update WorkpackTemplate
+	 * This is method delete one Person
 	 */
-	@PutMapping("/{id}")
-	public ResponseEntity<WorkpackTemplate> update(@PathVariable  Long id,@Valid  @RequestBody TextProperty text, WorkpackTemplate wpTmpl ) {
-		
-		Optional<WorkpackTemplate> wp = wptmplRepository.findById(id,2);
-		
-		wp.get().getProperties().add(text);
-		
-		WorkpackTemplate wpSalvo = wptmpService.update(id,wp);
-		
-		return ResponseEntity.ok(wpSalvo);
+	@DeleteMapping("/{id}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void delete(@PathVariable Long id) {
+		propertyRepository.deleteById(id);
 	}
+	
+//
+//	/**
+//	 * This is method update WorkpackTemplate
+//	 */
+//	@PutMapping("/{id}")
+//	public ResponseEntity<WorkpackTemplate> update(@PathVariable  Long id,@Valid  @RequestBody TextProperty text, WorkpackTemplate wpTmpl ) {
+//		
+//		Optional<WorkpackTemplate> wp = wptmplRepository.findById(id,2);
+//		
+//		wp.get().getProperties().add(text);
+//		
+//		WorkpackTemplate wpSalvo = wptmpService.update(id,wp);
+//		
+//		return ResponseEntity.ok(wpSalvo);
+//	}
 	
 
-	
-	@PostMapping
-	public String greetingJson(HttpEntity<String> httpEntity) {
-	    String json = httpEntity.getBody();
-	    // json contains the plain json string
-	    return json;
-	}
+
 	
 	
 }

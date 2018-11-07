@@ -7,14 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import com.openpmoapi.util.Util;
 
 
 /**
@@ -30,9 +29,9 @@ import com.openpmoapi.util.Util;
 public class Office {
 	
 	
-	
-	@Autowired
-	private Util util;
+//	
+//	@Autowired
+//	private Util util;
 	
 	
 	/**
@@ -47,6 +46,7 @@ public class Office {
 
 	
 	@NotNull
+	@Size(min=3,max=20)
 	private String name;
 	public String getName() {
 		return name;
@@ -56,17 +56,36 @@ public class Office {
 	}
 	
 	@NotNull
-	private String shortName;
-	public String getShortName() {
-		return shortName;
+	private String fullName;
+	/**
+	 * @return the fullName
+	 */
+	public String getFullName() {
+		return fullName;
 	}
-	@SuppressWarnings("static-access")
-	public void setShortName(String shortName) {
-		this.shortName = util.retiraCaracteresEspeciais(shortName);
+	/**
+	 * @param fullName the fullName to set
+	 */
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
+
 	
 	
 	
+	//	public String getShortName() {
+//		return shortName;
+//	}
+//	@SuppressWarnings("static-access")
+//	public void setShortName(String shortName) {
+//		this.shortName = util.retiraCaracteresEspeciais(shortName);
+//	}
+	
+	
+	
+	
+
+
 	/**
 	 *    Relationship linking all the schemasTemplate the OFFICE 
 	 */
