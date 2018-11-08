@@ -53,6 +53,7 @@ public class WorkpackTemplateResource {
 	private WorkpackTemplateService wptmpService;
 	
 
+
 	
 	@Autowired
 	private ApplicationEventPublisher publisher;
@@ -92,20 +93,10 @@ public class WorkpackTemplateResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<WorkpackTemplate> update(@PathVariable  Long id,@Valid  @RequestBody WorkpackTemplate wpTmpl) {
-		
-		for(int i =0; i < wpTmpl.getProperties().size();i++) {
-						
-			if ( wpTmpl.getProperties().get(i).getId() == null) {
-				
-				wpTmpl.getProperties().remove(i);
-				
-			}
-				
-		}	
-		
 		WorkpackTemplate wpTmplSalvo = wptmpService.update(id, wpTmpl);
 		return ResponseEntity.ok(wpTmplSalvo);
 	}
+	
 	
 	
 	/**
@@ -113,16 +104,6 @@ public class WorkpackTemplateResource {
 	 */
 	@PostMapping
 	public ResponseEntity<WorkpackTemplate> save( @Valid @RequestBody WorkpackTemplate wpTmpl, HttpServletResponse response) {
-		
-		for(int i =0; i < wpTmpl.getProperties().size();i++) {
-			
-			if ( wpTmpl.getProperties().get(i).getId() == null) {
-				
-				wpTmpl.getProperties().remove(i);
-				
-			}
-			
-		}	
 		WorkpackTemplate wpTmplSalvo = wptmplRepository.save(wpTmpl,0);
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, wpTmplSalvo.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(wptmplRepository.save(wpTmpl));

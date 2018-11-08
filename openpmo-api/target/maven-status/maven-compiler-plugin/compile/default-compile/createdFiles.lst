@@ -1,9 +1,11 @@
 com\openpmoapi\repository\WorkpackRepository.class
 com\openpmoapi\resource\NumberListPropertyResource.class
 com\openpmoapi\model\CostRich.class
+com\openpmoapi\model\EndDateAtribute.class
 com\openpmoapi\repository\WorkpackTemplateRepository.class
 com\openpmoapi\resource\SchemaTemplateResource.class
 com\openpmoapi\model\property\StatusListProperty.class
+com\openpmoapi\model\CostAtribute.class
 com\openpmoapi\resource\WorkpackResource.class
 com\openpmoapi\service\TextPropertyService.class
 com\openpmoapi\service\NumberPropertyService.class
@@ -17,6 +19,7 @@ com\openpmoapi\repository\SchemaRepository.class
 com\openpmoapi\model\Cost.class
 com\openpmoapi\model\property\NumberProperty.class
 com\openpmoapi\service\LocaleItemService.class
+com\openpmoapi\repository\NumberListPropertyRepository.class
 com\openpmoapi\service\BaseLineRichService.class
 com\openpmoapi\model\LocaleRich.class
 com\openpmoapi\resource\NumberPropertyResource.class
@@ -36,6 +39,7 @@ com\openpmoapi\service\WorkpackTemplateService.class
 com\openpmoapi\model\property\AdressProperty.class
 com\openpmoapi\resource\SchemaResource.class
 com\openpmoapi\model\property\StatusProperty.class
+com\openpmoapi\model\Stakeholder.class
 com\openpmoapi\resource\LocaleResource.class
 com\openpmoapi\model\Person.class
 com\openpmoapi\repository\OrganizationRoleRepository.class
@@ -43,7 +47,10 @@ com\openpmoapi\resource\TextPropertyResource.class
 com\openpmoapi\service\PersonService.class
 com\openpmoapi\service\SchemaRoleService.class
 com\openpmoapi\event\listener\RecursoCriadoListener.class
+com\openpmoapi\model\Milestone.class
 com\openpmoapi\repository\LocaleItemRepository.class
+com\openpmoapi\repository\StatusPropertyRepository.class
+com\openpmoapi\repository\TextListPropertyRepository.class
 com\openpmoapi\service\BaseLineService.class
 com\openpmoapi\service\OfficeRoleService.class
 com\openpmoapi\repository\PropertyRepository.class
@@ -73,7 +80,9 @@ com\openpmoapi\model\SchemaRole.class
 com\openpmoapi\model\WorkpackTemplate.class
 com\openpmoapi\model\WorkpackRole.class
 com\openpmoapi\service\CostRichService.class
+com\openpmoapi\repository\MeasurePropertyRepository.class
 com\openpmoapi\service\OrganizationService.class
+com\openpmoapi\model\StartDateAtribute.class
 com\openpmoapi\model\Organization.class
 com\openpmoapi\repository\CostRepository.class
 com\openpmoapi\repository\NumberPropertyRepository.class
@@ -82,6 +91,8 @@ com\openpmoapi\resource\PropertyResource.class
 com\openpmoapi\repository\PersonRepository.class
 com\openpmoapi\resource\PersonResource.class
 com\openpmoapi\service\OrganizationRoleService.class
+com\openpmoapi\model\Atribute.class
+com\openpmoapi\model\StatusAtribute.class
 com\openpmoapi\resource\OfficeRoleResource.class
 com\openpmoapi\repository\OfficeRoleRepository.class
 com\openpmoapi\model\property\NumberListProperty.class

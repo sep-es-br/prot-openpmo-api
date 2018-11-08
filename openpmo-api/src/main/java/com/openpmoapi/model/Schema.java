@@ -51,7 +51,7 @@ public class Schema {
 	}
 	
 	
-	@NotNull
+
 	private String fullName;
 	/**
 	 * @return the fullName

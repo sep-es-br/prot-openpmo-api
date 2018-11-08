@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
+import org.neo4j.ogm.annotation.NodeEntity;
 
 /**
 * Type here a brief description of the class.
@@ -14,11 +15,10 @@ import org.neo4j.ogm.annotation.Id;
 * @author marcos.santos  
 * @since 2018-08-22
 */
+@NodeEntity(label="NumberProperty")
 public class NumberProperty extends Property{
 
 	
-	
-
 	@Id @GeneratedValue   
 	private Long id;
 	public Long getId() {

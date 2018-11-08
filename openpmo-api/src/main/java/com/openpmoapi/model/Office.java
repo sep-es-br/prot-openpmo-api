@@ -55,7 +55,7 @@ public class Office {
 		this.name = name;
 	}
 	
-	@NotNull
+
 	private String fullName;
 	/**
 	 * @return the fullName

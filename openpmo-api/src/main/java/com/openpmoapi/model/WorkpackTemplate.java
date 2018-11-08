@@ -8,7 +8,16 @@ import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
-import com.openpmoapi.model.property.Property;
+
+import com.openpmoapi.model.property.AdressProperty;
+import com.openpmoapi.model.property.CostProperty;
+import com.openpmoapi.model.property.MeasureProperty;
+import com.openpmoapi.model.property.NumberListProperty;
+import com.openpmoapi.model.property.NumberProperty;
+import com.openpmoapi.model.property.StatusListProperty;
+import com.openpmoapi.model.property.StatusProperty;
+import com.openpmoapi.model.property.TextListProperty;
+import com.openpmoapi.model.property.TextProperty;
 
 /**
 * This class models a template for a Workpack object. 
@@ -50,7 +59,7 @@ public class WorkpackTemplate {
 	}
 
 
-	@NotNull
+	
 	private String fullName;
 
 	/**
@@ -68,19 +77,66 @@ public class WorkpackTemplate {
 	
 	
 	
-	private CostAtribute cost;
+	private CostAtribute costAtribute;
 
 	/**
-	 * @return the cost
+	 * @return the costAtribute
 	 */
-	public CostAtribute getCost() {
-		return cost;
+	public CostAtribute getCostAtribute() {
+		return costAtribute;
 	}
 	/**
-	 * @param cost the cost to set
+	 * @param costAtribute the costAtribute to set
 	 */
-	public void setCost(CostAtribute cost) {
-		this.cost = cost;
+	public void setCostAtribute(CostAtribute costAtribute) {
+		this.costAtribute = costAtribute;
+	}
+	
+	
+	private StartDateAtribute startDateAtribute;
+	/**
+	 * @return the startDateAtribute
+	 */
+	public StartDateAtribute getStartDateAtribute() {
+		return startDateAtribute;
+	}
+	/**
+	 * @param startDateAtribute the startDateAtribute to set
+	 */
+	public void setStartDateAtribute(StartDateAtribute startDateAtribute) {
+		this.startDateAtribute = startDateAtribute;
+	}
+	
+	
+	private EndDateAtribute endDateAtribute;
+
+	/**
+	 * @return the endDateAtribute
+	 */
+	public EndDateAtribute getEndDateAtribute() {
+		return endDateAtribute;
+	}
+	/**
+	 * @param endDateAtribute the endDateAtribute to set
+	 */
+	public void setEndDateAtribute(EndDateAtribute endDateAtribute) {
+		this.endDateAtribute = endDateAtribute;
+	}
+	
+	
+	private StatusAtribute statusAtribute;
+	
+	/**
+	 * @return the statusAtribute
+	 */
+	public StatusAtribute getStatusAtribute() {
+		return statusAtribute;
+	}
+	/**
+	 * @param statusAtribute the statusAtribute to set
+	 */
+	public void setStatusAtribute(StatusAtribute statusAtribute) {
+		this.statusAtribute = statusAtribute;
 	}
 
 
@@ -105,35 +161,21 @@ public class WorkpackTemplate {
 	 * Relationship linking its Organizations 
 	 */
 	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
-	private List<Stakeholder> stakeholder= new ArrayList<>();	
+	private List<Stakeholder> stakeholders= new ArrayList<>();	
 
 	/**
 	 * @return the stakeholder
 	 */
 	public List<Stakeholder> getStakeholder() {
-		return stakeholder;
+		return stakeholders;
 	}
 	/**
 	 * @param stakeholder the stakeholder to set
 	 */
 	public void setStakeholder(List<Stakeholder> stakeholder) {
-		this.stakeholder = stakeholder;
+		this.stakeholders = stakeholder;
 	}
 	
-
-	/**
-	 * Map (attribute/value) of single properties defined for the template
-	 */
-	
-	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
-	private List<Property> properties = new ArrayList<>();
-	public List<Property> getProperties() {
-		return properties;
-	}
-	public void setProperties(List<Property> properties) {
-		this.properties = properties;
-	}
-
 
 	/**
 	 * Relationship linking its children 
@@ -147,7 +189,168 @@ public class WorkpackTemplate {
 		this.components = components;
 	}
 	
+	
+	//TEXT
+	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
+	private List<TextProperty> textCustomProperties = new ArrayList<>();
+	/**
+	 * @return the textProperty
+	 */
+	public List<TextProperty> getTextProperty() {
+		return textCustomProperties;
+	}
+	/**
+	 * @param textProperty the textProperty to set
+	 */
+	public void setTextProperty(List<TextProperty> textProperty) {
+		this.textCustomProperties = textProperty;
+	}
 
+
+	//TEXTLIST
+	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
+	private List<TextListProperty> textListCustomProperties = new ArrayList<>();
+
+	/**
+	 * @return the textListProperty
+	 */
+	public List<TextListProperty> getTextListProperty() {
+		return textListCustomProperties;
+	}
+	/**
+	 * @param textListProperty the textListProperty to set
+	 */
+	public void setTextListProperty(List<TextListProperty> textListProperty) {
+		this.textListCustomProperties = textListProperty;
+	}
+
+
+	//NUMBER
+	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
+	private List<NumberProperty> numberCustomProperties = new ArrayList<>();
+	
+	/**
+	 * @return the numberProperty
+	 */
+	public List<NumberProperty> getNumberProperty() {
+		return numberCustomProperties;
+	}
+	/**
+	 * @param numberProperty the numberProperty to set
+	 */
+	public void setNumberProperty(List<NumberProperty> numberProperty) {
+		this.numberCustomProperties = numberProperty;
+	}
+
+
+	//NUMBERLIST
+	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
+	private List<NumberListProperty> numberListCustomProperties = new ArrayList<>();
+	/**
+	 * @return the numberListProperty
+	 */
+	public List<NumberListProperty> getNumberListProperty() {
+		return numberListCustomProperties;
+	}
+	/**
+	 * @param numberListProperty the numberListProperty to set
+	 */
+	public void setNumberListProperty(List<NumberListProperty> numberListProperty) {
+		this.numberListCustomProperties = numberListProperty;
+	}
+
+
+	//ADRESS
+	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
+	private List<AdressProperty> adressCustomProperties = new ArrayList<>();
+		
+		
+	/**
+	 * @return the adressProperty
+	 */
+	public List<AdressProperty> getAdressProperty() {
+		return adressCustomProperties;
+	}
+	/**
+	 * @param adressProperty the adressProperty to set
+	 */
+	public void setAdressProperty(List<AdressProperty> adressProperty) {
+		this.adressCustomProperties = adressProperty;
+	}
+	
+	
+	//MEASURE
+	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
+	private List<MeasureProperty> measureCustomProperties = new ArrayList<>();
+	
+	/**
+	 * @return the measureProperty
+	 */
+	public List<MeasureProperty> getMeasureProperty() {
+		return measureCustomProperties;
+	}
+	/**
+	 * @param measureProperty the measureProperty to set
+	 */
+	public void setMeasureProperty(List<MeasureProperty> measureProperty) {
+		this.measureCustomProperties = measureProperty;
+	}
+	
+	//STATUSLIST
+	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
+	private List<StatusListProperty> statusListCustomProperties = new ArrayList<>();
+	
+	/**
+	 * @return the statusListProperty
+	 */
+	public List<StatusListProperty> getStatusListProperty() {
+		return statusListCustomProperties;
+	}
+	/**
+	 * @param statusListProperty the statusListProperty to set
+	 */
+	public void setStatusListProperty(List<StatusListProperty> statusListProperty) {
+		this.statusListCustomProperties = statusListProperty;
+	}
+	
+	
+
+
+	//STATUS
+	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
+	private List<StatusProperty> statusCustomProperties = new ArrayList<>();
+	
+	/**
+	 * @return the statusProperty
+	 */
+	public List<StatusProperty> getStatusProperty() {
+		return statusCustomProperties;
+	}
+	/**
+	 * @param statusProperty the statusProperty to set
+	 */
+	public void setStatusProperty(List<StatusProperty> statusProperty) {
+		this.statusCustomProperties = statusProperty;
+	}
+	
+	
+	//COST
+	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
+	private List<CostProperty> costCustomProperties = new ArrayList<>();
+	
+	/**
+	 * @return the costProperty
+	 */
+	public List<CostProperty> getCostProperty() {
+		return costCustomProperties;
+	}
+	/**
+	 * @param costProperty the costProperty to set
+	 */
+	public void setCostProperty(List<CostProperty> costProperty) {
+		this.costCustomProperties = costProperty;
+	}
+	
 	
 	@Override
 	public int hashCode() {

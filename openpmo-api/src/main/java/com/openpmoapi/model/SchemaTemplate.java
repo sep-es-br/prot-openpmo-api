@@ -51,7 +51,6 @@ public class SchemaTemplate {
 	}
 
 
-	@NotNull
 	private String fullName;
 	/**
 	 * @return the fullName
