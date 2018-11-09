@@ -1,16 +1,14 @@
 package com.openpmoapi.model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
-import org.neo4j.ogm.annotation.typeconversion.DateString;
-import com.openpmoapi.model.property.Property;
 
 
 /**
@@ -46,96 +44,21 @@ public class Workpack {
 		this.name = name;
 	}
 	
-	
 
-	private String fullName;
-	/**
-	 * @return the fullName
-	 */
-	public String getFullName() {
-		return fullName;
-	}
-	/**
-	 * @param fullName the fullName to set
-	 */
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
 	
-	
-	private boolean visibility;
+	private List<Integer> property = new ArrayList<>();
 	/**
-	 * @return the visibility
+	 * @return the property
 	 */
-	public boolean isVisibility() {
-		return visibility;
+	public List<Integer> getProperty() {
+		return property;
 	}
 	/**
-	 * @param visibility the visibility to set
+	 * @param property the property to set
 	 */
-	public void setVisibility(boolean visibility) {
-		this.visibility = visibility;
+	public void setProperty(List<Integer> property) {
+		this.property = property;
 	}
-	
-	
-//	public String getShortName() {
-//		return shortName;
-//	}
-//	@SuppressWarnings("static-access")
-//	public void setShortName(String shortName) {
-//		this.shortName = util.retiraCaracteresEspeciais(shortName);
-//	}
-	
-	
-
-
-	@DateString
-	private Date dataInicio;
-	public Date getDataInicio() {
-		return dataInicio;
-	}
-	public void setDataInicio(Date dataInicio) {
-		this.dataInicio = dataInicio;
-	}
-
-
-	@DateString
-	private Date dataFim;
-	public Date getDataFim() {
-		return dataFim;
-	}
-	public void setDataFim(Date dataFim) {
-		this.dataFim = dataFim;
-	}
-	
-	
-	
-
-
-//	/**
-//	 * Map (attribute/value) of single properties defined for the workpack
-//	 */
-//	@Properties
-//	private Map<String, Object> properties = new HashMap<>();
-//	public Map<String, Object> getProperties() {
-//		return properties;
-//	}
-//	public void setProperties(Map<String, Object> properties) {
-//		this.properties = properties;
-//	}
-	
-	
-
-	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
-	private List<Property> properties = new ArrayList<>();
-	public List<Property> getProperties() {
-		return properties;
-	}
-	public void setProperties(List<Property> properties) {
-		this.properties = properties;
-	}
-
-	
 	
 	
 	/**
@@ -149,20 +72,6 @@ public class Workpack {
 	public void setTemplate(WorkpackTemplate template) {
 		this.template = template;
 	}
-
-
-//	/**
-//	 * Relationship linking its Organizations 
-//	 */
-//	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
-//	private List<Organization> organizations= new ArrayList<>();	
-//	public List<Organization> getOrganizations() {
-//		return organizations;
-//	}
-//	public void setOrganizations(List<Organization> organizations) {
-//		this.organizations = organizations;
-//	}
-	
 	
 
 	/**

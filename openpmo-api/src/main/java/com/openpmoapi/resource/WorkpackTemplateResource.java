@@ -23,15 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.openpmoapi.event.RecursoCriadoEvent;
 import com.openpmoapi.model.WorkpackTemplate;
-import com.openpmoapi.model.property.AdressProperty;
-import com.openpmoapi.model.property.CostProperty;
-import com.openpmoapi.model.property.MeasureProperty;
-import com.openpmoapi.model.property.NumberListProperty;
-import com.openpmoapi.model.property.NumberProperty;
-import com.openpmoapi.model.property.StatusListProperty;
-import com.openpmoapi.model.property.StatusProperty;
-import com.openpmoapi.model.property.TextListProperty;
-import com.openpmoapi.model.property.TextProperty;
 import com.openpmoapi.repository.WorkpackTemplateRepository;
 import com.openpmoapi.service.WorkpackTemplateService;
 
@@ -104,10 +95,14 @@ public class WorkpackTemplateResource {
 	 */
 	@PostMapping
 	public ResponseEntity<WorkpackTemplate> save( @Valid @RequestBody WorkpackTemplate wpTmpl, HttpServletResponse response) {
-		WorkpackTemplate wpTmplSalvo = wptmplRepository.save(wpTmpl,0);
+		WorkpackTemplate wpTmplSalvo = wptmplRepository.save(wpTmpl);
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, wpTmplSalvo.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(wptmplRepository.save(wpTmpl));
 	}
+	
+	
+
+	
 	
 	
 //	@PostMapping
@@ -127,6 +122,17 @@ public class WorkpackTemplateResource {
 	}
 	
 	
+	
+
+	/**
+	 * This method returns a default workpacktemplate object
+	 */
+	@GetMapping("/default")
+	public WorkpackTemplate getDefault() {
+		 return new WorkpackTemplate();
+	}
+	
+	
 	/**
 	 * This is method find by all WorkpackTemplates
 	 */
@@ -134,8 +140,6 @@ public class WorkpackTemplateResource {
 	public Iterable<WorkpackTemplate> findByAllById(@PathVariable Iterable<Long> id,int depth) {
 		 return wptmplRepository.findAllById(id, depth);
 	}
-	
-	
 	
 	
 	/**
@@ -179,31 +183,7 @@ public class WorkpackTemplateResource {
 		return wpTmpl.isPresent() ? ResponseEntity.ok(wpTmpl.get()) : ResponseEntity.notFound().build();
 	}
 
-	
-	
-	
-	
-//	/**
-//	This is method find by all properties of the WorkPack Templates
-//*/
-//	@GetMapping("/listpropertytypesMap")
-//	public Object findAllPropertiesMap() {
-//		
-//		Map<String,Object> properties = new HashMap<>();
-//         
-//		properties.put("Text", new TextProperty());
-//		properties.put("TextList", new TextListProperty());
-//		properties.put("Number", new NumberProperty());
-//		properties.put("Address", new AddressProperty());
-//		properties.put("Measurement", new MeasureProperty());
-//		properties.put("Cost", new CostProperty());
-//		properties.put("Status", new StatusProperty());
-//		
-//     return properties;
-//        		
-//		
-//	}
-	
+
 	
 	/**
 	This is method find by all properties of the WorkPackTemplates
@@ -211,17 +191,12 @@ public class WorkpackTemplateResource {
 	@GetMapping("/listpropertytypes")
 	public Object findAllPropertiesList() {
 		
-		List<Object> properties = new ArrayList<>();
+		List<String> properties = new ArrayList<>();
          
-		properties.add(new TextProperty());
-		properties.add(new TextListProperty());
-		properties.add(new NumberProperty());
-		properties.add(new NumberListProperty());
-		properties.add(new AdressProperty());
-		properties.add(new MeasureProperty());
-		properties.add(new CostProperty());
-		properties.add(new StatusProperty());
-		properties.add(new StatusListProperty());
+		properties.add("Text");
+		properties.add("Number");
+		properties.add("Date");
+		properties.add("selection");
 		
      return properties;
         		

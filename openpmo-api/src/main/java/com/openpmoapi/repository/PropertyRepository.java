@@ -5,7 +5,7 @@ package com.openpmoapi.repository;
 
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 
-import com.openpmoapi.model.property.Property;
+import com.openpmoapi.model.Property;
 
 /**
 * Type here a brief description of the class.

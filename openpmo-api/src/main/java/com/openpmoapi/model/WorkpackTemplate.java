@@ -9,15 +9,6 @@ import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
-import com.openpmoapi.model.property.AdressProperty;
-import com.openpmoapi.model.property.CostProperty;
-import com.openpmoapi.model.property.MeasureProperty;
-import com.openpmoapi.model.property.NumberListProperty;
-import com.openpmoapi.model.property.NumberProperty;
-import com.openpmoapi.model.property.StatusListProperty;
-import com.openpmoapi.model.property.StatusProperty;
-import com.openpmoapi.model.property.TextListProperty;
-import com.openpmoapi.model.property.TextProperty;
 
 /**
 * This class models a template for a Workpack object. 
@@ -32,6 +23,44 @@ public class WorkpackTemplate {
 	
 //	@Autowired
 //	private Util util;
+	
+	
+	public WorkpackTemplate() {
+		
+		Property prop = new Property();
+		
+		name = "";
+		this.setProperties(new ArrayList<Property>());
+		
+		prop.setType("Text");
+		prop.setName("FullName");
+		this.Properties.add(prop);
+		
+		
+		 prop = new Property();
+		
+		prop.setType("Date");
+		prop.setName("StartDate");
+		this.Properties.add(prop);
+		
+		 prop = new Property();
+		
+		prop.setType("Date");
+		prop.setName("EndDate");
+		this.Properties.add(prop);
+		
+		 prop = new Property();
+		
+		prop.setType("Selection");
+		prop.setName("Status");
+		prop.addPossibleValue("Cancelled");
+		prop.addPossibleValue("Stopped");
+		prop.addPossibleValue("Active");
+		this.Properties.add(prop);
+	
+	
+		
+	}
 	
 	
 	/**
@@ -58,103 +87,6 @@ public class WorkpackTemplate {
 		this.name = name;
 	}
 
-
-	
-	private String fullName;
-
-	/**
-	 * @return the fullName
-	 */
-	public String getFullName() {
-		return fullName;
-	}
-	/**
-	 * @param fullName the fullName to set
-	 */
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
-	
-	
-	
-	private CostAtribute costAtribute;
-
-	/**
-	 * @return the costAtribute
-	 */
-	public CostAtribute getCostAtribute() {
-		return costAtribute;
-	}
-	/**
-	 * @param costAtribute the costAtribute to set
-	 */
-	public void setCostAtribute(CostAtribute costAtribute) {
-		this.costAtribute = costAtribute;
-	}
-	
-	
-	private StartDateAtribute startDateAtribute;
-	/**
-	 * @return the startDateAtribute
-	 */
-	public StartDateAtribute getStartDateAtribute() {
-		return startDateAtribute;
-	}
-	/**
-	 * @param startDateAtribute the startDateAtribute to set
-	 */
-	public void setStartDateAtribute(StartDateAtribute startDateAtribute) {
-		this.startDateAtribute = startDateAtribute;
-	}
-	
-	
-	private EndDateAtribute endDateAtribute;
-
-	/**
-	 * @return the endDateAtribute
-	 */
-	public EndDateAtribute getEndDateAtribute() {
-		return endDateAtribute;
-	}
-	/**
-	 * @param endDateAtribute the endDateAtribute to set
-	 */
-	public void setEndDateAtribute(EndDateAtribute endDateAtribute) {
-		this.endDateAtribute = endDateAtribute;
-	}
-	
-	
-	private StatusAtribute statusAtribute;
-	
-	/**
-	 * @return the statusAtribute
-	 */
-	public StatusAtribute getStatusAtribute() {
-		return statusAtribute;
-	}
-	/**
-	 * @param statusAtribute the statusAtribute to set
-	 */
-	public void setStatusAtribute(StatusAtribute statusAtribute) {
-		this.statusAtribute = statusAtribute;
-	}
-
-
-	private boolean visibility;
-
-	/**
-	 * @return the visibility
-	 */
-	public boolean isVisibility() {
-		return visibility;
-	}
-	/**
-	 * @param visibility the visibility to set
-	 */
-	public void setVisibility(boolean visibility) {
-		this.visibility = visibility;
-	}
-	
 
 
 	/**
@@ -190,166 +122,33 @@ public class WorkpackTemplate {
 	}
 	
 	
-	//TEXT
-	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
-	private List<TextProperty> textCustomProperties = new ArrayList<>();
+	@Relationship(type="FEATURE", direction=Relationship.INCOMING)
+	private List<Property> Properties;
 	/**
-	 * @return the textProperty
+	 * @return the properties
 	 */
-	public List<TextProperty> getTextProperty() {
-		return textCustomProperties;
+	public List<Property> getProperties() {
+		return Properties;
 	}
 	/**
-	 * @param textProperty the textProperty to set
+	 * @param properties the properties to set
 	 */
-	public void setTextProperty(List<TextProperty> textProperty) {
-		this.textCustomProperties = textProperty;
-	}
-
-
-	//TEXTLIST
-	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
-	private List<TextListProperty> textListCustomProperties = new ArrayList<>();
-
-	/**
-	 * @return the textListProperty
-	 */
-	public List<TextListProperty> getTextListProperty() {
-		return textListCustomProperties;
-	}
-	/**
-	 * @param textListProperty the textListProperty to set
-	 */
-	public void setTextListProperty(List<TextListProperty> textListProperty) {
-		this.textListCustomProperties = textListProperty;
-	}
-
-
-	//NUMBER
-	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
-	private List<NumberProperty> numberCustomProperties = new ArrayList<>();
-	
-	/**
-	 * @return the numberProperty
-	 */
-	public List<NumberProperty> getNumberProperty() {
-		return numberCustomProperties;
-	}
-	/**
-	 * @param numberProperty the numberProperty to set
-	 */
-	public void setNumberProperty(List<NumberProperty> numberProperty) {
-		this.numberCustomProperties = numberProperty;
-	}
-
-
-	//NUMBERLIST
-	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
-	private List<NumberListProperty> numberListCustomProperties = new ArrayList<>();
-	/**
-	 * @return the numberListProperty
-	 */
-	public List<NumberListProperty> getNumberListProperty() {
-		return numberListCustomProperties;
-	}
-	/**
-	 * @param numberListProperty the numberListProperty to set
-	 */
-	public void setNumberListProperty(List<NumberListProperty> numberListProperty) {
-		this.numberListCustomProperties = numberListProperty;
-	}
-
-
-	//ADRESS
-	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
-	private List<AdressProperty> adressCustomProperties = new ArrayList<>();
-		
-		
-	/**
-	 * @return the adressProperty
-	 */
-	public List<AdressProperty> getAdressProperty() {
-		return adressCustomProperties;
-	}
-	/**
-	 * @param adressProperty the adressProperty to set
-	 */
-	public void setAdressProperty(List<AdressProperty> adressProperty) {
-		this.adressCustomProperties = adressProperty;
+	public void setProperties(List<Property> properties) {
+		Properties = properties;
 	}
 	
 	
-	//MEASURE
-	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
-	private List<MeasureProperty> measureCustomProperties = new ArrayList<>();
-	
-	/**
-	 * @return the measureProperty
-	 */
-	public List<MeasureProperty> getMeasureProperty() {
-		return measureCustomProperties;
-	}
-	/**
-	 * @param measureProperty the measureProperty to set
-	 */
-	public void setMeasureProperty(List<MeasureProperty> measureProperty) {
-		this.measureCustomProperties = measureProperty;
-	}
-	
-	//STATUSLIST
-	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
-	private List<StatusListProperty> statusListCustomProperties = new ArrayList<>();
-	
-	/**
-	 * @return the statusListProperty
-	 */
-	public List<StatusListProperty> getStatusListProperty() {
-		return statusListCustomProperties;
-	}
-	/**
-	 * @param statusListProperty the statusListProperty to set
-	 */
-	public void setStatusListProperty(List<StatusListProperty> statusListProperty) {
-		this.statusListCustomProperties = statusListProperty;
-	}
 	
 	
-
-
-	//STATUS
-	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
-	private List<StatusProperty> statusCustomProperties = new ArrayList<>();
-	
-	/**
-	 * @return the statusProperty
-	 */
-	public List<StatusProperty> getStatusProperty() {
-		return statusCustomProperties;
-	}
-	/**
-	 * @param statusProperty the statusProperty to set
-	 */
-	public void setStatusProperty(List<StatusProperty> statusProperty) {
-		this.statusCustomProperties = statusProperty;
-	}
 	
 	
-	//COST
-	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
-	private List<CostProperty> costCustomProperties = new ArrayList<>();
 	
-	/**
-	 * @return the costProperty
-	 */
-	public List<CostProperty> getCostProperty() {
-		return costCustomProperties;
-	}
-	/**
-	 * @param costProperty the costProperty to set
-	 */
-	public void setCostProperty(List<CostProperty> costProperty) {
-		this.costCustomProperties = costProperty;
-	}
+	
+	
+	
+	
+	
+	
 	
 	
 	@Override
