@@ -1,15 +1,12 @@
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\repository\OrganizationRoleRepository.java
-C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\repository\PropertyRepository.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\service\SchemaRoleService.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\model\BaseLine.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\service\OfficeRoleService.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\repository\CostRepository.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\service\SchemaService.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\service\WorkpackService.java
-C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\resource\MeasurePropertyResource.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\resource\OrganizationResource.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\model\Cost.java
-C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\resource\StatusListPropertyResource.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\model\Person.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\repository\BaseLineRepository.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\service\BaseLineRichService.java
@@ -17,6 +14,7 @@ C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\service\BaseLineServi
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\model\Stakeholder.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\repository\SchemaTemplateRepository.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\model\SchemaRole.java
+C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\model\PropertyProfile.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\resource\WorkpackResource.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\exceptionHandler\OpenPmoExceptionHandler.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\resource\WorkpackRoleResource.java
@@ -28,6 +26,7 @@ C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\service\LocaleItemSer
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\repository\OfficeRoleRepository.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\repository\StatusPropertyRepository.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\resource\LocaleRichResource.java
+C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\repository\PropertyProfileRepository.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\repository\SchemaRoleRepository.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\resource\CostResource.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\model\SchemaTemplate.java
@@ -54,7 +53,6 @@ C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\service\WorkpackTempl
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\model\CostRich.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\repository\SchemaRepository.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\resource\BaseLineResource.java
-C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\resource\TextListPropertyResource.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\model\Property.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\resource\LocaleResource.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\model\Locale.java
@@ -63,7 +61,6 @@ C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\service\WorkpackRoleS
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\model\Milestone.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\model\Office.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\model\Organization.java
-C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\resource\CostPropertyResource.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\repository\LocaleItemRepository.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\resource\WorkpackTemplateResource.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\service\OrganizationRoleService.java
@@ -71,7 +68,6 @@ C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\resource\OfficeResour
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\model\OrganizationRole.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\service\CostRichService.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\resource\SchemaRoleResource.java
-C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\resource\NumberListPropertyResource.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\util\Util.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\resource\BaseLineRichResource.java
 C:\openpmo-master\openpmo-api\src\main\java\com\openpmoapi\OpenpmoApiApplication.java

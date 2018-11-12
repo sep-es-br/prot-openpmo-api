@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.openpmoapi.event.RecursoCriadoEvent;
+import com.openpmoapi.model.PropertyProfile;
 import com.openpmoapi.model.WorkpackTemplate;
 import com.openpmoapi.repository.WorkpackTemplateRepository;
 import com.openpmoapi.service.WorkpackTemplateService;
@@ -100,11 +101,7 @@ public class WorkpackTemplateResource {
 		return ResponseEntity.status(HttpStatus.CREATED).body(wptmplRepository.save(wpTmpl));
 	}
 	
-	
 
-	
-	
-	
 //	@PostMapping
 //	public String greetingJson(HttpEntity<String> httpEntity) {
 //	    String json = httpEntity.getBody();
@@ -121,15 +118,49 @@ public class WorkpackTemplateResource {
 		 return wptmplRepository.findAll(2);
 	}
 	
-	
-	
 
 	/**
 	 * This method returns a default workpacktemplate object
 	 */
 	@GetMapping("/default")
 	public WorkpackTemplate getDefault() {
-		 return new WorkpackTemplate();
+		
+		WorkpackTemplate wpt = new WorkpackTemplate();
+		
+		List<PropertyProfile> props = new ArrayList<PropertyProfile>();
+		
+		PropertyProfile prop = new PropertyProfile();
+		
+		wpt.setName("");
+		
+		prop.setType("Text");
+		prop.setName("FullName");
+		props.add(prop);
+		
+		prop = new PropertyProfile();
+		
+		prop.setType("Date");
+		prop.setName("StartDate");
+		props.add(prop);
+		
+		prop = new PropertyProfile();
+		
+		prop.setType("Date");
+		prop.setName("EndDate");
+		props.add(prop);
+		
+		prop = new PropertyProfile();
+		
+		prop.setType("Selection");
+		prop.setName("Status");
+		prop.addPossibleValue("Cancelled");
+		prop.addPossibleValue("Stopped");
+		prop.addPossibleValue("Active");
+		props.add(prop);
+	
+		wpt.setProperties(props);
+		
+		return wpt;
 	}
 	
 	
@@ -196,7 +227,7 @@ public class WorkpackTemplateResource {
 		properties.add("Text");
 		properties.add("Number");
 		properties.add("Date");
-		properties.add("selection");
+		properties.add("Selection");
 		
      return properties;
         		
