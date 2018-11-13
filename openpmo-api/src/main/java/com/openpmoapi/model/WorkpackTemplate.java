@@ -25,43 +25,6 @@ public class WorkpackTemplate {
 //	private Util util;
 	
 	
-	public WorkpackTemplate() {
-		
-		Property prop = new Property();
-		
-		name = "";
-		this.setProperties(new ArrayList<Property>());
-		
-		prop.setType("Text");
-		prop.setName("FullName");
-		this.Properties.add(prop);
-		
-		
-		 prop = new Property();
-		
-		prop.setType("Date");
-		prop.setName("StartDate");
-		this.Properties.add(prop);
-		
-		 prop = new Property();
-		
-		prop.setType("Date");
-		prop.setName("EndDate");
-		this.Properties.add(prop);
-		
-		 prop = new Property();
-		
-		prop.setType("Selection");
-		prop.setName("Status");
-		prop.addPossibleValue("Cancelled");
-		prop.addPossibleValue("Stopped");
-		prop.addPossibleValue("Active");
-		this.Properties.add(prop);
-	
-	
-		
-	}
-	
 	
 	/**
 	 * Self generated node id
@@ -122,18 +85,18 @@ public class WorkpackTemplate {
 	}
 	
 	
-	@Relationship(type="FEATURE", direction=Relationship.INCOMING)
-	private List<Property> Properties;
+	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
+	private List<PropertyProfile> Properties;
 	/**
 	 * @return the properties
 	 */
-	public List<Property> getProperties() {
+	public List<PropertyProfile> getProperties() {
 		return Properties;
 	}
 	/**
 	 * @param properties the properties to set
 	 */
-	public void setProperties(List<Property> properties) {
+	public void setProperties(List<PropertyProfile> properties) {
 		Properties = properties;
 	}
 	

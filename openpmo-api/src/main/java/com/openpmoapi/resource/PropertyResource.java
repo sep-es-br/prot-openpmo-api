@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.openpmoapi.repository.PropertyRepository;
+import com.openpmoapi.repository.PropertyProfileRepository;
 
 /**
 * Type here a brief description of the class.
@@ -31,7 +31,7 @@ public class PropertyResource {
 	
 	
 	@Autowired
-	private PropertyRepository propertyRepository;
+	private PropertyProfileRepository propertyRepository;
 	
 	
 //	@Autowired

@@ -24,9 +24,12 @@ import com.openpmoapi.model.BaseLineRich;
 import com.openpmoapi.repository.BaseLineRichRepository;
 import com.openpmoapi.service.BaseLineRichService;
 
+import io.swagger.annotations.Api;
+
 
 @RestController
 @RequestMapping("/api/baselinerich")
+@Api(value = "/api/baselinerich",  tags = "Baseline", description = "Baseline Resource Workpack")
 public class BaseLineRichResource {
 	
 	@Autowired

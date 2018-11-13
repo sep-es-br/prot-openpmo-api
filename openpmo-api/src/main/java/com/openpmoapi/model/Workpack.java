@@ -45,22 +45,22 @@ public class Workpack {
 	}
 	
 
-	
-	private List<Integer> property = new ArrayList<>();
+	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
+	private List<Property> properties = new ArrayList<>();
 	/**
-	 * @return the property
+	 * @return the properties
 	 */
-	public List<Integer> getProperty() {
-		return property;
+	public List<Property> getProperties() {
+		return properties;
 	}
 	/**
-	 * @param property the property to set
+	 * @param properties the properties to set
 	 */
-	public void setProperty(List<Integer> property) {
-		this.property = property;
+	public void setProperties(List<Property> properties) {
+		this.properties = properties;
 	}
-	
-	
+
+
 	/**
 	 * Relationship linking its templates 
 	 */

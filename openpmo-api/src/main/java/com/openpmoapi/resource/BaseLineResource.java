@@ -24,9 +24,12 @@ import com.openpmoapi.model.BaseLine;
 import com.openpmoapi.repository.BaseLineRepository;
 import com.openpmoapi.service.BaseLineService;
 
+import io.swagger.annotations.Api;
+
 
 @RestController
-@RequestMapping("/api/baseline")
+@RequestMapping("/api/baseline" )
+@Api(value = "/api/baseline",  tags = "Baseline", description = " ")
 public class BaseLineResource {
 	
 	@Autowired

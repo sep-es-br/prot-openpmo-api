@@ -24,9 +24,12 @@ import com.openpmoapi.model.Cost;
 import com.openpmoapi.repository.CostRepository;
 import com.openpmoapi.service.CostService;
 
+import io.swagger.annotations.Api;
+
 
 @RestController
 @RequestMapping("/api/cost")
+@Api(value = "/api/cost",  tags = "Cost", description = " ")
 public class CostResource {
 	
 	@Autowired

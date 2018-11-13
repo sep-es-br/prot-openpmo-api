@@ -25,9 +25,12 @@ import com.openpmoapi.model.LocaleRich;
 import com.openpmoapi.repository.LocaleItemRepository;
 import com.openpmoapi.service.LocaleItemService;
 
+import io.swagger.annotations.Api;
+
 
 @RestController
 @RequestMapping("/api/localeItem")
+@Api(value = "/api/locale",  tags = "Locale", description = " ")
 public class LocaleRichResource {
 	
 	@Autowired
