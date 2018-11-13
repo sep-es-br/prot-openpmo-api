@@ -168,8 +168,24 @@ public class PropertyProfile {
 	
 	public void addPossibleValue(String possibleValue) {
 		this.possibleValues.add(possibleValue);
-	
-	
-	
 	}
+	
+	private boolean required;
+	/**
+	 * @return the required
+	 */
+	public boolean isRequired() {
+		return required;
+	}
+	/**
+	 * @param required the required to set
+	 */
+	public void setRequired(boolean required) {
+		this.required = required;
+	}
+	
+	
+	
+	
+	
 }

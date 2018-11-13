@@ -78,19 +78,18 @@ public class Workpack {
 	 * Relationship linking its Organizations 
 	 */
 	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
-	private List<Stakeholder> stakeholder= new ArrayList<>();	
-
+	private List<Stakeholder> stakeholders= new ArrayList<>();	
 	/**
-	 * @return the stakeholder
+	 * @return the stakeholders
 	 */
-	public List<Stakeholder> getStakeholder() {
-		return stakeholder;
+	public List<Stakeholder> getStakeholders() {
+		return stakeholders;
 	}
 	/**
-	 * @param stakeholder the stakeholder to set
+	 * @param stakeholders the stakeholders to set
 	 */
-	public void setStakeholder(List<Stakeholder> stakeholder) {
-		this.stakeholder = stakeholder;
+	public void setStakeholders(List<Stakeholder> stakeholders) {
+		this.stakeholders = stakeholders;
 	}
 
 

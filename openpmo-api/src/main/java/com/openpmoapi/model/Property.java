@@ -31,6 +31,26 @@ public class Property {
 	}
 	
 	
+	
+	
+	
+	private String name = "";
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	
+
 	private String value = "";
 	/**
 	 * @return the value
@@ -44,8 +64,9 @@ public class Property {
 	public void setValue(String value) {
 		this.value = value;
 	}
-
-
+	
+	
+	
 	@Relationship(type="IS_DRIVEN_BY", direction=Relationship.UNDIRECTED)
 	private PropertyProfile profile;
 	/**

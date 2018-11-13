@@ -102,14 +102,6 @@ public class WorkpackTemplateResource {
 	}
 	
 
-//	@PostMapping
-//	public String greetingJson(HttpEntity<String> httpEntity) {
-//	    String json = httpEntity.getBody();
-//	    // json contains the plain json string
-//	    return json;
-//	}
-	
-	
 	/**
 	 * This is method find by all WorkpackTemplates
 	 */
@@ -119,49 +111,6 @@ public class WorkpackTemplateResource {
 	}
 	
 
-	/**
-	 * This method returns a default workpacktemplate object
-	 */
-	@GetMapping("/default")
-	public WorkpackTemplate getDefault() {
-		
-		WorkpackTemplate wpt = new WorkpackTemplate();
-		
-		List<PropertyProfile> props = new ArrayList<PropertyProfile>();
-		
-		PropertyProfile prop = new PropertyProfile();
-		
-		wpt.setName("");
-		
-		prop.setType("Text");
-		prop.setName("FullName");
-		props.add(prop);
-		
-		prop = new PropertyProfile();
-		
-		prop.setType("Date");
-		prop.setName("StartDate");
-		props.add(prop);
-		
-		prop = new PropertyProfile();
-		
-		prop.setType("Date");
-		prop.setName("EndDate");
-		props.add(prop);
-		
-		prop = new PropertyProfile();
-		
-		prop.setType("Selection");
-		prop.setName("Status");
-		prop.addPossibleValue("Cancelled");
-		prop.addPossibleValue("Stopped");
-		prop.addPossibleValue("Active");
-		props.add(prop);
-	
-		wpt.setProperties(props);
-		
-		return wpt;
-	}
 	
 	
 	/**
@@ -217,7 +166,7 @@ public class WorkpackTemplateResource {
 
 	
 	/**
-	This is method find by all properties of the WorkPackTemplates
+	This method find by all properties of the WorkPackTemplates
 */
 	@GetMapping("/listpropertytypes")
 	public Object findAllPropertiesList() {
@@ -226,7 +175,9 @@ public class WorkpackTemplateResource {
          
 		properties.add("Text");
 		properties.add("Number");
+		properties.add("Integer");
 		properties.add("Date");
+		properties.add("Currency");
 		properties.add("Selection");
 		
      return properties;
@@ -234,6 +185,51 @@ public class WorkpackTemplateResource {
 		
 	}
 	
+	
 
+	/**
+	 * This method returns a default workpacktemplate object
+	 */
+	@GetMapping("/default")
+	public WorkpackTemplate getDefault() {
+		
+		WorkpackTemplate wpt = new WorkpackTemplate();
+		
+		List<PropertyProfile> props = new ArrayList<PropertyProfile>();
+		
+		PropertyProfile prop = new PropertyProfile();
+		
+		wpt.setName("");
+		
+		prop.setType("Text");
+		prop.setName("FullName");
+		props.add(prop);
+		prop = new PropertyProfile();
+		
+		prop.setType("Date");
+		prop.setName("StartDate");
+		props.add(prop);
+		prop = new PropertyProfile();
+		
+		prop.setType("Date");
+		prop.setName("EndDate");
+		props.add(prop);
+		prop = new PropertyProfile();
+		
+		prop.setType("Selection");
+		prop.setName("Status");
+		prop.addPossibleValue("Cancelled");
+		prop.addPossibleValue("Stopped");
+		prop.addPossibleValue("Active");
+		props.add(prop);
+	
+		wpt.setProperties(props);
+		
+		return wpt;
+	}
+	
+
+	
+	
 
 }

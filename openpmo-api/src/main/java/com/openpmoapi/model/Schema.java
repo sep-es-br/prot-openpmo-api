@@ -67,18 +67,6 @@ public class Schema {
 	}
 
 	
-	
-	
-//	public String getShortName() {
-//		return shortName;
-//	}
-//	@SuppressWarnings("static-access")
-//	public void setShortName(String shortName) {
-//		this.shortName = util.retiraCaracteresEspeciais(shortName);
-//	}
-	
-
-	
 
 	/**
 	 *    Relationship linking to the first level of workpack
