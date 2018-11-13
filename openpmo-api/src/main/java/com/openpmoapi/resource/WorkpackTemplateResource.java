@@ -37,7 +37,7 @@ import io.swagger.annotations.Api;
 */
 @RestController
 @RequestMapping("/api/workpacktemplate")
-@Api(value = "/api/baseline",  tags = "WorkpackTemplate",description=" ")
+@Api(value = "/api/workpacktemplate",  tags = "WorkpackTemplate",description=" ")
 public class WorkpackTemplateResource {
 	
 	@Autowired
