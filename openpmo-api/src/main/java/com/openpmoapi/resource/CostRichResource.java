@@ -24,9 +24,12 @@ import com.openpmoapi.model.CostRich;
 import com.openpmoapi.repository.CostRichRepository;
 import com.openpmoapi.service.CostRichService;
 
+import io.swagger.annotations.Api;
+
 
 @RestController
 @RequestMapping("/api/costrich")
+@Api(value = "/api/cost",  tags = "Cost",description=" ")
 public class CostRichResource {
 	
 	@Autowired
@@ -49,14 +52,6 @@ public class CostRichResource {
 		costRichRepository.deleteById(id);
 	}
 	
-	/**
-	 * This is method delete all CostRich
-	 */
-	@DeleteMapping("/all")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteAll() {
-		costRichRepository.deleteAll();
-	}
 	
 	
 	/**

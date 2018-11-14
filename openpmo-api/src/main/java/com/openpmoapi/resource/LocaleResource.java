@@ -25,9 +25,12 @@ import com.openpmoapi.model.Locale;
 import com.openpmoapi.repository.LocaleRepository;
 import com.openpmoapi.service.LocaleService;
 
+import io.swagger.annotations.Api;
+
 
 @RestController
 @RequestMapping("/api/locale")
+@Api(value = "/api/locale",  tags = "Locale",description=" ")
 public class LocaleResource {
 	
 	@Autowired
@@ -48,15 +51,6 @@ public class LocaleResource {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
 		localeRepository.deleteById(id);
-	}
-	
-	/**
-	 * This is method delete all Locale
-	 */
-	@DeleteMapping("/all")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteAll() {
-		localeRepository.deleteAll();
 	}
 	
 	

@@ -24,8 +24,11 @@ import com.openpmoapi.model.Workpack;
 import com.openpmoapi.repository.WorkpackRepository;
 import com.openpmoapi.service.WorkpackService;
 
+import io.swagger.annotations.Api;
+
 @RestController
 @RequestMapping("/api/workpack")
+@Api(value = "/api/workpack",  tags = "Workpack",description=" ")
 public class WorkpackResource {
 	
 	@Autowired
@@ -46,25 +49,6 @@ public class WorkpackResource {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
 		workPackRepository.deleteById(id);
-	}
-	
-	/**
-	 * This is method delete all Workpack
-	 */
-	@DeleteMapping("/all")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteAll() {
-		workPackRepository.deleteAll();
-	}
-	
-	
-	/**
-	 * This is method delete part Workpack
-	 */
-	@DeleteMapping("/part")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteLista(@PathVariable  Iterable<? extends Workpack>  workpack ) {
-		workPackRepository.deleteAll(workpack);
 	}
 	
 	

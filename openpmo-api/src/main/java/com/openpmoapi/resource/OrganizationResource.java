@@ -25,9 +25,12 @@ import com.openpmoapi.model.Organization;
 import com.openpmoapi.repository.OrganizationRepository;
 import com.openpmoapi.service.OrganizationService;
 
+import io.swagger.annotations.Api;
+
 
 @RestController
 @RequestMapping("/api/organization")
+@Api(value = "/api/organization",  tags = "Organization",description=" ")
 public class OrganizationResource {
 	
 	@Autowired
@@ -48,15 +51,6 @@ public class OrganizationResource {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
 		organizationRepository.deleteById(id);
-	}
-	
-	/**
-	 * This is method delete all Organization
-	 */
-	@DeleteMapping("/all")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteAll() {
-		organizationRepository.deleteAll();
 	}
 	
 	

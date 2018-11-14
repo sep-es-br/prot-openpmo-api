@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.openpmoapi.repository.PropertyProfileRepository;
 
+import io.swagger.annotations.Api;
+
 /**
 * Type here a brief description of the class.
 *
@@ -23,6 +25,7 @@ import com.openpmoapi.repository.PropertyProfileRepository;
 */
 @RestController
 @RequestMapping("/api/property")
+@Api(value = "/api/property",  tags = "Property",description=" ")
 public class PropertyResource {
 
 	

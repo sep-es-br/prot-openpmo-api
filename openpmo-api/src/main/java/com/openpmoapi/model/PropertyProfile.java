@@ -185,6 +185,52 @@ public class PropertyProfile {
 	}
 	
 	
+	private String label;
+	/**
+	 * @return the label
+	 */
+	public String getLabel() {
+		return label;
+	}
+	/**
+	 * @param label the label to set
+	 */
+	public void setLabel(String label) {
+		this.label = label;
+	}
+	
+	
+	private int rows;
+	/**
+	 * @return the rows
+	 */
+	public int getRows() {
+		return rows;
+	}
+	/**
+	 * @param rows the rows to set
+	 */
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+	
+	
+	
+	private  boolean fullLine;
+	/**
+	 * @return the fullLine
+	 */
+	public boolean isFullLine() {
+		return fullLine;
+	}
+	/**
+	 * @param fullLine the fullLine to set
+	 */
+	public void setFullLine(boolean fullLine) {
+		this.fullLine = fullLine;
+	}
+	
+	
 	
 	
 	

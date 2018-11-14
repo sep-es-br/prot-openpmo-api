@@ -52,15 +52,6 @@ public class BaseLineRichResource {
 		baseLineRichRepository.deleteById(id);
 	}
 	
-	/**
-	 * This is method delete all BaseineRich
-	 */
-	@DeleteMapping("/all")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteAll() {
-		baseLineRichRepository.deleteAll();
-	}
-	
 	
 	/**
 	 * This is method update BaselineRich

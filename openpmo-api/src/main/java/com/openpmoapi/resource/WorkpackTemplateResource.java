@@ -62,26 +62,7 @@ public class WorkpackTemplateResource {
 	public void delete(@PathVariable Long id) {
 		wptmplRepository.deleteById(id);
 	}
-	
-	/**
-	 * This is method delete all WorkpackTemplate
-	 */
-	@DeleteMapping("/all")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteAll() {
-		wptmplRepository.deleteAll();
-	}
-	
-	
-	/**
-	 * This is method delete part WorkpackTemplate
-	 */
-	@DeleteMapping("/part")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteLista(@PathVariable  Iterable<? extends WorkpackTemplate>  wpTmpl ) {
-		wptmplRepository.deleteAll(wpTmpl);
-	}
-	
+
 	
 	/**
 	 * This is method update WorkpackTemplate
@@ -126,7 +107,7 @@ public class WorkpackTemplateResource {
 	
 	
 	/**
-			This is method find by one WorkpackTemplate
+			This method find by one WorkpackTemplate
 	 */
 	@GetMapping("/{id}/{depth}")
 	public ResponseEntity<WorkpackTemplate> findById(@PathVariable Long id,@PathVariable int depth) {
@@ -136,7 +117,7 @@ public class WorkpackTemplateResource {
 	
 	
 		/**
-		This is method find by one WorkpackTemplate
+		This method find by one WorkpackTemplate
 	*/
 	@GetMapping("/{id}")
 		public ResponseEntity<WorkpackTemplate> findById(@PathVariable Long id) {
@@ -181,6 +162,7 @@ public class WorkpackTemplateResource {
 		properties.add("Integer");
 		properties.add("Date");
 		properties.add("Currency");
+		properties.add("TextArea");
 		properties.add("Selection");
 		
      return properties;
@@ -204,8 +186,11 @@ public class WorkpackTemplateResource {
 		
 		wpt.setName("");
 		
-		prop.setType("Text");
+		prop.setType("TextArea");
 		prop.setName("FullName");
+		prop.setLabel("Full Name");
+		prop.setRows(2);
+		prop.setFullLine(true);
 		props.add(prop);
 		prop = new PropertyProfile();
 		

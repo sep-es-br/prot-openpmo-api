@@ -25,9 +25,12 @@ import com.openpmoapi.model.SchemaRole;
 import com.openpmoapi.repository.SchemaRoleRepository;
 import com.openpmoapi.service.SchemaRoleService;
 
+import io.swagger.annotations.Api;
+
 
 @RestController
 @RequestMapping("/api/schemarole")
+@Api(value = "/api/schemarole",  tags = "Schema",description=" ")
 public class SchemaRoleResource {
 	
 	@Autowired
@@ -48,15 +51,6 @@ public class SchemaRoleResource {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
 		schemaRoleRepository.deleteById(id);
-	}
-	
-	/**
-	 * This is method delete all SchemaRole
-	 */
-	@DeleteMapping("/all")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteAll() {
-		schemaRoleRepository.deleteAll();
 	}
 	
 	

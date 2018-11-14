@@ -51,16 +51,7 @@ public class BaseLineResource {
 	public void delete(@PathVariable Long id) {
 		baseLineRepository.deleteById(id);
 	}
-	
-	/**
-	 * This is method delete all Baseine
-	 */
-	@DeleteMapping("/all")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteAll() {
-		baseLineRepository.deleteAll();
-	}
-	
+
 	
 	/**
 	 * This is method update Baseline
@@ -93,7 +84,7 @@ public class BaseLineResource {
 	
 	
 	/**
-			This is method find by one Locale
+			This is method find by one BaseLine
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<BaseLine> findById(@PathVariable Long id) {

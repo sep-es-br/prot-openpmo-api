@@ -25,9 +25,12 @@ import com.openpmoapi.model.Schema;
 import com.openpmoapi.repository.SchemaRepository;
 import com.openpmoapi.service.SchemaService;
 
+import io.swagger.annotations.Api;
+
 
 @RestController
 @RequestMapping("/api/schema")
+@Api(value = "/api/schema",  tags = "Schema",description=" ")
 public class SchemaResource {
 	
 	@Autowired
@@ -50,24 +53,6 @@ public class SchemaResource {
 		schemaRepository.deleteById(id);
 	}
 	
-	/**
-	 * This is method delete all Schema
-	 */
-	@DeleteMapping("/all")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteAll() {
-		schemaRepository.deleteAll();
-	}
-	
-	
-	/**
-	 * This is method delete part Schema
-	 */
-	@DeleteMapping("/part")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteLista(@PathVariable  Iterable<? extends Schema>  schema ) {
-		schemaRepository.deleteAll(schema);
-	}
 	
 	
 	/**

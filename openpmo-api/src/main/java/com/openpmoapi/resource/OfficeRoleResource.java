@@ -25,9 +25,12 @@ import com.openpmoapi.model.OfficeRole;
 import com.openpmoapi.repository.OfficeRoleRepository;
 import com.openpmoapi.service.OfficeRoleService;
 
+import io.swagger.annotations.Api;
+
 
 @RestController
 @RequestMapping("/api/officerole")
+@Api(value = "/api/officerole",  tags = "Office",description=" ")
 public class OfficeRoleResource {
 	
 	@Autowired
@@ -48,15 +51,6 @@ public class OfficeRoleResource {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
 		roleRepository.deleteById(id);
-	}
-	
-	/**
-	 * This is method delete all Roles
-	 */
-	@DeleteMapping("/all")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteAll() {
-		roleRepository.deleteAll();
 	}
 	
 	

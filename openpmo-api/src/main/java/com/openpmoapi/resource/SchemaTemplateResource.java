@@ -25,9 +25,12 @@ import com.openpmoapi.model.SchemaTemplate;
 import com.openpmoapi.repository.SchemaTemplateRepository;
 import com.openpmoapi.service.SchemaTemplateService;
 
+import io.swagger.annotations.Api;
+
 
 @RestController
 @RequestMapping("/api/schematemplate")
+@Api(value = "/api/schematemplate",  tags = "Schematemplate",description=" ")
 public class SchemaTemplateResource {
 	
 	@Autowired
@@ -50,25 +53,18 @@ public class SchemaTemplateResource {
 		schemaTmplRepository.deleteById(id);
 	}
 	
-	/**
-	 * This is method delete all Schema Template
-	 */
-	@DeleteMapping("/all")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteAll() {
-		schemaTmplRepository.deleteAll();
-	}
 	
 	
-	/**
-	 * This is method delete part Schema Template
-	 */
-	@DeleteMapping("/part")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteLista(@PathVariable  Iterable<? extends SchemaTemplate>  schemaTemplate ) {
-		schemaTmplRepository.deleteAll(schemaTemplate);
-	}
-	
+//	
+//	/**
+//	 * This is method delete part Schema Template
+//	 */
+//	@DeleteMapping("/part")
+//	@ResponseStatus(HttpStatus.NO_CONTENT)
+//	public void deleteLista(@PathVariable  Iterable<? extends SchemaTemplate>  schemaTemplate ) {
+//		schemaTmplRepository.deleteAll(schemaTemplate);
+//	}
+//	
 	
 	/**
 	 * This is method update Schema Template

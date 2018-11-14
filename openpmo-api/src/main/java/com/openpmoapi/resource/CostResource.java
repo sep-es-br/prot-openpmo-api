@@ -24,9 +24,12 @@ import com.openpmoapi.model.Cost;
 import com.openpmoapi.repository.CostRepository;
 import com.openpmoapi.service.CostService;
 
+import io.swagger.annotations.Api;
+
 
 @RestController
 @RequestMapping("/api/cost")
+@Api(value = "/api/cost",  tags = "Cost",description=" ")
 public class CostResource {
 	
 	@Autowired
@@ -49,14 +52,6 @@ public class CostResource {
 		costRepository.deleteById(id);
 	}
 	
-	/**
-	 * This is method delete all Cost
-	 */
-	@DeleteMapping("/all")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteAll() {
-		costRepository.deleteAll();
-	}
 	
 	
 	/**

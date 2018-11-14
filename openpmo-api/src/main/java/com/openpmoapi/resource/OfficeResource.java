@@ -25,9 +25,12 @@ import com.openpmoapi.model.Office;
 import com.openpmoapi.repository.OfficeRepository;
 import com.openpmoapi.service.OfficeService;
 
+import io.swagger.annotations.Api;
+
 
 @RestController
 @RequestMapping("/api/office")
+@Api(value = "/api/office",  tags = "Office",description=" ")
 public class OfficeResource {
 	
 	@Autowired
@@ -48,25 +51,6 @@ public class OfficeResource {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
 		envRepository.deleteById(id);
-	}
-	
-	/**
-	 * This is method delete all Environment
-	 */
-	@DeleteMapping("/all")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteAll() {
-		envRepository.deleteAll();
-	}
-	
-	
-	/**
-	 * This is method delete part Environment
-	 */
-	@DeleteMapping("/part")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteLista(@PathVariable  Iterable<? extends Office>  env ) {
-		envRepository.deleteAll(env);
 	}
 	
 	
@@ -110,27 +94,23 @@ public class OfficeResource {
 	}
 	
 	
-	@GetMapping("/teste/{name}")
-	public Office findByName(@PathVariable String name) {
-	    return envService.findByName(name);
-	}
-	  
-	
-	@GetMapping("/testes/{name}")
-	public Collection<Office> findByNameLike(@PathVariable String name) {
-	     return envService.findByNameLike(name);
-	 }
-	
-	
-//	@GetMapping("/teste2/{shortName}")
-//	public EnvironmentProjection findByShortName(@PathVariable String shortName) {
-//	    return envService.findByShortName(shortName);
+//	@GetMapping("/teste/{name}")
+//	public Office findByName(@PathVariable String name) {
+//	    return envService.findByName(name);
 //	}
-	
-	@GetMapping("/testes3")
-	public Collection<Office> find() {
-	     return envService.find();
-	}
+//	  
+//	
+//	@GetMapping("/testes/{name}")
+//	public Collection<Office> findByNameLike(@PathVariable String name) {
+//	     return envService.findByNameLike(name);
+//	 }
+//	
+//
+//	
+//	@GetMapping("/testes3")
+//	public Collection<Office> find() {
+//	     return envService.find();
+//	}
 	
 	
 	

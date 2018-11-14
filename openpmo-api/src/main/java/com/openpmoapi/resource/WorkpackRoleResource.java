@@ -25,9 +25,12 @@ import com.openpmoapi.model.WorkpackRole;
 import com.openpmoapi.repository.WorkpackRoleRepository;
 import com.openpmoapi.service.WorkpackRoleService;
 
+import io.swagger.annotations.Api;
+
 
 @RestController
 @RequestMapping("/api/workpackrole")
+@Api(value = "/api/workpackrole",  tags = "Workpack",description=" ")
 public class WorkpackRoleResource {
 	
 	@Autowired
@@ -49,16 +52,6 @@ public class WorkpackRoleResource {
 	public void delete(@PathVariable Long id) {
 		workpackRoleRepository.deleteById(id);
 	}
-	
-	/**
-	 * This is method delete all WorkpackRole
-	 */
-	@DeleteMapping("/all")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteAll() {
-		workpackRoleRepository.deleteAll();
-	}
-	
 	
 	/**
 	 * This is method update WorkpackRole
