@@ -191,21 +191,25 @@ public class WorkpackTemplateResource {
 		prop.setLabel("Full Name");
 		prop.setRows(2);
 		prop.setFullLine(true);
+		prop.setSortIndex(1);
 		props.add(prop);
 		prop = new PropertyProfile();
 		
 		prop.setType("Date");
 		prop.setName("StartDate");
+		prop.setSortIndex(2);
 		props.add(prop);
 		prop = new PropertyProfile();
 		
 		prop.setType("Date");
 		prop.setName("EndDate");
+		prop.setSortIndex(3);
 		props.add(prop);
 		prop = new PropertyProfile();
 		
 		prop.setType("Selection");
 		prop.setName("Status");
+		prop.setSortIndex(4);
 		prop.addPossibleValue("Cancelled");
 		prop.addPossibleValue("Stopped");
 		prop.addPossibleValue("Active");
