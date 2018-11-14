@@ -80,11 +80,7 @@ public class PropertyProfile {
 	
 
 	
-<<<<<<< HEAD
-	private String value = "";
-=======
 	private String value = "Active";
->>>>>>> branch 'master' of https://github.com/sep-es-br/openpmo
 	/**
 	 * @return the value
 	 */

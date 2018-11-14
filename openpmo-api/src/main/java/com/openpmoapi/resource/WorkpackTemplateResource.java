@@ -126,10 +126,6 @@ public class WorkpackTemplateResource {
 	public WorkpackTemplate getDefault() {
 		
 		WorkpackTemplate wpt = new WorkpackTemplate();
-<<<<<<< HEAD
-=======
-		
->>>>>>> branch 'master' of https://github.com/sep-es-br/openpmo
 		List<PropertyProfile> props = new ArrayList<PropertyProfile>();
 		
 		PropertyProfile prop = new PropertyProfile();
