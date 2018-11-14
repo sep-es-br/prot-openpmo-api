@@ -25,9 +25,12 @@ import com.openpmoapi.model.Office;
 import com.openpmoapi.repository.OfficeRepository;
 import com.openpmoapi.service.OfficeService;
 
+import io.swagger.annotations.Api;
+
 
 @RestController
 @RequestMapping("/api/office")
+@Api(value = "/api/office",  tags = "Office", description = " ")
 public class OfficeResource {
 	
 	@Autowired

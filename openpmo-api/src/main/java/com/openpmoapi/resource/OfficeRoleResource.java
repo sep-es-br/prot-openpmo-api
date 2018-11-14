@@ -25,9 +25,12 @@ import com.openpmoapi.model.OfficeRole;
 import com.openpmoapi.repository.OfficeRoleRepository;
 import com.openpmoapi.service.OfficeRoleService;
 
+import io.swagger.annotations.Api;
+
 
 @RestController
 @RequestMapping("/api/officerole")
+@Api(value = "/api/officerole",  tags = "Office", description = " ")
 public class OfficeRoleResource {
 	
 	@Autowired
