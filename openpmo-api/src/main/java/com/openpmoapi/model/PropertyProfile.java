@@ -10,6 +10,8 @@ import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 /**
 * Type here a brief description of the class.
@@ -80,7 +82,7 @@ public class PropertyProfile {
 	
 
 	
-	private String value = "Active";
+	private String value = "";
 	/**
 	 * @return the value
 	 */
@@ -230,8 +232,44 @@ public class PropertyProfile {
 		this.fullLine = fullLine;
 	}
 	
+   @JsonIgnoreProperties
+	private String toDelete;
+   
+
+
+/**
+ * @return the toDelete
+ */
+public String getToDelete() {
+	return toDelete;
+}
+/**
+ * @param toDelete the toDelete to set
+ */
+public void setToDelete(String toDelete) {
+	this.toDelete = toDelete;
+}
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	PropertyProfile other = (PropertyProfile) obj;
+	if (id == null) {
+		if (other.id != null)
+			return false;
+	} else if (!id.equals(other.id))
+		return false;
+	return true;
+}
 	
 	
+
+
+
 	
 	
 }

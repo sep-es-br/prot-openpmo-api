@@ -86,7 +86,7 @@ public class WorkpackTemplate {
 	
 	
 	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
-	private List<PropertyProfile> Properties;
+	private List<PropertyProfile> Properties = new ArrayList<>();
 	/**
 	 * @return the properties
 	 */

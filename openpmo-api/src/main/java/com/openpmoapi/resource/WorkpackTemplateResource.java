@@ -69,8 +69,27 @@ public class WorkpackTemplateResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<WorkpackTemplate> update(@PathVariable  Long id,@Valid  @RequestBody WorkpackTemplate wpTmpl) {
+		
+		getProfile(wpTmpl.getProperties().get(0).getId());
+		
+		
+		wpTmpl.getProperties().get(0).getToDelete();
+		
+		
+		
+		
 		WorkpackTemplate wpTmplSalvo = wptmpService.update(id, wpTmpl);
 		return ResponseEntity.ok(wpTmplSalvo);
+	}
+	
+	
+	
+	public boolean getProfile(Long id) {
+		
+		
+		
+		
+		return false;
 	}
 	
 	
