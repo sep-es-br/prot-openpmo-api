@@ -25,9 +25,12 @@ import com.openpmoapi.model.SchemaTemplate;
 import com.openpmoapi.repository.SchemaTemplateRepository;
 import com.openpmoapi.service.SchemaTemplateService;
 
+import io.swagger.annotations.Api;
+
 
 @RestController
 @RequestMapping("/api/schematemplate")
+@Api(value = "/api/schematemplate",  tags = "Schema", description = " ")
 public class SchemaTemplateResource {
 	
 	@Autowired

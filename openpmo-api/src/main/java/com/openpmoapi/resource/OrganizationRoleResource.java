@@ -25,9 +25,12 @@ import com.openpmoapi.model.OrganizationRole;
 import com.openpmoapi.repository.OrganizationRoleRepository;
 import com.openpmoapi.service.OrganizationRoleService;
 
+import io.swagger.annotations.Api;
+
 
 @RestController
 @RequestMapping("/api/organizationrole")
+@Api(value = "/api/organizationrole",  tags = "Organization", description = " ")
 public class OrganizationRoleResource {
 	
 	@Autowired

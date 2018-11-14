@@ -27,6 +27,8 @@ import com.openpmoapi.model.WorkpackTemplate;
 import com.openpmoapi.repository.WorkpackTemplateRepository;
 import com.openpmoapi.service.WorkpackTemplateService;
 
+import io.swagger.annotations.Api;
+
 /**
 * Type here a brief description of the class.
 *
@@ -35,6 +37,7 @@ import com.openpmoapi.service.WorkpackTemplateService;
 */
 @RestController
 @RequestMapping("/api/workpacktemplate")
+@Api(value = "/api/workpacktemplate",  tags = "Workpack", description = " ")
 public class WorkpackTemplateResource {
 	
 	@Autowired

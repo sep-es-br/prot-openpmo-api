@@ -25,9 +25,12 @@ import com.openpmoapi.model.Schema;
 import com.openpmoapi.repository.SchemaRepository;
 import com.openpmoapi.service.SchemaService;
 
+import io.swagger.annotations.Api;
+
 
 @RestController
 @RequestMapping("/api/schema")
+@Api(value = "/api/schema",  tags = "Schema", description = " ")
 public class SchemaResource {
 	
 	@Autowired

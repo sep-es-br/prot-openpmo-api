@@ -25,9 +25,12 @@ import com.openpmoapi.model.WorkpackRole;
 import com.openpmoapi.repository.WorkpackRoleRepository;
 import com.openpmoapi.service.WorkpackRoleService;
 
+import io.swagger.annotations.Api;
+
 
 @RestController
 @RequestMapping("/api/workpackrole")
+@Api(value = "/api/workpackrole",  tags = "Workpack", description = " ")
 public class WorkpackRoleResource {
 	
 	@Autowired

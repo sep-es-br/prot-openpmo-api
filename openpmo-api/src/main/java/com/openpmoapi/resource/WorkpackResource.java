@@ -24,8 +24,11 @@ import com.openpmoapi.model.Workpack;
 import com.openpmoapi.repository.WorkpackRepository;
 import com.openpmoapi.service.WorkpackService;
 
+import io.swagger.annotations.Api;
+
 @RestController
 @RequestMapping("/api/workpack")
+@Api(value = "/api/workpack",  tags = "Workpack", description = " ")
 public class WorkpackResource {
 	
 	@Autowired

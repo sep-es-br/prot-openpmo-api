@@ -25,9 +25,12 @@ import com.openpmoapi.model.Organization;
 import com.openpmoapi.repository.OrganizationRepository;
 import com.openpmoapi.service.OrganizationService;
 
+import io.swagger.annotations.Api;
+
 
 @RestController
 @RequestMapping("/api/organization")
+@Api(value = "/api/organization",  tags = "Organization", description = " ")
 public class OrganizationResource {
 	
 	@Autowired

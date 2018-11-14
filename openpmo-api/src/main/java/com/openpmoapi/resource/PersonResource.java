@@ -26,10 +26,13 @@ import com.openpmoapi.model.Person;
 import com.openpmoapi.repository.PersonRepository;
 import com.openpmoapi.service.PersonService;
 
+import io.swagger.annotations.Api;
+
 
 
 @RestController
 @RequestMapping("/api/person")
+@Api(value = "/api/person",  tags = "Person", description = " ")
 public class PersonResource {
 	
 	@Autowired
