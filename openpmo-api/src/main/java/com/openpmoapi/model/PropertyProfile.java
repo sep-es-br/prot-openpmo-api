@@ -200,7 +200,7 @@ public class PropertyProfile {
 	}
 	
 	
-	private int rows;
+	private int rows = 1;
 	/**
 	 * @return the rows
 	 */
