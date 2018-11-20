@@ -86,6 +86,7 @@ public class WorkpackTemplate {
 	
 	
 	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
+<<<<<<< HEAD
 	private List<PropertyProfile> propertiesProfile = new ArrayList<>();
 	
 	/**
@@ -100,6 +101,34 @@ public class WorkpackTemplate {
 	public void setPropertiesProfile(List<PropertyProfile> propertiesProfile) {
 		this.propertiesProfile = propertiesProfile;
 	}
+=======
+	private List<PropertyProfile> Properties = new ArrayList<>();
+	/**
+	 * @return the properties
+	 */
+	public List<PropertyProfile> getProperties() {
+		return Properties;
+	}
+	/**
+	 * @param properties the properties to set
+	 */
+	public void setProperties(List<PropertyProfile> properties) {
+		Properties = properties;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+>>>>>>> branch 'master' of https://github.com/sep-es-br/openpmo.git
 	
 	
 	@Override

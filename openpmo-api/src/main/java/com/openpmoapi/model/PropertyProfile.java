@@ -233,6 +233,7 @@ public class PropertyProfile {
 	}
 	
    @JsonIgnoreProperties
+<<<<<<< HEAD
 	private boolean toDelete;
 
 	/**
@@ -249,6 +250,24 @@ public class PropertyProfile {
 	}
 	
 	
+=======
+	private String toDelete;
+   
+
+
+/**
+ * @return the toDelete
+ */
+public String getToDelete() {
+	return toDelete;
+}
+/**
+ * @param toDelete the toDelete to set
+ */
+public void setToDelete(String toDelete) {
+	this.toDelete = toDelete;
+}
+>>>>>>> branch 'master' of https://github.com/sep-es-br/openpmo.git
 @Override
 public boolean equals(Object obj) {
 	if (this == obj)
