@@ -81,7 +81,7 @@ public class WorkpackTemplateResource {
 	@PutMapping("/{id}")
 	public ResponseEntity<WorkpackTemplate> update(@PathVariable  Long id,@Valid  @RequestBody WorkpackTemplate wpTmpl)throws IllegalStateException {
 
-		List<PropertyProfile> p = new ArrayList<PropertyProfile>();
+		List<PropertyProfile> prod = new ArrayList<PropertyProfile>();
 		
 		for(int i = 0; i < wpTmpl.getPropertiesProfile().size();i++) {
 			
@@ -91,7 +91,7 @@ public class WorkpackTemplateResource {
 				
 					if(wpTmpl.getPropertiesProfile().get(0).isCustom() && prop.size() ==0) {
 					
-						p.add( wpTmpl.getPropertiesProfile().get(i));
+						prod.add( wpTmpl.getPropertiesProfile().get(i));
 						
 						wpTmpl.getPropertiesProfile().remove(i).getId();
 						
@@ -104,9 +104,9 @@ public class WorkpackTemplateResource {
 	
 		WorkpackTemplate wpTmplSalvo = wptmpService.update(id, wpTmpl);
 		
-		for(int i = 0; i < p.size();i++) {
+		for(int i = 0; i < prod.size();i++) {
 			
-			deleteProfile(p.get(i).getId());
+			deleteProfile(prod.get(i).getId());
 		}
 		
 		return ResponseEntity.ok(wpTmplSalvo);
