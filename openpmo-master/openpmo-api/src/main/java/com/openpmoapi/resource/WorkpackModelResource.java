@@ -59,8 +59,6 @@ public class WorkpackModelResource {
 	private PropertyProfileRepository propertyProfileRepository;
 	
 	
-
-	
 	@Autowired
 	private ApplicationEventPublisher publisher;
 	
