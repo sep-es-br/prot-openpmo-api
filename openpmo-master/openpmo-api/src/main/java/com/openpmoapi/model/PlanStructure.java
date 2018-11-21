@@ -21,8 +21,8 @@ import org.neo4j.ogm.annotation.Relationship;
 * @since 2018-08-13
 */
 
-@NodeEntity(label="SchemaTemplate")
-public class SchemaTemplate {
+@NodeEntity(label="PlanStructure")
+public class PlanStructure {
 	
 	
 	/**
@@ -72,11 +72,11 @@ public class SchemaTemplate {
 	 * in the schema 
 	 */
 	@Relationship(type="IS_ROOT_OF", direction=Relationship.INCOMING)
-	private List<WorkpackTemplate> workpackTemplates= new ArrayList<>();	
-	public List<WorkpackTemplate> getWorkpackTemplates() {
+	private List<WorkpackModel> workpackTemplates= new ArrayList<>();	
+	public List<WorkpackModel> getWorkpackTemplates() {
 		return workpackTemplates;
 	}
-	public void setWorkpackTemplates(List<WorkpackTemplate> workpackTemplates) {
+	public void setWorkpackTemplates(List<WorkpackModel> workpackTemplates) {
 		this.workpackTemplates = workpackTemplates;
 	}
 	
@@ -98,7 +98,7 @@ public class SchemaTemplate {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SchemaTemplate other = (SchemaTemplate) obj;
+		PlanStructure other = (PlanStructure) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

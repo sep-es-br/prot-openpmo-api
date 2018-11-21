@@ -90,11 +90,11 @@ public class Office {
 	 *    Relationship linking all the schemasTemplate the OFFICE 
 	 */
 	@Relationship(type="IS_ADOPTED_BY", direction = Relationship.INCOMING)
-	private List<SchemaTemplate> schemaTemplates = new ArrayList<>(); 
-	public List<SchemaTemplate> getSchemaTemplates() {
+	private List<PlanStructure> schemaTemplates = new ArrayList<>(); 
+	public List<PlanStructure> getSchemaTemplates() {
 		return schemaTemplates;
 	}
-	public void setSchemaTemplates(List<SchemaTemplate> schemaTemplates) {
+	public void setSchemaTemplates(List<PlanStructure> schemaTemplates) {
 		this.schemaTemplates = schemaTemplates;
 	}
 
@@ -104,11 +104,11 @@ public class Office {
 	 *    Relationship linking all the schemas the OFFICE 
 	 */
 	@Relationship(type="IS_ADOPTED_BY", direction = Relationship.INCOMING)
-	private List<Schema> schemas = new ArrayList<>(); 
-	public List<Schema> getSchemas() {
+	private List<Plan> schemas = new ArrayList<>(); 
+	public List<Plan> getSchemas() {
 		return schemas;
 	}
-	public void setSchemas(List<Schema> schemas) {
+	public void setSchemas(List<Plan> schemas) {
 		this.schemas = schemas;
 	}
 	

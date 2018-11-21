@@ -18,8 +18,8 @@ import org.neo4j.ogm.annotation.Relationship;
 * @author vagner.cordeiro  
 * @since 2018-jul-31
 */
-@NodeEntity(label="WorkpackTemplate")
-public class WorkpackTemplate {
+@NodeEntity(label="WorkpackModel")
+public class WorkpackModel {
 	
 //	@Autowired
 //	private Util util;
@@ -76,11 +76,11 @@ public class WorkpackTemplate {
 	 * Relationship linking its children 
 	 */
 	@Relationship(type="IS_IN", direction=Relationship.INCOMING)
-	private List<WorkpackTemplate> components = new ArrayList<>();
-	public List<WorkpackTemplate> getComponents() {
+	private List<WorkpackModel> components = new ArrayList<>();
+	public List<WorkpackModel> getComponents() {
 		return components;
 	}
-	public void setComponents(List<WorkpackTemplate> components) {
+	public void setComponents(List<WorkpackModel> components) {
 		this.components = components;
 	}
 	
@@ -137,7 +137,7 @@ public class WorkpackTemplate {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		WorkpackTemplate other = (WorkpackTemplate) obj;
+		WorkpackModel other = (WorkpackModel) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

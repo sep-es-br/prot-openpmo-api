@@ -23,8 +23,8 @@ import org.neo4j.ogm.annotation.Relationship;
 * @author vagner.cordeiro  
 * @since 2018-08-01
 */
-@NodeEntity(label="Schema")
-public class Schema {
+@NodeEntity(label="Plan")
+public class Plan {
 	
 //	@Autowired
 //	private Util util;
@@ -86,11 +86,11 @@ public class Schema {
 	 * Relationship linking its Schema templates 
 	 */
 	@Relationship(type="IS_INSTANCE_OF", direction=Relationship.OUTGOING)
-	private SchemaTemplate template;
-	public SchemaTemplate getTemplate() {
+	private PlanStructure template;
+	public PlanStructure getTemplate() {
 		return template;
 	}
-	public void setTemplate(SchemaTemplate template) {
+	public void setTemplate(PlanStructure template) {
 		this.template = template;
 	}
 	
@@ -110,7 +110,7 @@ public class Schema {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Schema other = (Schema) obj;
+		Plan other = (Plan) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

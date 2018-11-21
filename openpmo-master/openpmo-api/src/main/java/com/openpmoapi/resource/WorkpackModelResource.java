@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,11 +25,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.openpmoapi.event.RecursoCriadoEvent;
 import com.openpmoapi.model.Property;
 import com.openpmoapi.model.PropertyProfile;
-import com.openpmoapi.model.WorkpackTemplate;
+import com.openpmoapi.model.WorkpackModel;
 import com.openpmoapi.repository.PropertyProfileRepository;
-import com.openpmoapi.repository.WorkpackTemplateRepository;
+import com.openpmoapi.repository.WorkpackModelRepository;
 import com.openpmoapi.service.PropertyService;
-import com.openpmoapi.service.WorkpackTemplateService;
+import com.openpmoapi.service.WorkpackModelService;
 
 import io.swagger.annotations.Api;
 
@@ -39,16 +40,16 @@ import io.swagger.annotations.Api;
 * @since 2018-08-02
 */
 @RestController
-@RequestMapping("/api/workpacktemplate")
-@Api(value = "/api/workpacktemplate",  tags = "WorkpackTemplate",description=" ")
-public class WorkpackTemplateResource {
+@RequestMapping("/api/workpackmodel")
+@Api(value = "/api/workpackmodel",  tags = "WorkpackModel",description=" ")
+public class WorkpackModelResource {
 	
 	@Autowired
-	private WorkpackTemplateRepository wptmplRepository;
+	private WorkpackModelRepository wpmRepository;
 	
 	
 	@Autowired
-	private WorkpackTemplateService wptmpService;
+	private WorkpackModelService wpmService;
 	
 	@Autowired
 	private PropertyService propertyService;
@@ -65,35 +66,37 @@ public class WorkpackTemplateResource {
 	
 	
 	/**
-	 * This is method delete one WorkpackTemplate
+	 * This method delete one WorkpackModel
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@Transactional
 	public void delete(@PathVariable Long id) {
-		wptmplRepository.deleteById(id);
+		wpmRepository.deleteById(id);
 	}
 
 	
 	/**
-	 * This is method update WorkpackTemplate
+	 * This method update WorkpackModel
 	 * @throws Exception 
 	 */
 	@PutMapping("/{id}")
-	public ResponseEntity<WorkpackTemplate> update(@PathVariable  Long id,@Valid  @RequestBody WorkpackTemplate wpTmpl)throws IllegalStateException {
+	@Transactional
+	public ResponseEntity<WorkpackModel> update(@PathVariable  Long id,@Valid  @RequestBody WorkpackModel wpm)throws IllegalStateException {
 
 		List<PropertyProfile> prod = new ArrayList<PropertyProfile>();
 		
-		for(int i = 0; i < wpTmpl.getPropertiesProfile().size();i++) {
+		for(int i = 0; i < wpm.getPropertiesProfile().size();i++) {
 			
-			if(wpTmpl.getPropertiesProfile().get(i).isToDelete()) {
+			if(wpm.getPropertiesProfile().get(i).isToDelete()) {
 				
-				Collection<Property> prop = findProperties(wpTmpl.getPropertiesProfile().get(i).getId());
+				Collection<Property> prop = findProperties(wpm.getPropertiesProfile().get(i).getId());
 				
-					if(wpTmpl.getPropertiesProfile().get(0).isCustom() && prop.size() ==0) {
+					if(wpm.getPropertiesProfile().get(0).isCustom() && prop.size() ==0) {
 					
-						prod.add( wpTmpl.getPropertiesProfile().get(i));
+						prod.add( wpm.getPropertiesProfile().get(i));
 						
-						wpTmpl.getPropertiesProfile().remove(i).getId();
+						wpm.getPropertiesProfile().remove(i).getId();
 						
 					}else {
 						
@@ -102,23 +105,24 @@ public class WorkpackTemplateResource {
 			}
 		}
 	
-		WorkpackTemplate wpTmplSalvo = wptmpService.update(id, wpTmpl);
+		WorkpackModel wpmSalvo = wpmService.update(id, wpm);
 		
 		for(int i = 0; i < prod.size();i++) {
 			
 			deleteProfile(prod.get(i).getId());
 		}
 		
-		return ResponseEntity.ok(wpTmplSalvo);
+		return ResponseEntity.ok(wpmSalvo);
 	}
 	
 	
 	
-	
+	@Transactional
 	public Collection<Property> findProperties(Long id) {
 		return propertyService.findPropertyByIdPropertyProfile(id);
 	}
 	
+	@Transactional
 	public void deleteProfile( Long id) {
 		propertyProfileRepository.deleteById(id);
 	}
@@ -126,83 +130,91 @@ public class WorkpackTemplateResource {
 	
 	
 	/**
-		This is method save WorkpackTemplate
+		This method save WorkpackModel
 	 */
 	@PostMapping
-	public ResponseEntity<WorkpackTemplate> save( @Valid @RequestBody WorkpackTemplate wpTmpl, HttpServletResponse response) {
-		WorkpackTemplate wpTmplSalvo = wptmplRepository.save(wpTmpl);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, wpTmplSalvo.getId()));
-		return ResponseEntity.status(HttpStatus.CREATED).body(wptmplRepository.save(wpTmpl));
+	@Transactional
+	public ResponseEntity<WorkpackModel> save( @Valid @RequestBody WorkpackModel wpm, HttpServletResponse response) {
+		WorkpackModel wpmSalvo = wpmRepository.save(wpm);
+		publisher.publishEvent(new RecursoCriadoEvent(this, response, wpmSalvo.getId()));
+		return ResponseEntity.status(HttpStatus.CREATED).body(wpmRepository.save(wpm));
 	}
 	
 
 	/**
-	 * This is method find by all WorkpackTemplates
+	 * This method find by all WorkpackModels
 	 */
 	@GetMapping
-	public Iterable<WorkpackTemplate> findByAll() {
-		 return wptmplRepository.findAll(2);
+	@Transactional
+	public Iterable<WorkpackModel> findByAll() {
+		 return wpmRepository.findAll(2);
 	}
 	
 
 	
 	
 	/**
-	 * This is method find by all WorkpackTemplates
+	 * This method find by all WorkpackModels
 	 */
 	@GetMapping("/listworkpacktemplatesbyid/{id}/{depth")
-	public Iterable<WorkpackTemplate> findByAllById(@PathVariable Iterable<Long> id,int depth) {
-		 return wptmplRepository.findAllById(id, depth);
+	@Transactional
+	public Iterable<WorkpackModel> findByAllById(@PathVariable Iterable<Long> id,int depth) {
+		 return wpmRepository.findAllById(id, depth);
 	}
 	
 	
 	/**
-			This method find by one WorkpackTemplate
+			This method find by one WorkpackModels
 	 */
 	@GetMapping("/{id}/{depth}")
-	public ResponseEntity<WorkpackTemplate> findById(@PathVariable Long id,@PathVariable int depth) {
-		Optional<WorkpackTemplate> wpTmpl = wptmplRepository.findById(id,depth);
-		return wpTmpl.isPresent() ? ResponseEntity.ok(wpTmpl.get()) : ResponseEntity.notFound().build();
+	@Transactional
+	public ResponseEntity<WorkpackModel> findById(@PathVariable Long id,@PathVariable int depth) {
+		Optional<WorkpackModel> wpm = wpmRepository.findById(id,depth);
+		return wpm.isPresent() ? ResponseEntity.ok(wpm.get()) : ResponseEntity.notFound().build();
 	}
 	
 	
 		/**
-		This method find by one WorkpackTemplate
+		This method find by one WorkpackModels
 	*/
 	@GetMapping("/{id}")
-		public ResponseEntity<WorkpackTemplate> findById(@PathVariable Long id) {
-		Optional<WorkpackTemplate> wpTmpl = wptmplRepository.findById(id,2);
-		return wpTmpl.isPresent() ? ResponseEntity.ok(wpTmpl.get()) : ResponseEntity.notFound().build();
+	@Transactional
+	public ResponseEntity<WorkpackModel> findById(@PathVariable Long id) {
+	Optional<WorkpackModel> wpm = wpmRepository.findById(id,2);
+	return wpm.isPresent() ? ResponseEntity.ok(wpm.get()) : ResponseEntity.notFound().build();
 	}
 		
 		
 		
 		/**
-		This is method find by one or more WorkPack Templates
+		This method find by one or more WorkPackModels
 	*/
-	@GetMapping("/listworkpacktemplates/{id}")
-	public Collection<WorkpackTemplate> findWptpByIdSchemaTmpl(@PathVariable Long id) {
-		return wptmpService.findWptpByIdSchemaTmpl(id);
+	@GetMapping("/listworkpackmodels/{id}")
+	@Transactional
+	public Collection<WorkpackModel> findWpmByIdPlanStructure(@PathVariable Long id) {
+		return wpmService.findWpmByIdPlanStructure(id);
 	}
 	
 
 	
 		
 		/**
-		This is method find by one WorkpackTemplate
+		This method find by one WorkpackModel
 	*/
 	@GetMapping("/tree/{id}")
-	public ResponseEntity<WorkpackTemplate> findByIdWptm(@PathVariable Long id) {
-		Optional<WorkpackTemplate> wpTmpl = wptmplRepository.findById(id,100);
-		return wpTmpl.isPresent() ? ResponseEntity.ok(wpTmpl.get()) : ResponseEntity.notFound().build();
+	@Transactional
+	public ResponseEntity<WorkpackModel> findByIdWptm(@PathVariable Long id) {
+		Optional<WorkpackModel> wpm = wpmRepository.findById(id,100);
+		return wpm.isPresent() ? ResponseEntity.ok(wpm.get()) : ResponseEntity.notFound().build();
 	}
 
 
 	
 	/**
-	This method find by all properties of the WorkPackTemplates
+	This method find by all properties of the WorkPackModels
 */
 	@GetMapping("/listpropertytypes")
+	@Transactional
 	public Object findAllPropertiesList() {
 		
 		List<String> properties = new ArrayList<>();
@@ -223,12 +235,13 @@ public class WorkpackTemplateResource {
 	
 
 	/**
-	 * This method returns a default workpacktemplate object
+	 * This method returns a default workpackModel object
 	 */
 	@GetMapping("/default")
-	public WorkpackTemplate getDefault() {
+	@Transactional
+	public WorkpackModel getDefault() {
 		
-		WorkpackTemplate wpt = new WorkpackTemplate();
+		WorkpackModel wpt = new WorkpackModel();
 		
 		List<PropertyProfile> props = new ArrayList<PropertyProfile>();
 		

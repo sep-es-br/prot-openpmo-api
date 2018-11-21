@@ -22,7 +22,7 @@ import org.neo4j.ogm.annotation.typeconversion.DateString;
 */
 
 @RelationshipEntity(type="PERFORMS_A_ROLE")
-public class SchemaRole {
+public class PlanRole {
 
 	
 	@Id @GeneratedValue   
@@ -56,11 +56,11 @@ public class SchemaRole {
 
 
 	@EndNode   
-    private Schema schema;
-	public Schema getSchema() {
+    private Plan schema;
+	public Plan getSchema() {
 		return schema;
 	}
-	public void setSchema(Schema schema) {
+	public void setSchema(Plan schema) {
 		this.schema = schema;
 	}
 
@@ -94,7 +94,7 @@ public class SchemaRole {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SchemaRole other = (SchemaRole) obj;
+		PlanRole other = (PlanRole) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
