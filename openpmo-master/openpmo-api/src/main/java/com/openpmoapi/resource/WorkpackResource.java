@@ -43,7 +43,7 @@ public class WorkpackResource {
 	
 	
 	/**
-	 * This is method delete one Workpack
+	 * This method delete one Workpack
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -53,7 +53,7 @@ public class WorkpackResource {
 	
 	
 	/**
-	 * This is method update Workpack
+	 * This method update Workpack
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<Workpack> update(@PathVariable Long id, @Valid @RequestBody Workpack workpack) {
@@ -65,7 +65,7 @@ public class WorkpackResource {
 	
 	
 	/**
-		This is method save Workpack
+		This method save Workpack
 	 */
 	@PostMapping
 	public ResponseEntity<Workpack> save(@Valid @RequestBody Workpack workpack, HttpServletResponse response) {
@@ -78,7 +78,7 @@ public class WorkpackResource {
 	
 	
 	/**
-	 * This is method find by all Workpacks
+	 * This method find by all Workpacks
 	 */
 	@GetMapping
 	public Iterable<Workpack> findByAll() {
@@ -87,7 +87,7 @@ public class WorkpackResource {
 	
 	
 	/**
-			This is method find by one Workpack
+			This method find by one Workpack
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Workpack> findById(@PathVariable Long id) {
@@ -97,7 +97,7 @@ public class WorkpackResource {
 	
 		
 		/**
-		This is method find by one Schema
+		This method find by one Schema
 	*/
 	@GetMapping("/listworkpacks/{id}")
 	public Collection<Workpack> findWpByIdSchema(@PathVariable Long id) {

@@ -100,6 +100,8 @@ public class WorkpackModel {
 	public void setPropertiesProfile(List<PropertyProfile> propertiesProfile) {
 		this.propertiesProfile = propertiesProfile;
 	}
+	
+	
 	private List<PropertyProfile> Properties = new ArrayList<>();
 	/**
 	 * @return the properties

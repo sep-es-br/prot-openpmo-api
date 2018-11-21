@@ -150,8 +150,6 @@ public class WorkpackModelResource {
 		 return wpmRepository.findAll(2);
 	}
 	
-
-	
 	
 	/**
 	 * This method find by all WorkpackModels
@@ -224,7 +222,7 @@ public class WorkpackModelResource {
 		properties.add("Integer");
 		properties.add("Date");
 		properties.add("Currency");
-		properties.add("TextArea");
+		properties.add("Text area");
 		properties.add("Selection");
 		
      return properties;
@@ -249,7 +247,7 @@ public class WorkpackModelResource {
 		
 		wpt.setName("");
 		
-		prop.setType("TextArea");
+		prop.setType("Text area");
 		prop.setName("FullName");
 		prop.setLabel("Full Name");
 		prop.setRows(2);
