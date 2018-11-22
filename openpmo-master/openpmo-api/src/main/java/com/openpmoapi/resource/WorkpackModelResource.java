@@ -200,7 +200,7 @@ public class WorkpackModelResource {
 	@GetMapping("/tree/{id}")
 	@Transactional
 	public ResponseEntity<WorkpackModel> findByIdWptm(@PathVariable Long id) {
-		Optional<WorkpackModel> wpm = wpmRepository.findById(id,100);
+		Optional<WorkpackModel> wpm = wpmRepository.findById(id,-1);
 		return wpm.isPresent() ? ResponseEntity.ok(wpm.get()) : ResponseEntity.notFound().build();
 	}
 

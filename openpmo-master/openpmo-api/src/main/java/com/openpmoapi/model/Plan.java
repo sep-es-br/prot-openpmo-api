@@ -83,18 +83,22 @@ public class Plan {
 
 
 	/**
-	 * Relationship linking its Schema templates 
+	 * Relationship linking its PlanStructure
 	 */
 	@Relationship(type="IS_INSTANCE_OF", direction=Relationship.OUTGOING)
-	private PlanStructure template;
-	public PlanStructure getTemplate() {
-		return template;
+	private PlanStructure structure;
+	/**
+	 * @return the structure
+	 */
+	public PlanStructure getStructure() {
+		return structure;
 	}
-	public void setTemplate(PlanStructure template) {
-		this.template = template;
+	/**
+	 * @param structure the structure to set
+	 */
+	public void setStructure(PlanStructure structure) {
+		this.structure = structure;
 	}
-	
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

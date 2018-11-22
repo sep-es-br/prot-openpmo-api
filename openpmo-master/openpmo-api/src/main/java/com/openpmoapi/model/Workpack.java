@@ -65,14 +65,20 @@ public class Workpack {
 	 * Relationship linking its templates 
 	 */
 	@Relationship(type="IS_INSTANCE_OF", direction=Relationship.OUTGOING)
-	private WorkpackModel template;
-	public WorkpackModel getTemplate() {
-		return template;
+	private WorkpackModel model;
+	/**
+	 * @return the model
+	 */
+	public WorkpackModel getModel() {
+		return model;
 	}
-	public void setTemplate(WorkpackModel template) {
-		this.template = template;
+	/**
+	 * @param model the model to set
+	 */
+	public void setModel(WorkpackModel model) {
+		this.model = model;
 	}
-	
+
 
 	/**
 	 * Relationship linking its Organizations 

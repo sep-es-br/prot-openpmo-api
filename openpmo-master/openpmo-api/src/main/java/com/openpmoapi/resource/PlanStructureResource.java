@@ -29,8 +29,8 @@ import io.swagger.annotations.Api;
 
 
 @RestController
-@RequestMapping("/api/planmodel")
-@Api(value = "/api/planmodel",  tags = "PlanModel",description=" ")
+@RequestMapping("/api/planstructure")
+@Api(value = "/api/planstructure",  tags = "PlanStructure",description=" ")
 public class PlanStructureResource {
 	
 	@Autowired
@@ -94,20 +94,20 @@ public class PlanStructureResource {
 		return planStructure.isPresent() ? ResponseEntity.ok(planStructure.get()) : ResponseEntity.notFound().build();
 	}
 	
-	
-		/**
-		This method find by one PlanStructure
-	*/
-	@GetMapping("/listschematemplates/{id}")
-	public Collection<PlanStructure> findSchemaTemplates(@PathVariable Long id) {
-		return planStructureService.findPlanStructureByIdEnveronment(id);
-	}
+//	
+//		/**
+//		This method find by one PlanStructure
+//	*/
+//	@GetMapping("/listschematemplates/{id}")
+//	public Collection<PlanStructure> findSchemaTemplates(@PathVariable Long id) {
+//		return planStructureService.findPlanStructureByIdEnveronment(id);
+//	}
 	
 	/**
 		This method find by one PlanStructure tree
 	*/
 	@GetMapping("/tree/{id}")
-	public Collection<PlanStructure> findSchemaTmplTree(@PathVariable Long id) {
+	public Collection<PlanStructure> findPlanSturctureTree(@PathVariable Long id) {
 		return planStructureService.findPlanStructureByIdTree(id);
 	}
 	

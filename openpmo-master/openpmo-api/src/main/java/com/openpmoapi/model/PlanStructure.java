@@ -72,17 +72,19 @@ public class PlanStructure {
 	 * in the schema 
 	 */
 	@Relationship(type="IS_ROOT_OF", direction=Relationship.INCOMING)
-	private List<WorkpackModel> workpackTemplates= new ArrayList<>();	
-	public List<WorkpackModel> getWorkpackTemplates() {
-		return workpackTemplates;
+	private List<WorkpackModel> workpackModels= new ArrayList<>();	
+	/**
+	 * @return the workpackModels
+	 */
+	public List<WorkpackModel> getWorkpackModels() {
+		return workpackModels;
 	}
-	public void setWorkpackTemplates(List<WorkpackModel> workpackTemplates) {
-		this.workpackTemplates = workpackTemplates;
+	/**
+	 * @param workpackModels the workpackModels to set
+	 */
+	public void setWorkpackModels(List<WorkpackModel> workpackModels) {
+		this.workpackModels = workpackModels;
 	}
-	
-	
-	
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

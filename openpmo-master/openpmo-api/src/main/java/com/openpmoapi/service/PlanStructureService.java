@@ -69,8 +69,8 @@ public class PlanStructureService {
 	
 	@Transactional(readOnly = true)
     public Collection<PlanStructure> findPlanStructureByIdTree(Long id) {
-      Collection<PlanStructure> schemaTemplates = planStructureRepository.findPlanStructureByIdTree(id);
-      return schemaTemplates;
+      Collection<PlanStructure> planStructures = planStructureRepository.findPlanStructureByIdTree(id);
+      return planStructures;
     }
 	
 	

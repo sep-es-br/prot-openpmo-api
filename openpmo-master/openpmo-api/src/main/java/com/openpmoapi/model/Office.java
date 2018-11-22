@@ -70,51 +70,45 @@ public class Office {
 		this.fullName = fullName;
 	}
 
-	
-	
-	
-	//	public String getShortName() {
-//		return shortName;
-//	}
-//	@SuppressWarnings("static-access")
-//	public void setShortName(String shortName) {
-//		this.shortName = util.retiraCaracteresEspeciais(shortName);
-//	}
-	
-	
-	
-	
-
 
 	/**
-	 *    Relationship linking all the schemasTemplate the OFFICE 
+	 *    Relationship linking all the planStructure the OFFICE 
 	 */
 	@Relationship(type="IS_ADOPTED_BY", direction = Relationship.INCOMING)
-	private List<PlanStructure> schemaTemplates = new ArrayList<>(); 
-	public List<PlanStructure> getSchemaTemplates() {
-		return schemaTemplates;
+	private List<PlanStructure> planStructures = new ArrayList<>(); 
+
+	/**
+	 * @return the planStructures
+	 */
+	public List<PlanStructure> getPlanStructures() {
+		return planStructures;
 	}
-	public void setSchemaTemplates(List<PlanStructure> schemaTemplates) {
-		this.schemaTemplates = schemaTemplates;
+	/**
+	 * @param planStructures the planStructures to set
+	 */
+	public void setPlanStructures(List<PlanStructure> planStructures) {
+		this.planStructures = planStructures;
 	}
 
 
 
 	/**
-	 *    Relationship linking all the schemas the OFFICE 
+	 *    Relationship linking all the plans the OFFICE 
 	 */
 	@Relationship(type="IS_ADOPTED_BY", direction = Relationship.INCOMING)
-	private List<Plan> schemas = new ArrayList<>(); 
-	public List<Plan> getSchemas() {
-		return schemas;
+	private List<Plan> plans = new ArrayList<>(); 
+	/**
+	 * @return the plans
+	 */
+	public List<Plan> getPlans() {
+		return plans;
 	}
-	public void setSchemas(List<Plan> schemas) {
-		this.schemas = schemas;
+	/**
+	 * @param plans the plans to set
+	 */
+	public void setPlans(List<Plan> plans) {
+		this.plans = plans;
 	}
-	
-
-	
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
