@@ -86,22 +86,21 @@ public class WorkpackModel {
 	
 	
 	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
-	private List<PropertyProfile> propertiesProfile = new ArrayList<>();
-	
+	private List<PropertyProfile> propertyProfiles = new ArrayList<>();
 	/**
-	 * @return the propertiesProfile
+	 * @return the propertyProfiles
 	 */
-	public List<PropertyProfile> getPropertiesProfile() {
-		return propertiesProfile;
+	public List<PropertyProfile> getPropertyProfiles() {
+		return propertyProfiles;
 	}
 	/**
-	 * @param propertiesProfile the propertiesProfile to set
+	 * @param propertyProfiles the propertyProfiles to set
 	 */
-	public void setPropertiesProfile(List<PropertyProfile> propertiesProfile) {
-		this.propertiesProfile = propertiesProfile;
+	public void setPropertyProfiles(List<PropertyProfile> propertyProfiles) {
+		this.propertyProfiles = propertyProfiles;
 	}
-	
-	
+
+
 	private List<PropertyProfile> Properties = new ArrayList<>();
 	/**
 	 * @return the properties

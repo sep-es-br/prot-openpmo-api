@@ -84,17 +84,17 @@ public class WorkpackModelResource {
 
 		List<PropertyProfile> prod = new ArrayList<PropertyProfile>();
 		
-		for(int i = 0; i < wpm.getPropertiesProfile().size();i++) {
+		for(int i = 0; i < wpm.getPropertyProfiles().size();i++) {
 			
-			if(wpm.getPropertiesProfile().get(i).isToDelete()) {
+			if(wpm.getPropertyProfiles().get(i).isToDelete()) {
 				
-				Collection<Property> prop = findProperties(wpm.getPropertiesProfile().get(i).getId());
+				Collection<Property> prop = findProperties(wpm.getPropertyProfiles().get(i).getId());
 				
-					if(wpm.getPropertiesProfile().get(0).isCustom() && prop.size() ==0) {
+					if(wpm.getPropertyProfiles().get(0).isCustom() && prop.size() ==0) {
 					
-						prod.add( wpm.getPropertiesProfile().get(i));
+						prod.add( wpm.getPropertyProfiles().get(i));
 						
-						wpm.getPropertiesProfile().remove(i).getId();
+						wpm.getPropertyProfiles().remove(i).getId();
 						
 					}else {
 						
@@ -152,7 +152,7 @@ public class WorkpackModelResource {
 	/**
 	 * This method find by all WorkpackModels
 	 */
-	@GetMapping("/listworkpacktemplatesbyid/{id}/{depth")
+	@GetMapping("/listworkpackmodelsbyid/{id}/{depth")
 	@Transactional
 	public Iterable<WorkpackModel> findByAllById(@PathVariable Iterable<Long> id,int depth) {
 		 return wpmRepository.findAllById(id, depth);
@@ -274,7 +274,7 @@ public class WorkpackModelResource {
 		prop.addPossibleValue("Active");
 		props.add(prop);
 	
-		wpt.setPropertiesProfile(props);
+		wpt.setPropertyProfiles(props);
 		
 		return wpt;
 	}
