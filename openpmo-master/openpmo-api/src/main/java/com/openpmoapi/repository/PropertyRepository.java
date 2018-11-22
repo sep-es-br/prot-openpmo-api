@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.openpmoapi.model.Property;
 
-public interface PropertyRepository extends Neo4jRepository <PropertyRepository, Long>{
+public interface PropertyRepository extends Neo4jRepository <Property, Long>{
 
 	
 	@Query("MATCH (prop:Property)-[:IS_DRIVEN_BY]->(profile:PropertyProfile) WHERE id(profile) = {id} RETURN prop")
@@ -18,6 +18,8 @@ public interface PropertyRepository extends Neo4jRepository <PropertyRepository,
 	
 	@Query("MATCH (prop:Property)-[:IS_DRIVEN_BY]->(profile:PropertyProfile) WHERE id(profile) = {id} RETURN prop")
 	Optional<Property> findPropertyByIdProperty(@Param("id") Long id);
+	
+	
 	
 	
 	

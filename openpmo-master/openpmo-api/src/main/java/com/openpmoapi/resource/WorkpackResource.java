@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.openpmoapi.event.RecursoCriadoEvent;
 import com.openpmoapi.model.Workpack;
+import com.openpmoapi.repository.PropertyRepository;
 import com.openpmoapi.repository.WorkpackRepository;
 import com.openpmoapi.service.WorkpackService;
 
@@ -33,6 +34,9 @@ public class WorkpackResource {
 	
 	@Autowired
 	private WorkpackRepository workPackRepository;
+	
+	@Autowired
+	private PropertyRepository propertyRepository;
 	
 	
 	@Autowired
@@ -48,8 +52,33 @@ public class WorkpackResource {
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
+		
+		Optional<Workpack> wp = findByIdWorkpack(id);
+
+		if(wp.get().getProperties().size() != 0) {
+		
+			for(int i = 0; i < wp.get().getProperties().size();i++) {
+			
+				deleteProperty(wp.get().getProperties().get(i).getId());
+			}
+		}
+		
 		workPackRepository.deleteById(id);
 	}
+	
+	public Optional <Workpack> findByIdWorkpack(Long id) {
+		Optional<Workpack> workPack = workPackRepository.findById(id);
+		return workPack;
+	}
+
+	/**
+	 * This method delete one Property
+	 */
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void deleteProperty(Long id) {
+		propertyRepository.deleteById(id);
+	}
+	
 	
 	
 	/**

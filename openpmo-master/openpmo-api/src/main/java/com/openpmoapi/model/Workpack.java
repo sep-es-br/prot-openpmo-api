@@ -20,20 +20,25 @@ import org.neo4j.ogm.annotation.Relationship;
 @NodeEntity(label="Workpack")
 public class Workpack {
 	
-	
-//	@Autowired
-//	private Util util;
-	
 	/**
 	 * Self generated node id
 	 */
 	@Id @GeneratedValue
 	private Long id;
+	/**
+	 * @return the id
+	 */
 	public Long getId() {
 		return id;
 	}
-	
-	
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
 	@NotNull
 	@Size(min=3,max=20)
 	private String name;

@@ -247,7 +247,7 @@ public class WorkpackModelResource {
 		
 		prop.setType("Text area");
 		prop.setName("FullName");
-		prop.setLabel("Full Name");
+		prop.setLabel("Full name");
 		prop.setRows(2);
 		prop.setFullLine(true);
 		prop.setSortIndex(1);
@@ -256,17 +256,20 @@ public class WorkpackModelResource {
 		
 		prop.setType("Date");
 		prop.setName("StartDate");
+		prop.setLabel("Start date");
 		prop.setSortIndex(2);
 		props.add(prop);
 		prop = new PropertyProfile();
 		
 		prop.setType("Date");
 		prop.setName("EndDate");
+		prop.setLabel("End date");
 		prop.setSortIndex(3);
 		props.add(prop);
 		prop = new PropertyProfile();
 		
 		prop.setType("Selection");
+		prop.setLabel("Status");
 		prop.setName("Status");
 		prop.setSortIndex(4);
 		prop.addPossibleValue("Cancelled");
