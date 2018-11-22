@@ -66,6 +66,9 @@ public class WorkpackResource {
 		workPackRepository.deleteById(id);
 	}
 	
+	/**
+	 * This method find one Workpack
+	 */
 	public Optional <Workpack> findByIdWorkpack(Long id) {
 		Optional<Workpack> workPack = workPackRepository.findById(id);
 		return workPack;
@@ -98,6 +101,13 @@ public class WorkpackResource {
 	 */
 	@PostMapping
 	public ResponseEntity<Workpack> save(@Valid @RequestBody Workpack workpack, HttpServletResponse response) {
+		
+		for(int i = 0; i < workpack.getProperties().size();i++) {
+			
+			workpack.getProperties().get(i).getLabels().add
+			(workpack.getProperties().get(i).getProfile().getType());
+			
+		}
 		
 		Workpack workPackSalvo = workPackRepository.save(workpack);
 		

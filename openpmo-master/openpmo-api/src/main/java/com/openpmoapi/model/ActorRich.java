@@ -4,9 +4,6 @@
 package com.openpmoapi.model;
 
 import java.util.Date;
-
-import javax.validation.constraints.NotNull;
-
 import org.neo4j.ogm.annotation.EndNode;
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
@@ -22,7 +19,7 @@ import org.neo4j.ogm.annotation.typeconversion.DateString;
 */
 
 @RelationshipEntity(type="PERFORMS_A_ROLE")
-public class PlanRole {
+public class ActorRich {
 
 	
 	@Id @GeneratedValue   
@@ -34,41 +31,70 @@ public class PlanRole {
 		this.id = id;
 	}
 
+	
+    private String type;
+    /**
+	 * @return the type
+	 */
+	public String getType() {
+		return type;
+	}
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(String type) {
+		this.type = type;
+	}
 
-	@NotNull
-    private String name;
-    public String getName() {
-		return name;
+
+	private String role;
+	/**
+	 * @return the role
+	 */
+	public String getRole() {
+		return role;
 	}
-	public void setName(String name) {
-		this.name = name;
+	/**
+	 * @param role the role to set
+	 */
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 
-    @StartNode 
-    private Person person;
-    public Person getPerson() {
-		return person;
+
+	@StartNode 
+    private Actor actor;
+	/**
+	 * @return the actor
+	 */
+	public Actor getActor() {
+		return actor;
 	}
-	public void setPerson(Person person) {
-		this.person = person;
+	/**
+	 * @param actor the actor to set
+	 */
+	public void setActor(Actor actor) {
+		this.actor = actor;
 	}
+
 
 
 	@EndNode   
-    private Plan plan;
+    private Workpack Workpack;
 	/**
-	 * @return the plan
+	 * @return the workpack
 	 */
-	public Plan getPlan() {
-		return plan;
+	public Workpack getWorkpack() {
+		return Workpack;
 	}
 	/**
-	 * @param plan the plan to set
+	 * @param workpack the workpack to set
 	 */
-	public void setPlan(Plan plan) {
-		this.plan = plan;
+	public void setWorkpack(Workpack workpack) {
+		Workpack = workpack;
 	}
+
 
 
 	@DateString
@@ -100,7 +126,7 @@ public class PlanRole {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PlanRole other = (PlanRole) obj;
+		ActorRich other = (ActorRich) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

@@ -3,10 +3,16 @@
  */
 package com.openpmoapi.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
+import org.neo4j.ogm.annotation.Labels;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 /**
@@ -20,6 +26,7 @@ import org.neo4j.ogm.annotation.Relationship;
 @NodeEntity(label="Property")
 public class Property {
 
+	
 
 	@Id @GeneratedValue   
 	private Long id;
@@ -85,6 +92,24 @@ public class Property {
 	 */
 	public void setProfile(PropertyProfile profile) {
 		this.profile = profile;
+	}
+	
+	
+
+	@JsonIgnore
+	@Labels
+	private List<String> labels = new ArrayList<>();
+	/**
+	 * @return the labels
+	 */
+	public List<String> getLabels() {
+		return labels;
+	}
+	/**
+	 * @param labels the labels to set
+	 */
+	public void setLabels(List<String> labels) {
+		this.labels = labels;
 	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()

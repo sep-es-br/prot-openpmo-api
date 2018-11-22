@@ -11,6 +11,7 @@ import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
 
+
 /**
 * Class of the real workpack created from a workpack template.
 *
@@ -49,6 +50,8 @@ public class Workpack {
 		this.name = name;
 	}
 	
+	
+
 
 	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
 	private List<Property> properties = new ArrayList<>();
