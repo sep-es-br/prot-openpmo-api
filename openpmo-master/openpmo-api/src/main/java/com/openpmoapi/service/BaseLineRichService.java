@@ -37,9 +37,9 @@ public class BaseLineRichService {
 	 */
 	@Transactional(readOnly = false)
 	public BaseLineRich update(Long id, BaseLineRich baseLineRich) {
-		BaseLineRich baseLineRichSalva = findBaseLineRichById(id);
-		BeanUtils.copyProperties(baseLineRich, baseLineRichSalva, "id", "baseLineRich");
-		return baseLineRichRepository.save(baseLineRichSalva);
+		BaseLineRich savedBaseLineRich = findBaseLineRichById(id);
+		BeanUtils.copyProperties(baseLineRich, savedBaseLineRich, "id", "baseLineRich");
+		return baseLineRichRepository.save(savedBaseLineRich);
 	}
 	
 	
@@ -50,11 +50,11 @@ public class BaseLineRichService {
 	 */
 	@Transactional(readOnly = true)
 	public BaseLineRich findBaseLineRichById(Long id) {
-		Optional<BaseLineRich> baseLineRichSalva = baseLineRichRepository.findById(id);
-		if (!baseLineRichSalva.isPresent()) {
+		Optional<BaseLineRich> savedBaseLineRich = baseLineRichRepository.findById(id);
+		if (!savedBaseLineRich.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
-		return baseLineRichSalva.get();
+		return savedBaseLineRich.get();
 	}
 	
 	

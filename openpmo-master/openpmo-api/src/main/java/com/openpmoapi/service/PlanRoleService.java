@@ -38,9 +38,9 @@ public class PlanRoleService {
 	 */
 	@Transactional
 	public PlanRole update(Long id, PlanRole planRole) {
-		PlanRole planRoleSalvo = findPlanRoleById(id);
-		BeanUtils.copyProperties(planRole, planRoleSalvo, "id", "planRole");
-		return planRoleRepository.save(planRoleSalvo);
+		PlanRole savedPlanRole = findPlanRoleById(id);
+		BeanUtils.copyProperties(planRole, savedPlanRole, "id", "planRole");
+		return planRoleRepository.save(savedPlanRole);
 	}
 	
 	
@@ -50,11 +50,11 @@ public class PlanRoleService {
 	 */
 	@Transactional(readOnly = true)
 	public PlanRole findPlanRoleById(Long id) {
-		Optional<PlanRole> planRoleSalvo = planRoleRepository.findById(id);
-		if (!planRoleSalvo.isPresent()) {
+		Optional<PlanRole> savedPlanRole = planRoleRepository.findById(id);
+		if (!savedPlanRole.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
-		return planRoleSalvo.get();
+		return savedPlanRole.get();
 	}
 	
 

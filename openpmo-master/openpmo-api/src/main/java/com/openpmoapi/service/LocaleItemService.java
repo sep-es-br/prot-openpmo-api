@@ -38,9 +38,9 @@ public class LocaleItemService {
 	 */
 	@Transactional(readOnly = false)
 	public LocaleRich update(Long id, LocaleRich localeItem) {
-		LocaleRich localeItemSalvo = findLocaleItemById(id);
-		BeanUtils.copyProperties(localeItem, localeItemSalvo, "id", "localeItem");
-		return localeItemRepository.save(localeItemSalvo);
+		LocaleRich savedItemLocation = findLocaleItemById(id);
+		BeanUtils.copyProperties(localeItem, savedItemLocation, "id", "localeItem");
+		return localeItemRepository.save(savedItemLocation);
 	}
 	
 	
@@ -51,11 +51,11 @@ public class LocaleItemService {
 	 */
 	@Transactional(readOnly = true)
 	public LocaleRich findLocaleItemById(Long id) {
-		Optional<LocaleRich> localeItemSalvo = localeItemRepository.findById(id);
-		if (!localeItemSalvo.isPresent()) {
+		Optional<LocaleRich> savedItemLocation = localeItemRepository.findById(id);
+		if (!savedItemLocation.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
-		return localeItemSalvo.get();
+		return savedItemLocation.get();
 	}
 	
 	

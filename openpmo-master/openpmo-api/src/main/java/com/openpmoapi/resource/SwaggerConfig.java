@@ -34,14 +34,14 @@ public class SwaggerConfig {
 //    private ApiInfo metaInfo() {
 //
 //        ApiInfo apiInfo = new ApiInfo(
-//                "Spring Boot Swagger Example API",
-//                "Spring Boot Swagger Example API for Youtube",
-//                "1.0",
-//                "Terms of Service",
-//                new Contact("TechPrimers", "https://www.youtube.com/TechPrimers",
-//                        "techprimerschannel@gmail.com"),
-//                "Apache License Version 2.0",
-//                "https://www.apache.org/licesen.html"
+//                "",
+//                "",
+//                "",
+//                "",
+//                new Contact("", "",
+//                        ""),
+//                "",
+//                ""
 //        );
 //
 //        return apiInfo;

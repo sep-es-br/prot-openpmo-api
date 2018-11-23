@@ -37,9 +37,9 @@ public class BaseLineService {
 	 */
 	@Transactional(readOnly = false)
 	public BaseLine update(Long id, BaseLine baseLine) {
-		BaseLine baseLineSalva = findBaseLineById(id);
-		BeanUtils.copyProperties(baseLine, baseLineSalva, "id", "baseLine");
-		return baseLineRepository.save(baseLineSalva);
+		BaseLine savedBaseLine = findBaseLineById(id);
+		BeanUtils.copyProperties(baseLine, savedBaseLine, "id", "baseLine");
+		return baseLineRepository.save(savedBaseLine);
 	}
 	
 	
@@ -50,11 +50,11 @@ public class BaseLineService {
 	 */
 	@Transactional(readOnly = true)
 	public BaseLine findBaseLineById(Long id) {
-		Optional<BaseLine> baseLineSalva = baseLineRepository.findById(id);
-		if (!baseLineSalva.isPresent()) {
+		Optional<BaseLine> savedBaseLine = baseLineRepository.findById(id);
+		if (!savedBaseLine.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
-		return baseLineSalva.get();
+		return savedBaseLine.get();
 	}
 	
 	

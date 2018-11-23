@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.openpmoapi.event.RecursoCriadoEvent;
+import com.openpmoapi.event.FeatureCreatedEvent;
 import com.openpmoapi.model.CostRich;
 import com.openpmoapi.repository.CostRichRepository;
 import com.openpmoapi.service.CostRichService;
@@ -59,8 +59,8 @@ public class CostRichResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<CostRich> update(@PathVariable Long id, @Valid @RequestBody CostRich costRich) {
-		CostRich costRichSalvo = costRichService.update(id, costRich);
-		return ResponseEntity.ok(costRichSalvo);
+		CostRich savedCostRich = costRichService.update(id, costRich);
+		return ResponseEntity.ok(savedCostRich);
 	}
 	
 	
@@ -69,8 +69,8 @@ public class CostRichResource {
 	 */
 	@PostMapping
 	public ResponseEntity<CostRich> save(@Valid @RequestBody CostRich costRich, HttpServletResponse response) {
-		CostRich costRichSalvo = costRichRepository.save(costRich);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, costRichSalvo.getId()));
+		CostRich savedCostRich = costRichRepository.save(costRich);
+		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedCostRich.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(costRichRepository.save(costRich));
 	}
 	

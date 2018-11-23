@@ -38,9 +38,9 @@ public class PersonService {
 	 */
 	@Transactional(readOnly = false)
 	public Person update(Long id, Person person) {
-		Person personSalva = findPersonById(id);
-		BeanUtils.copyProperties(person, personSalva, "id", "person");
-		return personRepository.save(personSalva);
+		Person savedPerson = findPersonById(id);
+		BeanUtils.copyProperties(person, savedPerson, "id", "person");
+		return personRepository.save(savedPerson);
 	}
 	
 	
@@ -51,11 +51,11 @@ public class PersonService {
 	 */
 	@Transactional(readOnly = true)
 	public Person findPersonById(Long id) {
-		Optional<Person> personSalva = personRepository.findById(id);
-		if (!personSalva.isPresent()) {
+		Optional<Person> savedPerson = personRepository.findById(id);
+		if (!savedPerson.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
-		return personSalva.get();
+		return savedPerson.get();
 	}
 	
 	

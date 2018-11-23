@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.openpmoapi.event.RecursoCriadoEvent;
+import com.openpmoapi.event.FeatureCreatedEvent;
 import com.openpmoapi.model.Organization;
 import com.openpmoapi.repository.OrganizationRepository;
 import com.openpmoapi.service.OrganizationService;
@@ -59,8 +59,8 @@ public class OrganizationResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<Organization> update(@PathVariable Long id, @Valid @RequestBody Organization organization) {
-		Organization organizationSalva = organizationService.update(id, organization);
-		return ResponseEntity.ok(organizationSalva);
+		Organization savedOrganization = organizationService.update(id, organization);
+		return ResponseEntity.ok(savedOrganization);
 	}
 	
 	
@@ -69,8 +69,8 @@ public class OrganizationResource {
 	 */
 	@PostMapping
 	public ResponseEntity<Organization> save(@Valid @RequestBody Organization organization, HttpServletResponse response) {
-		Organization organizationSalva = organizationRepository.save(organization);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, organizationSalva.getId()));
+		Organization savedOrganization = organizationRepository.save(organization);
+		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedOrganization.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(organizationRepository.save(organization));
 	}
 	

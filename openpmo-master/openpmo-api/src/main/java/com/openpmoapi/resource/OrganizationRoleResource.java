@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.openpmoapi.event.RecursoCriadoEvent;
+import com.openpmoapi.event.FeatureCreatedEvent;
 import com.openpmoapi.model.OrganizationRole;
 import com.openpmoapi.repository.OrganizationRoleRepository;
 import com.openpmoapi.service.OrganizationRoleService;
@@ -59,8 +59,8 @@ public class OrganizationRoleResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<OrganizationRole> update(@PathVariable Long id, @Valid @RequestBody OrganizationRole organizationRole) {
-		OrganizationRole organizationRoleSalva = organizationRoleService.update(id, organizationRole);
-		return ResponseEntity.ok(organizationRoleSalva);
+		OrganizationRole savedOrganizationRole = organizationRoleService.update(id, organizationRole);
+		return ResponseEntity.ok(savedOrganizationRole);
 	}
 	
 	
@@ -69,8 +69,8 @@ public class OrganizationRoleResource {
 	 */
 	@PostMapping
 	public ResponseEntity<OrganizationRole> save(@Valid @RequestBody OrganizationRole organizationRole, HttpServletResponse response) {
-		OrganizationRole organizationRoleSalva = organizationRoleRepository.save(organizationRole);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, organizationRoleSalva.getId()));
+		OrganizationRole savedOrganizationRole = organizationRoleRepository.save(organizationRole);
+		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedOrganizationRole.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(organizationRoleRepository.save(organizationRole));
 	}
 	

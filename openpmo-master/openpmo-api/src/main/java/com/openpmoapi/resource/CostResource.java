@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.openpmoapi.event.RecursoCriadoEvent;
+import com.openpmoapi.event.FeatureCreatedEvent;
 import com.openpmoapi.model.Cost;
 import com.openpmoapi.repository.CostRepository;
 import com.openpmoapi.service.CostService;
@@ -59,8 +59,8 @@ public class CostResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<Cost> update(@PathVariable Long id, @Valid @RequestBody Cost cost) {
-		Cost costSalvo = costService.update(id, cost);
-		return ResponseEntity.ok(costSalvo);
+		Cost savedCost = costService.update(id, cost);
+		return ResponseEntity.ok(savedCost);
 	}
 	
 	
@@ -69,8 +69,8 @@ public class CostResource {
 	 */
 	@PostMapping
 	public ResponseEntity<Cost> save(@Valid @RequestBody Cost cost, HttpServletResponse response) {
-		Cost costSalvo = costRepository.save(cost);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, costSalvo.getId()));
+		Cost savedCost = costRepository.save(cost);
+		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedCost.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(costRepository.save(cost));
 	}
 	

@@ -13,14 +13,14 @@ import org.springframework.context.ApplicationEvent;
 * @author marcos.santos  
 * @since 2018-08-02
 */
-public class RecursoCriadoEvent extends ApplicationEvent {
+public class FeatureCreatedEvent extends ApplicationEvent {
 
 	private static final long serialVersionUID = 1L;
 	
 	private HttpServletResponse response;
 	private Long codigo;
 
-	public RecursoCriadoEvent(Object source, HttpServletResponse response, Long codigo) {
+	public FeatureCreatedEvent(Object source, HttpServletResponse response, Long codigo) {
 		super(source);
 		this.response = response;
 		this.codigo = codigo;

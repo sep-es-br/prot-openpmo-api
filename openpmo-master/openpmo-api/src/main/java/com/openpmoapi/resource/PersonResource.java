@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.openpmoapi.event.RecursoCriadoEvent;
+import com.openpmoapi.event.FeatureCreatedEvent;
 import com.openpmoapi.model.Person;
 import com.openpmoapi.repository.PersonRepository;
 import com.openpmoapi.service.PersonService;
@@ -61,8 +61,8 @@ public class PersonResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<Person> update(@PathVariable Long id, @Valid @RequestBody Person person) {
-		Person personSalva = personService.update(id, person);
-		return ResponseEntity.ok(personSalva);
+		Person savedPerson = personService.update(id, person);
+		return ResponseEntity.ok(savedPerson);
 	}
 	
 	
@@ -71,8 +71,8 @@ public class PersonResource {
 	 */
 	@PostMapping
 	public ResponseEntity<Person> save(@Valid @RequestBody Person person, HttpServletResponse response) {
-		Person personSalva = personRepository.save(person);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, personSalva.getId()));
+		Person savedPerson = personRepository.save(person);
+		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedPerson.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(personRepository.save(person));
 	}
 	

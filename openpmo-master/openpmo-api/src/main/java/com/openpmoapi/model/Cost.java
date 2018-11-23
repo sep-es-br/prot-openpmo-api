@@ -32,12 +32,12 @@ public class Cost {
 		this.id = id;
 	}
 	
-	private String descricao;
-	public String getDescricao() {
-		return descricao;
+	private String description;
+	public String getDescription() {
+		return description;
 	}
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	private Double TotalCost;

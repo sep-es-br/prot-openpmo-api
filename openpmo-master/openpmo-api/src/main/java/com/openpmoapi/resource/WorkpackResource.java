@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.openpmoapi.event.RecursoCriadoEvent;
+import com.openpmoapi.event.FeatureCreatedEvent;
 import com.openpmoapi.model.Workpack;
 import com.openpmoapi.repository.PropertyRepository;
 import com.openpmoapi.repository.WorkpackRepository;
@@ -99,9 +99,9 @@ public class WorkpackResource {
 	@PostMapping
 	public ResponseEntity<Workpack> save(@Valid @RequestBody Workpack workpack, HttpServletResponse response) {
 		
-		Workpack workPackSalvo = workPackRepository.save(workpack);
+		Workpack savedWorkPack = workPackRepository.save(workpack);
 		
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, workPackSalvo.getId()));
+		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedWorkPack.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(workPackRepository.save(workpack));
 	}
 	

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.openpmoapi.event.RecursoCriadoEvent;
+import com.openpmoapi.event.FeatureCreatedEvent;
 import com.openpmoapi.model.Office;
 import com.openpmoapi.repository.OfficeRepository;
 import com.openpmoapi.service.OfficeService;
@@ -59,8 +59,8 @@ public class OfficeResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<Office> update(@PathVariable Long id, @Valid @RequestBody Office env) {
-		Office envSalvo = envService.update(id, env);
-		return ResponseEntity.ok(envSalvo);
+		Office savedEnv = envService.update(id, env);
+		return ResponseEntity.ok(savedEnv);
 	}
 	
 	
@@ -69,8 +69,8 @@ public class OfficeResource {
 	 */
 	@PostMapping
 	public ResponseEntity<Office> save(@Valid @RequestBody Office env, HttpServletResponse response) {
-		Office envSalvo = envRepository.save(env);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, envSalvo.getId()));
+		Office savedEnv = envRepository.save(env);
+		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedEnv.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(envRepository.save(env));
 	}
 	

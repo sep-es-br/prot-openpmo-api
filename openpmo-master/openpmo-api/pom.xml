@@ -5,17 +5,18 @@
 
 	<groupId>com.openpmo-api</groupId>
 	<artifactId>openpmo-api</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>openpmo-api</name>
 	<description>Open PMO Restful API</description>
+	
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.0.3.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath>C:\Users\lucas.regio\git\openpmo\openpmo-master\openpmo-api</relativePath>
 	</parent>
 
 	<properties>
@@ -40,6 +41,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-neo4j</artifactId>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -123,16 +125,60 @@
 		    <artifactId>swagger-annotations</artifactId>
 		    <version>1.5.9</version>
 		</dependency>
-
 	</dependencies>
+
+	  <scm>
+	    <connection>scm:git:http://server_name[:8080]/path_to_repository[push=]https://github.com/lucasregio/test.git</connection>
+	    <developerConnection>scm:git:https://server_name[:8080]/path_to_repository[push=]https://github.com/lucasregio/test.git</developerConnection>
+	    <url>http://somerepository.com/view.cvs</url>
+	  </scm>
 
 	<build>
 		<plugins>
-			<plugin>
+
+					<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+
+			  <plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-scm-plugin</artifactId>
+		        <version>1.11.1</version>
+		        <configuration>
+		          <connectionType>connection</connectionType>
+		        </configuration>
+		      </plugin>
+
+		      
+		      <plugin>
+		        <groupId>org.codehaus.mojo</groupId>
+		        <artifactId>buildnumber-maven-plugin</artifactId>
+		        <version>1.4</version>
+		        <executions>
+		          <execution>
+		            <id>buildnumber</id>
+		            <phase>validate</phase>
+		            <goals>
+		              <goal>create</goal>
+		            </goals>
+		          </execution>
+		        </executions>
+		        <configuration>
+		          <format>{0,number}</format>
+		          <items>
+		            <item>buildNumber</item>
+		          </items>                    
+		          <doCheck>false</doCheck>
+		          <doUpdate>false</doUpdate>
+		          <revisionOnScmFailure>unknownbuild</revisionOnScmFailure>   
+		        </configuration>
+		      </plugin>
+			
 		</plugins>
+		
+		<finalName>${project.artifactId}-${project.version}.${buildNumber}</finalName>
 	</build>
 	
 	<repositories>
@@ -140,7 +186,10 @@
             <id>jr-ce-releases</id>
             <url>http://jaspersoft.artifactoryonline.com/jaspersoft/jr-ce-releases</url>
         </repository>
+
     </repositories>
+    
+
 
 
 </project>

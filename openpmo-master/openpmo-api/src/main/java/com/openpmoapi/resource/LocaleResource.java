@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.openpmoapi.event.RecursoCriadoEvent;
+import com.openpmoapi.event.FeatureCreatedEvent;
 import com.openpmoapi.model.Locale;
 import com.openpmoapi.repository.LocaleRepository;
 import com.openpmoapi.service.LocaleService;
@@ -59,8 +59,8 @@ public class LocaleResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<Locale> update(@PathVariable Long id, @Valid @RequestBody Locale locale) {
-		Locale localeSalvo = localeService.update(id, locale);
-		return ResponseEntity.ok(localeSalvo);
+		Locale savedLocation = localeService.update(id, locale);
+		return ResponseEntity.ok(savedLocation);
 	}
 	
 	
@@ -69,8 +69,8 @@ public class LocaleResource {
 	 */
 	@PostMapping
 	public ResponseEntity<Locale> save(@Valid @RequestBody Locale locale, HttpServletResponse response) {
-		Locale localeSalvo = localeRepository.save(locale);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, localeSalvo.getId()));
+		Locale savedLocation = localeRepository.save(locale);
+		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedLocation.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(localeRepository.save(locale));
 	}
 	

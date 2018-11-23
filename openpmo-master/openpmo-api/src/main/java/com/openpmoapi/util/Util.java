@@ -13,7 +13,7 @@ import java.text.Normalizer;
 */
 public class Util {
 
-	public static String retiraCaracteresEspeciais(String string){
+	public static String removeSpecialCharacters(String string){
 		
 		if(string != null) {
 			

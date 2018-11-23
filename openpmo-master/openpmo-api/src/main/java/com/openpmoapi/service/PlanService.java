@@ -37,9 +37,9 @@ public class PlanService {
 	 */
 	@Transactional
 	public Plan update(Long id, Plan plan) {
-		Plan planSalvo = findPlanById(id);
-		BeanUtils.copyProperties(plan, planSalvo, "id", "plan");
-		return planRepository.save(planSalvo);
+		Plan savedPlan = findPlanById(id);
+		BeanUtils.copyProperties(plan, savedPlan, "id", "plan");
+		return planRepository.save(savedPlan);
 	}
 	
 	
@@ -49,11 +49,11 @@ public class PlanService {
 	 */
 	@Transactional
 	public Plan findPlanById(Long id) {
-		Optional<Plan> planSalvo = planRepository.findById(id,0);
-		if (!planSalvo.isPresent()) {
+		Optional<Plan> savedPlan = planRepository.findById(id,0);
+		if (!savedPlan.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
-		return planSalvo.get();
+		return savedPlan.get();
 	}
 	
 	@Transactional(readOnly = true)

@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.openpmoapi.event.RecursoCriadoEvent;
+import com.openpmoapi.event.FeatureCreatedEvent;
 import com.openpmoapi.model.PlanStructure;
 import com.openpmoapi.repository.PlanStructureRepository;
 import com.openpmoapi.service.PlanStructureService;
@@ -60,8 +60,8 @@ public class PlanStructureResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<PlanStructure> update(@PathVariable Long id, @Valid @RequestBody PlanStructure planStructure) {
-		PlanStructure planStructureSalvo = planStructureService.update(id, planStructure);
-		return ResponseEntity.ok(planStructureSalvo);
+		PlanStructure savedPlanStructure = planStructureService.update(id, planStructure);
+		return ResponseEntity.ok(savedPlanStructure);
 	}
 	
 	
@@ -70,8 +70,8 @@ public class PlanStructureResource {
 	 */
 	@PostMapping
 	public ResponseEntity<PlanStructure> save(@Valid @RequestBody PlanStructure planStructure, HttpServletResponse response) {
-		PlanStructure planStructureSalvo = planStructureRepository.save(planStructure);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, planStructureSalvo.getId()));
+		PlanStructure savedPlanStructure = planStructureRepository.save(planStructure);
+		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedPlanStructure.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(planStructureRepository.save(planStructure));
 	}
 	

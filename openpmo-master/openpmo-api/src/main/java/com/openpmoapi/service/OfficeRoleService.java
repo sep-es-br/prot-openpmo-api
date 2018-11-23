@@ -38,9 +38,9 @@ public class OfficeRoleService {
 	 */
 	@Transactional(readOnly = false)
 	public OfficeRole update(Long id, OfficeRole role) {
-		OfficeRole roleSalva = findRoleById(id);
-		BeanUtils.copyProperties(role, roleSalva, "id", "role");
-		return roleRepository.save(roleSalva);
+		OfficeRole savedRole = findRoleById(id);
+		BeanUtils.copyProperties(role, savedRole, "id", "role");
+		return roleRepository.save(savedRole);
 	}
 	
 	
@@ -51,11 +51,11 @@ public class OfficeRoleService {
 	 */
 	@Transactional(readOnly = true)
 	public OfficeRole findRoleById(Long id) {
-		Optional<OfficeRole> roleSalva = roleRepository.findById(id);
-		if (!roleSalva.isPresent()) {
+		Optional<OfficeRole> savedRole = roleRepository.findById(id);
+		if (!savedRole.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
-		return roleSalva.get();
+		return savedRole.get();
 	}
 	
 	

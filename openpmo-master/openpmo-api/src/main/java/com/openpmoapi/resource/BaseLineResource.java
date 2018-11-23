@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.openpmoapi.event.RecursoCriadoEvent;
+import com.openpmoapi.event.FeatureCreatedEvent;
 import com.openpmoapi.model.BaseLine;
 import com.openpmoapi.repository.BaseLineRepository;
 import com.openpmoapi.service.BaseLineService;
@@ -58,8 +58,8 @@ public class BaseLineResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<BaseLine> update(@PathVariable Long id, @Valid @RequestBody BaseLine baseLine) {
-		BaseLine baseLineSalva = baseLineService.update(id, baseLine);
-		return ResponseEntity.ok(baseLineSalva);
+		BaseLine savedBaseLine = baseLineService.update(id, baseLine);
+		return ResponseEntity.ok(savedBaseLine);
 	}
 	
 	
@@ -68,8 +68,8 @@ public class BaseLineResource {
 	 */
 	@PostMapping
 	public ResponseEntity<BaseLine> save(@Valid @RequestBody BaseLine baseLine, HttpServletResponse response) {
-		BaseLine baseLineSalva = baseLineRepository.save(baseLine);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, baseLineSalva.getId()));
+		BaseLine savedBaseLine = baseLineRepository.save(baseLine);
+		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedBaseLine.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(baseLineRepository.save(baseLine));
 	}
 	

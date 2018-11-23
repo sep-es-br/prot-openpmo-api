@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.openpmoapi.event.RecursoCriadoEvent;
+import com.openpmoapi.event.FeatureCreatedEvent;
 import com.openpmoapi.model.Plan;
 import com.openpmoapi.repository.PlanRepository;
 import com.openpmoapi.service.PlanService;
@@ -60,8 +60,8 @@ public class PlanResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<Plan> update(@PathVariable Long id, @Valid @RequestBody Plan plan) {
-		Plan planSalvo = planService.update(id, plan);
-		return ResponseEntity.ok(planSalvo);
+		Plan savedPlan = planService.update(id, plan);
+		return ResponseEntity.ok(savedPlan);
 	}
 	
 	
@@ -70,8 +70,8 @@ public class PlanResource {
 	 */
 	@PostMapping
 	public ResponseEntity<Plan> save(@Valid @RequestBody Plan plan, HttpServletResponse response) {
-		Plan planSalvo = planRepository.save(plan);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, planSalvo.getId()));
+		Plan savedPlan = planRepository.save(plan);
+		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedPlan.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(planRepository.save(plan));
 	}
 	

@@ -38,9 +38,9 @@ public class OrganizationService {
 	 */
 	@Transactional(readOnly = false)
 	public Organization update(Long id, Organization organization) {
-		Organization organizationSalva = findOrganizationById(id);
-		BeanUtils.copyProperties(organization, organizationSalva, "id", "organization");
-		return organizationRepository.save(organizationSalva);
+		Organization savedOrganization = findOrganizationById(id);
+		BeanUtils.copyProperties(organization, savedOrganization, "id", "organization");
+		return organizationRepository.save(savedOrganization);
 	}
 	
 	
@@ -51,11 +51,11 @@ public class OrganizationService {
 	 */
 	@Transactional(readOnly = true)
 	public Organization findOrganizationById(Long id) {
-		Optional<Organization> organizationSalva = organizationRepository.findById(id);
-		if (!organizationSalva.isPresent()) {
+		Optional<Organization> savedOrganization = organizationRepository.findById(id);
+		if (!savedOrganization.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
-		return organizationSalva.get();
+		return savedOrganization.get();
 	}
 	
 	

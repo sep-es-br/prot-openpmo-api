@@ -37,9 +37,9 @@ public class CostService {
 	 */
 	@Transactional(readOnly = false)
 	public Cost update(Long id, Cost cost) {
-		Cost costSalvo = findCostById(id);
-		BeanUtils.copyProperties(cost, costSalvo, "id", "cost");
-		return costRepository.save(costSalvo);
+		Cost savedCost= findCostById(id);
+		BeanUtils.copyProperties(cost, savedCost, "id", "cost");
+		return costRepository.save(savedCost);
 	}
 	
 	
@@ -50,11 +50,11 @@ public class CostService {
 	 */
 	@Transactional(readOnly = true)
 	public Cost findCostById(Long id) {
-		Optional<Cost> costSalvo = costRepository.findById(id);
-		if (!costSalvo.isPresent()) {
+		Optional<Cost> savedCost = costRepository.findById(id);
+		if (!savedCost.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
-		return costSalvo.get();
+		return savedCost.get();
 	}
 	
 	

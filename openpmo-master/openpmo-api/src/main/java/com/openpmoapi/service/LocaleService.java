@@ -38,9 +38,9 @@ public class LocaleService {
 	 */
 	@Transactional(readOnly = false)
 	public Locale update(Long id, Locale locale) {
-		Locale localeSalvo = findLocaleById(id);
-		BeanUtils.copyProperties(locale, localeSalvo, "id", "locale");
-		return localeRepository.save(localeSalvo);
+		Locale savedLocale = findLocaleById(id);
+		BeanUtils.copyProperties(locale, savedLocale, "id", "locale");
+		return localeRepository.save(savedLocale);
 	}
 	
 	
@@ -51,11 +51,11 @@ public class LocaleService {
 	 */
 	@Transactional(readOnly = true)
 	public Locale findLocaleById(Long id) {
-		Optional<Locale> localeSalvo = localeRepository.findById(id);
-		if (!localeSalvo.isPresent()) {
+		Optional<Locale> savedLocale = localeRepository.findById(id);
+		if (!savedLocale.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
-		return localeSalvo.get();
+		return savedLocale.get();
 	}
 	
 	

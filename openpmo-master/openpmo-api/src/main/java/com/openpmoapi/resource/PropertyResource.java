@@ -58,7 +58,7 @@ public class PropertyResource {
 
 	
 		/**
-		This method find by a list de properties
+		This method find by a list of properties
 	*/
 	@GetMapping("/listproperties/{id}")
 	public Collection<Property> findProperties(@PathVariable Long id) {
@@ -68,7 +68,7 @@ public class PropertyResource {
 	
 	
 		/**
-		This method find by a list de properties
+		This method find by a list of properties
 	*/
 	@GetMapping("/listproperty/{id}")
 	public Optional<Property> findProperty(@PathVariable Long id) {

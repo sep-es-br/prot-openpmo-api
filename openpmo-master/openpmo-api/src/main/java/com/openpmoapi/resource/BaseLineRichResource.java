@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.openpmoapi.event.RecursoCriadoEvent;
+import com.openpmoapi.event.FeatureCreatedEvent;
 import com.openpmoapi.model.BaseLineRich;
 import com.openpmoapi.repository.BaseLineRichRepository;
 import com.openpmoapi.service.BaseLineRichService;
@@ -58,8 +58,8 @@ public class BaseLineRichResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<BaseLineRich> update(@PathVariable Long id, @Valid @RequestBody BaseLineRich baseLineRich) {
-		BaseLineRich baseLineRichSalva = baseLineRichService.update(id, baseLineRich);
-		return ResponseEntity.ok(baseLineRichSalva);
+		BaseLineRich savedBaseLineRich = baseLineRichService.update(id, baseLineRich);
+		return ResponseEntity.ok(savedBaseLineRich);
 	}
 	
 	
@@ -68,8 +68,8 @@ public class BaseLineRichResource {
 	 */
 	@PostMapping
 	public ResponseEntity<BaseLineRich> save(@Valid @RequestBody BaseLineRich baseLineRich, HttpServletResponse response) {
-		BaseLineRich baseLineRichSalva = baseLineRichRepository.save(baseLineRich);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, baseLineRichSalva.getId()));
+		BaseLineRich savedBaseLineRich = baseLineRichRepository.save(baseLineRich);
+		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedBaseLineRich.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(baseLineRichRepository.save(baseLineRich));
 	}
 	

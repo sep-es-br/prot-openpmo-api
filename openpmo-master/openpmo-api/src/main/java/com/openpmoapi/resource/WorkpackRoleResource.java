@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.openpmoapi.event.RecursoCriadoEvent;
+import com.openpmoapi.event.FeatureCreatedEvent;
 import com.openpmoapi.model.WorkpackRole;
 import com.openpmoapi.repository.WorkpackRoleRepository;
 import com.openpmoapi.service.WorkpackRoleService;
@@ -58,8 +58,8 @@ public class WorkpackRoleResource {
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<WorkpackRole> update(@PathVariable Long id, @Valid @RequestBody WorkpackRole workpackRole) {
-		WorkpackRole workpackRoleSalvo = workpackRoleService.update(id, workpackRole);
-		return ResponseEntity.ok(workpackRoleSalvo);
+		WorkpackRole savedWorkpackRole = workpackRoleService.update(id, workpackRole);
+		return ResponseEntity.ok(savedWorkpackRole);
 	}
 	
 	
@@ -68,8 +68,8 @@ public class WorkpackRoleResource {
 	 */
 	@PostMapping
 	public ResponseEntity<WorkpackRole> save(@Valid @RequestBody WorkpackRole workpackRole, HttpServletResponse response) {
-		WorkpackRole workpackRoleSalvo = workpackRoleRepository.save(workpackRole);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, workpackRoleSalvo.getId()));
+		WorkpackRole savedWorkpackRole = workpackRoleRepository.save(workpackRole);
+		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedWorkpackRole.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(workpackRoleRepository.save(workpackRole));
 	}
 	

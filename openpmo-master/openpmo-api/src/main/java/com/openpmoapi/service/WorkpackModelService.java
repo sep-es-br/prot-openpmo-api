@@ -36,9 +36,9 @@ public class WorkpackModelService {
 	 */
 	@Transactional
 	public WorkpackModel update(Long id, WorkpackModel wpm) {
-		WorkpackModel wpmSalvo = buscarPessoaPeloCodigo(id);
-		BeanUtils.copyProperties(wpm, wpmSalvo, "id", "wptl");
-		return wpmRepository.save(wpmSalvo);
+		WorkpackModel savedWpm = searchForPersonByCode(id);
+		BeanUtils.copyProperties(wpm, savedWpm, "id", "wptl");
+		return wpmRepository.save(savedWpm);
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public class WorkpackModelService {
 	 */
 	@Transactional
 	public WorkpackModel update(Long id, Optional<WorkpackModel> wpm) {
-		WorkpackModel wpmSalvo = buscarPessoaPeloCodigo(id);
+		WorkpackModel wpmSalvo = searchForPersonByCode(id);
 		BeanUtils.copyProperties(wpm, wpmSalvo, "id", "wpm");
 		return wpmRepository.save(wpmSalvo);
 		
@@ -60,7 +60,7 @@ public class WorkpackModelService {
 	 * @return
 	 */
 	@Transactional
-	public WorkpackModel buscarPessoaPeloCodigo(Long id) {
+	public WorkpackModel searchForPersonByCode(Long id) {
 		Optional<WorkpackModel> wpmSalvo = wpmRepository.findById(id);
 		if (!wpmSalvo.isPresent()) {
 			throw new EmptyResultDataAccessException(1);

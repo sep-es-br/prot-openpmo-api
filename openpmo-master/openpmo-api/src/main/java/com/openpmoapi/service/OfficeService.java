@@ -38,9 +38,9 @@ public class OfficeService {
 	 */
 	@Transactional(readOnly = false)
 	public Office update(Long id, Office env) {
-		Office envSalvo = findEnvById(id);
-		BeanUtils.copyProperties(env, envSalvo, "id", "env");
-		return envRepository.save(envSalvo);
+		Office savedEnv = findEnvById(id);
+		BeanUtils.copyProperties(env, savedEnv, "id", "env");
+		return envRepository.save(savedEnv);
 	}
 	
 	
@@ -52,11 +52,11 @@ public class OfficeService {
 	 */
 	@Transactional(readOnly = true)
 	public Office findEnvById(Long id) {
-		Optional<Office> envSalvo = envRepository.findById(id);
-		if (!envSalvo.isPresent()) {
+		Optional<Office> savedEnv = envRepository.findById(id);
+		if (!savedEnv.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
-		return envSalvo.get();
+		return savedEnv.get();
 	}
 	
 	

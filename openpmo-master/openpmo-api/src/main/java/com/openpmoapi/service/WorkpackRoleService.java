@@ -38,9 +38,9 @@ public class WorkpackRoleService {
 	 */
 	@Transactional(readOnly = false)
 	public WorkpackRole update(Long id, WorkpackRole workpackRole) {
-		WorkpackRole workpackRoleSalvo = findWorkpackRoleById(id);
-		BeanUtils.copyProperties(workpackRole, workpackRoleSalvo, "id", "workpackRole");
-		return workpackRoleRepository.save(workpackRoleSalvo);
+		WorkpackRole savedWorkpackRole = findWorkpackRoleById(id);
+		BeanUtils.copyProperties(workpackRole, savedWorkpackRole, "id", "workpackRole");
+		return workpackRoleRepository.save(savedWorkpackRole);
 	}
 	
 	
@@ -50,25 +50,25 @@ public class WorkpackRoleService {
 	 */
 	@Transactional(readOnly = true)
 	public WorkpackRole findWorkpackRoleById(Long id) {
-		Optional<WorkpackRole> workpackRoleSalvo = workpackRoleRepository.findById(id);
-		if (!workpackRoleSalvo.isPresent()) {
+		Optional<WorkpackRole> savedWorkpackRole = workpackRoleRepository.findById(id);
+		if (!savedWorkpackRole.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
-		return workpackRoleSalvo.get();
+		return savedWorkpackRole.get();
 	}
 	
 
 	@Transactional(readOnly = true)
 	public WorkpackRole findByName(String name) {
-		WorkpackRole workpackRoleSalvo = workpackRoleRepository.findByName(name);
-      return workpackRoleSalvo;
+		WorkpackRole savedWorkpackRole = workpackRoleRepository.findByName(name);
+      return savedWorkpackRole;
 	}
 	
 	
 	@Transactional(readOnly = true)
     public Collection<WorkpackRole> findByNameLike(String name) {
-      Collection<WorkpackRole> workpackRoleSalvo = workpackRoleRepository.findByNameLike(name);
-      return workpackRoleSalvo;
+      Collection<WorkpackRole> savedWorkpackRole = workpackRoleRepository.findByNameLike(name);
+      return savedWorkpackRole;
     }
 	
 	

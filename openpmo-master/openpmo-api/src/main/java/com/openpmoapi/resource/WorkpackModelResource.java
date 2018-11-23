@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.openpmoapi.event.RecursoCriadoEvent;
+import com.openpmoapi.event.FeatureCreatedEvent;
 import com.openpmoapi.model.Property;
 import com.openpmoapi.model.PropertyProfile;
 import com.openpmoapi.model.WorkpackModel;
@@ -103,14 +103,14 @@ public class WorkpackModelResource {
 			}
 		}
 	
-		WorkpackModel wpmSalvo = wpmService.update(id, wpm);
+		WorkpackModel savedWpm = wpmService.update(id, wpm);
 		
 		for(int i = 0; i < prod.size();i++) {
 			
 			deleteProfile(prod.get(i).getId());
 		}
 		
-		return ResponseEntity.ok(wpmSalvo);
+		return ResponseEntity.ok(savedWpm);
 	}
 	
 	
@@ -133,8 +133,8 @@ public class WorkpackModelResource {
 	@PostMapping
 	@Transactional
 	public ResponseEntity<WorkpackModel> save( @Valid @RequestBody WorkpackModel wpm, HttpServletResponse response) {
-		WorkpackModel wpmSalvo = wpmRepository.save(wpm);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, wpmSalvo.getId()));
+		WorkpackModel savedWpm = wpmRepository.save(wpm);
+		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedWpm.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(wpmRepository.save(wpm));
 	}
 	

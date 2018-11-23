@@ -39,10 +39,10 @@ public class WorkpackService {
 	 */
 	public Workpack update(Long id, Workpack workpack) {
 		
-		Workpack wpSalvo = buscarPessoaPeloCodigo(id);
+		Workpack savedWp = buscarPessoaPeloCodigo(id);
 		
-		BeanUtils.copyProperties(workpack, wpSalvo, "id", "workpack");
-		return wpRepository.save(wpSalvo);
+		BeanUtils.copyProperties(workpack, savedWp, "id", "workpack");
+		return wpRepository.save(savedWp);
 	}
 	
 	
@@ -51,11 +51,11 @@ public class WorkpackService {
 	 * @return
 	 */
 	public Workpack buscarPessoaPeloCodigo(Long id) {
-		Optional<Workpack> wpSalvo = wpRepository.findById(id);
-		if (!wpSalvo.isPresent()) {
+		Optional<Workpack> savedWp = wpRepository.findById(id);
+		if (!savedWp.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
-		return wpSalvo.get();
+		return savedWp.get();
 	}
 	
 	
@@ -74,7 +74,7 @@ public class WorkpackService {
 	
 	
 	
-	public static String removeAcentos(String string) {
+	public static String translate(String string) {
 	    if (string != null){
 	        string = Normalizer.normalize(string, Normalizer.Form.NFD);
 	        string = string.replaceAll("[^\\p{ASCII}]", "");

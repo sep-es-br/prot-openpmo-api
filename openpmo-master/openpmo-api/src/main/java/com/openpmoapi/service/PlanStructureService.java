@@ -36,9 +36,9 @@ public class PlanStructureService {
 	 */
 	@Transactional
 	public PlanStructure update(Long id, PlanStructure planStructure) {
-		PlanStructure planStructureSalvo = buscarPessoaPeloCodigo(id);
-		BeanUtils.copyProperties(planStructure, planStructureSalvo, "id", "planStructure");
-		return planStructureRepository.save(planStructureSalvo);
+		PlanStructure savedStructurePlan = buscarPessoaPeloCodigo(id);
+		BeanUtils.copyProperties(planStructure, savedStructurePlan, "id", "planStructure");
+		return planStructureRepository.save(savedStructurePlan);
 	}
 	
 	
@@ -48,11 +48,11 @@ public class PlanStructureService {
 	 */
 	@Transactional
 	public PlanStructure buscarPessoaPeloCodigo(Long id) {
-		Optional<PlanStructure> planStructureSalvo = planStructureRepository.findById(id);
-		if (!planStructureSalvo.isPresent()) {
+		Optional<PlanStructure> savedStructurePlan = planStructureRepository.findById(id);
+		if (!savedStructurePlan.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
-		return planStructureSalvo.get();
+		return savedStructurePlan.get();
 	}
 	
 	@Transactional(readOnly = true)

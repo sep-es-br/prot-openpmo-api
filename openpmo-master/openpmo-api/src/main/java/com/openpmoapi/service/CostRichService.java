@@ -37,9 +37,9 @@ public class CostRichService {
 	 */
 	@Transactional(readOnly = false)
 	public CostRich update(Long id, CostRich costRich) {
-		CostRich costRichSalvo = findCostRichById(id);
-		BeanUtils.copyProperties(costRich, costRichSalvo, "id", "costRich");
-		return costRichRepository.save(costRichSalvo);
+		CostRich savedCostRich = findCostRichById(id);
+		BeanUtils.copyProperties(costRich, savedCostRich, "id", "costRich");
+		return costRichRepository.save(savedCostRich);
 	}
 	
 	
@@ -50,11 +50,11 @@ public class CostRichService {
 	 */
 	@Transactional(readOnly = true)
 	public CostRich findCostRichById(Long id) {
-		Optional<CostRich> costRich = costRichRepository.findById(id);
-		if (!costRich.isPresent()) {
+		Optional<CostRich> savedCostRich = costRichRepository.findById(id);
+		if (!savedCostRich.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
-		return costRich.get();
+		return savedCostRich.get();
 	}
 	
 	
