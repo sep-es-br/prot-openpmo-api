@@ -47,18 +47,18 @@ public class OrgRoleAtOffice {
 
 
 	@StartNode 
-    private Person person;
+    private Organization organization;
 	/**
-	 * @return the person
+	 * @return the organization
 	 */
-	public Person getPerson() {
-		return person;
+	public Organization getOrganization() {
+		return organization;
 	}
 	/**
-	 * @param person the person to set
+	 * @param organization the organization to set
 	 */
-	public void setPerson(Person person) {
-		this.person = person;
+	public void setOrganization(Organization organization) {
+		this.organization = organization;
 	}
 
 

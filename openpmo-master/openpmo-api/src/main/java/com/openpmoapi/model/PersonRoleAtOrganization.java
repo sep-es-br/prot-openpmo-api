@@ -17,7 +17,7 @@ import org.neo4j.ogm.annotation.StartNode;
 */
 
 @RelationshipEntity(type="PERFORMS_A_ROLE")
-public class OrgRoleAtWorkpack {
+public class PersonRoleAtOrganization {
 
 	
 	@Id @GeneratedValue   
@@ -28,6 +28,8 @@ public class OrgRoleAtWorkpack {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+
 
 
 	private String role;
@@ -47,6 +49,22 @@ public class OrgRoleAtWorkpack {
 
 
 	@StartNode 
+    private Person person;
+	/**
+	 * @return the person
+	 */
+	public Person getPerson() {
+		return person;
+	}
+	/**
+	 * @param person the person to set
+	 */
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
+
+	@EndNode   
     private Organization organization;
 	/**
 	 * @return the organization
@@ -60,23 +78,7 @@ public class OrgRoleAtWorkpack {
 	public void setOrganization(Organization organization) {
 		this.organization = organization;
 	}
-
-
-	@EndNode   
-    private Workpack Workpack;
-	/**
-	 * @return the workpack
-	 */
-	public Workpack getWorkpack() {
-		return Workpack;
-	}
-	/**
-	 * @param workpack the workpack to set
-	 */
-	public void setWorkpack(Workpack workpack) {
-		Workpack = workpack;
-	}
-
+	
 	
 	
 	@Override
@@ -94,7 +96,7 @@ public class OrgRoleAtWorkpack {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		OrgRoleAtWorkpack other = (OrgRoleAtWorkpack) obj;
+		PersonRoleAtOrganization other = (PersonRoleAtOrganization) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
