@@ -70,7 +70,7 @@ public class Workpack {
 
 
 	/**
-	 * Relationship linking its templates 
+	 * Relationship linking its models 
 	 */
 	@Relationship(type="IS_INSTANCE_OF", direction=Relationship.OUTGOING)
 	private WorkpackModel model;
@@ -89,21 +89,41 @@ public class Workpack {
 
 
 	/**
-	 * Relationship linking its Organizations 
+	 * Relationship linking its People 
 	 */
 	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
-	private List<Stakeholder> stakeholders= new ArrayList<>();	
+	private List<Person> people= new ArrayList<>();	
 	/**
-	 * @return the stakeholders
+	 * @return the people
 	 */
-	public List<Stakeholder> getStakeholders() {
-		return stakeholders;
+	public List<Person> getPeople() {
+		return people;
 	}
 	/**
-	 * @param stakeholders the stakeholders to set
+	 * @param people the people to set
 	 */
-	public void setStakeholders(List<Stakeholder> stakeholders) {
-		this.stakeholders = stakeholders;
+	public void setPeople(List<Person> people) {
+		this.people = people;
+	}
+
+	
+	
+	/**
+	 * Relationship linking its Organization 
+	 */
+	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
+	private List<Organization> organizations= new ArrayList<>();	
+	/**
+	 * @return the organizations
+	 */
+	public List<Organization> getOrganizations() {
+		return organizations;
+	}
+	/**
+	 * @param organizations the organizations to set
+	 */
+	public void setOrganizations(List<Organization> organizations) {
+		this.organizations = organizations;
 	}
 
 
