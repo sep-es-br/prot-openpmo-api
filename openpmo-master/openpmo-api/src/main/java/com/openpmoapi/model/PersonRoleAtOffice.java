@@ -3,16 +3,11 @@
  */
 package com.openpmoapi.model;
 
-import java.util.Date;
-
-import javax.validation.constraints.NotNull;
-
 import org.neo4j.ogm.annotation.EndNode;
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
-import org.neo4j.ogm.annotation.typeconversion.DateString;
 
 /**
 * Type here a brief description of the class.
@@ -22,7 +17,7 @@ import org.neo4j.ogm.annotation.typeconversion.DateString;
 */
 
 @RelationshipEntity(type="PERFORMS_A_ROLE")
-public class PlanRole {
+public class PersonRoleAtOffice {
 
 	
 	@Id @GeneratedValue   
@@ -35,52 +30,67 @@ public class PlanRole {
 	}
 
 
-	@NotNull
-    private String name;
-    public String getName() {
-		return name;
+	private String categoria;
+	/**
+	 * @return the categoria
+	 */
+	public String getCategoria() {
+		return categoria;
 	}
-	public void setName(String name) {
-		this.name = name;
+	/**
+	 * @param categoria the categoria to set
+	 */
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 
 
-    @StartNode 
+	private String role;
+	/**
+	 * @return the role
+	 */
+	public String getRole() {
+		return role;
+	}
+	/**
+	 * @param role the role to set
+	 */
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+
+
+	@StartNode 
     private Person person;
-    public Person getPerson() {
+	/**
+	 * @return the person
+	 */
+	public Person getPerson() {
 		return person;
 	}
+	/**
+	 * @param person the person to set
+	 */
 	public void setPerson(Person person) {
 		this.person = person;
 	}
 
 
 	@EndNode   
-    private Plan plan;
+    private Office office;
 	/**
-	 * @return the plan
+	 * @return the office
 	 */
-	public Plan getPlan() {
-		return plan;
+	public Office getOffice() {
+		return office;
 	}
 	/**
-	 * @param plan the plan to set
+	 * @param office the office to set
 	 */
-	public void setPlan(Plan plan) {
-		this.plan = plan;
+	public void setOffice(Office office) {
+		this.office = office;
 	}
-
-
-	@DateString
-    Date roleDate;
-	public Date getRoleDate() {
-		return roleDate;
-	}
-	public void setRoleDate(Date roleDate) {
-		this.roleDate = roleDate;
-	}
-	
-	
 	
 	
 	
@@ -100,7 +110,7 @@ public class PlanRole {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PlanRole other = (PlanRole) obj;
+		PersonRoleAtOffice other = (PersonRoleAtOffice) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

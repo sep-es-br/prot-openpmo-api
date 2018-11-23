@@ -117,6 +117,51 @@ public class Office {
 	public void setPlans(List<Plan> plans) {
 		this.plans = plans;
 	}
+	
+	
+	
+	/**
+	 * Relationship linking its People 
+	 */
+	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
+	private List<Person> people= new ArrayList<>();	
+	/**
+	 * @return the people
+	 */
+	public List<Person> getPeople() {
+		return people;
+	}
+	/**
+	 * @param people the people to set
+	 */
+	public void setPeople(List<Person> people) {
+		this.people = people;
+	}
+
+	
+	
+	/**
+	 * Relationship linking its Organization 
+	 */
+	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
+	private List<Organization> organizations= new ArrayList<>();	
+	/**
+	 * @return the organizations
+	 */
+	public List<Organization> getOrganizations() {
+		return organizations;
+	}
+	/**
+	 * @param organizations the organizations to set
+	 */
+	public void setOrganizations(List<Organization> organizations) {
+		this.organizations = organizations;
+	}
+
+
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

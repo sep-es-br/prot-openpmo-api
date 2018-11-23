@@ -24,17 +24,24 @@ public class Stakeholder {
 	 */
 	@Id @GeneratedValue
 	private Long id;
+	/**
+	 * @return the id
+	 */
 	public Long getId() {
 		return id;
 	}
-	
-	
+
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+
 
 	private Person person;
-	
-
-	
-	
 	/**
 	 * @return the person
 	 */
@@ -50,8 +57,9 @@ public class Stakeholder {
 	}
 	
 
+	
+	
 	private Organization organization;
-
 	/**
 	 * @return the organization
 	 */
@@ -65,10 +73,10 @@ public class Stakeholder {
 	public void setOrganization(Organization organization) {
 		this.organization = organization;
 	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
+	
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

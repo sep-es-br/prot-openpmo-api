@@ -3,16 +3,11 @@
  */
 package com.openpmoapi.model;
 
-import java.util.Date;
-
-import javax.validation.constraints.NotNull;
-
 import org.neo4j.ogm.annotation.EndNode;
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
-import org.neo4j.ogm.annotation.typeconversion.DateString;
 
 /**
 * Type here a brief description of the class.
@@ -22,7 +17,7 @@ import org.neo4j.ogm.annotation.typeconversion.DateString;
 */
 
 @RelationshipEntity(type="PERFORMS_A_ROLE")
-public class PlanRole {
+public class OrgRoleAtPlan {
 
 	
 	@Id @GeneratedValue   
@@ -35,24 +30,37 @@ public class PlanRole {
 	}
 
 
-	@NotNull
-    private String name;
-    public String getName() {
-		return name;
+	private String role;
+	/**
+	 * @return the role
+	 */
+	public String getRole() {
+		return role;
 	}
-	public void setName(String name) {
-		this.name = name;
+	/**
+	 * @param role the role to set
+	 */
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 
-    @StartNode 
-    private Person person;
-    public Person getPerson() {
-		return person;
+
+	@StartNode 
+    private Organization organization;
+	/**
+	 * @return the organization
+	 */
+	public Organization getOrganization() {
+		return organization;
 	}
-	public void setPerson(Person person) {
-		this.person = person;
+	/**
+	 * @param organization the organization to set
+	 */
+	public void setOrganization(Organization organization) {
+		this.organization = organization;
 	}
+
 
 
 	@EndNode   
@@ -69,19 +77,6 @@ public class PlanRole {
 	public void setPlan(Plan plan) {
 		this.plan = plan;
 	}
-
-
-	@DateString
-    Date roleDate;
-	public Date getRoleDate() {
-		return roleDate;
-	}
-	public void setRoleDate(Date roleDate) {
-		this.roleDate = roleDate;
-	}
-	
-	
-	
 	
 	
 	
@@ -100,7 +95,7 @@ public class PlanRole {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PlanRole other = (PlanRole) obj;
+		OrgRoleAtPlan other = (OrgRoleAtPlan) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
