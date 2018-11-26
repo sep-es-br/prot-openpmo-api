@@ -104,6 +104,7 @@ public class WorkpackResource {
 		
 		for(int i = 0; i < workpack.getProperties().size();i++) {
 			
+			
 			workpack.getProperties().get(i).getLabels().add
 			(workpack.getProperties().get(i).getProfile().getType());
 			
