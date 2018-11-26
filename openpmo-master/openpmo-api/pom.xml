@@ -5,7 +5,7 @@
 
 	<groupId>com.openpmo-api</groupId>
 	<artifactId>openpmo-api</artifactId>
-	<version>0.0.1</version>
+	<version>0.1</version>
 	<packaging>jar</packaging>
 
 	<name>openpmo-api</name>
