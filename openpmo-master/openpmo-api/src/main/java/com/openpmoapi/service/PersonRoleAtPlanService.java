@@ -12,8 +12,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.openpmoapi.model.PlanRole;
-import com.openpmoapi.repository.PlanRoleRepository;
+import com.openpmoapi.model.PersonRoleAtPlan;
+import com.openpmoapi.repository.PersonRoleAtPlanRepository;
 
 
 /**
@@ -24,11 +24,11 @@ import com.openpmoapi.repository.PlanRoleRepository;
 */
 
 @Service
-public class PlanRoleService {
+public class PersonRoleAtPlanService {
 
 	
 	@Autowired
-	private PlanRoleRepository planRoleRepository;
+	private PersonRoleAtPlanRepository planRoleRepository;
 	
 	
 	/**
@@ -37,8 +37,8 @@ public class PlanRoleService {
 	
 	 */
 	@Transactional
-	public PlanRole update(Long id, PlanRole planRole) {
-		PlanRole savedPlanRole = findPlanRoleById(id);
+	public PersonRoleAtPlan update(Long id, PersonRoleAtPlan planRole) {
+		PersonRoleAtPlan savedPlanRole = findPlanRoleById(id);
 		BeanUtils.copyProperties(planRole, savedPlanRole, "id", "planRole");
 		return planRoleRepository.save(savedPlanRole);
 	}
@@ -49,8 +49,8 @@ public class PlanRoleService {
 	 * @return
 	 */
 	@Transactional(readOnly = true)
-	public PlanRole findPlanRoleById(Long id) {
-		Optional<PlanRole> savedPlanRole = planRoleRepository.findById(id);
+	public PersonRoleAtPlan findPlanRoleById(Long id) {
+		Optional<PersonRoleAtPlan> savedPlanRole = planRoleRepository.findById(id);
 		if (!savedPlanRole.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
@@ -58,16 +58,16 @@ public class PlanRoleService {
 	}
 	
 
-	@Transactional(readOnly = true)
-	public PlanRole findByName(String name) {
-		PlanRole planRole = planRoleRepository.findByName(name);
-      return planRole;
-	}
+//	@Transactional(readOnly = true)
+//	public PersonRoleAtPlan findByName(String name) {
+//		PersonRoleAtPlan planRole = planRoleRepository.findByName(name);
+//      return planRole;
+//	}
 	
 	
 	@Transactional(readOnly = true)
-    public Collection<PlanRole> findByNameLike(String name) {
-      Collection<PlanRole> planRole = planRoleRepository.findByNameLike(name);
+    public Collection<PersonRoleAtPlan> findByNameLike(String name) {
+      Collection<PersonRoleAtPlan> planRole = planRoleRepository.findByNameLike(name);
       return planRole;
     }
 	

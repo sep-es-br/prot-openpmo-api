@@ -21,24 +21,24 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.openpmoapi.event.FeatureCreatedEvent;
-import com.openpmoapi.model.PlanRole;
-import com.openpmoapi.repository.PlanRoleRepository;
-import com.openpmoapi.service.PlanRoleService;
+import com.openpmoapi.model.PersonRoleAtPlan;
+import com.openpmoapi.repository.PersonRoleAtPlanRepository;
+import com.openpmoapi.service.PersonRoleAtPlanService;
 
 import io.swagger.annotations.Api;
 
 
 @RestController
-@RequestMapping("/api/planrole")
-@Api(value = "/api/planrole",  tags = "Plan",description=" ")
-public class PlanRoleResource {
+@RequestMapping("/api/personroleatplan")
+@Api(value = "/api/personroleatplan",  tags = "Plan",description=" ")
+public class PersonRoleAtPlanResource {
 	
 	@Autowired
-	private PlanRoleRepository planRoleRepository;
+	private PersonRoleAtPlanRepository planRoleRepository;
 	
 	
 	@Autowired
-	private PlanRoleService planRoleService;
+	private PersonRoleAtPlanService planRoleService;
 	
 	@Autowired
 	private ApplicationEventPublisher publisher;
@@ -58,8 +58,8 @@ public class PlanRoleResource {
 	 * This method update PlanRole
 	 */
 	@PutMapping("/{id}")
-	public ResponseEntity<PlanRole> update(@PathVariable Long id, @Valid @RequestBody PlanRole planRole) {
-		PlanRole savedPlanRole = planRoleService.update(id, planRole);
+	public ResponseEntity<PersonRoleAtPlan> update(@PathVariable Long id, @Valid @RequestBody PersonRoleAtPlan planRole) {
+		PersonRoleAtPlan savedPlanRole = planRoleService.update(id, planRole);
 		return ResponseEntity.ok(savedPlanRole);
 	}
 	
@@ -68,8 +68,8 @@ public class PlanRoleResource {
 		This method save PlanRole
 	 */
 	@PostMapping
-	public ResponseEntity<PlanRole> save(@Valid @RequestBody PlanRole planRole, HttpServletResponse response) {
-		PlanRole savedPlanRole = planRoleRepository.save(planRole);
+	public ResponseEntity<PersonRoleAtPlan> save(@Valid @RequestBody PersonRoleAtPlan planRole, HttpServletResponse response) {
+		PersonRoleAtPlan savedPlanRole = planRoleRepository.save(planRole);
 		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedPlanRole.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(planRoleRepository.save(planRole));
 	}
@@ -79,7 +79,7 @@ public class PlanRoleResource {
 	 * This method find by all PlanRole
 	 */
 	@GetMapping
-	public Iterable<PlanRole> findByAll() {
+	public Iterable<PersonRoleAtPlan> findByAll() {
 		 return planRoleRepository.findAll(2);
 	}
 	
@@ -88,8 +88,8 @@ public class PlanRoleResource {
 			This method find by one PlanRole
 	 */
 	@GetMapping("/{id}")
-	public ResponseEntity<PlanRole> findById(@PathVariable Long id) {
-		Optional<PlanRole> planRole = planRoleRepository.findById(id,2);
+	public ResponseEntity<PersonRoleAtPlan> findById(@PathVariable Long id) {
+		Optional<PersonRoleAtPlan> planRole = planRoleRepository.findById(id,2);
 		return planRole.isPresent() ? ResponseEntity.ok(planRole.get()) : ResponseEntity.notFound().build();
 	}
 	
@@ -100,7 +100,7 @@ public class PlanRoleResource {
 	 * 
 	 */
 	@GetMapping("/like/{name}")
-	public Collection<PlanRole> findByNameLike(@PathVariable String name) {
+	public Collection<PersonRoleAtPlan> findByNameLike(@PathVariable String name) {
 	     return planRoleService.findByNameLike(name);
 	 }
 	
