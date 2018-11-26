@@ -38,8 +38,8 @@ import io.swagger.annotations.Api;
 
 
 @RestController
-@RequestMapping("/api/orgroleatoffice")
-@Api(value = "/api/orgroleatoffice",  tags = "Organization",description=" ")
+@RequestMapping("/api/orgroleatworkpack")
+@Api(value = "/api/orgroleatworkpack",  tags = "Organization",description=" ")
 public class OrgRoleAtWorckpackResource {
 
 	
