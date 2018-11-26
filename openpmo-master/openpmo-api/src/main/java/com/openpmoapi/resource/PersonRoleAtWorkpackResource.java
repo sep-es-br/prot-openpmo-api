@@ -21,24 +21,24 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.openpmoapi.event.FeatureCreatedEvent;
-import com.openpmoapi.model.WorkpackRole;
-import com.openpmoapi.repository.WorkpackRoleRepository;
-import com.openpmoapi.service.WorkpackRoleService;
+import com.openpmoapi.model.PersonRoleAtWorkpack;
+import com.openpmoapi.repository.PersonRoleAtWorkpackRepository;
+import com.openpmoapi.service.PersonRoleAtWorkpackService;
 
 import io.swagger.annotations.Api;
 
 
 @RestController
-@RequestMapping("/api/workpackrole")
-@Api(value = "/api/workpackrole",  tags = "Workpack",description=" ")
-public class WorkpackRoleResource {
+@RequestMapping("/api/personroleatWorkpack")
+@Api(value = "/api/personroleatWorkpack",  tags = "Workpack",description=" ")
+public class PersonRoleAtWorkpackResource {
 	
 	@Autowired
-	private WorkpackRoleRepository workpackRoleRepository;
+	private PersonRoleAtWorkpackRepository workpackRoleRepository;
 	
 	
 	@Autowired
-	private WorkpackRoleService workpackRoleService;
+	private PersonRoleAtWorkpackService workpackRoleService;
 	
 	@Autowired
 	private ApplicationEventPublisher publisher;
@@ -57,8 +57,8 @@ public class WorkpackRoleResource {
 	 * This is method update WorkpackRole
 	 */
 	@PutMapping("/{id}")
-	public ResponseEntity<WorkpackRole> update(@PathVariable Long id, @Valid @RequestBody WorkpackRole workpackRole) {
-		WorkpackRole savedWorkpackRole = workpackRoleService.update(id, workpackRole);
+	public ResponseEntity<PersonRoleAtWorkpack> update(@PathVariable Long id, @Valid @RequestBody PersonRoleAtWorkpack workpackRole) {
+		PersonRoleAtWorkpack savedWorkpackRole = workpackRoleService.update(id, workpackRole);
 		return ResponseEntity.ok(savedWorkpackRole);
 	}
 	
@@ -67,8 +67,8 @@ public class WorkpackRoleResource {
 		This is method save WorkpackRole
 	 */
 	@PostMapping
-	public ResponseEntity<WorkpackRole> save(@Valid @RequestBody WorkpackRole workpackRole, HttpServletResponse response) {
-		WorkpackRole savedWorkpackRole = workpackRoleRepository.save(workpackRole);
+	public ResponseEntity<PersonRoleAtWorkpack> save(@Valid @RequestBody PersonRoleAtWorkpack workpackRole, HttpServletResponse response) {
+		PersonRoleAtWorkpack savedWorkpackRole = workpackRoleRepository.save(workpackRole);
 		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedWorkpackRole.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(workpackRoleRepository.save(workpackRole));
 	}
@@ -78,7 +78,7 @@ public class WorkpackRoleResource {
 	 * This is method find by all WorkpackRoles
 	 */
 	@GetMapping
-	public Iterable<WorkpackRole> findByAll() {
+	public Iterable<PersonRoleAtWorkpack> findByAll() {
 		 return workpackRoleRepository.findAll(2);
 	}
 	
@@ -87,8 +87,8 @@ public class WorkpackRoleResource {
 			This is method find by one WorkpackRoles
 	 */
 	@GetMapping("/{id}")
-	public ResponseEntity<WorkpackRole> findById(@PathVariable Long id) {
-		Optional<WorkpackRole> workpackRole = workpackRoleRepository.findById(id,2);
+	public ResponseEntity<PersonRoleAtWorkpack> findById(@PathVariable Long id) {
+		Optional<PersonRoleAtWorkpack> workpackRole = workpackRoleRepository.findById(id,2);
 		return workpackRole.isPresent() ? ResponseEntity.ok(workpackRole.get()) : ResponseEntity.notFound().build();
 	}
 	
@@ -98,7 +98,7 @@ public class WorkpackRoleResource {
 	 * 
 	 */
 	@GetMapping("/like/{name}")
-	public Collection<WorkpackRole> findByNameLike(@PathVariable String name) {
+	public Collection<PersonRoleAtWorkpack> findByNameLike(@PathVariable String name) {
 	     return workpackRoleService.findByNameLike(name);
 	 }
 	

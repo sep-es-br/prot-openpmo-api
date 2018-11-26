@@ -12,8 +12,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.openpmoapi.model.WorkpackRole;
-import com.openpmoapi.repository.WorkpackRoleRepository;
+import com.openpmoapi.model.PersonRoleAtWorkpack;
+import com.openpmoapi.repository.PersonRoleAtWorkpackRepository;
 
 
 /**
@@ -24,11 +24,11 @@ import com.openpmoapi.repository.WorkpackRoleRepository;
 */
 
 @Service
-public class WorkpackRoleService {
+public class PersonRoleAtWorkpackService {
 
 	
 	@Autowired
-	private WorkpackRoleRepository workpackRoleRepository;
+	private PersonRoleAtWorkpackRepository workpackRoleRepository;
 	
 	
 	/**
@@ -37,8 +37,8 @@ public class WorkpackRoleService {
 	
 	 */
 	@Transactional(readOnly = false)
-	public WorkpackRole update(Long id, WorkpackRole workpackRole) {
-		WorkpackRole savedWorkpackRole = findWorkpackRoleById(id);
+	public PersonRoleAtWorkpack update(Long id, PersonRoleAtWorkpack workpackRole) {
+		PersonRoleAtWorkpack savedWorkpackRole = findWorkpackRoleById(id);
 		BeanUtils.copyProperties(workpackRole, savedWorkpackRole, "id", "workpackRole");
 		return workpackRoleRepository.save(savedWorkpackRole);
 	}
@@ -49,8 +49,8 @@ public class WorkpackRoleService {
 	 * @return
 	 */
 	@Transactional(readOnly = true)
-	public WorkpackRole findWorkpackRoleById(Long id) {
-		Optional<WorkpackRole> savedWorkpackRole = workpackRoleRepository.findById(id);
+	public PersonRoleAtWorkpack findWorkpackRoleById(Long id) {
+		Optional<PersonRoleAtWorkpack> savedWorkpackRole = workpackRoleRepository.findById(id);
 		if (!savedWorkpackRole.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
@@ -58,16 +58,16 @@ public class WorkpackRoleService {
 	}
 	
 
-	@Transactional(readOnly = true)
-	public WorkpackRole findByName(String name) {
-		WorkpackRole savedWorkpackRole = workpackRoleRepository.findByName(name);
-      return savedWorkpackRole;
-	}
+//	@Transactional(readOnly = true)
+//	public PersonRoleAtWorkpack findByName(String name) {
+//		PersonRoleAtWorkpack savedWorkpackRole = workpackRoleRepository.findByName(name);
+//      return savedWorkpackRole;
+//	}
+//	
 	
-	
 	@Transactional(readOnly = true)
-    public Collection<WorkpackRole> findByNameLike(String name) {
-      Collection<WorkpackRole> savedWorkpackRole = workpackRoleRepository.findByNameLike(name);
+    public Collection<PersonRoleAtWorkpack> findByNameLike(String name) {
+      Collection<PersonRoleAtWorkpack> savedWorkpackRole = workpackRoleRepository.findByNameLike(name);
       return savedWorkpackRole;
     }
 	
