@@ -12,8 +12,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.openpmoapi.model.OrganizationRole;
-import com.openpmoapi.repository.OrganizationRoleRepository;
+import com.openpmoapi.model.PersonRoleAtOrg;
+import com.openpmoapi.repository.PersonRoleAtOrgRepository;
 
 
 /**
@@ -24,11 +24,11 @@ import com.openpmoapi.repository.OrganizationRoleRepository;
 */
 
 @Service
-public class OrganizationRoleService {
+public class PersonRoleAtOrgService {
 
 	
 	@Autowired
-	private OrganizationRoleRepository organizationRoleRepository;
+	private PersonRoleAtOrgRepository organizationRoleRepository;
 	
 	
 	/**
@@ -37,8 +37,8 @@ public class OrganizationRoleService {
 	
 	 */
 	@Transactional(readOnly = false)
-	public OrganizationRole update(Long id, OrganizationRole organizationRole) {
-		OrganizationRole savedOrganizationRole = findOrganizationRoleById(id);
+	public PersonRoleAtOrg update(Long id, PersonRoleAtOrg organizationRole) {
+		PersonRoleAtOrg savedOrganizationRole = findOrganizationRoleById(id);
 		BeanUtils.copyProperties(organizationRole, savedOrganizationRole, "id", "organizationRole");
 		return organizationRoleRepository.save(savedOrganizationRole);
 	}
@@ -49,8 +49,8 @@ public class OrganizationRoleService {
 	 * @return
 	 */
 	@Transactional(readOnly = true)
-	public OrganizationRole findOrganizationRoleById(Long id) {
-		Optional<OrganizationRole> savedOrganizationRole = organizationRoleRepository.findById(id);
+	public PersonRoleAtOrg findOrganizationRoleById(Long id) {
+		Optional<PersonRoleAtOrg> savedOrganizationRole = organizationRoleRepository.findById(id);
 		if (!savedOrganizationRole.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
@@ -58,16 +58,16 @@ public class OrganizationRoleService {
 	}
 	
 
-	@Transactional(readOnly = true)
-	public OrganizationRole findByName(String name) {
-		OrganizationRole organizationRole = organizationRoleRepository.findByName(name);
-      return organizationRole;
-	}
+//	@Transactional(readOnly = true)
+//	public PersonRoleAtOrg findByName(String name) {
+//		PersonRoleAtOrg organizationRole = organizationRoleRepository.findByName(name);
+//      return organizationRole;
+//	}
+//	
 	
-	
 	@Transactional(readOnly = true)
-    public Collection<OrganizationRole> findByNameLike(String name) {
-      Collection<OrganizationRole> organizationRole = organizationRoleRepository.findByNameLike(name);
+    public Collection<PersonRoleAtOrg> findByNameLike(String name) {
+      Collection<PersonRoleAtOrg> organizationRole = organizationRoleRepository.findByNameLike(name);
       return organizationRole;
     }
 	

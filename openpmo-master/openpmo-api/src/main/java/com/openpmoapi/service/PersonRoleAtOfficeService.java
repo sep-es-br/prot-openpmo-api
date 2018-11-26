@@ -12,8 +12,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.openpmoapi.model.OfficeRole;
-import com.openpmoapi.repository.OfficeRoleRepository;
+import com.openpmoapi.model.PersonRoleAtOffice;
+import com.openpmoapi.repository.PersonRoleAtOfficeRepository;
 
 
 /**
@@ -24,11 +24,11 @@ import com.openpmoapi.repository.OfficeRoleRepository;
 */
 
 @Service
-public class OfficeRoleService {
+public class PersonRoleAtOfficeService {
 
 	
 	@Autowired
-	private OfficeRoleRepository roleRepository;
+	private PersonRoleAtOfficeRepository roleRepository;
 	
 	
 	/**
@@ -37,8 +37,8 @@ public class OfficeRoleService {
 	
 	 */
 	@Transactional(readOnly = false)
-	public OfficeRole update(Long id, OfficeRole role) {
-		OfficeRole savedRole = findRoleById(id);
+	public PersonRoleAtOffice update(Long id, PersonRoleAtOffice role) {
+		PersonRoleAtOffice savedRole = findRoleById(id);
 		BeanUtils.copyProperties(role, savedRole, "id", "role");
 		return roleRepository.save(savedRole);
 	}
@@ -50,8 +50,8 @@ public class OfficeRoleService {
 	 * @return
 	 */
 	@Transactional(readOnly = true)
-	public OfficeRole findRoleById(Long id) {
-		Optional<OfficeRole> savedRole = roleRepository.findById(id);
+	public PersonRoleAtOffice findRoleById(Long id) {
+		Optional<PersonRoleAtOffice> savedRole = roleRepository.findById(id);
 		if (!savedRole.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
@@ -60,17 +60,17 @@ public class OfficeRoleService {
 	
 	
 	
-
-	@Transactional(readOnly = true)
-	public OfficeRole findByName(String name) {
-		OfficeRole role = roleRepository.findByName(name);
-      return role;
-	}
+//
+//	@Transactional(readOnly = true)
+//	public PersonRoleAtOffice findByName(String name) {
+//		PersonRoleAtOffice role = roleRepository.findByName(name);
+//      return role;
+//	}
 	
 	
 	@Transactional(readOnly = true)
-    public Collection<OfficeRole> findByNameLike(String name) {
-      Collection<OfficeRole> role = roleRepository.findByNameLike(name);
+    public Collection<PersonRoleAtOffice> findByNameLike(String name) {
+      Collection<PersonRoleAtOffice> role = roleRepository.findByNameLike(name);
       return role;
     }
 	

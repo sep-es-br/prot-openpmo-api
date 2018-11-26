@@ -98,7 +98,7 @@ public class WorkpackModelResource {
 						
 					}else {
 						
-						throw new IllegalStateException("could not delete propertyProfile");
+						throw new IllegalArgumentException("could not delete propertyProfile");
 					}
 			}
 		}

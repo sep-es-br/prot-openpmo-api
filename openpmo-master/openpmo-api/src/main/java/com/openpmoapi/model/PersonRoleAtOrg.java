@@ -17,7 +17,7 @@ import org.neo4j.ogm.annotation.StartNode;
 */
 
 @RelationshipEntity(type="PERFORMS_A_ROLE")
-public class PersonRoleAtOrganization {
+public class PersonRoleAtOrg {
 
 	
 	@Id @GeneratedValue   
@@ -96,7 +96,7 @@ public class PersonRoleAtOrganization {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PersonRoleAtOrganization other = (PersonRoleAtOrganization) obj;
+		PersonRoleAtOrg other = (PersonRoleAtOrg) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

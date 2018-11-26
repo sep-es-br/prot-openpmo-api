@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.openpmoapi.event.FeatureCreatedEvent;
-import com.openpmoapi.model.OrganizationRole;
-import com.openpmoapi.repository.OrganizationRoleRepository;
-import com.openpmoapi.service.OrganizationRoleService;
+import com.openpmoapi.model.PersonRoleAtOrg;
+import com.openpmoapi.repository.PersonRoleAtOrgRepository;
+import com.openpmoapi.service.PersonRoleAtOrgService;
 
 import io.swagger.annotations.Api;
 
@@ -31,14 +31,14 @@ import io.swagger.annotations.Api;
 @RestController
 @RequestMapping("/api/organizationrole")
 @Api(value = "/api/organizationrole",  tags = "Organization",description=" ")
-public class OrganizationRoleResource {
+public class PersonRoleAtOrgResource {
 	
 	@Autowired
-	private OrganizationRoleRepository organizationRoleRepository;
+	private PersonRoleAtOrgRepository organizationRoleRepository;
 	
 	
 	@Autowired
-	private OrganizationRoleService organizationRoleService;
+	private PersonRoleAtOrgService organizationRoleService;
 	
 	@Autowired
 	private ApplicationEventPublisher publisher;
@@ -58,8 +58,8 @@ public class OrganizationRoleResource {
 	 * This is method update OrganizationRole
 	 */
 	@PutMapping("/{id}")
-	public ResponseEntity<OrganizationRole> update(@PathVariable Long id, @Valid @RequestBody OrganizationRole organizationRole) {
-		OrganizationRole savedOrganizationRole = organizationRoleService.update(id, organizationRole);
+	public ResponseEntity<PersonRoleAtOrg> update(@PathVariable Long id, @Valid @RequestBody PersonRoleAtOrg organizationRole) {
+		PersonRoleAtOrg savedOrganizationRole = organizationRoleService.update(id, organizationRole);
 		return ResponseEntity.ok(savedOrganizationRole);
 	}
 	
@@ -68,8 +68,8 @@ public class OrganizationRoleResource {
 		This is method save OrganizationRole
 	 */
 	@PostMapping
-	public ResponseEntity<OrganizationRole> save(@Valid @RequestBody OrganizationRole organizationRole, HttpServletResponse response) {
-		OrganizationRole savedOrganizationRole = organizationRoleRepository.save(organizationRole);
+	public ResponseEntity<PersonRoleAtOrg> save(@Valid @RequestBody PersonRoleAtOrg organizationRole, HttpServletResponse response) {
+		PersonRoleAtOrg savedOrganizationRole = organizationRoleRepository.save(organizationRole);
 		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedOrganizationRole.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(organizationRoleRepository.save(organizationRole));
 	}
@@ -79,7 +79,7 @@ public class OrganizationRoleResource {
 	 * This is method find by all organizationRoles
 	 */
 	@GetMapping
-	public Iterable<OrganizationRole> findByAll() {
+	public Iterable<PersonRoleAtOrg> findByAll() {
 		 return organizationRoleRepository.findAll(2);
 	}
 	
@@ -88,8 +88,8 @@ public class OrganizationRoleResource {
 			This is method find by one organizationRole
 	 */
 	@GetMapping("/{id}")
-	public ResponseEntity<OrganizationRole> findById(@PathVariable Long id) {
-		Optional<OrganizationRole> organizationRole = organizationRoleRepository.findById(id,2);
+	public ResponseEntity<PersonRoleAtOrg> findById(@PathVariable Long id) {
+		Optional<PersonRoleAtOrg> organizationRole = organizationRoleRepository.findById(id,2);
 		return organizationRole.isPresent() ? ResponseEntity.ok(organizationRole.get()) : ResponseEntity.notFound().build();
 	}
 	
@@ -100,7 +100,7 @@ public class OrganizationRoleResource {
 	 * 
 	 */
 	@GetMapping("/like/{name}")
-	public Collection<OrganizationRole> findByNameLike(@PathVariable String name) {
+	public Collection<PersonRoleAtOrg> findByNameLike(@PathVariable String name) {
 	     return organizationRoleService.findByNameLike(name);
 	 }
 	

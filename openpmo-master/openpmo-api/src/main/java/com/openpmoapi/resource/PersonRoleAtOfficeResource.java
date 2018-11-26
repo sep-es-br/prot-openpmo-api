@@ -21,24 +21,24 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.openpmoapi.event.FeatureCreatedEvent;
-import com.openpmoapi.model.OfficeRole;
-import com.openpmoapi.repository.OfficeRoleRepository;
-import com.openpmoapi.service.OfficeRoleService;
+import com.openpmoapi.model.PersonRoleAtOffice;
+import com.openpmoapi.repository.PersonRoleAtOfficeRepository;
+import com.openpmoapi.service.PersonRoleAtOfficeService;
 
 import io.swagger.annotations.Api;
 
 
 @RestController
-@RequestMapping("/api/officerole")
+@RequestMapping("/api/Office")
 @Api(value = "/api/officerole",  tags = "Office",description=" ")
-public class OfficeRoleResource {
+public class PersonRoleAtOfficeResource {
 	
 	@Autowired
-	private OfficeRoleRepository roleRepository;
+	private PersonRoleAtOfficeRepository roleRepository;
 	
 	
 	@Autowired
-	private OfficeRoleService roleService;
+	private PersonRoleAtOfficeService roleService;
 	
 	@Autowired
 	private ApplicationEventPublisher publisher;
@@ -58,8 +58,8 @@ public class OfficeRoleResource {
 	 * This is method update Role
 	 */
 	@PutMapping("/{id}")
-	public ResponseEntity<OfficeRole> update(@PathVariable Long id, @Valid @RequestBody OfficeRole role) {
-		OfficeRole savedRole = roleService.update(id, role);
+	public ResponseEntity<PersonRoleAtOffice> update(@PathVariable Long id, @Valid @RequestBody PersonRoleAtOffice role) {
+		PersonRoleAtOffice savedRole = roleService.update(id, role);
 		return ResponseEntity.ok(savedRole);
 	}
 	
@@ -68,8 +68,8 @@ public class OfficeRoleResource {
 		This is method save Role
 	 */
 	@PostMapping
-	public ResponseEntity<OfficeRole> save(@Valid @RequestBody OfficeRole role, HttpServletResponse response) {
-		OfficeRole savedRole = roleRepository.save(role);
+	public ResponseEntity<PersonRoleAtOffice> save(@Valid @RequestBody PersonRoleAtOffice role, HttpServletResponse response) {
+		PersonRoleAtOffice savedRole = roleRepository.save(role);
 		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedRole.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(roleRepository.save(role));
 	}
@@ -79,7 +79,7 @@ public class OfficeRoleResource {
 	 * This is method find by all Roles
 	 */
 	@GetMapping
-	public Iterable<OfficeRole> findByAll() {
+	public Iterable<PersonRoleAtOffice> findByAll() {
 		 return roleRepository.findAll(2);
 	}
 	
@@ -88,8 +88,8 @@ public class OfficeRoleResource {
 			This is method find by one Role
 	 */
 	@GetMapping("/{id}")
-	public ResponseEntity<OfficeRole> findById(@PathVariable Long id) {
-		Optional<OfficeRole> role = roleRepository.findById(id,2);
+	public ResponseEntity<PersonRoleAtOffice> findById(@PathVariable Long id) {
+		Optional<PersonRoleAtOffice> role = roleRepository.findById(id,2);
 		return role.isPresent() ? ResponseEntity.ok(role.get()) : ResponseEntity.notFound().build();
 	}
 	
@@ -100,7 +100,7 @@ public class OfficeRoleResource {
 	 * 
 	 */
 	@GetMapping("/like/{name}")
-	public Collection<OfficeRole> findByNameLike(@PathVariable String name) {
+	public Collection<PersonRoleAtOffice> findByNameLike(@PathVariable String name) {
 	     return roleService.findByNameLike(name);
 	 }
 	
