@@ -29,8 +29,8 @@ import io.swagger.annotations.Api;
 
 
 @RestController
-@RequestMapping("/api/Office")
-@Api(value = "/api/officerole",  tags = "Office",description=" ")
+@RequestMapping("/api/personroleatoffice")
+@Api(value = "/api/personroleatoffice",  tags = "Office",description=" ")
 public class PersonRoleAtOfficeResource {
 	
 	@Autowired

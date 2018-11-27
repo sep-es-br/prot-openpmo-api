@@ -29,8 +29,8 @@ import io.swagger.annotations.Api;
 
 
 @RestController
-@RequestMapping("/api/organizationrole")
-@Api(value = "/api/organizationrole",  tags = "Organization",description=" ")
+@RequestMapping("/api/personroleatorg")
+@Api(value = "/api/personroleatorg",  tags = "Organization",description=" ")
 public class PersonRoleAtOrgResource {
 	
 	@Autowired
