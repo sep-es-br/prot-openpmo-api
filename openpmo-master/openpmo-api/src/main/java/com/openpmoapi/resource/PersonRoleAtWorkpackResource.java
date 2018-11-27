@@ -29,8 +29,8 @@ import io.swagger.annotations.Api;
 
 
 @RestController
-@RequestMapping("/api/personroleatWorkpack")
-@Api(value = "/api/personroleatWorkpack",  tags = "Workpack",description=" ")
+@RequestMapping("/api/personroleatworkpack")
+@Api(value = "/api/personroleatworkpack",  tags = "Workpack",description=" ")
 public class PersonRoleAtWorkpackResource {
 	
 	@Autowired
