@@ -38,7 +38,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 		@Override
 		public void configure(HttpSecurity http) throws Exception {
 			http.authorizeRequests()
-			.antMatchers("/categorias").permitAll()
+			.antMatchers("/office").permitAll()
 			.anyRequest().authenticated()
 			.and()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
