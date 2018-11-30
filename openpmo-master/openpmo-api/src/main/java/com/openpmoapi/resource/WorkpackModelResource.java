@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.openpmoapi.event.FeatureCreatedEvent;
+import com.openpmoapi.exceptionHandler.PropertyProfileException;
 import com.openpmoapi.model.Property;
 import com.openpmoapi.model.PropertyProfile;
 import com.openpmoapi.model.WorkpackModel;
@@ -80,7 +81,7 @@ public class WorkpackModelResource {
 	 */
 	@PutMapping("/{id}")
 	@Transactional
-	public ResponseEntity<WorkpackModel> update(@PathVariable  Long id,@Valid  @RequestBody WorkpackModel wpm)throws IllegalStateException {
+	public ResponseEntity<WorkpackModel> update(@PathVariable  Long id,@Valid  @RequestBody WorkpackModel wpm)throws PropertyProfileException {
 
 		List<PropertyProfile> prod = new ArrayList<PropertyProfile>();
 		
@@ -98,7 +99,9 @@ public class WorkpackModelResource {
 						
 					}else {
 						
-						throw new IllegalArgumentException("could not delete propertyProfile");
+						throw new PropertyProfileException("could not delete propertyProfile");
+						
+						//throw new IllegalArgumentException("could not delete propertyProfile");
 					}
 			}
 		}

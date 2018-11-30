@@ -3,8 +3,6 @@ package com.openpmoapi.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
@@ -19,7 +17,7 @@ import org.neo4j.ogm.annotation.Relationship;
 * @since 2018-jul-31
 */
 @NodeEntity(label="Workpack")
-public class Workpack {
+public class Workpack extends Scope {
 	
 	/**
 	 * Self generated node id
@@ -39,16 +37,16 @@ public class Workpack {
 		this.id = id;
 	}
 
-
-	@NotNull
-	@Size(min=3,max=20)
-	private String name;
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+//
+//	@NotNull
+//	@Size(min=3,max=20)
+//	private String name;
+//	public String getName() {
+//		return name;
+//	}
+//	public void setName(String name) {
+//		this.name = name;
+//	}
 	
 	
 

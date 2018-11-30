@@ -60,26 +60,6 @@ public class OfficeService {
 	}
 	
 	
-//	
-//	@Transactional(readOnly = true)
-//	public EnvironmentProjection findByShortName(String shortName) {
-//		EnvironmentProjection result = envRepository.findByShortName(shortName);
-//      return result;
-//	}
-	
-	@Transactional(readOnly = true)
-	public Office findByName(String name) {
-		Office result = envRepository.findByName(name);
-      return result;
-	}
-	
-	
-	@Transactional(readOnly = true)
-    public Collection<Office> findByNameLike(String name) {
-      Collection<Office> result = envRepository.findByNameLike(name);
-      return result;
-    }
-	
 	@Transactional(readOnly = true)
     public Collection<Office> find() {
       Collection<Office> result = envRepository.find();
