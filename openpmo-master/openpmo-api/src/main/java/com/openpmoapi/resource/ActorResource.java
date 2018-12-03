@@ -1,7 +1,6 @@
 package com.openpmoapi.resource;
 
 
-import java.util.Collection;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -69,6 +68,7 @@ public class ActorResource {
 	/**
 		This is method save Actor
 	 */
+	
 	@PostMapping
 	public ResponseEntity<Actor> save(@Valid @RequestBody Actor actor, HttpServletResponse response) {
 		Actor savedActor = actorRepository.save(actor);

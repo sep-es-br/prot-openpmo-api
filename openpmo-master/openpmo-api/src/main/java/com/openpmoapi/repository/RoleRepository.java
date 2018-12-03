@@ -5,8 +5,6 @@ package com.openpmoapi.repository;
 
 import org.springframework.data.neo4j.repository.Neo4jRepository;
 
-import com.openpmoapi.model.Actor;
-import com.openpmoapi.model.Movie;
 import com.openpmoapi.model.Role;
 
 /**

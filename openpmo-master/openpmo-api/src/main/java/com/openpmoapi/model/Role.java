@@ -15,6 +15,7 @@ import org.neo4j.ogm.annotation.StartNode;
 * @since 2018-11-30
 */
 
+	@SuppressWarnings("deprecation")
 	@RelationshipEntity(type="PLAYED_IN")
 	public class Role {
 	    @GraphId   private Long id;
