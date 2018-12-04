@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.openpmoapi.event.FeatureCreatedEvent;
-import com.openpmoapi.exceptionHandler.PropertyProfileException;
 import com.openpmoapi.model.Property;
 import com.openpmoapi.model.PropertyProfile;
 import com.openpmoapi.model.WorkpackModel;
@@ -81,7 +80,7 @@ public class WorkpackModelResource {
 	 */
 	@PutMapping("/{id}")
 	@Transactional
-	public ResponseEntity<WorkpackModel> update(@PathVariable  Long id,@Valid  @RequestBody WorkpackModel wpm)throws PropertyProfileException {
+	public ResponseEntity<WorkpackModel> update(@PathVariable  Long id,@Valid  @RequestBody WorkpackModel wpm)throws IllegalArgumentException {
 
 		List<PropertyProfile> prod = new ArrayList<PropertyProfile>();
 		
@@ -91,7 +90,7 @@ public class WorkpackModelResource {
 				
 				Collection<Property> prop = findProperties(wpm.getPropertyProfiles().get(i).getId());
 				
-					if(wpm.getPropertyProfiles().get(0).isCustom() && prop.size() ==0) {
+				if(wpm.getPropertyProfiles().get(0).isCustom() && prop.size() ==0) {
 					
 						prod.add( wpm.getPropertyProfiles().get(i));
 						
@@ -99,7 +98,13 @@ public class WorkpackModelResource {
 						
 					}else {
 						
-						throw new PropertyProfileException("could not delete propertyProfile");
+						try {
+							System.err.println("could not delete propertyProfile");
+						} catch (IllegalArgumentException e) {
+							System.err.println("could not delete propertyProfile");
+						}
+						
+						//throw new PropertyProfileException("could not delete propertyProfile");
 						
 						//throw new IllegalArgumentException("could not delete propertyProfile");
 					}
