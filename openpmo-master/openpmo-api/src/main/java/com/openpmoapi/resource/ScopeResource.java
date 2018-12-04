@@ -1,6 +1,7 @@
 package com.openpmoapi.resource;
 
 
+import java.util.Collection;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -80,8 +81,19 @@ public class ScopeResource {
 	 * This is method find by all Scope
 	 */
 	@GetMapping
-	public Iterable<Scope> findByAll() {
-		 return scopeRepository.findAll(2);
+	public Collection<Scope> findByAll() {
+		
+		Collection<Scope> scopes =  (Collection<Scope>) scopeRepository.findAll();
+		
+//		scopes.forEach((sc)->{
+//			
+//			Collection<Role> roles = roleService.findAllByScopeId(sc.getId());
+//			
+//			sc.setRoles(roles);
+//			
+//		});
+		
+		return scopes;
 	}
 	
 	
@@ -90,10 +102,25 @@ public class ScopeResource {
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Scope> findById(@PathVariable Long id) {
-		Optional<Scope> Scope = scopeRepository.findById(id,2);
-		return Scope.isPresent() ? ResponseEntity.ok(Scope.get()) : ResponseEntity.notFound().build();
+		
+		Optional<Scope> scope = scopeRepository.findById(id);
+		
+//		Collection<Role> roles = roleService.findAllByScopeId(id);
+//		
+//		scope.get().setRoles(roles);
+		
+		return scope.isPresent() ? ResponseEntity.ok(scope.get()) : ResponseEntity.notFound().build();
 	}
+
+
 	
 
+	
+	
+	
+	
+	
+	
+	
 	
 }

@@ -57,11 +57,16 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-        <dependency>
+        
+        
+         <dependency>
             <groupId>org.neo4j</groupId>
             <artifactId>neo4j-ogm-bolt-driver</artifactId>
             <version>${neo4j-ogm.version}</version><!--$NO-MVN-MAN-VER$-->
         </dependency>
+        
+       
+        
         
         <dependency>
 			<groupId>org.apache.commons</groupId>
@@ -74,6 +79,9 @@
 			<groupId>com.fasterxml.jackson.datatype</groupId>
 			<artifactId>jackson-datatype-jsr310</artifactId>
 		</dependency>
+		
+		
+		
 
 		<!-- JasperReports -->
         <dependency>

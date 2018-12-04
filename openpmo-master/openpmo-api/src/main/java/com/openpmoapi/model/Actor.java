@@ -5,8 +5,13 @@ package com.openpmoapi.model;
 
 
 
+import java.util.Collection;
+
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
 * Type here a brief description of the class.
@@ -15,12 +20,13 @@ import org.neo4j.ogm.annotation.Relationship;
 * @since 2018-11-29
 */
 @NodeEntity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Actor {
 
 	 Long id;
 	    
 	    /**
-		 * @return the id
+		 * @return the i
 		 */
 		public Long getId() {
 			return id;
@@ -43,9 +49,35 @@ public class Actor {
 		public void setName(String name) {
 			this.name = name;
 		}
+		
+		
+		
+		@Relationship(type="ACTS")
+	    public Collection <Role> roles;
 
-		@Relationship(type="PEFORM_A_ROLE")
-	    private Role role;
+		/**
+		 * @return the roles
+		 */
+		public Collection<Role> getRoles() {
+			return roles;
+		}
+
+
+		/**
+		 * @param roles the roles to set
+		 */
+		public void setRoles(Collection<Role> roles) {
+			this.roles = roles;
+		}
+
+		
+
+		
+		
+
+		
+
+	
 	
 	
 	

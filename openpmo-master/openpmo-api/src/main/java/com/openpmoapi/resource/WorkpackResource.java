@@ -30,7 +30,7 @@ import io.swagger.annotations.Api;
 @RestController
 @RequestMapping("/api/workpack")
 @Api(value = "/api/workpack",  tags = "Workpack",description=" ")
-public class WorkpackResource {
+public class WorkpackResource{
 	
 	@Autowired
 	private WorkpackRepository workPackRepository;

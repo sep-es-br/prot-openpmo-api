@@ -8,6 +8,9 @@ import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 /**
 * Type here a brief description of the class.
 *
@@ -16,7 +19,8 @@ import org.neo4j.ogm.annotation.StartNode;
 */
 
 @SuppressWarnings("deprecation")
-@RelationshipEntity(type="PEFORM_A_ROLE")
+@RelationshipEntity(type="ACTS")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Role {
 
 	@GraphId  private Long id;
@@ -29,36 +33,36 @@ public class Role {
 		}
 		
 		
-		private String startType;
+		private String actorType;
 		
-		
+
 		/**
-		 * @return the startType
+		 * @return the actorType
 		 */
-		public String getStartType() {
-			return startType;
+		public String getActorType() {
+			return actorType;
 		}
 		/**
-		 * @param startType the startType to set
+		 * @param actorType the actorType to set
 		 */
-		public void setStartType(String startType) {
-			this.startType = startType;
+		public void setActorType(String actorType) {
+			this.actorType = actorType;
 		}
 		/**
-		 * @return the endType
+		 * @return the scopeType
 		 */
-		public String getEndType() {
-			return endType;
+		public String getScopeType() {
+			return scopeType;
 		}
 		/**
-		 * @param endType the endType to set
+		 * @param scopeType the scopeType to set
 		 */
-		public void setEndType(String endType) {
-			this.endType = endType;
+		public void setScopeType(String scopeType) {
+			this.scopeType = scopeType;
 		}
 
 
-		private String endType;
+		private String scopeType;
 		
 		
 		private String name;
@@ -102,6 +106,7 @@ public class Role {
 		public void setScope(Scope scope) {
 			this.scope = scope;
 		}
+		
 		@StartNode private Actor actor;
 	    @EndNode   private Scope scope;
 	

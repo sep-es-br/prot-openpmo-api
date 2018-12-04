@@ -3,6 +3,7 @@
  */
 package com.openpmoapi.service;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
@@ -27,7 +28,7 @@ public class RoleService {
 
 	
 	@Autowired
-	private RoleRepository RoleRepository;
+	private RoleRepository roleRepository;
 	
 	
 	/**
@@ -39,7 +40,7 @@ public class RoleService {
 	public Role update(Long id, Role role) {
 		Role savedRole = findRoleById(id);
 		BeanUtils.copyProperties(role, savedRole, "id", "role");
-		return RoleRepository.save(savedRole);
+		return roleRepository.save(savedRole);
 	}
 	
 	
@@ -50,7 +51,7 @@ public class RoleService {
 	 */
 	@Transactional(readOnly = true)
 	public Role findRoleById(Long id) {
-		Optional<Role> savedRole = RoleRepository.findById(id);
+		Optional<Role> savedRole = roleRepository.findById(id);
 		if (!savedRole.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
@@ -59,6 +60,52 @@ public class RoleService {
 	
 	
 
+	@Transactional(readOnly = true)
+    public Collection<Role> findAllByScopeId(Long id) {
+      Collection<Role> roles = roleRepository.findAllByScopeId(id);
+      
+//	  	roles.forEach((role)->{
+//			
+//			role.setScope(null);
+//			
+//			role.getActor().setRoles(null);
+//			
+//		});
+      
+      return roles;
+    }
+	
+
+	
+	@Transactional(readOnly = true)
+    public Collection<Role> findAllByActorId(Long id) {
+      Collection<Role> roles = roleRepository.findAllByActorId(id);
+      
+//	  	roles.forEach((role)->{
+//			
+//			role.setActor(null);
+//			
+//			role.getScope().setRoles(null);
+//			
+//		});
+      
+      
+      return roles;
+    }
+	
+	
+	
+	public Optional<Role> findById(Long id){
+		
+		
+		Optional<Role> r = roleRepository.findById(id);
+		
+		
+	 return r;	
+		
+		
+	}
+	
 	
 	
 }
