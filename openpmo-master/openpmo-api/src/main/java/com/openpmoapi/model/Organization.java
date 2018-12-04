@@ -21,6 +21,21 @@ import org.neo4j.ogm.annotation.Relationship;
 public class Organization extends Actor{
 
 	
+	private String sector;
+	/**
+	 * @return the sector
+	 */
+	public String getSector() {
+		return sector;
+	}
+	/**
+	 * @param sector the sector to set
+	 */
+	public void setSector(String sector) {
+		this.sector = sector;
+	}
+	
+	
 	
 	/**
 	 * Relationship linking its children 
