@@ -25,7 +25,7 @@ public class Actor {
 
 	
 		/**
-		 * this attribute is responsible for keeping the actor id 
+		 * this attribute represents the actor id
 		 */
 		Long id;
 		

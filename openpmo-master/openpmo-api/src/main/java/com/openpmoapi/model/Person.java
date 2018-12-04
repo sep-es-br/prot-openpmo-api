@@ -23,23 +23,27 @@ public class Person extends Actor{
 	
 	
 	/**
-	 * this attribute is responsible for keeping the actor userName
+	 * this attribute is responsible for keeping the person userName
 	 */
 	private String userName;
 	
 
 	/**
-	 * this attribute is responsible for keeping the actor password
+	 * this attribute is responsible for keeping the person password
 	 */
-	
 	@JsonIgnore
 	public String password;
 	
 	
-	
+	/**
+	 * this attribute is responsible for keeping the person email
+	 */
 	public String email;
 	
 	
+	/**
+	 *  this attribute is responsible for keeping the person authentication
+	 */
 	private String authentication;
 	
 

@@ -21,6 +21,12 @@ import org.neo4j.ogm.annotation.Relationship;
 public class Organization extends Actor{
 
 	
+	
+	
+	
+	/**
+	 * this attribute represents the sectors of the economy of the organization
+	 */
 	private String sector;
 	/**
 	 * @return the sector
