@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
-* Type here a brief description of the class.
+* This class represents the actor model
 *
 * @author marcos.santos  
 * @since 2018-11-29
@@ -23,16 +23,25 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Actor {
 
-	 Long id;
+	
+		/**
+		 * this attribute is responsible for keeping the actor id 
+		 */
+		Long id;
+	 
+		
+		/**
+		 * this attribute is responsible for keeping the actor name
+		 */
+		private String name;
+		
 	    
 	    /**
-		 * @return the i
+		 * @return the id
 		 */
 		public Long getId() {
 			return id;
 		}
-		
-		private String name;
 		
 
 		/**
@@ -42,6 +51,15 @@ public class Actor {
 			return name;
 		}
 
+		
+
+		/**
+		 * this attribute is responsible for keeping the relation with Role class 
+		 */
+		@Relationship(type="ACTS")
+	    public Collection <Role> roles;
+		
+		
 
 		/**
 		 * @param name the name to set
@@ -51,9 +69,6 @@ public class Actor {
 		}
 		
 		
-		
-		@Relationship(type="ACTS")
-	    public Collection <Role> roles;
 
 		/**
 		 * @return the roles
