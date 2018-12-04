@@ -47,7 +47,6 @@ public class WorkpackModelResource {
 	@Autowired
 	private WorkpackModelRepository wpmRepository;
 	
-	
 	@Autowired
 	private WorkpackModelService wpmService;
 	
