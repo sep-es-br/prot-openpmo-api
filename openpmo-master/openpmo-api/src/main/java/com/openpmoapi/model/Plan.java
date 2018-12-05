@@ -6,8 +6,6 @@ package com.openpmoapi.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
@@ -24,7 +22,7 @@ import org.neo4j.ogm.annotation.Relationship;
 * @since 2018-08-01
 */
 @NodeEntity(label="Plan")
-public class Plan {
+public class Plan extends Scope {
 	
 //	@Autowired
 //	private Util util;
@@ -50,15 +48,15 @@ public class Plan {
 
 
 
-	@NotNull
-	@Size(min=3,max=20)
-	private String name;
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+//	@NotNull
+//	@Size(min=3,max=20)
+//	private String name;
+//	public String getName() {
+//		return name;
+//	}
+//	public void setName(String name) {
+//		this.name = name;
+//	}
 	
 	
 

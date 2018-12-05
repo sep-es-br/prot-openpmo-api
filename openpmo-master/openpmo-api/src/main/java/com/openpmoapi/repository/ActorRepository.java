@@ -10,9 +10,10 @@ import com.openpmoapi.model.Actor;
 /**
 * Type here a brief description of the class.
 *
-* @author lucas.regio Lucas Regio 
-* @since 2018-11-30
+* @author marcos.santos  
+* @since 2018-11-29
 */
-public interface ActorRepository  extends Neo4jRepository<Actor, Long>{
+public interface ActorRepository extends Neo4jRepository<Actor, Long> {
+
 
 }

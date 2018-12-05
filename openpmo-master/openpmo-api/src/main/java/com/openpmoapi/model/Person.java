@@ -4,11 +4,10 @@
 package com.openpmoapi.model;
 
 
-import javax.validation.constraints.NotNull;
 
-import org.neo4j.ogm.annotation.GeneratedValue;
-import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 /**
@@ -19,76 +18,35 @@ import org.neo4j.ogm.annotation.NodeEntity;
 */
 
 @NodeEntity(label="Person")
-public class Person {
+public class Person extends Actor{
 
 	
+	
 	/**
-	 * Self generated node id
+	 * this attribute is responsible for keeping the person userName
 	 */
-	@Id @GeneratedValue
-	private Long id;
-	public Long getId() {
-		return id;
-	}
-	
-	
-	
-	@NotNull
-	private String name;
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	
 	private String userName;
-	/**
-	 * @return the userName
-	 */
-	public String getUserName() {
-		return userName;
-	}
-	/**
-	 * @param userName the userName to set
-	 */
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-
-	public String password;
-	/**
-	 * @return the password
-	 */
-	public String getPassword() {
-		return password;
-	}
-	/**
-	 * @param password the password to set
-	 */
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-
-
-	private String fullName;
-	/**
-	 * @return the fullName
-	 */
-	public String getFullName() {
-		return fullName;
-	}
-	/**
-	 * @param fullName the fullName to set
-	 */
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
-	}
 	
-	private String email;	
+
+	/**
+	 * this attribute is responsible for keeping the person password
+	 */
+	@JsonIgnore
+	public String password;
+	
+	
+	/**
+	 * this attribute is responsible for keeping the person email
+	 */
+	public String email;
+	
+	
+	/**
+	 *  this attribute is responsible for keeping the person authentication
+	 */
+	private String authentication;
+	
+
 	
 	/**
 	 * @return the email
@@ -103,22 +61,36 @@ public class Person {
 		this.email = email;
 	}
 	
-	private String phone;
+	
 	/**
-	 * @return the phone
+	 * @return the userName
 	 */
-	public String getPhone() {
-		return phone;
+	public String getUserName() {
+		return userName;
 	}
 	/**
-	 * @param phone the phone to set
+	 * @param userName the userName to set
 	 */
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	
+	/**
+	 * @return the password
+	 */
+	public String getPassword() {
+		return password;
 	}
 	
+	/**
+	 * @param password the password to set
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	
-	private String authentication;
 	/**
 	 * @return the authentication
 	 */
@@ -132,7 +104,7 @@ public class Person {
 		this.authentication = authentication;
 	}
 	
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

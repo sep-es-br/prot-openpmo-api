@@ -47,7 +47,6 @@ public class WorkpackModelResource {
 	@Autowired
 	private WorkpackModelRepository wpmRepository;
 	
-	
 	@Autowired
 	private WorkpackModelService wpmService;
 	
@@ -80,7 +79,7 @@ public class WorkpackModelResource {
 	 */
 	@PutMapping("/{id}")
 	@Transactional
-	public ResponseEntity<WorkpackModel> update(@PathVariable  Long id,@Valid  @RequestBody WorkpackModel wpm)throws IllegalStateException {
+	public ResponseEntity<WorkpackModel> update(@PathVariable  Long id,@Valid  @RequestBody WorkpackModel wpm)throws IllegalArgumentException {
 
 		List<PropertyProfile> prod = new ArrayList<PropertyProfile>();
 		
@@ -90,7 +89,7 @@ public class WorkpackModelResource {
 				
 				Collection<Property> prop = findProperties(wpm.getPropertyProfiles().get(i).getId());
 				
-					if(wpm.getPropertyProfiles().get(0).isCustom() && prop.size() ==0) {
+				if(wpm.getPropertyProfiles().get(0).isCustom() && prop.size() ==0) {
 					
 						prod.add( wpm.getPropertyProfiles().get(i));
 						
@@ -98,7 +97,15 @@ public class WorkpackModelResource {
 						
 					}else {
 						
-						throw new IllegalArgumentException("could not delete propertyProfile");
+						try {
+							System.err.println("could not delete propertyProfile");
+						} catch (IllegalArgumentException e) {
+							System.err.println("could not delete propertyProfile");
+						}
+						
+						//throw new PropertyProfileException("could not delete propertyProfile");
+						
+						//throw new IllegalArgumentException("could not delete propertyProfile");
 					}
 			}
 		}

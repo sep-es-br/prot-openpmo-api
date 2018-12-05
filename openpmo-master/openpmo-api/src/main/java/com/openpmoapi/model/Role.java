@@ -8,17 +8,22 @@ import org.neo4j.ogm.annotation.GraphId;
 import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 /**
 * Type here a brief description of the class.
 *
-* @author lucas.regio Lucas Regio 
-* @since 2018-11-30
+* @author marcos.santos  
+* @since 2018-11-29
 */
 
-	@SuppressWarnings("deprecation")
-	@RelationshipEntity(type="PLAYED_IN")
-	public class Role {
-	    @GraphId   private Long id;
+@SuppressWarnings("deprecation")
+@RelationshipEntity(type="ACTS")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+public class Role {
+
+	@GraphId  private Long id;
 	    
 	    /**
 		 * @return the id
@@ -26,25 +31,57 @@ import org.neo4j.ogm.annotation.StartNode;
 		public Long getId() {
 			return id;
 		}
-		private String title;
 		
 		
+		private String actorType;
 		
-	    /**
-		 * @return the title
+
+		/**
+		 * @return the actorType
 		 */
-		public String getTitle() {
-			return title;
+		public String getActorType() {
+			return actorType;
 		}
 		/**
-		 * @param title the title to set
+		 * @param actorType the actorType to set
 		 */
-		public void setTitle(String title) {
-			this.title = title;
+		public void setActorType(String actorType) {
+			this.actorType = actorType;
 		}
+		/**
+		 * @return the scopeType
+		 */
+		public String getScopeType() {
+			return scopeType;
+		}
+		/**
+		 * @param scopeType the scopeType to set
+		 */
+		public void setScopeType(String scopeType) {
+			this.scopeType = scopeType;
+		}
+
+
+		private String scopeType;
+		
+		
+		private String name;
 		
 		
 		
+		
+		/**
+		 * @return the name
+		 */
+		public String getName() {
+			return name;
+		}
+		/**
+		 * @param name the name to set
+		 */
+		public void setName(String name) {
+			this.name = name;
+		}
 		/**
 		 * @return the actor
 		 */
@@ -58,21 +95,20 @@ import org.neo4j.ogm.annotation.StartNode;
 			this.actor = actor;
 		}
 		/**
-		 * @return the movie
+		 * @return the scope
 		 */
-		public Movie getMovie() {
-			return movie;
+		public Scope getScope() {
+			return scope;
 		}
 		/**
-		 * @param movie the movie to set
+		 * @param scope the scope to set
 		 */
-		public void setMovie(Movie movie) {
-			this.movie = movie;
+		public void setScope(Scope scope) {
+			this.scope = scope;
 		}
+		
 		@StartNode private Actor actor;
-	    @EndNode   private Movie movie;
-	}
-
+	    @EndNode   private Scope scope;
 	
-
+}
 

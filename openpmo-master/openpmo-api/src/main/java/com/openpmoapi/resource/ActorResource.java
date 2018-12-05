@@ -37,7 +37,6 @@ public class ActorResource {
 	@Autowired
 	private ActorRepository actorRepository;
 	
-	
 	@Autowired
 	private ActorService actorService;
 	
@@ -68,7 +67,6 @@ public class ActorResource {
 	/**
 		This is method save Actor
 	 */
-	
 	@PostMapping
 	public ResponseEntity<Actor> save(@Valid @RequestBody Actor actor, HttpServletResponse response) {
 		Actor savedActor = actorRepository.save(actor);
@@ -82,7 +80,7 @@ public class ActorResource {
 	 */
 	@GetMapping
 	public Iterable<Actor> findByAll() {
-		 return actorRepository.findAll(2);
+		return actorRepository.findAll();
 	}
 	
 	
@@ -91,12 +89,10 @@ public class ActorResource {
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Actor> findById(@PathVariable Long id) {
-		Optional<Actor> actor = actorRepository.findById(id,2);
+		Optional<Actor> actor = actorRepository.findById(id);
 		return actor.isPresent() ? ResponseEntity.ok(actor.get()) : ResponseEntity.notFound().build();
 	}
-	
-	  
-	
+
 	
 
 	

@@ -89,13 +89,11 @@ public class RoleResource {
 			This is method find by one Role
 	 */
 	@GetMapping("/{id}")
-	public ResponseEntity<Role> findById(@PathVariable Long id) {
-		Optional<Role> role = roleRepository.findById(id,2);
-		return role.isPresent() ? ResponseEntity.ok(role.get()) : ResponseEntity.notFound().build();
+	public ResponseEntity<Role> findById(@PathVariable Long id){
+		Optional<Role> Role = roleRepository.findById(id,2);
+		return Role.isPresent() ? ResponseEntity.ok(Role.get()) : ResponseEntity.notFound().build();
 	}
-	
-	  
-	
+
 	
 
 	

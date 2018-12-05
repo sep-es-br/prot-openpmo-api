@@ -12,14 +12,14 @@ public interface OfficeRepository extends Neo4jRepository <Office, Long>{
 
 	
 	
-	
-	Office findByName(@Param("name") String name);
-	
-	Collection<Office> findByNameLike(@Param("name") String name);
-	
-
-	
-	   
+//	
+//	Office findByName(@Param("name") String name);
+//	
+//	Collection<Office> findByNameLike(@Param("name") String name);
+//	
+//
+//	
+//	   
 	@Query("MATCH (m:Environment)<-[r:ACTED_IN]-(a:Person) RETURN m,r,a LIMIT {limit}")
 		   Collection<Office> graph(@Param("limit") int limit);
 	

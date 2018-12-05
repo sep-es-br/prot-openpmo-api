@@ -5,7 +5,6 @@ package com.openpmo.security;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,14 +27,25 @@ public class AppUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
 		Person optionalPerson = personRepository.findByName(name);
-		Person person = optionalPerson.orElseThrow(() -> new UsernameNotFoundException("Usuário e/ou senha incorretos"));
-		return new SystemUser(person, getPermissoes(usuario));
+		Person person = null;
+		try {
+			person = optionalPerson;
+		} catch (UsernameNotFoundException e) {
+			throw new UsernameNotFoundException("Usuário e/ou senha incorretos");
+		}
+		return new SystemUser(person, getRoles(person));		
+				
 	}
 
-	private Collection<? extends GrantedAuthority> getPermissoes(Person usuario) {
+	private Collection<? extends GrantedAuthority> getRoles(Person person) {
 		Set<SimpleGrantedAuthority> authorities = new HashSet<>();
-		usuario.getPermissoes().forEach(p -> authorities.add(new SimpleGrantedAuthority(p.getDescricao().toUpperCase())));
+		person.getRoles().forEach(p -> authorities.add(new SimpleGrantedAuthority(p.getName().toUpperCase())));
 		return authorities;
 	}
+	
+	
+		
+		
+	
 
 }

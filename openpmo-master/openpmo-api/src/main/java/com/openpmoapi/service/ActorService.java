@@ -27,7 +27,7 @@ public class ActorService {
 
 	
 	@Autowired
-	private ActorRepository actorRepository;
+	private ActorRepository ActorRepository;
 	
 	
 	/**
@@ -39,7 +39,7 @@ public class ActorService {
 	public Actor update(Long id, Actor actor) {
 		Actor savedActor = findActorById(id);
 		BeanUtils.copyProperties(actor, savedActor, "id", "actor");
-		return actorRepository.save(savedActor);
+		return ActorRepository.save(savedActor);
 	}
 	
 	
@@ -50,17 +50,11 @@ public class ActorService {
 	 */
 	@Transactional(readOnly = true)
 	public Actor findActorById(Long id) {
-		Optional<Actor> savedActor = actorRepository.findById(id);
+		Optional<Actor> savedActor = ActorRepository.findById(id);
 		if (!savedActor.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
 		return savedActor.get();
 	}
-	
-	
-	
-
-	
-	
 	
 }
