@@ -97,15 +97,7 @@ public class WorkpackModelResource {
 						
 					}else {
 						
-						try {
-							System.err.println("could not delete propertyProfile");
-						} catch (IllegalArgumentException e) {
-							System.err.println("could not delete propertyProfile");
-						}
-						
-						//throw new PropertyProfileException("could not delete propertyProfile");
-						
-						//throw new IllegalArgumentException("could not delete propertyProfile");
+						throw new IllegalArgumentException("could not delete propertyProfile");
 					}
 			}
 		}
