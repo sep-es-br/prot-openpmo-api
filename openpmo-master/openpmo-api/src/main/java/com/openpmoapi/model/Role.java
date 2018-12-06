@@ -25,89 +25,63 @@ public class Role {
 
 	@GraphId  private Long id;
 	    
-	    /**
-		 * @return the id
-		 */
-		public Long getId() {
-			return id;
-		}
-		
-		
-		private String actorType;
-		
-
-		/**
-		 * @return the actorType
-		 */
-		public String getActorType() {
-			return actorType;
-		}
-		/**
-		 * @param actorType the actorType to set
-		 */
-		public void setActorType(String actorType) {
-			this.actorType = actorType;
-		}
-		/**
-		 * @return the scopeType
-		 */
-		public String getScopeType() {
-			return scopeType;
-		}
-		/**
-		 * @param scopeType the scopeType to set
-		 */
-		public void setScopeType(String scopeType) {
-			this.scopeType = scopeType;
-		}
-
-
-		private String scopeType;
-		
-		
-		private String name;
-		
-		
-		
-		
-		/**
-		 * @return the name
-		 */
-		public String getName() {
-			return name;
-		}
-		/**
-		 * @param name the name to set
-		 */
-		public void setName(String name) {
-			this.name = name;
-		}
-		/**
-		 * @return the actor
-		 */
-		public Actor getActor() {
-			return actor;
-		}
-		/**
-		 * @param actor the actor to set
-		 */
-		public void setActor(Actor actor) {
-			this.actor = actor;
-		}
-		/**
-		 * @return the scope
-		 */
-		public Scope getScope() {
-			return scope;
-		}
-		/**
-		 * @param scope the scope to set
-		 */
-		public void setScope(Scope scope) {
-			this.scope = scope;
-		}
-		
-		@StartNode private Actor actor;
-	    @EndNode   private Scope scope;
+	private String scopeType;
 	
-}
+	private String name;
+	
+	@StartNode private Actor actor;
+    @EndNode   private Scope scope;
+
+
+	
+	public Long getId() {
+		return id;
+	}
+	
+	
+	private String actorType;
+	
+
+	public String getActorType() {
+		return actorType;
+	}
+	
+	public void setActorType(String actorType) {
+		this.actorType = actorType;
+	}
+	
+	public String getScopeType() {
+		return scopeType;
+	}
+	
+	public void setScopeType(String scopeType) {
+		this.scopeType = scopeType;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+	
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public Actor getActor() {
+		return actor;
+	}
+	
+	public void setActor(Actor actor) {
+		this.actor = actor;
+	}
+	
+	public Scope getScope() {
+		return scope;
+	}
+	
+	public void setScope(Scope scope) {
+		this.scope = scope;
+	}
+		
+}		

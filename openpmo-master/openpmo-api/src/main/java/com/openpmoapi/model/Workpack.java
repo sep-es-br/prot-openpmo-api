@@ -11,28 +11,24 @@ import org.neo4j.ogm.annotation.Relationship;
 
 
 /**
-* Class of the real workpack created from a workpack template.
+* Represents the work package of the Project Manager Office
 *
-* @author vagner.cordeiro  
+* @author marcos.santos  
 * @since 2018-jul-31
 */
 @NodeEntity(label="Workpack")
 public class Workpack extends Scope {
 	
-	/**
-	 * Self generated node id
-	 */
+	
 	@Id @GeneratedValue
 	private Long id;
-	/**
-	 * @return the id
-	 */
+	
+	
 	public Long getId() {
 		return id;
 	}
-	/**
-	 * @param id the id to set
-	 */
+	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -53,15 +49,12 @@ public class Workpack extends Scope {
 
 	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
 	private List<Property> properties = new ArrayList<>();
-	/**
-	 * @return the properties
-	 */
+
+	
 	public List<Property> getProperties() {
 		return properties;
 	}
-	/**
-	 * @param properties the properties to set
-	 */
+	
 	public void setProperties(List<Property> properties) {
 		this.properties = properties;
 	}
@@ -72,15 +65,11 @@ public class Workpack extends Scope {
 	 */
 	@Relationship(type="IS_INSTANCE_OF", direction=Relationship.OUTGOING)
 	private WorkpackModel model;
-	/**
-	 * @return the model
-	 */
+	
 	public WorkpackModel getModel() {
 		return model;
 	}
-	/**
-	 * @param model the model to set
-	 */
+	
 	public void setModel(WorkpackModel model) {
 		this.model = model;
 	}
@@ -91,15 +80,11 @@ public class Workpack extends Scope {
 	 */
 	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
 	private List<Person> people= new ArrayList<>();	
-	/**
-	 * @return the people
-	 */
+	
 	public List<Person> getPeople() {
 		return people;
 	}
-	/**
-	 * @param people the people to set
-	 */
+	
 	public void setPeople(List<Person> people) {
 		this.people = people;
 	}
@@ -111,15 +96,12 @@ public class Workpack extends Scope {
 	 */
 	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
 	private List<Organization> organizations= new ArrayList<>();	
-	/**
-	 * @return the organizations
-	 */
+	
+	
 	public List<Organization> getOrganizations() {
 		return organizations;
 	}
-	/**
-	 * @param organizations the organizations to set
-	 */
+	
 	public void setOrganizations(List<Organization> organizations) {
 		this.organizations = organizations;
 	}
