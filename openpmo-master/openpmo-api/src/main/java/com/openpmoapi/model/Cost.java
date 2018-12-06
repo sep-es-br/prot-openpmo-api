@@ -11,7 +11,7 @@ import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.typeconversion.DateString;
 
 /**
-* Type here a brief description of the class.
+* This class represents the cost model
 *
 * @author marcos.santos  
 * @since 2018-09-04

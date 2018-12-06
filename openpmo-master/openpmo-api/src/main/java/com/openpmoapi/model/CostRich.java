@@ -13,7 +13,7 @@ import org.neo4j.ogm.annotation.StartNode;
 import org.neo4j.ogm.annotation.typeconversion.DateString;
 
 /**
-* Type here a brief description of the class.
+* This class represents the CostRich model
 *
 * @author marcos.santos  
 * @since 2018-08-30
