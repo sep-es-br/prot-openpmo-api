@@ -24,18 +24,43 @@ import org.neo4j.ogm.annotation.Relationship;
 @NodeEntity(label="Plan")
 public class Plan extends Scope {
 	
-//	@Autowired
-//	private Util util;
-	
-	
-	/**
-	 * Self generated node id
-	 */
+
 	@Id @GeneratedValue
 	private Long id;
+	
+	
+	private String fullName;
+	
+
 	/**
-	 * @return the id
+	 * Relationship linking to the first level of workpack
+	 * in the schema 
 	 */
+	@Relationship( type="IS_ROOT_OF", direction = Relationship.INCOMING)
+	private List<Workpack> workpacks= new ArrayList<>();
+	
+	
+	/**
+	 * Relationship linking its PlanStructure
+	 */
+	@Relationship(type="IS_INSTANCE_OF", direction=Relationship.OUTGOING)
+	private PlanStructure structure;
+	
+	
+	/**
+	 * Relationship linking its People 
+	 */
+	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
+	private List<Person> people= new ArrayList<>();	
+	
+	
+	/**
+	 * Relationship linking its Organization 
+	 */
+	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
+	private List<Organization> organizations= new ArrayList<>();	
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -45,43 +70,17 @@ public class Plan extends Scope {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
-
-//	@NotNull
-//	@Size(min=3,max=20)
-//	private String name;
-//	public String getName() {
-//		return name;
-//	}
-//	public void setName(String name) {
-//		this.name = name;
-//	}
-	
 	
 
-	private String fullName;
-	/**
-	 * @return the fullName
-	 */
 	public String getFullName() {
 		return fullName;
 	}
-	/**
-	 * @param fullName the fullName to set
-	 */
+
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
 
-	
-
-	/**
-	 *    Relationship linking to the first level of workpack
-	 * in the schema 
-	 */
-	@Relationship( type="IS_ROOT_OF", direction = Relationship.INCOMING)
-	private List<Workpack> workpacks= new ArrayList<>();	
+		
 	public List<Workpack> getWorkpacks() {
 		return workpacks;
 	}
@@ -90,65 +89,37 @@ public class Plan extends Scope {
 	}
 
 
-	/**
-	 * Relationship linking its PlanStructure
-	 */
-	@Relationship(type="IS_INSTANCE_OF", direction=Relationship.OUTGOING)
-	private PlanStructure structure;
-	/**
-	 * @return the structure
-	 */
 	public PlanStructure getStructure() {
 		return structure;
 	}
-	/**
-	 * @param structure the structure to set
-	 */
+ 
 	public void setStructure(PlanStructure structure) {
 		this.structure = structure;
 	}
 	
-	/**
-	 * Relationship linking its People 
-	 */
-	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
-	private List<Person> people= new ArrayList<>();	
-	/**
-	 * @return the people
-	 */
+	
+
 	public List<Person> getPeople() {
 		return people;
 	}
-	/**
-	 * @param people the people to set
-	 */
+	
+	
 	public void setPeople(List<Person> people) {
 		this.people = people;
 	}
 
 	
 	
-	/**
-	 * Relationship linking its Organization 
-	 */
-	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
-	private List<Organization> organizations= new ArrayList<>();	
-	/**
-	 * @return the organizations
-	 */
 	public List<Organization> getOrganizations() {
 		return organizations;
 	}
-	/**
-	 * @param organizations the organizations to set
-	 */
+
+	
 	public void setOrganizations(List<Organization> organizations) {
 		this.organizations = organizations;
 	}
 
 
-	
-	
 	
 	
 	@Override

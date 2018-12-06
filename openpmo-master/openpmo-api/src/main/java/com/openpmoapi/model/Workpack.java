@@ -24,31 +24,53 @@ public class Workpack extends Scope {
 	private Long id;
 	
 	
+	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
+	private List<Property> properties = new ArrayList<>();
+	
+
+	/**
+	 * Relationship linking its models 
+	 */
+	@Relationship(type="IS_INSTANCE_OF", direction=Relationship.OUTGOING)
+	private WorkpackModel model;
+	
+	
+	/**
+	 * Relationship linking its People 
+	 */
+	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
+	private List<Person> people= new ArrayList<>();	
+	
+	
+	/**
+	 * Relationship linking its Organization 
+	 */
+	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
+	private List<Organization> organizations= new ArrayList<>();	
+	
+	
+	/**
+	 * Relationship linking its Costs 
+	 */
+	@Relationship(type="APPLIES_TO", direction=Relationship.INCOMING)
+	private List<Cost> costs= new ArrayList<>();
+	
+	
+	/**
+	 * Relationship linking its children 
+	 */
+	@Relationship(type="IS_IN", direction=Relationship.INCOMING)
+	private List<Workpack> components = new ArrayList<>();
+	
+	
+
+	
 	public Long getId() {
 		return id;
 	}
-	
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-//
-//	@NotNull
-//	@Size(min=3,max=20)
-//	private String name;
-//	public String getName() {
-//		return name;
-//	}
-//	public void setName(String name) {
-//		this.name = name;
-//	}
-	
-	
-
-
-	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
-	private List<Property> properties = new ArrayList<>();
 
 	
 	public List<Property> getProperties() {
@@ -59,12 +81,6 @@ public class Workpack extends Scope {
 		this.properties = properties;
 	}
 
-
-	/**
-	 * Relationship linking its models 
-	 */
-	@Relationship(type="IS_INSTANCE_OF", direction=Relationship.OUTGOING)
-	private WorkpackModel model;
 	
 	public WorkpackModel getModel() {
 		return model;
@@ -74,12 +90,6 @@ public class Workpack extends Scope {
 		this.model = model;
 	}
 
-
-	/**
-	 * Relationship linking its People 
-	 */
-	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
-	private List<Person> people= new ArrayList<>();	
 	
 	public List<Person> getPeople() {
 		return people;
@@ -90,14 +100,6 @@ public class Workpack extends Scope {
 	}
 
 	
-	
-	/**
-	 * Relationship linking its Organization 
-	 */
-	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
-	private List<Organization> organizations= new ArrayList<>();	
-	
-	
 	public List<Organization> getOrganizations() {
 		return organizations;
 	}
@@ -106,12 +108,7 @@ public class Workpack extends Scope {
 		this.organizations = organizations;
 	}
 
-
-	/**
-	 * Relationship linking its Costs 
-	 */
-	@Relationship(type="APPLIES_TO", direction=Relationship.INCOMING)
-	private List<Cost> costs= new ArrayList<>();	
+		
 	public List<Cost> getCosts() {
 		return costs;
 	}
@@ -119,12 +116,6 @@ public class Workpack extends Scope {
 		this.costs = costs;
 	}
 
-
-	/**
-	 * Relationship linking its children 
-	 */
-	@Relationship(type="IS_IN", direction=Relationship.INCOMING)
-	private List<Workpack> components = new ArrayList<>();
 	public List<Workpack> getComponents() {
 		return components;
 	}

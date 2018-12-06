@@ -24,6 +24,16 @@ public class CostRich {
 	
 	@Id @GeneratedValue   
 	private Long id;
+	
+	@DateString
+	private Date date;
+	
+	@StartNode 
+    private Cost cost;
+	
+	@EndNode   
+    private BaseLine baseLine;
+	
 	public Long getId() {
 		return id;
 	}
@@ -31,8 +41,7 @@ public class CostRich {
 		this.id = id;
 	}
 
-	@DateString
-	private Date date;
+	
 	public Date getDate() {
 		return date;
 	}
@@ -41,8 +50,6 @@ public class CostRich {
 	}
 	
 	
-	@StartNode 
-    private Cost cost;
 	public Cost getCost() {
 		return cost;
 	}
@@ -50,8 +57,7 @@ public class CostRich {
 		this.cost = cost;
 	}
 
-	@EndNode   
-    private BaseLine baseLine;
+	
 	public BaseLine getBaseLine() {
 		return baseLine;
 	}

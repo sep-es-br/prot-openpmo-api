@@ -7,6 +7,9 @@ package com.openpmoapi.model;
 
 import java.util.Collection;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
@@ -25,6 +28,8 @@ public class Actor {
 
 		Long id;
 		
+		@NotNull
+		@Size(min=3,max=20)
 		private String name;
 		
 		private String fullName;

@@ -20,11 +20,18 @@ import org.neo4j.ogm.annotation.typeconversion.DateString;
 public class Cost {
 
 	
-	/**
-	 * Self generated node id
-	 */
+	
 	@Id @GeneratedValue
 	private Long id;
+	
+	private String description;
+	
+	private Double TotalCost;
+	
+	@DateString
+	private Date date;
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -32,7 +39,7 @@ public class Cost {
 		this.id = id;
 	}
 	
-	private String description;
+	
 	public String getDescription() {
 		return description;
 	}
@@ -40,7 +47,7 @@ public class Cost {
 		this.description = description;
 	}
 	
-	private Double TotalCost;
+
 	public Double getTotalCost() {
 		return TotalCost;
 	}
@@ -48,8 +55,7 @@ public class Cost {
 		TotalCost = totalCost;
 	}
 	
-	@DateString
-	private Date date;
+	
 	public Date getDate() {
 		return date;
 	}

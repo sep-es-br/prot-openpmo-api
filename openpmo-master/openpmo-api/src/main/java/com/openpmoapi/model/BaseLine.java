@@ -31,6 +31,14 @@ public class BaseLine {
 	 */
 	@Id @GeneratedValue
 	private Long id;
+	
+	private String name;
+	   
+	@DateString
+	private Date date;
+	
+	
+	
 	public Long getId() {
 		return id;
 	}
@@ -38,8 +46,9 @@ public class BaseLine {
 		this.id = id;
 	}
 
-	private String name;
-    public String getName() {
+	
+	
+	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
@@ -47,8 +56,7 @@ public class BaseLine {
 	}
 
 
-	@DateString
-	private Date date;
+	
 	public Date getDate() {
 		return date;
 	}
@@ -56,21 +64,6 @@ public class BaseLine {
 		this.date = date;
 	}
 	
-
-	
-
-//	/**
-//	 * Map (attribute/value) of single properties defined for the template
-//	 */
-//	
-//	@Relationship(type="IS_FROZEN_BY", direction=Relationship.INCOMING)
-//	private List<Workpack> workpacks = new ArrayList<>();
-//	public List<Workpack> getWorkpacks() {
-//		return workpacks;
-//	}
-//	public void setWorkpacks(List<Workpack> workpacks) {
-//		this.workpacks = workpacks;
-//	}
 
 
 	/**

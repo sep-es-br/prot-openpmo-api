@@ -21,38 +21,44 @@ import org.neo4j.ogm.annotation.Relationship;
 @NodeEntity(label="WorkpackModel")
 public class WorkpackModel {
 	
-//	@Autowired
-//	private Util util;
-	
-	
-	
-	/**
-	 * Self generated node id
-	 */
+
 	@Id @GeneratedValue
 	private Long id;
+	
+	@NotNull
+	@Size(min=3,max=20)
+	private String name;
+	
+	
 	/**
-	 * @return the id
+	 * Relationship linking its Organizations 
 	 */
+	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
+	private List<Stakeholder> stakeholders= new ArrayList<>();	
+	
+	
+	/**
+	 * Relationship linking its children 
+	 */
+	@Relationship(type="IS_IN", direction=Relationship.INCOMING)
+	private List<WorkpackModel> components = new ArrayList<>();
+	
+	
+	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
+	private List<PropertyProfile> propertyProfiles = new ArrayList<>();
+	
+	
+	
+	
+	
 	public Long getId() {
 		return id;
 	}
-	/**
-	 * @param id the id to set
-	 */
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-
-
-	/**
-	 * The workpack profile name
-	 */
-
-	@NotNull
-	@Size(min=3,max=20)
-	private String name;
 	public String getName() {
 		return name;
 	}
@@ -60,33 +66,14 @@ public class WorkpackModel {
 		this.name = name;
 	}
 
-
-
-	/**
-	 * Relationship linking its Organizations 
-	 */
-	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
-	private List<Stakeholder> stakeholders= new ArrayList<>();	
-
-	/**
-	 * @return the stakeholder
-	 */
 	public List<Stakeholder> getStakeholder() {
 		return stakeholders;
 	}
-	/**
-	 * @param stakeholder the stakeholder to set
-	 */
+	
 	public void setStakeholder(List<Stakeholder> stakeholder) {
 		this.stakeholders = stakeholder;
 	}
 	
-
-	/**
-	 * Relationship linking its children 
-	 */
-	@Relationship(type="IS_IN", direction=Relationship.INCOMING)
-	private List<WorkpackModel> components = new ArrayList<>();
 	public List<WorkpackModel> getComponents() {
 		return components;
 	}
@@ -95,32 +82,18 @@ public class WorkpackModel {
 	}
 	
 	
-	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
-	private List<PropertyProfile> propertyProfiles = new ArrayList<>();
-	/**
-	 * @return the propertyProfiles
-	 */
 	public List<PropertyProfile> getPropertyProfiles() {
 		return propertyProfiles;
 	}
-	/**
-	 * @param propertyProfiles the propertyProfiles to set
-	 */
 	public void setPropertyProfiles(List<PropertyProfile> propertyProfiles) {
 		this.propertyProfiles = propertyProfiles;
 	}
 
 
 	private List<PropertyProfile> Properties = new ArrayList<>();
-	/**
-	 * @return the properties
-	 */
 	public List<PropertyProfile> getProperties() {
 		return Properties;
 	}
-	/**
-	 * @param properties the properties to set
-	 */
 	public void setProperties(List<PropertyProfile> properties) {
 		Properties = properties;
 	}

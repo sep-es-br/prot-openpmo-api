@@ -23,52 +23,43 @@ import org.neo4j.ogm.annotation.Relationship;
 @NodeEntity(label="Office")
 public class Office extends Scope {
 	
-
-
 	private String fullName;
+
+	
 	/**
-	 * @return the fullName
+	 *    Relationship linking all the planStructure the OFFICE 
 	 */
+	@Relationship(type="IS_ADOPTED_BY", direction = Relationship.INCOMING)
+	private List<PlanStructure> planStructures = new ArrayList<PlanStructure>(); 
+	
+	
+	/**
+	 *    Relationship linking all the plans the OFFICE 
+	 */
+	@Relationship(type="IS_ADOPTED_BY", direction = Relationship.INCOMING)
+	private List<Plan> plans = new ArrayList<Plan>(); 
+	
+	
+	
 	public String getFullName() {
 		return fullName;
 	}
-	/**
-	 * @param fullName the fullName to set
-	 */
+
+	
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
 
 
-	/**
-	 *    Relationship linking all the planStructure the OFFICE 
-	 */
-	@Relationship(type="IS_ADOPTED_BY", direction = Relationship.INCOMING)
-	private List<PlanStructure> planStructures = new ArrayList<>(); 
-
-	/**
-	 * @return the planStructures
-	 */
 	public List<PlanStructure> getPlanStructures() {
 		return planStructures;
 	}
-	/**
-	 * @param planStructures the planStructures to set
-	 */
+
 	public void setPlanStructures(List<PlanStructure> planStructures) {
 		this.planStructures = planStructures;
 	}
 
 
-
-	/**
-	 *    Relationship linking all the plans the OFFICE 
-	 */
-	@Relationship(type="IS_ADOPTED_BY", direction = Relationship.INCOMING)
-	private List<Plan> plans = new ArrayList<>(); 
-	/**
-	 * @return the plans
-	 */
 	public List<Plan> getPlans() {
 		return plans;
 	}
@@ -78,53 +69,6 @@ public class Office extends Scope {
 	public void setPlans(List<Plan> plans) {
 		this.plans = plans;
 	}
-	
-	
-	
-//	/**
-//	 * Relationship linking its People 
-//	 */
-//	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
-//	private List<Person> people= new ArrayList<>();	
-//	/**
-//	 * @return the people
-//	 */
-//	public List<Person> getPeople() {
-//		return people;
-//	}
-//	/**
-//	 * @param people the people to set
-//	 */
-//	public void setPeople(List<Person> people) {
-//		this.people = people;
-//	}
-
-	
-//	
-//	/**
-//	 * Relationship linking its Organization 
-//	 */
-//	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
-//	private List<Organization> organizations= new ArrayList<>();	
-//	/**
-//	 * @return the organizations
-//	 */
-//	public List<Organization> getOrganizations() {
-//		return organizations;
-//	}
-//	/**
-//	 * @param organizations the organizations to set
-//	 */
-//	public void setOrganizations(List<Organization> organizations) {
-//		this.organizations = organizations;
-//	}
-//
-//
-//	
-	
-	
-	
-	
 	
 
 }

@@ -25,6 +25,8 @@ public class Role {
 
 	@GraphId  private Long id;
 	    
+	private String actorType;
+	
 	private String scopeType;
 	
 	private String name;
@@ -38,10 +40,6 @@ public class Role {
 		return id;
 	}
 	
-	
-	private String actorType;
-	
-
 	public String getActorType() {
 		return actorType;
 	}

@@ -5,6 +5,9 @@ package com.openpmoapi.model;
 
 import java.util.Collection;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
 
@@ -24,47 +27,34 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @JsonIdentityInfo( generator = ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Scope {
 
-	  private Long id;
+		private Long id;
+		
+		@NotNull
+		@Size(min=3,max=20)
+		private String name;
+		
+		@Relationship(type="ACTS",direction=Relationship.INCOMING)
+	    private Collection <Role> roles;
 	    
-	    /**
-		 * @return the id
-		 */
+	   
 		public Long getId() {
 			return id;
 		}
 
-
-		private String name;
-
-		/**
-		 * @return the name
-		 */
 		public String getName() {
 			return name;
 		}
 
-
-		/**
-		 * @param name the name to set
-		 */
 		public void setName(String name) {
 			this.name = name;
 		}
 		
-		@Relationship(type="ACTS",direction=Relationship.INCOMING)
-	    private Collection <Role> roles;
+		
 
-		/**
-		 * @return the roles
-		 */
 		public Collection<Role> getRoles() {
 			return roles;
 		}
 
-
-		/**
-		 * @param roles the roles to set
-		 */
 		public void setRoles(Collection<Role> roles) {
 			this.roles = roles;
 		}

@@ -25,32 +25,35 @@ import org.neo4j.ogm.annotation.Relationship;
 public class PlanStructure {
 	
 	
-	/**
-	 * Self generated node id
-	 */
+	
 	@Id @GeneratedValue
 	private Long id;
+	
+	
+	@NotNull
+	@Size(min=3,max=20)
+	private String name;
+	
+	private String fullName;
+	
+	
 	/**
-	 * @return the id
+	 *    Relationship linking to the first level of workpackTemplate
+	 * in the schema 
 	 */
+	@Relationship(type="IS_ROOT_OF", direction=Relationship.INCOMING)
+	private List<WorkpackModel> workpackModels= new ArrayList<>();	
+	
+	
 	public Long getId() {
 		return id;
 	}
-	/**
-	 * @param id the id to set
-	 */
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
 
 
-	/**
-	 * The schema template name
-	 */
-
-	@NotNull
-	@Size(min=3,max=20)
-	private String name;
 	public String getName() {
 		return name;
 	}
@@ -59,10 +62,6 @@ public class PlanStructure {
 	}
 
 
-	private String fullName;
-	/**
-	 * @return the fullName
-	 */
 	public String getFullName() {
 		return fullName;
 	}
@@ -74,25 +73,17 @@ public class PlanStructure {
 	}
 
 
-
-	/**
-	 *    Relationship linking to the first level of workpackTemplate
-	 * in the schema 
-	 */
-	@Relationship(type="IS_ROOT_OF", direction=Relationship.INCOMING)
-	private List<WorkpackModel> workpackModels= new ArrayList<>();	
-	/**
-	 * @return the workpackModels
-	 */
 	public List<WorkpackModel> getWorkpackModels() {
 		return workpackModels;
 	}
-	/**
-	 * @param workpackModels the workpackModels to set
-	 */
 	public void setWorkpackModels(List<WorkpackModel> workpackModels) {
 		this.workpackModels = workpackModels;
 	}
+	
+	
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -26,94 +26,69 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @NodeEntity(label="Property")
 public class Property {
 
-	
 
 	@Id @GeneratedValue   
 	private Long id;
-	/**
-	 * @return the id
-	 */
+	
+	
+	private String name = "";
+	
+	private String value = "";
+	
+	
+	@JsonIgnore
+	@Labels
+	private List<String> labels = new ArrayList<>();
+	
+	@Relationship(type="IS_DRIVEN_BY", direction=Relationship.UNDIRECTED)
+	private PropertyProfile profile;
+	
+	
+	
 	public Long getId() {
 		return id;
 	}
-	/**
-	 * @param id the id to set
-	 */
+
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
-
-
-	private String name = "";
-	/**
-	 * @return the name
-	 */
+	
+	
 	public String getName() {
 		return name;
 	}
-	/**
-	 * @param name the name to set
-	 */
+	
 	public void setName(String name) {
 		this.name = name;
 	}
 
-
-	
-
-	private String value = "";
-	/**
-	 * @return the value
-	 */
 	public String getValue() {
 		return value;
 	}
-	/**
-	 * @param value the value to set
-	 */
 	public void setValue(String value) {
 		this.value = value;
 	}
 	
-	
-	
-	@Relationship(type="IS_DRIVEN_BY", direction=Relationship.UNDIRECTED)
-	private PropertyProfile profile;
-	/**
-	 * @return the profile
-	 */
 	public PropertyProfile getProfile() {
 		return profile;
 	}
-	/**
-	 * @param profile the profile to set
-	 */
 	public void setProfile(PropertyProfile profile) {
 		this.profile = profile;
 	}
 	
-	
 
-	@JsonIgnore
-	@Labels
-	private List<String> labels = new ArrayList<>();
-	/**
-	 * @return the labels
-	 */
 	public List<String> getLabels() {
 		return labels;
 	}
-	/**
-	 * @param labels the labels to set
-	 */
 	public void setLabels(List<String> labels) {
 		this.labels = labels;
 	}
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
+	
+	
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

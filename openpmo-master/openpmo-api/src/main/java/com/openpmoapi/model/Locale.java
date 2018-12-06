@@ -21,19 +21,23 @@ import org.neo4j.ogm.annotation.NodeEntity;
 public class Locale {
 
 	
-	/**
-	 * Self generated node id
-	 */
 	@Id @GeneratedValue
 	private Long id;
+	
+	@NotNull
+	private String name;
+	
+	
+	@NotNull
+	private String uf;
+	
+	
+	
 	public Long getId() {
 		return id;
 	}
 	
 	
-	
-	@NotNull
-	private String name;
 	public String getName() {
 		return name;
 	}
@@ -42,8 +46,6 @@ public class Locale {
 	}
 	
 	
-	@NotNull
-	private String uf;
 	public String getUf() {
 		return uf;
 	}

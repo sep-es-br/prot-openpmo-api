@@ -27,16 +27,31 @@ public class LocaleRich {
 	
 	@Id @GeneratedValue   
 	private Long id;
-    public Long getId() {
+   
+	@NotNull
+    private String name;
+	
+	
+	 @DateString
+	 Date itemDate;
+	
+	
+	 @StartNode 
+	 private Locale locale;
+	 
+	 
+	 @EndNode   
+	 private Workpack workpack;
+	 
+	
+	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-
-	@NotNull
-    private String name;
+	
     public String getName() {
 		return name;
 	}
@@ -44,10 +59,7 @@ public class LocaleRich {
 		this.name = name;
 	}
 
-
-	
-    @StartNode 
-    private Locale locale;
+   
 	public Locale getLocale() {
 		return locale;
 	}
@@ -55,9 +67,6 @@ public class LocaleRich {
 		this.locale = locale;
 	}
 
-
-	@EndNode   
-    private Workpack workpack;
 	public Workpack getWorkpack() {
 		return workpack;
 	}
@@ -65,9 +74,6 @@ public class LocaleRich {
 		this.workpack = workpack;
 	}
 
-
-	@DateString
-    Date itemDate;
 	public Date getItemDate() {
 		return itemDate;
 	}
