@@ -63,15 +63,6 @@ public class RoleService {
 	@Transactional(readOnly = true)
     public Collection<Role> findAllByScopeId(Long id) {
       Collection<Role> roles = roleRepository.findAllByScopeId(id);
-      
-//	  	roles.forEach((role)->{
-//			
-//			role.setScope(null);
-//			
-//			role.getActor().setRoles(null);
-//			
-//		});
-      
       return roles;
     }
 	
@@ -80,32 +71,11 @@ public class RoleService {
 	@Transactional(readOnly = true)
     public Collection<Role> findAllByActorId(Long id) {
       Collection<Role> roles = roleRepository.findAllByActorId(id);
-      
-//	  	roles.forEach((role)->{
-//			
-//			role.setActor(null);
-//			
-//			role.getScope().setRoles(null);
-//			
-//		});
-      
-      
       return roles;
     }
 	
 	
-	
-	public Optional<Role> findById(Long id){
-		
-		
-		Optional<Role> r = roleRepository.findById(id);
-		
-		
-	 return r;	
-		
-		
-	}
-	
+
 	
 	
 }

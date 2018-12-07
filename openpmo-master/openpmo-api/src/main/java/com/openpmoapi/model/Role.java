@@ -4,7 +4,7 @@
 package com.openpmoapi.model;
 
 import org.neo4j.ogm.annotation.EndNode;
-import org.neo4j.ogm.annotation.GraphId;
+import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
 
@@ -18,21 +18,25 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 * @since 2018-11-29
 */
 
-@SuppressWarnings("deprecation")
+
 @RelationshipEntity(type="ACTS")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Role {
 
-	@GraphId  private Long id;
+	@Id  private Long id;
 	    
-	private String actorType;
+	private ActorType actorType;
 	
-	private String scopeType;
+	private ScopeType scopeType;
 	
 	private String name;
 	
-	@StartNode private Actor actor;
-    @EndNode   private Scope scope;
+	private RoleCategory category;
+	
+	@StartNode 
+	private Actor actor;
+    @EndNode   
+    private Scope scope;
 
 
 	
@@ -40,21 +44,25 @@ public class Role {
 		return id;
 	}
 	
-	public String getActorType() {
+	public ActorType getActorType() {
 		return actorType;
 	}
-	
-	public void setActorType(String actorType) {
+
+
+	public void setActorType(ActorType actorType) {
 		this.actorType = actorType;
 	}
-	
-	public String getScopeType() {
+
+	public ScopeType getScopeType() {
 		return scopeType;
 	}
-	
-	public void setScopeType(String scopeType) {
+
+
+
+	public void setScopeType(ScopeType scopeType) {
 		this.scopeType = scopeType;
 	}
+
 
 
 	public String getName() {
@@ -81,5 +89,20 @@ public class Role {
 	public void setScope(Scope scope) {
 		this.scope = scope;
 	}
+
+
+	public RoleCategory getCategory() {
+		return category;
+	}
+
+	
+	public void setCategory(RoleCategory category) {
+		this.category = category;
+	}
+
+
+	
+	
+	
 		
 }		

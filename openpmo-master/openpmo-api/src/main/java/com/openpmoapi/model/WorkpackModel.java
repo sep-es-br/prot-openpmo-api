@@ -30,6 +30,11 @@ public class WorkpackModel {
 	private String name;
 	
 	
+	boolean manageStakeholders = true;
+	
+	private List<String> businessRoles = new ArrayList<String>();
+	
+	
 	/**
 	 * Relationship linking its Organizations 
 	 */
@@ -46,6 +51,7 @@ public class WorkpackModel {
 	
 	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
 	private List<PropertyProfile> propertyProfiles = new ArrayList<>();
+	
 	
 	
 	
@@ -99,13 +105,24 @@ public class WorkpackModel {
 	}
 	
 	
+	public List<String> getBusinessRoles() {
+		
+		this.businessRoles.add("Manager");
+		this.businessRoles.add("TeamMember");
+		this.businessRoles.add("Sponsor");
+		this.businessRoles.add("Partner");
+		
+		return businessRoles;
+	}
+
+	
+	public void setBusinessRoles(List<String> businessRoles) {
+		this.businessRoles = businessRoles;
+	}
+	
 	
 	
 
-	
-
-	
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

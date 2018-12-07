@@ -103,7 +103,7 @@ public class ScopeResource {
 	@GetMapping("/{id}")
 	public ResponseEntity<Scope> findById(@PathVariable Long id) {
 		
-		Optional<Scope> scope = scopeRepository.findById(id);
+		Optional<Scope> scope = scopeRepository.findById(id,1);
 		
 //		Collection<Role> roles = roleService.findAllByScopeId(id);
 //		
