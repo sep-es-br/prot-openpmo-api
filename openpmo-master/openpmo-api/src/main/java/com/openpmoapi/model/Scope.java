@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
-* Type here a brief description of the class.
+*
+*Scope is a class that relates to Office, Workpack
+* and Plan, defining the role of this relationship
 *
 * @author marcos.santos  
 * @since 2018-11-29

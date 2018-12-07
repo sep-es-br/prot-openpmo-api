@@ -6,7 +6,7 @@ package com.openpmoapi.model;
 import java.util.Date;
 
 /**
-* Type here a brief description of the class.
+* This class represents the Milestone model
 *
 * @author marcos.santos  
 * @since 2018-11-08

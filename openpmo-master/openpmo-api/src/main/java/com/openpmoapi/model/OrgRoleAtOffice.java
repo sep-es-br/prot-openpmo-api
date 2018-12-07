@@ -10,8 +10,9 @@ import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
 
 /**
-* Type here a brief description of the class.
-*
+* This class has as objective the splitting of 
+* the relation between Organization and Office
+* 
 * @author marcos.santos  
 * @since 2018-08-14
 */

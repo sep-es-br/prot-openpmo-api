@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 /**
-* Type here a brief description of the class.
+* 
+* This it's the base class from the rich relationship
+*  with environments with Office, Plan and Workpack
 *
 * @author marcos.santos  
 * @since 2018-08-14
