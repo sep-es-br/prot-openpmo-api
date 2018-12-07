@@ -46,6 +46,10 @@ public class PersonRoleAtOrgResource {
 	
 	/**
 	 * This is method delete one OrganizationRole
+	 * 
+	 * @param id
+	 * 			This is the id that will be deleted
+	 * 
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -56,6 +60,12 @@ public class PersonRoleAtOrgResource {
 	
 	/**
 	 * This is method update OrganizationRole
+	 * @param id
+	 * 			This is the id of the PersonRoleAtOrg
+	 * 
+	 * @param role
+	 * 			This is the collection of PersonRoleAtOrg 
+	 * 
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<PersonRoleAtOrg> update(@PathVariable Long id, @Valid @RequestBody PersonRoleAtOrg organizationRole) {
@@ -65,7 +75,15 @@ public class PersonRoleAtOrgResource {
 	
 	
 	/**
-		This is method save OrganizationRole
+	 * 
+	 * This is method save OrganizationRole
+	 * 
+	 * @param organizationRole
+	 * 			This is the collection of PersonRoleAtOrg
+	 * 
+	 * @param response
+	 * 			This is the answer of the HttpServletResponse
+	 * 
 	 */
 	@PostMapping
 	public ResponseEntity<PersonRoleAtOrg> save(@Valid @RequestBody PersonRoleAtOrg organizationRole, HttpServletResponse response) {
@@ -85,7 +103,10 @@ public class PersonRoleAtOrgResource {
 	
 	
 	/**
-			This is method find by one organizationRole
+	 * 	This is method find by one organizationRole
+	 * 
+	 *  @param id
+	 *  		This is the id of the organizationRole you want to find
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<PersonRoleAtOrg> findById(@PathVariable Long id) {
@@ -97,6 +118,9 @@ public class PersonRoleAtOrgResource {
 	
 	/**
 	 * This is method find by name organizationRole
+	 * 
+	 * @param name
+	 * 			This is the name of the Role you want to find
 	 * 
 	 */
 	@GetMapping("/like/{name}")

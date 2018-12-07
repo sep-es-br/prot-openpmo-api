@@ -46,6 +46,10 @@ public class PersonRoleAtWorkpackResource {
 	
 	/**
 	 * This is method delete one WorkpackRole
+	 * 
+	 * @param id
+	 * 			This is the id that will be deleted
+	 * 
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -55,6 +59,12 @@ public class PersonRoleAtWorkpackResource {
 	
 	/**
 	 * This is method update WorkpackRole
+	 * @param id
+	 * 			This is the id of the PersonRoleAtWorkpack
+	 * 
+	 * @param workpackRole
+	 * 			This is the collection of PersonRoleAtWorkpack 
+	 * 
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<PersonRoleAtWorkpack> update(@PathVariable Long id, @Valid @RequestBody PersonRoleAtWorkpack workpackRole) {
@@ -64,7 +74,15 @@ public class PersonRoleAtWorkpackResource {
 	
 	
 	/**
-		This is method save WorkpackRole
+	 * 
+	 * This is method save WorkpackRole
+	 * 
+	 * @param workpackRole
+	 * 			This is the collection of PersonRoleAtWorkpack
+	 * 
+	 * @param response
+	 * 			This is the answer of the HttpServletResponse
+	 * 
 	 */
 	@PostMapping
 	public ResponseEntity<PersonRoleAtWorkpack> save(@Valid @RequestBody PersonRoleAtWorkpack workpackRole, HttpServletResponse response) {
@@ -84,7 +102,10 @@ public class PersonRoleAtWorkpackResource {
 	
 	
 	/**
-			This is method find by one WorkpackRoles
+	 * 	This is method find by one WorkpackRoles
+	 * 
+	 *  @param id
+	 *  		This is the id of the PlanRole you want to find
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<PersonRoleAtWorkpack> findById(@PathVariable Long id) {
@@ -95,6 +116,9 @@ public class PersonRoleAtWorkpackResource {
 	
 	/**
 	 * This is method find by name WorkpackRoles
+	 * 
+	 * @param name
+	 * 			This is the name of the PlanRole you want to find
 	 * 
 	 */
 	@GetMapping("/like/{name}")

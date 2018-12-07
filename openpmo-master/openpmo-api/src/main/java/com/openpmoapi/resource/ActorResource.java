@@ -47,6 +47,8 @@ public class ActorResource {
 	/**
 	 * This is method delete one Actor
 	 * 
+	 * @param id
+	 *			This is the id that will be deleted 
 	 *        
 	 */
 	@DeleteMapping("/{id}")
@@ -72,9 +74,15 @@ public class ActorResource {
 	}
 	
 	/**
-		This is method save Actor
-		
-		
+	 * 
+	 * This is method save Actor
+	 * 
+	 * @param actor
+	 * 			This is the collection of Actor
+	 * 
+	 * @param response
+	 * 			This is the answer of the HttpServletResponse
+	 * 
 	 */
 	@PostMapping
 	public ResponseEntity<Actor> save(@Valid @RequestBody Actor actor, HttpServletResponse response) {
@@ -85,7 +93,9 @@ public class ActorResource {
 	
 	
 	/**
-	 * This is method find by all Actor
+	 * This is native method of the neo4j, find by all Actor
+	 * 
+	 * 
 	 */
 	@GetMapping
 	public Iterable<Actor> findByAll() {
@@ -94,7 +104,11 @@ public class ActorResource {
 	
 	
 	/**
-			This is method find by one Actor
+	 *	This is method find by one Actor
+	 *	
+	 *	@param id
+	 *			This is the id of the actor you want to find
+	 *
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Actor> findById(@PathVariable Long id) {

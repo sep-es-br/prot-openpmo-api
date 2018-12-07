@@ -33,17 +33,14 @@ public class PropertyProfileResource {
 	
 	@Autowired
 	private PropertyProfileRepository propertyRepository;
-	
 
-	
-	
-	
-	
-
-	
 	/**
-	This method find by one WorkpackTemplate
-	*/
+	 * This method find by one WorkpackTemplate
+	 *	@param id
+	 *			This is the id of the PropertyProfile 
+	 *
+	 *
+	 */
 	@GetMapping("/{id}")
 		public ResponseEntity<PropertyProfile> findById(@PathVariable Long id) {
 		java.util.Optional<PropertyProfile> propProfile = propertyRepository.findById(id,2);

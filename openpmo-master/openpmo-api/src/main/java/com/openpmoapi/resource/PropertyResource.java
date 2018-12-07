@@ -46,7 +46,11 @@ public class PropertyResource {
 	
 
 	/**
-	 * This method delete one Property
+	 * This is method delete one Property
+	 * 
+	 * @param id
+	 * 			This is the id that will be deleted
+	 * 
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)

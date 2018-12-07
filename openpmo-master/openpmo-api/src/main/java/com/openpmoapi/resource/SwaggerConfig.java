@@ -13,6 +13,8 @@ import static springfox.documentation.builders.PathSelectors.regex;
 /**
 * Type here a brief description of the class.
 *
+*	This class makes it possible to use and configure swagger
+*	
 * @author lucas.regio  
 * @since 2018-11-12
 */

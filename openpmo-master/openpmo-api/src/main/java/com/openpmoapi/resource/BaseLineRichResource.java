@@ -45,6 +45,10 @@ public class BaseLineRichResource {
 	
 	/**
 	 * This is method delete one BaseineRich
+	 * 
+	 * @param id
+	 *			This is the id that will be deleted 
+	 *        
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -54,7 +58,13 @@ public class BaseLineRichResource {
 	
 	
 	/**
-	 * This is method update BaselineRich
+	 * This is method update BaseineRich
+	 * @param id
+	 * 			This is the id of the baseLineRich
+	 * 
+	 * @param baseLineRich
+	 * 			This is the collection of baseLineRich 
+	 * 
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<BaseLineRich> update(@PathVariable Long id, @Valid @RequestBody BaseLineRich baseLineRich) {
@@ -64,7 +74,15 @@ public class BaseLineRichResource {
 	
 	
 	/**
-		This is method save BaselineRich
+	 * 
+	 * This is method save BaseLineRich
+	 * 
+	 * @param baseLineRich
+	 * 			This is the collection of baseLineRich
+	 * 
+	 * @param response
+	 * 			This is the answer of the HttpServletResponse
+	 * 
 	 */
 	@PostMapping
 	public ResponseEntity<BaseLineRich> save(@Valid @RequestBody BaseLineRich baseLineRich, HttpServletResponse response) {
@@ -84,7 +102,11 @@ public class BaseLineRichResource {
 	
 	
 	/**
-			This is method find by one BaseLineRich
+	 *	This is method find by one BaseLineRich
+	 *	
+	 *	@param id
+	 *			This is the id of the baseLineRich you want to find
+	 *
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<BaseLineRich> findById(@PathVariable Long id) {

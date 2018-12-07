@@ -45,6 +45,10 @@ public class CostResource {
 	
 	/**
 	 * This is method delete one Cost
+	 * 
+	 * @param id
+	 *			This is the id that will be deleted 
+	 *        
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -55,7 +59,13 @@ public class CostResource {
 	
 	
 	/**
-	 * This is method update  Cost
+	 * This is method update Cost
+	 * @param id
+	 * 			This is the id of the cost
+	 * 
+	 * @param cost
+	 * 			This is the collection of cost 
+	 * 
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<Cost> update(@PathVariable Long id, @Valid @RequestBody Cost cost) {
@@ -65,7 +75,15 @@ public class CostResource {
 	
 	
 	/**
-		This is method save Cost
+	 * 
+	 * This is method save Cost
+	 * 
+	 * @param cost
+	 * 			This is the collection of cost
+	 * 
+	 * @param response
+	 * 			This is the answer of the HttpServletResponse
+	 * 
 	 */
 	@PostMapping
 	public ResponseEntity<Cost> save(@Valid @RequestBody Cost cost, HttpServletResponse response) {
@@ -85,7 +103,11 @@ public class CostResource {
 	
 	
 	/**
-			This is method find by one cost
+	 *	This is method find by one Cost
+	 *	
+	 *	@param id
+	 *			This is the id of the cost you want to find
+	 *
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Cost> findById(@PathVariable Long id) {

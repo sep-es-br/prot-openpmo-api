@@ -45,7 +45,11 @@ public class PlanStructureResource {
 	
 	
 	/**
-	 * This method delete one PlanStructure
+	 * This is method delete one PlanStructure
+	 * 
+	 * @param id
+	 * 			This is the id that will be deleted
+	 * 
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -56,7 +60,13 @@ public class PlanStructureResource {
 	
 	
 	/**
-	 * This method update PlanStructure
+	 * This is method update PlanStructure
+	 * @param id
+	 * 			This is the id of the PlanStructure
+	 * 
+	 * @param planStructure
+	 * 			This is the collection of PlanStructure 
+	 * 
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<PlanStructure> update(@PathVariable Long id, @Valid @RequestBody PlanStructure planStructure) {
@@ -66,7 +76,15 @@ public class PlanStructureResource {
 	
 	
 	/**
-		This method save PlanStructure
+	 * 
+	 * This is method save PlanStructure
+	 * 
+	 * @param planStructure
+	 * 			This is the collection of PlanStructure
+	 * 
+	 * @param response
+	 * 			This is the answer of the HttpServletResponse
+	 * 
 	 */
 	@PostMapping
 	public ResponseEntity<PlanStructure> save(@Valid @RequestBody PlanStructure planStructure, HttpServletResponse response) {
@@ -86,7 +104,10 @@ public class PlanStructureResource {
 	
 	
 	/**
-			This method find by one PlanStructure
+	 * 	This is method find by one Plan
+	 * 
+	 *  @param id
+	 *  		This is the id of the PlanStructure you want to find
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<PlanStructure> findById(@PathVariable Long id) {
@@ -104,8 +125,12 @@ public class PlanStructureResource {
 //	}
 	
 	/**
-		This method find by one PlanStructure tree
-	*/
+	 * This method find by one PlanStructure tree
+	 * 
+	 * @param id
+	 * 			This is the id of the PlanStructure tree PlanRole you want to find
+	 * 
+	 */
 	@GetMapping("/tree/{id}")
 	public Collection<PlanStructure> findPlanSturctureTree(@PathVariable Long id) {
 		return planStructureService.findPlanStructureByIdTree(id);
