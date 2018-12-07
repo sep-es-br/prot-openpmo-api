@@ -46,6 +46,8 @@ public class ActorResource {
 	
 	/**
 	 * This is method delete one Actor
+	 * 
+	 *        
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -56,6 +58,12 @@ public class ActorResource {
 	
 	/**
 	 * This is method update Actor
+	 * @param id
+	 * 			This is the id of the actor
+	 * 
+	 * @param actor
+	 * 			This is the collection of Actor 
+	 * 
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<Actor> update(@PathVariable Long id, @Valid @RequestBody Actor actor) {
@@ -63,9 +71,10 @@ public class ActorResource {
 		return ResponseEntity.ok(savedActor);
 	}
 	
-	
 	/**
 		This is method save Actor
+		
+		
 	 */
 	@PostMapping
 	public ResponseEntity<Actor> save(@Valid @RequestBody Actor actor, HttpServletResponse response) {
@@ -92,6 +101,7 @@ public class ActorResource {
 		Optional<Actor> actor = actorRepository.findById(id);
 		return actor.isPresent() ? ResponseEntity.ok(actor.get()) : ResponseEntity.notFound().build();
 	}
+	
 	
 
 	
