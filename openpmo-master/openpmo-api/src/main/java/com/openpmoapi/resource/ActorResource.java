@@ -93,9 +93,7 @@ public class ActorResource {
 	
 	
 	/**
-	 * This is native method of the neo4j, find by all Actor
-	 * 
-	 * 
+	 * This method find by all Actor
 	 */
 	@GetMapping
 	public Iterable<Actor> findByAll() {

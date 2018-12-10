@@ -45,6 +45,9 @@ public class RoleResource {
 	
 	/**
 	 * This is method delete one Role
+	 * 
+	 * @param id
+	 * 			This is the id of the role that will be deleted
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -55,6 +58,11 @@ public class RoleResource {
 	
 	/**
 	 * This is method update Role
+	 * 
+	 * @param id
+	 * 			This is the id of the role that will be updated
+	 * @param role
+	 * 			This is the new parameter that will be allocated in role
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<Role> update(@PathVariable Long id, @Valid @RequestBody Role role) {
@@ -64,7 +72,14 @@ public class RoleResource {
 	
 	
 	/**
-		This is method save Role
+	 * This is method save Role
+	 * 
+	 * @param role
+	 * 			This is the new parameter that will be allocated in roles
+	 * 
+	 * @param response
+	 * 			This is the answer of the HttpServletResponse
+	 * 			
 	 */
 	@PostMapping
 	public ResponseEntity<Role> save(@Valid @RequestBody Role role, HttpServletResponse response) {
@@ -84,7 +99,11 @@ public class RoleResource {
 	
 	
 	/**
-			This is method find by one Role
+	 *	This is method find by one Role, by the ID
+	 *	
+	 *	@param id
+	 *			This is the id of the role that will be find
+	 *
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Role> findById(@PathVariable Long id) {
@@ -93,9 +112,13 @@ public class RoleResource {
 	}
 	
 	
-		/**
-		This method find by one Role
-	*/
+	/**
+	 *	This is method find by one Role, by the scope
+	 *	
+	 *	@param id
+	 *			This is the id of the role that will be find
+	 *
+	 */
 	@GetMapping("/scope/{id}")
 	public Collection<Role> findAllByScopeId(@PathVariable Long id) {
 		return roleService.findAllByScopeId(id);
@@ -103,9 +126,13 @@ public class RoleResource {
 	
 	
 	
-		/**
-		This method find by one Role
-	*/
+	/**
+	 *	This is method find by one Role, by the actors
+	 *	
+	 *	@param id
+	 *			This is the id of the role that will be find
+	 *
+	 */
 	@GetMapping("/actor/{id}")
 	public Collection<Role> findAllByActorId(@PathVariable Long id) {
 		return roleService.findAllByActorId(id);

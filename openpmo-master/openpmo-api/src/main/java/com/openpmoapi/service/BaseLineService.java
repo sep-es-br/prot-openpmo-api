@@ -33,6 +33,8 @@ public class BaseLineService {
 	/**
 	
 	 * this method verify if exits the data to update 
+	 * @return
+	 * 		baseLine
 	
 	 */
 	@Transactional(readOnly = false)
@@ -47,6 +49,7 @@ public class BaseLineService {
 	/**
 	 * this method find by id a data type Locale, if not exist it treats the exception 
 	 * @return
+	 * 		baseLine
 	 */
 	@Transactional(readOnly = true)
 	public BaseLine findBaseLineById(Long id) {

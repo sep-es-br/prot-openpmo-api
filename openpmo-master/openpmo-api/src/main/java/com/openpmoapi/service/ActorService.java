@@ -33,6 +33,8 @@ public class ActorService {
 	/**
 	
 	 * this method verify if exits the data to update 
+	 * @return
+	 * 		actor
 	
 	 */
 	@Transactional(readOnly = false)
@@ -47,6 +49,7 @@ public class ActorService {
 	/**
 	 * this method find by id a data type Actor, if not exist it treats the exception 
 	 * @return
+	 * 		actor
 	 */
 	@Transactional(readOnly = true)
 	public Actor findActorById(Long id) {

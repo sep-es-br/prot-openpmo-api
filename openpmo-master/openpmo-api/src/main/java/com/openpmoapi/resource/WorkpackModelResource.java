@@ -63,7 +63,11 @@ public class WorkpackModelResource {
 	
 	
 	/**
-	 * This method delete one WorkpackModel
+	 * This is method delete one WorkpackModel
+	 * 
+	 * @param id
+	 *			This is the id that will be deleted 
+	 *        
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -76,6 +80,11 @@ public class WorkpackModelResource {
 	/**
 	 * This method update WorkpackModel
 	 * @throws Exception 
+	 * 
+	 * @param id
+	 * 			This is the id of the workpackModel that will be updated
+	 * @param wpm
+	 * 			
 	 */
 	@PutMapping("/{id}")
 	@Transactional
@@ -113,12 +122,23 @@ public class WorkpackModelResource {
 	}
 	
 	
-	
+	/**
+	 * 
+	 * @param id
+	 * 			This is the id of the Property
+	 * @return 
+	 * 			properties of the Property
+	 */
 	@Transactional
 	public Collection<Property> findProperties(Long id) {
 		return propertyService.findPropertyByIdPropertyProfile(id);
 	}
-	
+	/**
+	 * This method delete one WorkpackModel
+	 * 
+	 * @param id
+	 * 			This is the id of the profile that will be deleted
+	 */
 	@Transactional
 	public void deleteProfile( Long id) {
 		propertyProfileRepository.deleteById(id);
@@ -127,7 +147,12 @@ public class WorkpackModelResource {
 	
 	
 	/**
-		This method save WorkpackModel
+	 * This is method save WorkpackModel
+	 * 
+	 * @param wpm
+	 * 			This is the id of the WorkpackModel that will be saved
+	 * @param response
+	 * 			This is the answer of the HttpServletResponse
 	 */
 	@PostMapping
 	@Transactional
@@ -139,7 +164,8 @@ public class WorkpackModelResource {
 	
 
 	/**
-	 * This method find by all WorkpackModels
+	 * 
+	 * @return
 	 */
 	@GetMapping
 	@Transactional
@@ -149,9 +175,14 @@ public class WorkpackModelResource {
 	
 	
 	/**
-	 * This method find by all WorkpackModels
+	 * This method find by all WorkpackModels, by the id of the List Workpack Models
+	 * 
+	 * @param id
+	 * 			This is the id of the WorkpackModel that will be find
+	 * @param depth
+	 * 			This is the iterator of the listworkpackmodels
 	 */
-	@GetMapping("/listworkpackmodelsbyid/{id}/{depth")
+	@GetMapping("/listworkpackmodelsbyid/{id}/{depth}")
 	@Transactional
 	public Iterable<WorkpackModel> findByAllById(@PathVariable Iterable<Long> id,int depth) {
 		 return wpmRepository.findAllById(id, depth);
@@ -159,7 +190,12 @@ public class WorkpackModelResource {
 	
 	
 	/**
-			This method find by one WorkpackModels
+	 * This method find by one WorkpackModels, by the id
+	 * 
+	 * @param id
+	 * 			This is the id of the WorkpackModel that will be find
+	 * @param depth
+	 * 			This is the iterator of the listworkpackmodels
 	 */
 	@GetMapping("/{id}/{depth}")
 	@Transactional
@@ -169,9 +205,15 @@ public class WorkpackModelResource {
 	}
 	
 	
-		/**
-		This method find by one WorkpackModels
-	*/
+	/**
+	 * 
+	 * This method find by one WorkpackModels
+	 * 
+	 * @param id
+	 * 			This is the id of the WorkpackModel that will be find
+	 * 
+	 * @return 
+	 */
 	@GetMapping("/{id}")
 	@Transactional
 	public ResponseEntity<WorkpackModel> findById(@PathVariable Long id) {
@@ -181,21 +223,30 @@ public class WorkpackModelResource {
 		
 		
 		
-		/**
-		This method find by one or more WorkPackModels
-	*/
+	/**
+	 * 
+	 * This method find by one or more WorkPackModels
+	 * 
+	 * @param id
+	 * 			This is the id of the PlanStructure that will be find
+	 * 
+	 * @return 
+	 */
 	@GetMapping("/listworkpackmodels/{id}")
 	@Transactional
 	public Collection<WorkpackModel> findWpmByIdPlanStructure(@PathVariable Long id) {
 		return wpmService.findWpmByIdPlanStructure(id);
 	}
-	
-
-	
 		
-		/**
-		This method find by one WorkpackModel
-	*/
+	/**
+	 * 
+	 * This method find by one WorkpackModel, by the tree
+	 * 
+	 * @param id
+	 * 			This is the id of the WorkpackModel that will be find
+	 * @return 
+	 * 			List of wpm
+	 */
 	@GetMapping("/tree/{id}")
 	@Transactional
 	public ResponseEntity<WorkpackModel> findByIdWptm(@PathVariable Long id) {
@@ -206,8 +257,10 @@ public class WorkpackModelResource {
 
 	
 	/**
-	This method find by all properties of the WorkPackModels
-*/
+	 * This method find by all properties of the WorkPackModels
+	 * 
+	 * @return
+	 */
 	@GetMapping("/listpropertytypes")
 	@Transactional
 	public Object findAllPropertiesList() {
@@ -229,9 +282,12 @@ public class WorkpackModelResource {
 	
 	
 
-	/**
-	 * This method returns a default workpackModel object
-	 */
+/**
+ * 
+ * This method returns a default workpackModel object
+ * 
+ * @return
+ */
 	@GetMapping("/default")
 	@Transactional
 	public WorkpackModel getDefault() {

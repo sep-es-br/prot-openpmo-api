@@ -44,7 +44,7 @@ public class OpenPmoExceptionHandler extends ResponseEntityExceptionHandler{
 		
 		String usermessage = messageSource.getMessage("invalid.message", null, LocaleContextHolder.getLocale());
 		String developerMessage = ex.getCause() != null ? ex.getCause().toString() : ex.toString();
-		List<Erro> error = Arrays.asList(new Erro(usermessage, developerMessage));
+		List<Error> error = Arrays.asList(new Error(usermessage, developerMessage));
 		return handleExceptionInternal(ex, error, headers, HttpStatus.BAD_REQUEST, request);
 	}
 	
@@ -52,7 +52,7 @@ public class OpenPmoExceptionHandler extends ResponseEntityExceptionHandler{
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		
-		List<Erro> error = criarListaDeErros(ex.getBindingResult());
+		List<Error> error = createErrorList(ex.getBindingResult());
 		return handleExceptionInternal(ex, error, headers, HttpStatus.BAD_REQUEST, request);
 	}
 	
@@ -60,7 +60,7 @@ public class OpenPmoExceptionHandler extends ResponseEntityExceptionHandler{
 	public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException ex, WebRequest request) {
 		String usermessage = messageSource.getMessage("resource.not-found", null, LocaleContextHolder.getLocale());
 		String developerMessage = ex.toString();
-		List<Erro> error = Arrays.asList(new Erro(usermessage, developerMessage));
+		List<Error> error = Arrays.asList(new Error(usermessage, developerMessage));
 		return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
 	}
 	
@@ -68,28 +68,28 @@ public class OpenPmoExceptionHandler extends ResponseEntityExceptionHandler{
 	public ResponseEntity<Object> handleDataIntegrityViolationException(DataIntegrityViolationException ex, WebRequest request) {
 		String usermessage = messageSource.getMessage("operation.not-allowed", null, LocaleContextHolder.getLocale());
 		String developerMessage = ExceptionUtils.getRootCauseMessage(ex);
-		List<Erro> error = Arrays.asList(new Erro(usermessage, developerMessage));
+		List<Error> error = Arrays.asList(new Error(usermessage, developerMessage));
 		return handleExceptionInternal(ex, error, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
 	
-	private List<Erro> criarListaDeErros(BindingResult bindingResult) {
-		List<Erro> error = new ArrayList<>();
+	private List<Error> createErrorList(BindingResult bindingResult) {
+		List<Error> error = new ArrayList<>();
 		
 		for (FieldError fieldError : bindingResult.getFieldErrors()) {
 			String usermessage = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
 			String developerMessage = fieldError.toString();
-			error.add(new Erro(usermessage, developerMessage));
+			error.add(new Error(usermessage, developerMessage));
 		}
 			
 		return error;
 	}
 	
-	public static class Erro {
+	public static class Error {
 		
 		private String userMessage;
 		private String developerMessage;
 		
-		public Erro(String userMessage, String developerMessage) {
+		public Error(String userMessage, String developerMessage) {
 			this.userMessage = userMessage;
 			this.developerMessage = developerMessage;
 		}

@@ -33,6 +33,8 @@ public class BaseLineRichService {
 	/**
 	
 	 * this method verify if exits the data to update 
+	 * @return
+	 * 		baseLineRich
 	
 	 */
 	@Transactional(readOnly = false)
@@ -47,6 +49,7 @@ public class BaseLineRichService {
 	/**
 	 * this method find by id a data type Locale, if not exist it treats the exception 
 	 * @return
+	 * 		baseLineRich
 	 */
 	@Transactional(readOnly = true)
 	public BaseLineRich findBaseLineRichById(Long id) {

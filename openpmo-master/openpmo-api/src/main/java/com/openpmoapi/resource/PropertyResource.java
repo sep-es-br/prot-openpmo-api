@@ -62,8 +62,11 @@ public class PropertyResource {
 
 	
 		/**
-		This method find by a list of properties
-	*/
+		 *	This method find by a list of properties
+		 *	@param id
+		 *			This is the id of the Collection of properties that will be find
+		 * 
+		 */
 	@GetMapping("/listproperties/{id}")
 	public Collection<Property> findProperties(@PathVariable Long id) {
 		return propertyService.findPropertyByIdPropertyProfile(id);
@@ -72,8 +75,11 @@ public class PropertyResource {
 	
 	
 		/**
-		This method find by a list of properties
-	*/
+		 * 
+		 * This method find by a list of properties
+		 *	@param id
+		 *			This is the id of the Collection of properties that will be find 
+		 */
 	@GetMapping("/listproperty/{id}")
 	public Optional<Property> findProperty(@PathVariable Long id) {
 		return propertyService.findPropertyByIdProperty(id);
