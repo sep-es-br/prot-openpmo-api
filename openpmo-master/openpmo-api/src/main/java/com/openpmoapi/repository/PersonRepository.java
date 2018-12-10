@@ -18,7 +18,7 @@ public interface PersonRepository extends Neo4jRepository <Person, Long>{
 	Collection<Person> findByNameOrderByNameAsc();
 	
 	
-	@Query("MATCH (p:Person) WHERE  lower(p.name) CONTAINS lower($name) RETURN p ORDER BY p.name")
+	@Query("MATCH (p:Person) WHERE  lower(p.name)  CONTAINS lower($name) or lower(p.fullName) CONTAINS lower($name) RETURN p ORDER BY p.name")
 	Collection<Person> findByNameLike(@Param("name") String name);
 	
 

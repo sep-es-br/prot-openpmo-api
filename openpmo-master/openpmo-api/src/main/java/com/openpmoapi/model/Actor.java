@@ -5,14 +5,10 @@ package com.openpmoapi.model;
 
 
 
-import java.util.Collection;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Relationship;
-
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -38,9 +34,11 @@ public class Actor {
 		
 		private String address;
 		
-		@Relationship(type="ACTS")
-	    public Collection <Role> roles;
+		private ActorType actorType;
 		
+//		@Relationship(type="ACTS")
+//	    private Collection <Role> roles;
+//		
 		  
 	   
 		public Long getId() {
@@ -55,13 +53,7 @@ public class Actor {
 			this.name = name;
 		}
 		
-		public Collection<Role> getRoles() {
-			return roles;
-		}
-
-		public void setRoles(Collection<Role> roles) {
-			this.roles = roles;
-		}
+	
 
 		public String getFullName() {
 			return fullName;
@@ -85,6 +77,20 @@ public class Actor {
 
 		public void setAddress(String address) {
 			this.address = address;
+		}
+
+		/**
+		 * @return the actorType
+		 */
+		public ActorType getActorType() {
+			return actorType;
+		}
+
+		/**
+		 * @param actorType the actorType to set
+		 */
+		public void setActorType(ActorType actorType) {
+			this.actorType = actorType;
 		}
 		
 	

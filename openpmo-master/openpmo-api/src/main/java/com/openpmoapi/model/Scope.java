@@ -3,14 +3,9 @@
  */
 package com.openpmoapi.model;
 
-import java.util.Collection;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
 import org.neo4j.ogm.annotation.NodeEntity;
-import org.neo4j.ogm.annotation.Relationship;
-
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -35,9 +30,12 @@ public class Scope {
 		@Size(min=3,max=20)
 		private String name;
 		
-		@Relationship(type="ACTS",direction=Relationship.INCOMING)
-	    private Collection <Role> roles;
-	    
+		
+		private ScopeType ScopeType;
+		
+//		@Relationship(type="ACTS",direction=Relationship.INCOMING)
+//	    private Collection <Role> roles;
+//	    
 	   
 		public Long getId() {
 			return id;
@@ -51,15 +49,16 @@ public class Scope {
 			this.name = name;
 		}
 		
+		public ScopeType getScopeType() {
+			return ScopeType;
+		}
+
+		public void setScopeType(ScopeType scopeType) {
+			ScopeType = scopeType;
+		}
 		
-
-		public Collection<Role> getRoles() {
-			return roles;
-		}
-
-		public void setRoles(Collection<Role> roles) {
-			this.roles = roles;
-		}
+		
+		
 
 		
 }

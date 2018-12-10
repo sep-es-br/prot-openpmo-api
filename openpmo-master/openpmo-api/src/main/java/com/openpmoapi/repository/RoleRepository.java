@@ -11,10 +11,10 @@ import com.openpmoapi.model.Role;
 public interface RoleRepository extends Neo4jRepository <Role, Long>{
 
 	
-	@Query("match (a:Actor) -[r:PEFORM_A_ROLE]-> (s:Scope) where id(s)= {id} return a,r")
+	@Query("match (a:Actor) -[r:ACTS]-> (s:Scope) where id(s)= {id} return a,r,s")
 	Collection<Role> findAllByScopeId(@Param("id") Long id);
 	
-	@Query("match (a:Actor) -[r:PEFORM_A_ROLE]-> (s:Scope) where id(a)= {id} return s,r")
+	@Query("match (a:Actor) -[r:ACTS]-> (s:Scope) where id(a)= {id} return a,r,s")
 	Collection<Role> findAllByActorId(@Param("id") Long id);
 
 

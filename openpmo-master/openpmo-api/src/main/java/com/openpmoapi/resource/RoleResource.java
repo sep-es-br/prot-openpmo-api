@@ -1,11 +1,10 @@
 package com.openpmoapi.resource;
 
 
+import java.util.Collection;
 import java.util.Optional;
-
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.openpmoapi.event.FeatureCreatedEvent;
 import com.openpmoapi.model.Role;
 import com.openpmoapi.repository.RoleRepository;
@@ -92,6 +90,25 @@ public class RoleResource {
 	public ResponseEntity<Role> findById(@PathVariable Long id) {
 		Optional<Role> Role = roleRepository.findById(id,2);
 		return Role.isPresent() ? ResponseEntity.ok(Role.get()) : ResponseEntity.notFound().build();
+	}
+	
+	
+		/**
+		This method find by one Role
+	*/
+	@GetMapping("/scope/{id}")
+	public Collection<Role> findAllByScopeId(@PathVariable Long id) {
+		return roleService.findAllByScopeId(id);
+	}
+	
+	
+	
+		/**
+		This method find by one Role
+	*/
+	@GetMapping("/actor/{id}")
+	public Collection<Role> findAllByActorId(@PathVariable Long id) {
+		return roleService.findAllByActorId(id);
 	}
 	
 
