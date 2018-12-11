@@ -11,7 +11,7 @@ public interface PlanStructureRepository extends Neo4jRepository <PlanStructure,
 
 	
 	@Query("MATCH (s1:PlanStructure)-[:IS_ADOPTED_BY]->(env:Office) WHERE id(env) = {id} RETURN s1")
-	Collection<PlanStructure> findPlanStructureByIdEnveronment(@Param("id") Long id);
+	Collection<PlanStructure> findPlanStructureByIdEnvironment(@Param("id") Long id);
 	
 	
 	@Query("match (n:WorkpackModel)-[r1:IS_IN*0..]->(m:WorkpackModel)-[r2:IS_ROOT_OF*0..]->(s:PlanStructure) where id(s)={id} return ()-[r1*0..]->()-[r2*0..]->()")

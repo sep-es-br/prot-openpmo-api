@@ -28,14 +28,26 @@ public class PropertyService {
 	private PropertyRepository propertyRepository;
 		
 
-	
+	/**
+	 * 
+	 * @param id
+	 * 		This is the id of the Property that will be find, by the IdPropertyProfile
+	 * @return
+	 * 		Collection of Property 
+	 */
 	@Transactional(readOnly = true)
     public Collection<Property> findPropertyByIdPropertyProfile(Long id) {
       Collection<Property> properties = propertyRepository.findPropertyByIdPropertyProfile(id);
       return properties;
     }
 	
-	
+	/**
+	 * 
+	 * @param id
+	 * 		This is the id of the Property that will be find, by the IdPropertyProfile
+	 * @return
+	 * 		Optional of Property
+	 */
 	@Transactional(readOnly = true)
     public Optional<Property> findPropertyByIdProperty(Long id) {
 		Optional<Property> property = propertyRepository.findPropertyByIdProperty(id);

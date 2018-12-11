@@ -33,7 +33,9 @@ public class PersonService {
 	
 	/**
 	
-	 * this method verify if exits the data to update 
+	 * this method verify if exits the data to update
+	 * @return
+	 * 		savedPerson
 	
 	 */
 	@Transactional(readOnly = false)
@@ -48,6 +50,7 @@ public class PersonService {
 	/**
 	 * this method find by id a data type Person, if not exist it treats the exception 
 	 * @return
+	 * 		savedPerson
 	 */
 	@Transactional(readOnly = true)
 	public Person findPersonById(Long id) {
@@ -60,14 +63,27 @@ public class PersonService {
 	
 	
 	
-
+	/**
+	 * This method looks for names appearing within the collection PersonRoleAtWorkpack 
+	 * @param name
+	 * 		This is the name that will be find 
+	 * @return
+	 * 		The name 
+	 */
 	@Transactional(readOnly = true)
 	public Person findByName(String name) {
 		Person person = personRepository.findByName(name);
       return person;
 	}
 	
-	
+		
+	/**
+	 * This method looks for names appearing within the collection PersonRoleAtWorkpack 
+	 * @param name
+	 * 		This is the name that will be find 
+	 * @return
+	 * 		a Collection of the PersonRoleAtWorkpack with similar names
+	 */
 	@Transactional(readOnly = true)
     public Collection<Person> findByNameLike(String name) {
       Collection<Person> person = personRepository.findByNameLike(name);

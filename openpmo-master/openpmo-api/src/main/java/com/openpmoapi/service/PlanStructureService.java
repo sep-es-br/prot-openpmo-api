@@ -31,7 +31,9 @@ public class PlanStructureService {
 		
 	/**
 	
-	 * this method verify if exits the data to update 
+	 * this method verify if exits the data to update
+	 * @return
+	 * 		 savedStructurePlan
 	
 	 */
 	@Transactional
@@ -45,6 +47,7 @@ public class PlanStructureService {
 	/**
 	 * this method find by id a data type Environment, if not exist it treats the exception 
 	 * @return
+	 * 		savedStructurePlan
 	 */
 	@Transactional
 	public PlanStructure buscarPessoaPeloCodigo(Long id) {
@@ -54,19 +57,39 @@ public class PlanStructureService {
 		}
 		return savedStructurePlan.get();
 	}
-	
+	/**
+	 * 
+	 * @param id
+	 * 		This is the id of the PlanStructure that will be find
+	 * @return
+	 * 		The iterator of the PlanStructure
+	 */
 	@Transactional(readOnly = true)
     public Iterable<PlanStructure> findByCodigo(Iterable<Long> id) {
 		Iterable<PlanStructure> result = planStructureRepository.findAllById(id,0);
       return result;
     }
 	
+	/**
+	 * 
+	 * @param id
+	 * 		This is the id of the PlanStructure that will be find, by Environment
+	 * @return
+	 * 		The Collection of the PlanStructure
+	 */
 	@Transactional(readOnly = true)
-    public Collection<PlanStructure> findPlanStructureByIdEnveronment(Long id) {
-      Collection<PlanStructure> planStructure = planStructureRepository.findPlanStructureByIdEnveronment(id);
+    public Collection<PlanStructure> findPlanStructureByIdEnvironment(Long id) {
+      Collection<PlanStructure> planStructure = planStructureRepository.findPlanStructureByIdEnvironment(id);
       return planStructure;
     }
 	
+	/**
+	 * 
+	 * @param id
+	 * 		This is the id of the PlanStructure that will be find, by Id tree
+	 * @return
+	 * 		The Collection of the PlanStructure
+	 */
 	@Transactional(readOnly = true)
     public Collection<PlanStructure> findPlanStructureByIdTree(Long id) {
       Collection<PlanStructure> planStructures = planStructureRepository.findPlanStructureByIdTree(id);

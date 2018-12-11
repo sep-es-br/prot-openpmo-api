@@ -33,7 +33,9 @@ public class PersonRoleAtWorkpackService {
 	
 	/**
 	
-	 * this method verify if exits the data to update 
+	 * this method verify if exits the data to update
+	 * @return
+	 * 		 savedWorkpackRole
 	
 	 */
 	@Transactional(readOnly = false)
@@ -47,6 +49,7 @@ public class PersonRoleAtWorkpackService {
 	/**
 	 * this method find by id a data type WorkpackRole, if not exist it treats the exception 
 	 * @return
+	 * 		savedWorkpackRole
 	 */
 	@Transactional(readOnly = true)
 	public PersonRoleAtWorkpack findWorkpackRoleById(Long id) {
@@ -64,6 +67,13 @@ public class PersonRoleAtWorkpackService {
 //      return savedWorkpackRole;
 //	}
 //	
+	/**
+	 * This method looks for names appearing within the collection PersonRoleAtWorkpack 
+	 * @param name
+	 * 		This is the name that will be find 
+	 * @return
+	 * 		a Collection of the PersonRoleAtWorkpack with similar names
+	 */
 	
 	@Transactional(readOnly = true)
     public Collection<PersonRoleAtWorkpack> findByNameLike(String name) {

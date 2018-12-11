@@ -127,7 +127,7 @@ public class PlanResource {
 	 */
 	@GetMapping("/listschemas/{id}")
 	public Collection<Plan> findPlans(@PathVariable Long id) {
-		return planService.findPlanByIdEnveronment(id);
+		return planService.findPlanByIdEnvironment(id);
 	}
 	
 	

@@ -32,6 +32,8 @@ public class OrgRoleAtWorkpackService {
 	/**
 	
 	 * this method verify if exits the data to update 
+	 * @return
+	 * 		savedRole
 	
 	 */
 	@Transactional(readOnly = false)
@@ -46,6 +48,7 @@ public class OrgRoleAtWorkpackService {
 	/**
 	 * this method find by id a data type Person, if not exist it treats the exception 
 	 * @return
+	 * 		savedRole
 	 */
 	@Transactional(readOnly = true)
 	public OrgRoleAtWorkpack findRoleById(Long id) {
