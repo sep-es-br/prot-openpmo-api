@@ -12,7 +12,13 @@ import java.text.Normalizer;
 * @since 2018-08-24
 */
 public class Util {
-
+	/**
+	 * This method change the special characters,<br> by setting a pattern to all strings of InOut
+	 * @param string
+	 * 		This is the <code>String</code> that will be changed
+	 * @return
+	 * 		String in the pattern
+	 */
 	public static String removeSpecialCharacters(String string){
 		
 		if(string != null) {
