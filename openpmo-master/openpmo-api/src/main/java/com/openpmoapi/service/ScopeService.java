@@ -33,6 +33,8 @@ public class ScopeService {
 	/**
 	
 	 * this method verify if exits the data to update 
+	 * @return 
+	 * 		savedScope
 	
 	 */
 	@Transactional(readOnly = false)
@@ -47,6 +49,7 @@ public class ScopeService {
 	/**
 	 * this method find by id a data type Scope, if not exist it treats the exception 
 	 * @return
+	 * 		savedScope
 	 */
 	@Transactional(readOnly = true)
 	public Scope findScopeById(Long id) {

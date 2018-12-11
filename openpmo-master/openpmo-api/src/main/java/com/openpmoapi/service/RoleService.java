@@ -34,6 +34,8 @@ public class RoleService {
 	/**
 	
 	 * this method verify if exits the data to update 
+	 * @return
+	 * 		savedRole
 	
 	 */
 	@Transactional(readOnly = false)
@@ -48,6 +50,7 @@ public class RoleService {
 	/**
 	 * this method find by id a data type Role, if not exist it treats the exception 
 	 * @return
+	 * 		savedRole
 	 */
 	@Transactional(readOnly = true)
 	public Role findRoleById(Long id) {
@@ -58,7 +61,13 @@ public class RoleService {
 		return savedRole.get();
 	}
 	
-	
+	/**
+	 * 
+	 * @param id
+	 * 		This is  the Role that will be find, by the scope
+	 * @return
+	 * 		Collection of Role
+	 */
 
 	@Transactional(readOnly = true)
     public Collection<Role> findAllByScopeId(Long id) {
@@ -67,7 +76,13 @@ public class RoleService {
     }
 	
 
-	
+	/**
+	 * 
+	 * @param id
+	 * 		This is the Role that will be find, by the actor id
+	 * @return
+	 * 		Collection of Role
+	 */
 	@Transactional(readOnly = true)
     public Collection<Role> findAllByActorId(Long id) {
       Collection<Role> roles = roleRepository.findAllByActorId(id);

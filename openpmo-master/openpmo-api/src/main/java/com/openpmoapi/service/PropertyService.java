@@ -31,7 +31,7 @@ public class PropertyService {
 	/**
 	 * 
 	 * @param id
-	 * 		This is the id of the Property that will be find, by the IdPropertyProfile
+	 * 		This is the Property that will be find, by the IdPropertyProfile
 	 * @return
 	 * 		Collection of Property 
 	 */
@@ -44,7 +44,7 @@ public class PropertyService {
 	/**
 	 * 
 	 * @param id
-	 * 		This is the id of the Property that will be find, by the IdPropertyProfile
+	 * 		This is the Property that will be find, by the IdPropertyProfile
 	 * @return
 	 * 		Optional of Property
 	 */
