@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.openpmoapi.config;
 
 import java.util.Arrays;
@@ -36,6 +33,7 @@ import com.openpmoapi.config.token.CustomTokenEnhancer;
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 	
+
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	
@@ -90,83 +88,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	    return new CustomTokenEnhancer();
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//	 	@Autowired
-//	    @Qualifier("authenticationManagerBean")
-//	    private AuthenticationManager authenticationManager;
-//
-//	    @Override
-//	    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-//	        clients.inMemory()
-//	        .withClient("angular")
-//	        .secret(passwordEncoder()
-//	        .encode("@ngul@r0"))
-//	        .scopes("read", "write")
-//	        .authorizedGrantTypes("password", "refresh_token")
-//	        .accessTokenValiditySeconds(1800)
-//	        .refreshTokenValiditySeconds(3600 * 24)
-//
-//	        .and()
-//	        
-//			.withClient("mobile")
-//			.secret(passwordEncoder()
-//			.encode("m0b1l30"))
-//			.scopes("read")
-//			.authorizedGrantTypes("password", "refresh_token")
-//			.accessTokenValiditySeconds(1800)
-//			.refreshTokenValiditySeconds(3600 * 24);; 
-//	    }
-//
-//	    @Override
-//	    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-//
-//	        final TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
-//	        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancer(), accessTokenConverter()));
-//	        endpoints.tokenStore(tokenStore()).tokenEnhancer(tokenEnhancerChain)
-//	        .authenticationManager(authenticationManager).reuseRefreshTokens(false);
-//	    }
-//
-//	    @Bean
-//	    public JwtAccessTokenConverter accessTokenConverter() {
-//	        JwtAccessTokenConverter accessTokenConverter = new JwtAccessTokenConverter();
-//	        accessTokenConverter.setSigningKey("algaworks");
-//	        return accessTokenConverter;
-//	    }
-//
-//	    @Bean
-//	    public TokenEnhancer tokenEnhancer() {
-//	        return new CustomTokenEnhancer();
-//	    }
-//
-//	    @Bean
-//	    public TokenStore tokenStore() {
-//	        return new JwtTokenStore(accessTokenConverter());
-//	    }
-//
-//	    @Bean
-//	    public BCryptPasswordEncoder passwordEncoder() {
-//	        return new BCryptPasswordEncoder();
-//	    }
 
 		
 	}

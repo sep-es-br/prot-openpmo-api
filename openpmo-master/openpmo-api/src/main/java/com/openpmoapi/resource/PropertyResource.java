@@ -46,7 +46,11 @@ public class PropertyResource {
 	
 
 	/**
-	 * This method delete one Property
+	 * This is method delete one Property
+	 * 
+	 * @param id
+	 * 			This is the id that will be deleted
+	 * 
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -58,8 +62,11 @@ public class PropertyResource {
 
 	
 		/**
-		This method find by a list of properties
-	*/
+		 *	This method find by a list of properties
+		 *	@param id
+		 *			This is the id of the Collection of properties that will be find
+		 * 
+		 */
 	@GetMapping("/listproperties/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Collection<Property> findProperties(@PathVariable Long id) {
@@ -69,8 +76,11 @@ public class PropertyResource {
 	
 	
 		/**
-		This method find by a list of properties
-	*/
+		 * 
+		 * This method find by a list of properties
+		 *	@param id
+		 *			This is the id of the Collection of properties that will be find 
+		 */
 	@GetMapping("/listproperty/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Optional<Property> findProperty(@PathVariable Long id) {

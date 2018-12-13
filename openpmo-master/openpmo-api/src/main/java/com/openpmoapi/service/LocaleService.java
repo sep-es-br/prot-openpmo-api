@@ -34,7 +34,9 @@ public class LocaleService {
 	/**
 	
 	 * this method verify if exits the data to update 
-	
+	 * 
+	 * @return
+	 * 		savedLocale	
 	 */
 	@Transactional(readOnly = false)
 	public Locale update(Long id, Locale locale) {
@@ -48,6 +50,7 @@ public class LocaleService {
 	/**
 	 * this method find by id a data type Locale, if not exist it treats the exception 
 	 * @return
+	 * 		savedLocale
 	 */
 	@Transactional(readOnly = true)
 	public Locale findLocaleById(Long id) {
@@ -60,14 +63,25 @@ public class LocaleService {
 	
 	
 	
-
+	/**
+	 * 		This method find a localeItemRepository by name
+	 * @param name
+	 * 		This is the name of the localeItemRepository that will be find 
+	 * @return
+	 * 		locale
+	 */
 	@Transactional(readOnly = true)
 	public Locale findByName(String name) {
 		Locale locale = localeRepository.findByName(name);
       return locale;
 	}
 	
-	
+	/**
+	 * This is a method that find a localeItemRepository by similar names
+	 * @param name
+	 * 			This is the name of the localeItemRepository that will be find
+	 * @return
+	 */
 	@Transactional(readOnly = true)
     public Collection<Locale> findByNameLike(String name) {
       Collection<Locale> locale = localeRepository.findByNameLike(name);

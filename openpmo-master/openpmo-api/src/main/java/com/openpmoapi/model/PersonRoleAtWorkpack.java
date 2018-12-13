@@ -31,18 +31,18 @@ public class PersonRoleAtWorkpack {
 	}
 
 
-	private String categoria;
+	private String category;
 	/**
-	 * @return the categoria
+	 * @return the category
 	 */
 	public String getCategoria() {
-		return categoria;
+		return category;
 	}
 	/**
-	 * @param categoria the categoria to set
+	 * @param category the category to set
 	 */
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+	public void setCategoria(String category) {
+		this.category = category;
 	}
 
 

@@ -1,9 +1,1 @@
-com.openpmoapi
-com.openpmoapi.event
-com.openpmoapi.event.listener
-com.openpmoapi.exceptionHandler
-com.openpmoapi.model
-com.openpmoapi.repository
-com.openpmoapi.resource
-com.openpmoapi.service
-com.openpmoapi.util
+com.openpmoapi.config

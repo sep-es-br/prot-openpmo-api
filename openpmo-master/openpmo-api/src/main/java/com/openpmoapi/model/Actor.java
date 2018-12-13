@@ -40,7 +40,6 @@ public class Actor {
 //	    private Collection <Role> roles;
 //		
 		  
-	   
 		public Long getId() {
 			return id;
 		}
@@ -53,8 +52,6 @@ public class Actor {
 			this.name = name;
 		}
 		
-	
-
 		public String getFullName() {
 			return fullName;
 		}

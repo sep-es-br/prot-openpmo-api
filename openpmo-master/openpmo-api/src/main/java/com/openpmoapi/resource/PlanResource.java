@@ -46,7 +46,11 @@ public class PlanResource {
 	
 	
 	/**
-	 * This method delete one Plan
+	 * This is method delete one Plan
+	 * 
+	 * @param id
+	 * 			This is the id that will be deleted
+	 * 
 	 */
 	@DeleteMapping("/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
@@ -58,7 +62,13 @@ public class PlanResource {
 	
 	
 	/**
-	 * This method update Plan
+	 * This is method update Plan
+	 * @param id
+	 * 			This is the id of the Plan
+	 * 
+	 * @param plan
+	 * 			This is the collection of Plan 
+	 * 
 	 */
 	@PutMapping("/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
@@ -69,7 +79,15 @@ public class PlanResource {
 	
 	
 	/**
-		This method save Plan
+	 * 
+	 * This is method save Plan
+	 * 
+	 * @param plan
+	 * 			This is the collection of Plan
+	 * 
+	 * @param response
+	 * 			This is the answer of the HttpServletResponse
+	 * 
 	 */
 	@PostMapping
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
@@ -91,7 +109,10 @@ public class PlanResource {
 	
 	
 	/**
-			This method find by one Plan
+	 * 	This is method find by one Plan
+	 * 
+	 *  @param id
+	 *  		This is the id of the PlanRole you want to find
 	 */
 	@GetMapping("/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
@@ -101,20 +122,30 @@ public class PlanResource {
 	}
 	
 	
-		/**
-		This method find by one Plan
-	*/
+	/**
+	 * This method find by one Plan
+	 * 
+	 * @param id
+	 * 			This is the id of the PlanRole you want to find
+	 * 
+	 * This method find by one Plan tree
+	 * 
+	 */
 	@GetMapping("/listschemas/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Collection<Plan> findPlans(@PathVariable Long id) {
-		return planService.findPlanByIdEnveronment(id);
+		return planService.findPlanByIdEnvironment(id);
 	}
 	
 	
 
 	/**
-		This method find by one Plan tree
-	*/
+	 * This method find by one Plan tree
+	 * 
+	 * @param id
+	 * 			This is the id of the Plan tree PlanRole you want to find
+	 * 
+	 */
 	@GetMapping("/tree/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Collection<Plan> findPlansTree(@PathVariable Long id) {

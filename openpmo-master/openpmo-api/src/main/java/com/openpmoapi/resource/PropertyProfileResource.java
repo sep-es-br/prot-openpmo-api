@@ -30,15 +30,15 @@ import io.swagger.annotations.Api;
 public class PropertyProfileResource {
 
 	
-
-	
 	@Autowired
 	private PropertyProfileRepository propertyRepository;
-	
-	
 	/**
-	This method find by one WorkpackTemplate
-	*/
+	 * This method find by one WorkpackTemplate
+	 *	@param id
+	 *			This is the id of the PropertyProfile 
+	 *
+	 *
+	 */
 	@GetMapping("/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public ResponseEntity<PropertyProfile> findById(@PathVariable Long id) {

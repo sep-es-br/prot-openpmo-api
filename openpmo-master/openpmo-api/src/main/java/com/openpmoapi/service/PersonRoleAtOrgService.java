@@ -34,6 +34,8 @@ public class PersonRoleAtOrgService {
 	/**
 	
 	 * this method verify if exits the data to update 
+	 * @return
+	 * 		savedOrganizationRole
 	
 	 */
 	@Transactional(readOnly = false)
@@ -47,6 +49,7 @@ public class PersonRoleAtOrgService {
 	/**
 	 * this method find by id a data type Person, if not exist it treats the exception 
 	 * @return
+	 * 		savedOrganizationRole
 	 */
 	@Transactional(readOnly = true)
 	public PersonRoleAtOrg findOrganizationRoleById(Long id) {
@@ -65,6 +68,13 @@ public class PersonRoleAtOrgService {
 //	}
 //	
 	
+	/**
+	 * This method looks for names appearing within the collection PersonRoleAtOrg 
+	 * @param name
+	 * 		This is the name that will be find 
+	 * @return
+	 * 		a Collection of the PersonRoleAtOrg with similar names
+	 */
 	@Transactional(readOnly = true)
     public Collection<PersonRoleAtOrg> findByNameLike(String name) {
       Collection<PersonRoleAtOrg> organizationRole = organizationRoleRepository.findByNameLike(name);

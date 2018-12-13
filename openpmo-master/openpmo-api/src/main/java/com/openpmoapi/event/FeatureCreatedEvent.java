@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package com.openpmoapi.event;
 
 import javax.servlet.http.HttpServletResponse;
@@ -18,20 +16,29 @@ public class FeatureCreatedEvent extends ApplicationEvent {
 	private static final long serialVersionUID = 1L;
 	
 	private HttpServletResponse response;
-	private Long codigo;
+	private Long code;
 
-	public FeatureCreatedEvent(Object source, HttpServletResponse response, Long codigo) {
+	/**
+	 * 
+	 * @param source
+	 * 			This is the objec that will be changed
+	 * @param response
+	 * 			This is the answer of the server
+	 * @param code
+	 * 			
+	 */
+	public FeatureCreatedEvent(Object source, HttpServletResponse response, Long code) {
 		super(source);
 		this.response = response;
-		this.codigo = codigo;
+		this.code = code;
 	}
 
 	public HttpServletResponse getResponse() {
 		return response;
 	}
 
-	public Long getCodigo() {
-		return codigo;
+	public Long getCode() {
+		return code;
 	}
 	
 }

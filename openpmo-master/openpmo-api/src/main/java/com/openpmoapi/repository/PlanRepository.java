@@ -10,7 +10,7 @@ public interface PlanRepository extends Neo4jRepository <Plan, Long>{
 
 	
 	@Query("MATCH (s1:Plan)-[:IS_ADOPTED_BY]->(env:Office) WHERE id(env) = {id} RETURN s1")
-	Collection<Plan> findPlanByIdEnveronment(@Param("id") Long id);
+	Collection<Plan> findPlanByIdEnvironment(@Param("id") Long id);
 	
 	
 

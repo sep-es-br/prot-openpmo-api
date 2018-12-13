@@ -46,7 +46,11 @@ public class PlanStructureResource {
 	
 	
 	/**
-	 * This method delete one PlanStructure
+	 * This is method delete one PlanStructure
+	 * 
+	 * @param id
+	 * 			This is the id that will be deleted
+	 * 
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -58,7 +62,13 @@ public class PlanStructureResource {
 	
 	
 	/**
-	 * This method update PlanStructure
+	 * This is method update PlanStructure
+	 * @param id
+	 * 			This is the id of the PlanStructure
+	 * 
+	 * @param planStructure
+	 * 			This is the collection of PlanStructure 
+	 * 
 	 */
 	@PutMapping("/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
@@ -69,7 +79,15 @@ public class PlanStructureResource {
 	
 	
 	/**
-		This method save PlanStructure
+	 * 
+	 * This is method save PlanStructure
+	 * 
+	 * @param planStructure
+	 * 			This is the collection of PlanStructure
+	 * 
+	 * @param response
+	 * 			This is the answer of the HttpServletResponse
+	 * 
 	 */
 	@PostMapping
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
@@ -91,7 +109,10 @@ public class PlanStructureResource {
 	
 	
 	/**
-			This method find by one PlanStructure
+	 * 	This is method find by one Plan
+	 * 
+	 *  @param id
+	 *  		This is the id of the PlanStructure you want to find
 	 */
 	@GetMapping("/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
@@ -102,8 +123,12 @@ public class PlanStructureResource {
 
 	
 	/**
-		This method find by one PlanStructure tree
-	*/
+	 * This method find by one PlanStructure tree
+	 * 
+	 * @param id
+	 * 			This is the id of the PlanStructure tree PlanRole you want to find
+	 * 
+	 */
 	@GetMapping("/tree/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Collection<PlanStructure> findPlanSturctureTree(@PathVariable Long id) {

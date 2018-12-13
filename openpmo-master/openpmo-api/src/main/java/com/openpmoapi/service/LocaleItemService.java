@@ -58,7 +58,13 @@ public class LocaleItemService {
 		return savedItemLocation.get();
 	}
 	
-	
+	/**
+	 * 		This method find a localeItemRepository by name
+	 * @param name
+	 * 		This is the name of the localeItemRepository that will be find 
+	 * @return
+	 * 		localeItem
+	 */
 
 	@Transactional(readOnly = true)
 	public LocaleRich findByName(String name) {
@@ -66,7 +72,12 @@ public class LocaleItemService {
       return localeItem;
 	}
 	
-	
+	/**
+	 * This is a method that find a localeItemRepository by similar names
+	 * @param name
+	 * 			This is the name of the localeItemRepository that will be find
+	 * @return
+	 */
 	@Transactional(readOnly = true)
     public Collection<LocaleRich> findByNameLike(String name) {
       Collection<LocaleRich> localeItem = localeItemRepository.findByNameLike(name);

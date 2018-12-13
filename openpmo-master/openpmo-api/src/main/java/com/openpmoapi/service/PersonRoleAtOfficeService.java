@@ -34,6 +34,8 @@ public class PersonRoleAtOfficeService {
 	/**
 	
 	 * this method verify if exits the data to update 
+	 * @return
+	 * 		savedRole
 	
 	 */
 	@Transactional(readOnly = false)
@@ -48,6 +50,7 @@ public class PersonRoleAtOfficeService {
 	/**
 	 * this method find by id a data type Person, if not exist it treats the exception 
 	 * @return
+	 * 		savedRole
 	 */
 	@Transactional(readOnly = true)
 	public PersonRoleAtOffice findRoleById(Long id) {
@@ -67,6 +70,13 @@ public class PersonRoleAtOfficeService {
 //      return role;
 //	}
 	
+	/**
+	 * This method looks for names appearing within the collection PersonRoleAtOffice 
+	 * @param name
+	 * 		This is the name that will be find 
+	 * @return
+	 * 		a Collection of the PersonRoleAtOffice with similar names
+	 */
 	
 	@Transactional(readOnly = true)
     public Collection<PersonRoleAtOffice> findByNameLike(String name) {

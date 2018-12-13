@@ -11,10 +11,16 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import static springfox.documentation.builders.PathSelectors.regex;
 
 /**
-* Type here a brief description of the class.
+* Type here a brief description of the class.<br>
 *
+*	This class makes it possible to use and configure swagger<br>
+*	The Swagger it's used to make documentation<br>
+*	In this class has already another method that turn's <br>
+*	possible the configuration of the <code>html</code> of the swagger 
+*	
 * @author lucas.regio  
 * @since 2018-11-12
+* 
 */
 @EnableSwagger2
 @Configuration

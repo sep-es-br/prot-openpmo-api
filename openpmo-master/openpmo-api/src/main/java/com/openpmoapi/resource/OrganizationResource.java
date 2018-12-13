@@ -47,6 +47,10 @@ public class OrganizationResource {
 	
 	/**
 	 * This is method delete one Organization
+	 * 
+	 * @param id
+	 *			This is the id that will be deleted 
+	 *        
 	 */
 	@DeleteMapping("/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
@@ -58,6 +62,12 @@ public class OrganizationResource {
 	
 	/**
 	 * This is method update Organization
+	 * @param id
+	 * 			This is the id of the Organization
+	 * 
+	 * @param organization
+	 * 			This is the collection of Organization 
+	 * 
 	 */
 	@PutMapping("/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
@@ -68,7 +78,15 @@ public class OrganizationResource {
 	
 	
 	/**
-		This is method save Organization
+	 * 
+	 * This is method save Organization
+	 * 
+	 * @param organization
+	 * 			This is the collection of Organization
+	 * 
+	 * @param response
+	 * 			This is the answer of the HttpServletResponse
+	 * 
 	 */
 	@PostMapping
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
@@ -90,7 +108,10 @@ public class OrganizationResource {
 	
 	
 	/**
-			This is method find by one Organization
+	 * 	This is method find by one Organization by the id
+	 * 
+	 *  @param id
+	 *  		This is the id of the Organization you want to find
 	 */
 	@GetMapping("/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
@@ -103,6 +124,9 @@ public class OrganizationResource {
 	
 	/**
 	 * This is method find by name Organization
+	 * 
+	 * @param name
+	 * 			This is the name of the organization
 	 * 
 	 */
 	@GetMapping("/like/{name}")

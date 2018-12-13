@@ -45,6 +45,10 @@ public class CostRichResource {
 	
 	/**
 	 * This is method delete one CostRich
+	 * 
+	 * @param id
+	 *			This is the id that will be deleted 
+	 *        
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -55,7 +59,13 @@ public class CostRichResource {
 	
 	
 	/**
-	 * This is method update costRich
+	 * This is method update CostRich
+	 * @param id
+	 * 			This is the id of the costRich
+	 * 
+	 * @param costRich
+	 * 			This is the collection of costRich 
+	 * 
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<CostRich> update(@PathVariable Long id, @Valid @RequestBody CostRich costRich) {
@@ -65,7 +75,15 @@ public class CostRichResource {
 	
 	
 	/**
-		This is method save CostRich
+	 * 
+	 * This is method save CostRich
+	 * 
+	 * @param costRich
+	 * 			This is the collection of CostRich
+	 * 
+	 * @param response
+	 * 			This is the answer of the HttpServletResponse
+	 * 
 	 */
 	@PostMapping
 	public ResponseEntity<CostRich> save(@Valid @RequestBody CostRich costRich, HttpServletResponse response) {
@@ -85,7 +103,11 @@ public class CostRichResource {
 	
 	
 	/**
-			This is method find by one CostRich
+	 *	This is method find by one CostRich
+	 *	
+	 *	@param id
+	 *			This is the id of the costRich you want to find
+	 *
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<CostRich> findById(@PathVariable Long id) {

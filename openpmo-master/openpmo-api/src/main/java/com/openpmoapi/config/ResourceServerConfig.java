@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.openpmoapi.config;
 
 import org.springframework.context.annotation.Bean;
@@ -48,53 +45,5 @@ public class ResourceServerConfig  extends ResourceServerConfigurerAdapter {
 	}
 	
 	
-	
-//	 	@Autowired
-//		private UserDetailsService userDetailsService;
-//	 	
-//	 	@Autowired
-//	 	private MethodSecurityConfig methodSecurityConfig;
-//	 	
-//
-//	 	
-//	    @Autowired
-//	    public void globalUserDetails(final AuthenticationManagerBuilder auth) throws Exception {
-//	        // @formatter:off
-//	       // auth.inMemoryAuthentication().withUser("admin").password(passwordEncoder.encode("admin")).roles("USER");
-//	    	auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-//	    	
-//	    }
-//
-//	    @Override
-//	    @Bean
-//	    public AuthenticationManager authenticationManagerBean() throws Exception {
-//	        return super.authenticationManagerBean();
-//	    }
-//
-//	    @Override
-//	    protected void configure(HttpSecurity http) throws Exception {
-//	        http.authorizeRequests().antMatchers("/api/person").permitAll().anyRequest().authenticated().and()
-//	        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().csrf().disable();
-//
-//	    }
-//
-//	    @Override
-//	    public void configure(WebSecurity web) throws Exception {
-//	        web.ignoring().antMatchers("/api/person");
-//	    }
-//
-//	
-//	
-//	    @Bean
-//	    public BCryptPasswordEncoder passwordEncoder() {
-//	        return new BCryptPasswordEncoder();
-//	    }
-//	    
-//	    @Bean
-//		public MethodSecurityExpressionHandler createExpressionHandler() {
-//			return new OAuth2MethodSecurityExpressionHandler();
-//	    }
-//	    
-//	
-	  
+
 }

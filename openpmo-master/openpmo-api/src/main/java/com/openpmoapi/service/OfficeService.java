@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package com.openpmoapi.service;
 
 import java.util.Collection;
@@ -34,6 +32,8 @@ public class OfficeService {
 	/**
 	
 	 * this method verify if exits the data to update 
+	 * @return
+	 * 		savedEnv
 	
 	 */
 	@Transactional(readOnly = false)
@@ -49,6 +49,7 @@ public class OfficeService {
 	/**
 	 * this method find by id a data type Environment, if not exist it treats the exception 
 	 * @return
+	 * 		savedEnv
 	 */
 	@Transactional(readOnly = true)
 	public Office findEnvById(Long id) {
@@ -59,6 +60,12 @@ public class OfficeService {
 		return savedEnv.get();
 	}
 	
+	/**
+	 * This method returns a collection of Offices
+	 * 
+	 * @return
+	 * 		Collection of Offices
+	 */
 	
 	@Transactional(readOnly = true)
     public Collection<Office> find() {
@@ -66,7 +73,14 @@ public class OfficeService {
       return result;
     }
 	
-	
+	/**
+	 * This method return a tree based on the id of the office provide by parameter
+	 * 
+	 * @param id
+	 * 			This is the id of the Office that will be find, by the tree
+	 * @return
+	 * 			Collection of Offices
+	 */
 
 	@Transactional(readOnly = true)
     public Collection<Office> findWpByIdTree(Long id) {
@@ -74,6 +88,14 @@ public class OfficeService {
       return office;
     }
 	
+	
+	/**
+	 * This method return a template tree based on the id of the office provide by parameter
+	 * @param id
+	 * 			This is the id of the Template tree that will be find
+	 * @return
+	 * 		Collection of Offices
+	 */
 	@Transactional(readOnly = true)
     public Collection<Office> findWpByIdTemplateTree(Long id) {
       Collection<Office> office = envRepository.findWpByIdTemplateTree(id);

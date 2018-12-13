@@ -46,6 +46,9 @@ public class RoleResource {
 	
 	/**
 	 * This is method delete one Role
+	 * 
+	 * @param id
+	 * 			This is the id of the role that will be deleted
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -57,6 +60,11 @@ public class RoleResource {
 	
 	/**
 	 * This is method update Role
+	 * 
+	 * @param id
+	 * 			This is the id of the role that will be updated
+	 * @param role
+	 * 			This is the new parameter that will be allocated in role
 	 */
 	@PutMapping("/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
@@ -67,7 +75,14 @@ public class RoleResource {
 	
 	
 	/**
-		This is method save Role
+	 * This is method save Role
+	 * 
+	 * @param role
+	 * 			This is the new parameter that will be allocated in roles
+	 * 
+	 * @param response
+	 * 			This is the answer of the HttpServletResponse
+	 * 			
 	 */
 	@PostMapping
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
@@ -89,7 +104,11 @@ public class RoleResource {
 	
 	
 	/**
-			This is method find by one Role
+	 *	This is method find by one Role, by the ID
+	 *	
+	 *	@param id
+	 *			This is the id of the role that will be find
+	 *
 	 */
 	@GetMapping("/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
@@ -99,9 +118,13 @@ public class RoleResource {
 	}
 	
 	
-		/**
-		This method find by one Role
-	*/
+	/**
+	 *	This is method find by one Role, by the scope
+	 *	
+	 *	@param id
+	 *			This is the id of the role that will be find
+	 *
+	 */
 	@GetMapping("/scope/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Collection<Role> findAllByScopeId(@PathVariable Long id) {
@@ -110,9 +133,13 @@ public class RoleResource {
 	
 	
 	
-		/**
-		This method find by one Role
-	*/
+	/**
+	 *	This is method find by one Role, by the actors
+	 *	
+	 *	@param id
+	 *			This is the id of the role that will be find
+	 *
+	 */
 	@GetMapping("/actor/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Collection<Role> findAllByActorId(@PathVariable Long id) {

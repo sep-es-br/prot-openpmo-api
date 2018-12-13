@@ -44,7 +44,11 @@ public class BaseLineResource {
 	
 	
 	/**
-	 * This is method delete one Baseine
+	 * This is method delete one Baseline
+	 * 
+	 * @param id
+	 *			This is the id that will be deleted 
+	 *        
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -54,7 +58,13 @@ public class BaseLineResource {
 
 	
 	/**
-	 * This is method update Baseline
+	 * This is method update BaseLine
+	 * @param id
+	 * 			This is the id of the baseLine
+	 * 
+	 * @param baseLine
+	 * 			This is the collection of baseLine 
+	 * 
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<BaseLine> update(@PathVariable Long id, @Valid @RequestBody BaseLine baseLine) {
@@ -64,7 +74,15 @@ public class BaseLineResource {
 	
 	
 	/**
-		This is method save Baseline
+	 * 
+	 * This is method save BaseLine
+	 * 
+	 * @param baseLine
+	 * 			This is the collection of baseLine
+	 * 
+	 * @param response
+	 * 			This is the answer of the HttpServletResponse
+	 * 
 	 */
 	@PostMapping
 	public ResponseEntity<BaseLine> save(@Valid @RequestBody BaseLine baseLine, HttpServletResponse response) {
@@ -84,7 +102,11 @@ public class BaseLineResource {
 	
 	
 	/**
-			This is method find by one BaseLine
+	 *	This is method find by one BaseLine
+	 *	
+	 *	@param id
+	 *			This is the id of the baseLine you want to find
+	 *
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<BaseLine> findById(@PathVariable Long id) {

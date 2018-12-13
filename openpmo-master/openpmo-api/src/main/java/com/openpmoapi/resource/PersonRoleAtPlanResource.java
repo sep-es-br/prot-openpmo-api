@@ -45,7 +45,11 @@ public class PersonRoleAtPlanResource {
 	
 	
 	/**
-	 * This method delete one PlanRole
+	 * This is method delete one PlanRole
+	 * 
+	 * @param id
+	 * 			This is the id that will be deleted
+	 * 
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -55,7 +59,13 @@ public class PersonRoleAtPlanResource {
 	
 	
 	/**
-	 * This method update PlanRole
+	 * This is method update PlanRole
+	 * @param id
+	 * 			This is the id of the PersonRoleAtPlan
+	 * 
+	 * @param planRole
+	 * 			This is the collection of PersonRoleAtPlan 
+	 * 
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<PersonRoleAtPlan> update(@PathVariable Long id, @Valid @RequestBody PersonRoleAtPlan planRole) {
@@ -65,7 +75,15 @@ public class PersonRoleAtPlanResource {
 	
 	
 	/**
-		This method save PlanRole
+	 * 
+	 * This is method save PlanRole
+	 * 
+	 * @param planRole
+	 * 			This is the collection of PersonRoleAtPlan
+	 * 
+	 * @param response
+	 * 			This is the answer of the HttpServletResponse
+	 * 
 	 */
 	@PostMapping
 	public ResponseEntity<PersonRoleAtPlan> save(@Valid @RequestBody PersonRoleAtPlan planRole, HttpServletResponse response) {
@@ -85,7 +103,10 @@ public class PersonRoleAtPlanResource {
 	
 	
 	/**
-			This method find by one PlanRole
+	 * 	This is method find by one PlanRole
+	 * 
+	 *  @param id
+	 *  		This is the id of the PlanRole you want to find
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<PersonRoleAtPlan> findById(@PathVariable Long id) {
@@ -96,7 +117,10 @@ public class PersonRoleAtPlanResource {
 	  
 	
 	/**
-	 * This method find by name PlanRole
+	 * This is method find by name PlanRole
+	 * 
+	 * @param name
+	 * 			This is the name of the PlanRole you want to find
 	 * 
 	 */
 	@GetMapping("/like/{name}")

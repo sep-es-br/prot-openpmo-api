@@ -47,6 +47,10 @@ public class OfficeResource {
 	
 	/**
 	 * This is method delete one Environment
+	 * 
+	 * @param id
+	 *			This is the id that will be deleted 
+	 *        
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -58,6 +62,12 @@ public class OfficeResource {
 	
 	/**
 	 * This is method update Environment
+	 * @param id
+	 * 			This is the id of the localeItem
+	 * 
+	 * @param env
+	 * 			This is the collection of Office 
+	 * 
 	 */
 	@PutMapping("/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
@@ -68,7 +78,15 @@ public class OfficeResource {
 	
 	
 	/**
-		This is method save Environment
+	 * 
+	 * This is method save Environment
+	 * 
+	 * @param env
+	 * 			This is the collection of Office
+	 * 
+	 * @param response
+	 * 			This is the answer of the HttpServletResponse
+	 * 
 	 */
 	@PostMapping
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
@@ -80,7 +98,7 @@ public class OfficeResource {
 	
 	
 	/**
-	 * This is method find by all Environment
+	 * This is method find by all Office
 	 */
 	@GetMapping
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
@@ -90,7 +108,10 @@ public class OfficeResource {
 	
 	
 	/**
-			This is method find by one Environment
+	 * 	This is method find by one Environment by the id
+	 * 
+	 *  @param id
+	 *  		This is the id of the Office you want to find
 	 */
 	@GetMapping("/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
@@ -102,8 +123,11 @@ public class OfficeResource {
 
 	
 	/**
-		This is method find by one office tree
-	*/
+	 *	This is method find by one office tree
+	 *	
+	 *	@param id 
+	 *			This is the id of the office tree
+	 */
 	@GetMapping("/tree/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Collection<Office> findWpByIdTree(@PathVariable Long id) {
@@ -111,9 +135,14 @@ public class OfficeResource {
 	}
 	
 
-	/**
-		This is method find by one office template tree
-	*/
+	/** 
+	 *
+	 *	This is method find by one office template tree
+	 *
+	 *	@param id
+	 *			This is the id of the template tree
+	 *
+	 */
 	@GetMapping("/template/tree/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Collection<Office> findWpByIdTemplateTree(@PathVariable Long id) {

@@ -34,6 +34,8 @@ public class OrganizationService {
 	/**
 	
 	 * this method verify if exits the data to update 
+	 * @return
+	 * 		savedOrganization
 	
 	 */
 	@Transactional(readOnly = false)
@@ -48,6 +50,7 @@ public class OrganizationService {
 	/**
 	 * this method find by id a data type Person, if not exist it treats the exception 
 	 * @return
+	 * 		savedOrganization
 	 */
 	@Transactional(readOnly = true)
 	public Organization findOrganizationById(Long id) {
@@ -59,7 +62,13 @@ public class OrganizationService {
 	}
 	
 	
-	
+	/**
+	 * 		This method find a localeItemRepository by name
+	 * @param name
+	 * 		This is the name of the localeItemRepository that will be find 
+	 * @return
+	 * 		localeItem
+	 */
 
 	@Transactional(readOnly = true)
 	public Organization findByName(String name) {
@@ -68,6 +77,12 @@ public class OrganizationService {
 	}
 	
 	
+	/**
+	 * This is a method that find a localeItemRepository by similar names
+	 * @param name
+	 * 			This is the name of the localeItemRepository that will be find
+	 * @return
+	 */
 	@Transactional(readOnly = true)
     public Collection<Organization> findByNameLike(String name) {
       Collection<Organization> organization = organizationRepository.findByNameLike(name);

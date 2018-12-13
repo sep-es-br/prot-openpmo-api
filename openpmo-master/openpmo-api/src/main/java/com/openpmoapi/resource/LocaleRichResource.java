@@ -46,6 +46,10 @@ public class LocaleRichResource {
 	
 	/**
 	 * This is method delete one LocaleItem
+	 * 
+	 * @param id
+	 *			This is the id that will be deleted 
+	 *        
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -56,6 +60,12 @@ public class LocaleRichResource {
 	
 	/**
 	 * This is method update LocaleItem
+	 * @param id
+	 * 			This is the id of the localeItem
+	 * 
+	 * @param localeItem
+	 * 			This is the collection of LocaleRich 
+	 * 
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<LocaleRich> update(@PathVariable Long id, @Valid @RequestBody LocaleRich localeItem) {
@@ -64,7 +74,15 @@ public class LocaleRichResource {
 	}
 	
 	/**
-		This is method save LocaleItem
+	 * 
+	 * This is method save LocaleItem
+	 * 
+	 * @param localeItem
+	 * 			This is the collection of localeItem
+	 * 
+	 * @param response
+	 * 			This is the answer of the HttpServletResponse
+	 * 
 	 */
 	@PostMapping
 	public ResponseEntity<LocaleRich> save(@Valid @RequestBody LocaleRich localeItem, HttpServletResponse response) {
@@ -75,7 +93,7 @@ public class LocaleRichResource {
 	
 	
 	/**
-	 * This is method find by all LocaleItens
+	 * This is method find by all Locale
 	 */
 	@GetMapping
 	public Iterable<LocaleRich> findByAll() {
@@ -84,7 +102,10 @@ public class LocaleRichResource {
 	
 	
 	/**
-			This is method find by one LocaleItens
+	 * 	This is method find by one Locale by the id
+	 * 
+	 *  @param id
+	 *  		This is the id of the Locale you want to find
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<LocaleRich> findById(@PathVariable Long id) {
@@ -95,8 +116,11 @@ public class LocaleRichResource {
 	  
 	
 	/**
-	 * This is method find by name LocaleItem
-	 * 
+	 *	This is method find by one Locale by the name
+	 *	
+	 *	@param name
+	 *			This is the name of the Locale you want to find
+	 *
 	 */
 	@GetMapping("/{name}")
 	public Collection<LocaleRich> findByNameLike(@PathVariable String name) {

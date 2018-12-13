@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package com.openpmoapi.event.listener;
 
 import java.net.URI;
@@ -12,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 
 /**
-* Type here a brief description of the class.
+* This is a class to create the resource listener
 *
 * @author marcos.santos  
 * @since 2018-08-02
@@ -21,17 +19,21 @@ import org.springframework.stereotype.Component;
 public class ResourceCreateListener implements ApplicationListener<FeatureCreatedEvent> {
 
 	
+	/**
+	 * @param featureCreatedEvent
+	 * 			This is a 
+	 */
 	@Override
-	public void onApplicationEvent(FeatureCreatedEvent recursoCriadoEvent) {
-		HttpServletResponse response = recursoCriadoEvent.getResponse();
-		Long codigo = recursoCriadoEvent.getCodigo();
+	public void onApplicationEvent(FeatureCreatedEvent resourceCreatedEvent) {
+		HttpServletResponse response = resourceCreatedEvent.getResponse();
+		Long code = resourceCreatedEvent.getCode();
 		
-		adicionarHeaderLocation(response, codigo);
+		addHeaderLocation(response, code);
 	}
 
-	private void adicionarHeaderLocation(HttpServletResponse response, Long codigo) {
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}")
-				.buildAndExpand(codigo).toUri();
+	private void addHeaderLocation(HttpServletResponse response, Long code) {
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{code}")
+				.buildAndExpand(code).toUri();
 		response.setHeader("Location", uri.toASCIIString());
 	}
 	

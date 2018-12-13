@@ -32,6 +32,8 @@ public class WorkpackModelService {
 	 /**
 	
 	 * this method verify if exits the data to update 
+	 * @return
+	 * 		savedWpm
 	
 	 */
 	@Transactional
@@ -43,7 +45,9 @@ public class WorkpackModelService {
 	
 	/**
 	 * @param id
+	 * 			This is he id of the WorkpackModel that will be find
 	 * @param wpTmpl
+	 * 			This is the parameter that will be defined
 	 * @return
 	 */
 	@Transactional
@@ -58,6 +62,7 @@ public class WorkpackModelService {
 	/**
 	 * this method find by id a data type Environment, if not exist it treats the exception 
 	 * @return
+	 * 		wpmSalvo
 	 */
 	@Transactional
 	public WorkpackModel searchForPersonByCode(Long id) {
@@ -68,7 +73,14 @@ public class WorkpackModelService {
 		return wpmSalvo.get();
 	}
 	
-	
+	/**
+	 * This method find a WorkpackModel by the id of the plan structure 
+	 * @param id
+	 * 		This is the id of the PLanStructure
+	 * 		
+	 * @return
+	 * 		Collection of WorkpackModel
+	 */
 	@Transactional
     public Collection<WorkpackModel> findWpmByIdPlanStructure(Long id) {
       Collection<WorkpackModel> wpm = wpmRepository.findWpmByIdPlanStructure(id);

@@ -1,4 +1,4 @@
-package com.openpmoapi.resource;
+ package com.openpmoapi.resource;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -48,6 +48,11 @@ public class WorkpackResource{
 	
 	/**
 	 * This method delete one Workpack
+	 * 
+	 * @param id
+	 * 			This is the id of the Workpack that will be deleted
+	 * @return 
+	 * 			This is a <code>void</code> method
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -68,6 +73,11 @@ public class WorkpackResource{
 	
 	/**
 	 * This method find one Workpack
+	 * 
+	 * @param id
+	 * 			This is the id of the Workpack that will be find
+	 * @return 
+	 * 			This method return a Workpack
 	 */
 	public Optional <Workpack> findByIdWorkpack(Long id) {
 		Optional<Workpack> workPack = workPackRepository.findById(id);
@@ -76,6 +86,8 @@ public class WorkpackResource{
 
 	/**
 	 * This method delete one Property
+	 * @param id
+	 * 			This is the id of the property that will be deleted
 	 */
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteProperty(Long id) {
@@ -86,6 +98,11 @@ public class WorkpackResource{
 	
 	/**
 	 * This method update Workpack
+	 * 
+	 * @param id
+	 * 			This is the id of the Workpack that will be updated
+	 * @param workpack
+	 * 			This is the workpack that will be updated
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<Workpack> update(@PathVariable Long id, @Valid @RequestBody Workpack workpack) {
@@ -97,7 +114,15 @@ public class WorkpackResource{
 	
 	
 	/**
-		This method save Workpack
+	 * 
+	 * This method save Workpack
+	 * 
+	 * @param workpack
+	 * 			This is the collection of Workpack
+	 * @param response
+	 * 			This is the answer of the HttpServletResponse
+	 * @return
+	 * 			return the workpack saved
 	 */
 	@PostMapping
 	public ResponseEntity<Workpack> save(@Valid @RequestBody Workpack workpack, HttpServletResponse response) {
@@ -127,7 +152,12 @@ public class WorkpackResource{
 	
 	
 	/**
-			This method find by one Workpack
+	 * This method find by one Workpacks
+	 * 
+	 * @param id
+	 * 			This is the id of the workpack that will be find
+	 * @return
+	 * 			Workpack 
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Workpack> findById(@PathVariable Long id) {
@@ -136,19 +166,27 @@ public class WorkpackResource{
 	}
 	
 		
-		/**
-		This method find by one Schema
-	*/
+	/**
+	 * This method find by one Schema, by the list of workpacks
+	 * 
+	 * @param id
+	 * 			This is the id of the workpack that will be find
+	 * @return
+	 * 			Workpack services provides by the schema 
+	 */
 	@GetMapping("/listworkpacks/{id}")
 	public Collection<Workpack> findWpByIdSchema(@PathVariable Long id) {
 		return wpService.findWpByIdSchema(id);
 	}
 	
-	
 		
 	/**
-		This is method find by one Workpack tree
-	*/
+	 * This is method find by one Workpack, by the tree
+	 * 
+	 * @param id
+	 * 			This is the id of the workpack that will be find
+	 * @return
+	 */
 	@GetMapping("/tree/{id}")
 	public Collection<Workpack> findWpByIdWorkpack(@PathVariable Long id) {
 		return wpService.findWpByIdWorkpack(id);

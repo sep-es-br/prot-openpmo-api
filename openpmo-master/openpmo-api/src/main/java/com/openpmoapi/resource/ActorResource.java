@@ -47,6 +47,10 @@ public class ActorResource {
 	
 	/**
 	 * This is method delete one Actor
+	 * 
+	 * @param id
+	 *			This is the id that will be deleted 
+	 *        
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -58,6 +62,12 @@ public class ActorResource {
 	
 	/**
 	 * This is method update Actor
+	 * @param id
+	 * 			This is the id of the actor
+	 * 
+	 * @param actor
+	 * 			This is the collection of Actor 
+	 * 
 	 */
 	@PutMapping("/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
@@ -66,9 +76,16 @@ public class ActorResource {
 		return ResponseEntity.ok(savedActor);
 	}
 	
-	
 	/**
-		This is method save Actor
+	 * 
+	 * This is method save Actor
+	 * 
+	 * @param actor
+	 * 			This is the collection of Actor
+	 * 
+	 * @param response
+	 * 			This is the answer of the HttpServletResponse
+	 * 
 	 */
 	@PostMapping
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
@@ -80,7 +97,7 @@ public class ActorResource {
 	
 	
 	/**
-	 * This is method find by all Actor
+	 * This method find by all Actor
 	 */
 	@GetMapping
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
@@ -90,7 +107,11 @@ public class ActorResource {
 	
 	
 	/**
-			This is method find by one Actor
+	 *	This is method find by one Actor
+	 *	
+	 *	@param id
+	 *			This is the id of the actor you want to find
+	 *
 	 */
 	@GetMapping("/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
@@ -98,6 +119,7 @@ public class ActorResource {
 		Optional<Actor> actor = actorRepository.findById(id);
 		return actor.isPresent() ? ResponseEntity.ok(actor.get()) : ResponseEntity.notFound().build();
 	}
+	
 	
 
 	

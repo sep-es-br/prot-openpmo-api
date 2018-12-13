@@ -33,6 +33,8 @@ public class CostService {
 	/**
 	
 	 * this method verify if exits the data to update 
+	 * @return
+	 * 		savedCost
 	
 	 */
 	@Transactional(readOnly = false)
@@ -47,6 +49,7 @@ public class CostService {
 	/**
 	 * this method find by id a data type Locale, if not exist it treats the exception 
 	 * @return
+	 * 		savedCost
 	 */
 	@Transactional(readOnly = true)
 	public Cost findCostById(Long id) {

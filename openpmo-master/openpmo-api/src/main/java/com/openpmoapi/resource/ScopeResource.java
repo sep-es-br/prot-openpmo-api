@@ -49,6 +49,9 @@ public class ScopeResource {
 	
 	/**
 	 * This is method delete one Scope
+	 * 
+	 * @param id
+	 * 			This is the id of the scope that will be deleted
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -60,6 +63,11 @@ public class ScopeResource {
 	
 	/**
 	 * This is method update Scope
+	 * 
+	 * @param id
+	 * 			This is the id of the scope that will be updated
+	 * @param scope
+	 * 			This is the new parameter that will be allocated in scope
 	 */
 	@PutMapping("/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
@@ -70,7 +78,12 @@ public class ScopeResource {
 	
 	
 	/**
-		This is method save Scope
+	 * This is method save Scope
+	 * 
+	 * @param scope
+	 * 			This is the id of the scope that will be saved
+	 * @param response
+	 * 			This is the answer of the HttpServletResponse
 	 */
 	@PostMapping
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
@@ -93,7 +106,11 @@ public class ScopeResource {
 	
 	
 	/**
-			This is method find by one Scope
+	 *	This is method find by one Scope
+	 *	
+	 *	@param id
+	 *			This is the id of the scope you want to find
+	 *
 	 */
 	@GetMapping("/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")

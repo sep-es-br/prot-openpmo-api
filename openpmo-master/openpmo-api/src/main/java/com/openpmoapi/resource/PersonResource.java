@@ -49,6 +49,10 @@ public class PersonResource {
 	
 	/**
 	 * This is method delete one Person
+	 * 
+	 * @param id
+	 * 			This is the id that will be deleted
+	 * 
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -60,6 +64,12 @@ public class PersonResource {
 	
 	/**
 	 * This is method update Person
+	 * @param id
+	 * 			This is the id of the Person
+	 * 
+	 * @param person
+	 * 			This is the collection of Person 
+	 * 
 	 */
 	@PutMapping("/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
@@ -70,7 +80,15 @@ public class PersonResource {
 	
 	
 	/**
-		This is method save Person
+	 * 
+	 * This is method save Person
+	 * 
+	 * @param person
+	 * 			This is the collection of Person
+	 * 
+	 * @param response
+	 * 			This is the answer of the HttpServletResponse
+	 * 
 	 */
 	@PostMapping
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
@@ -96,7 +114,10 @@ public class PersonResource {
 	
 	
 	/**
-			This is method find by one Person
+	 * 	This is method find by one Person
+	 * 
+	 *  @param id
+	 *  		This is the id of the Person you want to find
 	 */
 	@GetMapping("/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
@@ -108,6 +129,9 @@ public class PersonResource {
 	  
 	/**
 	 * This is method find by name Person
+	 * 
+	 * @param name
+	 * 			This is the name of the Person you want to find
 	 * 
 	 */
 	@GetMapping(path ="/like/{name}")

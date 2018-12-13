@@ -33,6 +33,8 @@ public class PlanService {
 	/**
 	
 	 * this method verify if exits the data to update 
+	 * @return
+	 * 		savedPlan
 	
 	 */
 	@Transactional
@@ -46,6 +48,7 @@ public class PlanService {
 	/**
 	 * this method find by id a data type Environment, if not exist it treats the exception 
 	 * @return
+	 * 		savedPlan
 	 */
 	@Transactional
 	public Plan findPlanById(Long id) {
@@ -56,19 +59,40 @@ public class PlanService {
 		return savedPlan.get();
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * 		This is the id of the code that will be find
+	 * @return
+	 * 		The result
+	 * 
+	 */		
 	@Transactional(readOnly = true)
-    public Iterable<Plan> findByCodigo(Iterable<Long> id) {
+    public Iterable<Plan> findByCode(Iterable<Long> id) {
 		Iterable<Plan> result = planRepository.findAllById(id,0);
       return result;
     }
 	
+	/**
+	 * This method find a plan environment
+	 * @param id
+	 * 		This is the id of the Plan that will be find
+	 * @return
+	 * 		Collection of plans
+	 */
 	@Transactional(readOnly = true)
-    public Collection<Plan> findPlanByIdEnveronment(Long id) {
-      Collection<Plan> plans = planRepository.findPlanByIdEnveronment(id);
+    public Collection<Plan> findPlanByIdEnvironment(Long id) {
+      Collection<Plan> plans = planRepository.findPlanByIdEnvironment(id);
       return plans;
     }
 	
-	
+	/**
+	 * 
+	 * @param id
+	 * 		This is the id of the tree plan 
+	 * @return
+	 * 		A collection of Plan
+	 */
 	@Transactional(readOnly = true)
     public Collection<Plan> findPlanByIdTree(Long id) {
       Collection<Plan> plans = planRepository.findPlanByIdTree(id);

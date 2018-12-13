@@ -57,6 +57,10 @@ public class OrgRoleAtPlanResource {
 	
 	/**
 	 * This is method delete one Role
+	 * 
+	 * @param id
+	 * 			This is the id that will be deleted
+	 * 
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -68,6 +72,12 @@ public class OrgRoleAtPlanResource {
 
 	/**
 	 * This is method update Role
+	 * @param id
+	 * 			This is the id of the OrgRoleAtPlan
+	 * 
+	 * @param role
+	 * 			This is the collection of OrgRoleAtPlan 
+	 * 
 	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<OrgRoleAtPlan> update(@PathVariable Long id, @Valid @RequestBody OrgRoleAtPlan role) {
@@ -79,7 +89,15 @@ public class OrgRoleAtPlanResource {
 	
 
 	/**
-		This is method save Role
+	 * 
+	 * This is method save Role
+	 * 
+	 * @param role
+	 * 			This is the collection of OrgRoleAtPlan
+	 * 
+	 * @param response
+	 * 			This is the answer of the HttpServletResponse
+	 * 
 	 */
 	@PostMapping
 	public ResponseEntity<OrgRoleAtPlan> save(@Valid @RequestBody OrgRoleAtPlan role, HttpServletResponse response) {
@@ -99,8 +117,11 @@ public class OrgRoleAtPlanResource {
 	}
 	
 	/**
-		This is method find by one Role
-	*/
+	 * 	This is method find by one Role
+	 * 
+	 *  @param id
+	 *  		This is the id of the OrgRoleAtPlan you want to find
+	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<OrgRoleAtPlan> findById(@PathVariable Long id) {
 	Optional<OrgRoleAtPlan> role = roleRepository.findById(id,2);
