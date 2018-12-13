@@ -6,11 +6,11 @@ package com.openpmoapi.config;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -21,6 +21,8 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
+import com.openpmoapi.config.token.CustomTokenEnhancer;
+
 /**
 * Type here a brief description of the class.
 *
@@ -29,51 +31,142 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 */
 
 	
+@Profile("oauth-security")
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 	
-	 	@Autowired
-	    @Qualifier("authenticationManagerBean")
-	    private AuthenticationManager authenticationManager;
+	@Autowired
+	private AuthenticationManager authenticationManager;
+	
+	@Autowired
+	private UserDetailsService userDetailsService;
+	
+	@Override
+	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+		clients.inMemory()
+				.withClient("angular")
+				.secret("$2a$10$zm4x6Zygn9rmvsYi8ATbBeE76.r.1z0PN.Tuh.LZry4QZG/r1TOiG") // @ngul@r0
+				.scopes("read", "write")
+				.authorizedGrantTypes("password", "refresh_token")
+				.accessTokenValiditySeconds(20)
+				.refreshTokenValiditySeconds(3600 * 24)
+			.and()
+				.withClient("mobile")
+				.secret("$2a$10$fmnfZeAidJD6G.FsTqEg5OGMu.4Z1UcHyE/PQdq5.A2eSv3TxYqOi") // m0b1l30
+				.scopes("read")
+				.authorizedGrantTypes("password", "refresh_token")
+				.accessTokenValiditySeconds(20)
+				.refreshTokenValiditySeconds(3600 * 24);
+	}
+	
+	@Override
+	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+		TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+		tokenEnhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancer(), accessTokenConverter()));
+		
+		endpoints
+			.tokenStore(tokenStore())
+			.tokenEnhancer(tokenEnhancerChain)
+			.reuseRefreshTokens(false)
+			.userDetailsService(userDetailsService)
+			.authenticationManager(authenticationManager);
+	}
+	
+	@Bean
+	public JwtAccessTokenConverter accessTokenConverter() {
+		JwtAccessTokenConverter accessTokenConverter = new JwtAccessTokenConverter();
+		accessTokenConverter.setSigningKey("algaworks");
+		return accessTokenConverter;
+	}
 
-	    @Override
-	    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-	        clients.inMemory().withClient("angular").secret(passwordEncoder().encode("@ngul@r0")).scopes("read", "write")
-	        .authorizedGrantTypes("password", "refresh_token").accessTokenValiditySeconds(120000)
-	        .refreshTokenValiditySeconds(3600 * 24); 
-	    }
-
-	    @Override
-	    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-
-	        final TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
-	        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancer(), accessTokenConverter()));
-	        endpoints.tokenStore(tokenStore()).tokenEnhancer(tokenEnhancerChain)
-	        .authenticationManager(authenticationManager).reuseRefreshTokens(false);
-	    }
-
-	    @Bean
-	    public JwtAccessTokenConverter accessTokenConverter() {
-	        JwtAccessTokenConverter accessTokenConverter = new JwtAccessTokenConverter();
-	        accessTokenConverter.setSigningKey("algaworks");
-	        return accessTokenConverter;
-	    }
-
-	    @Bean
-	    public TokenEnhancer tokenEnhancer() {
-	        return new CustomTokenEnhancer();
-	    }
-
-	    @Bean
-	    public TokenStore tokenStore() {
-	        return new JwtTokenStore(accessTokenConverter());
-	    }
-
-	    @Bean
-	    public BCryptPasswordEncoder passwordEncoder() {
-	        return new BCryptPasswordEncoder();
-	    }
+	@Bean
+	public TokenStore tokenStore() {
+		return new JwtTokenStore(accessTokenConverter());
+	}
+	
+	@Bean
+	public TokenEnhancer tokenEnhancer() {
+	    return new CustomTokenEnhancer();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	 	@Autowired
+//	    @Qualifier("authenticationManagerBean")
+//	    private AuthenticationManager authenticationManager;
+//
+//	    @Override
+//	    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+//	        clients.inMemory()
+//	        .withClient("angular")
+//	        .secret(passwordEncoder()
+//	        .encode("@ngul@r0"))
+//	        .scopes("read", "write")
+//	        .authorizedGrantTypes("password", "refresh_token")
+//	        .accessTokenValiditySeconds(1800)
+//	        .refreshTokenValiditySeconds(3600 * 24)
+//
+//	        .and()
+//	        
+//			.withClient("mobile")
+//			.secret(passwordEncoder()
+//			.encode("m0b1l30"))
+//			.scopes("read")
+//			.authorizedGrantTypes("password", "refresh_token")
+//			.accessTokenValiditySeconds(1800)
+//			.refreshTokenValiditySeconds(3600 * 24);; 
+//	    }
+//
+//	    @Override
+//	    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+//
+//	        final TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+//	        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancer(), accessTokenConverter()));
+//	        endpoints.tokenStore(tokenStore()).tokenEnhancer(tokenEnhancerChain)
+//	        .authenticationManager(authenticationManager).reuseRefreshTokens(false);
+//	    }
+//
+//	    @Bean
+//	    public JwtAccessTokenConverter accessTokenConverter() {
+//	        JwtAccessTokenConverter accessTokenConverter = new JwtAccessTokenConverter();
+//	        accessTokenConverter.setSigningKey("algaworks");
+//	        return accessTokenConverter;
+//	    }
+//
+//	    @Bean
+//	    public TokenEnhancer tokenEnhancer() {
+//	        return new CustomTokenEnhancer();
+//	    }
+//
+//	    @Bean
+//	    public TokenStore tokenStore() {
+//	        return new JwtTokenStore(accessTokenConverter());
+//	    }
+//
+//	    @Bean
+//	    public BCryptPasswordEncoder passwordEncoder() {
+//	        return new BCryptPasswordEncoder();
+//	    }
 
 		
 	}

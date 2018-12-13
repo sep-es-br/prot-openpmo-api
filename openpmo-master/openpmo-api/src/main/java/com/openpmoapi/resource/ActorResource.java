@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,6 +50,7 @@ public class ActorResource {
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
 	public void delete(@PathVariable Long id) {
 		actorRepository.deleteById(id);
 	}
@@ -58,6 +60,7 @@ public class ActorResource {
 	 * This is method update Actor
 	 */
 	@PutMapping("/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
 	public ResponseEntity<Actor> update(@PathVariable Long id, @Valid @RequestBody Actor actor) {
 		Actor savedActor = actorService.update(id, actor);
 		return ResponseEntity.ok(savedActor);
@@ -68,6 +71,7 @@ public class ActorResource {
 		This is method save Actor
 	 */
 	@PostMapping
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
 	public ResponseEntity<Actor> save(@Valid @RequestBody Actor actor, HttpServletResponse response) {
 		Actor savedActor = actorRepository.save(actor);
 		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedActor.getId()));
@@ -79,6 +83,7 @@ public class ActorResource {
 	 * This is method find by all Actor
 	 */
 	@GetMapping
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Iterable<Actor> findByAll() {
 		return actorRepository.findAll();
 	}
@@ -88,6 +93,7 @@ public class ActorResource {
 			This is method find by one Actor
 	 */
 	@GetMapping("/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public ResponseEntity<Actor> findById(@PathVariable Long id) {
 		Optional<Actor> actor = actorRepository.findById(id);
 		return actor.isPresent() ? ResponseEntity.ok(actor.get()) : ResponseEntity.notFound().build();

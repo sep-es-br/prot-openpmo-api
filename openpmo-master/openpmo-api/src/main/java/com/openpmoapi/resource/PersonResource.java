@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -51,6 +52,7 @@ public class PersonResource {
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
 	public void delete(@PathVariable Long id) {
 		personRepository.deleteById(id);
 	}
@@ -60,6 +62,7 @@ public class PersonResource {
 	 * This is method update Person
 	 */
 	@PutMapping("/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
 	public ResponseEntity<Person> update(@PathVariable Long id, @Valid @RequestBody Person person) {
 		Person savedPerson = personService.update(id, person);
 		return ResponseEntity.ok(savedPerson);
@@ -70,6 +73,7 @@ public class PersonResource {
 		This is method save Person
 	 */
 	@PostMapping
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
 	public ResponseEntity<Person> save(@Valid @RequestBody Person person, HttpServletResponse response) {
 		Person savedPerson = personRepository.save(person);
 		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedPerson.getId()));
@@ -77,10 +81,15 @@ public class PersonResource {
 	}
 	
 	
+	
+	   // @PreAuthorize("hasAuthority('COMPANY_READ') and hasAuthority('DEPARTMENT_READ')")
+	
+	
 	/**
 	 * This is method find by all Person
 	 */
 	@GetMapping
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('USER') and #oauth2.hasScope('read')")
 	public Iterable<Person> findByAll() {
 		 return personRepository.findAll(2);
 	}
@@ -90,6 +99,7 @@ public class PersonResource {
 			This is method find by one Person
 	 */
 	@GetMapping("/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public ResponseEntity<Person> findById(@PathVariable Long id) {
 		Optional<Person> person = personRepository.findById(id,2);
 		return person.isPresent() ? ResponseEntity.ok(person.get()) : ResponseEntity.notFound().build();
@@ -101,6 +111,7 @@ public class PersonResource {
 	 * 
 	 */
 	@GetMapping(path ="/like/{name}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Collection<Person> findByNameLike(@PathVariable("name") String name) {
 		return personService.findByNameLike(name);
 	 

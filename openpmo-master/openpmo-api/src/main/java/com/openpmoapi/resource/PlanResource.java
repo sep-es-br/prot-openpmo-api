@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,6 +49,7 @@ public class PlanResource {
 	 * This method delete one Plan
 	 */
 	@DeleteMapping("/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
 		planRepository.deleteById(id);
@@ -59,6 +61,7 @@ public class PlanResource {
 	 * This method update Plan
 	 */
 	@PutMapping("/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
 	public ResponseEntity<Plan> update(@PathVariable Long id, @Valid @RequestBody Plan plan) {
 		Plan savedPlan = planService.update(id, plan);
 		return ResponseEntity.ok(savedPlan);
@@ -69,6 +72,7 @@ public class PlanResource {
 		This method save Plan
 	 */
 	@PostMapping
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
 	public ResponseEntity<Plan> save(@Valid @RequestBody Plan plan, HttpServletResponse response) {
 		Plan savedPlan = planRepository.save(plan);
 		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedPlan.getId()));
@@ -80,6 +84,7 @@ public class PlanResource {
 	 * This method find by all plan
 	 */
 	@GetMapping
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Iterable<Plan> findByAll() {
 		 return planRepository.findAll(2);
 	}
@@ -89,6 +94,7 @@ public class PlanResource {
 			This method find by one Plan
 	 */
 	@GetMapping("/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public ResponseEntity<Plan> findById(@PathVariable Long id) {
 		Optional<Plan> plan = planRepository.findById(id,2);
 		return plan.isPresent() ? ResponseEntity.ok(plan.get()) : ResponseEntity.notFound().build();
@@ -99,6 +105,7 @@ public class PlanResource {
 		This method find by one Plan
 	*/
 	@GetMapping("/listschemas/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Collection<Plan> findPlans(@PathVariable Long id) {
 		return planService.findPlanByIdEnveronment(id);
 	}
@@ -109,6 +116,7 @@ public class PlanResource {
 		This method find by one Plan tree
 	*/
 	@GetMapping("/tree/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Collection<Plan> findPlansTree(@PathVariable Long id) {
 		return planService.findPlanByIdTree(id);
 	}

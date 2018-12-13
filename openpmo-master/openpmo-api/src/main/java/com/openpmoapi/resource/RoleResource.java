@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,6 +49,7 @@ public class RoleResource {
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
 	public void delete(@PathVariable Long id) {
 		roleRepository.deleteById(id);
 	}
@@ -57,6 +59,7 @@ public class RoleResource {
 	 * This is method update Role
 	 */
 	@PutMapping("/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
 	public ResponseEntity<Role> update(@PathVariable Long id, @Valid @RequestBody Role role) {
 		Role savedRole = roleService.update(id, role);
 		return ResponseEntity.ok(savedRole);
@@ -67,6 +70,7 @@ public class RoleResource {
 		This is method save Role
 	 */
 	@PostMapping
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
 	public ResponseEntity<Role> save(@Valid @RequestBody Role role, HttpServletResponse response) {
 		Role savedRole = roleRepository.save(role);
 		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedRole.getId()));
@@ -78,6 +82,7 @@ public class RoleResource {
 	 * This is method find by all Role
 	 */
 	@GetMapping
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Iterable<Role> findByAll() {
 		 return roleRepository.findAll(2);
 	}
@@ -87,6 +92,7 @@ public class RoleResource {
 			This is method find by one Role
 	 */
 	@GetMapping("/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public ResponseEntity<Role> findById(@PathVariable Long id) {
 		Optional<Role> Role = roleRepository.findById(id,2);
 		return Role.isPresent() ? ResponseEntity.ok(Role.get()) : ResponseEntity.notFound().build();
@@ -97,6 +103,7 @@ public class RoleResource {
 		This method find by one Role
 	*/
 	@GetMapping("/scope/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Collection<Role> findAllByScopeId(@PathVariable Long id) {
 		return roleService.findAllByScopeId(id);
 	}
@@ -107,6 +114,7 @@ public class RoleResource {
 		This method find by one Role
 	*/
 	@GetMapping("/actor/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Collection<Role> findAllByActorId(@PathVariable Long id) {
 		return roleService.findAllByActorId(id);
 	}

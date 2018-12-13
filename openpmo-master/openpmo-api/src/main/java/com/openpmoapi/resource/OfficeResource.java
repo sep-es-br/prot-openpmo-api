@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,6 +50,7 @@ public class OfficeResource {
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
 	public void delete(@PathVariable Long id) {
 		envRepository.deleteById(id);
 	}
@@ -58,6 +60,7 @@ public class OfficeResource {
 	 * This is method update Environment
 	 */
 	@PutMapping("/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
 	public ResponseEntity<Office> update(@PathVariable Long id, @Valid @RequestBody Office env) {
 		Office savedEnv = envService.update(id, env);
 		return ResponseEntity.ok(savedEnv);
@@ -68,6 +71,7 @@ public class OfficeResource {
 		This is method save Environment
 	 */
 	@PostMapping
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
 	public ResponseEntity<Office> save(@Valid @RequestBody Office env, HttpServletResponse response) {
 		Office savedEnv = envRepository.save(env);
 		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedEnv.getId()));
@@ -79,6 +83,7 @@ public class OfficeResource {
 	 * This is method find by all Environment
 	 */
 	@GetMapping
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Iterable<Office> findByAll() {
 		 return envRepository.findAll(2);
 	}
@@ -88,36 +93,19 @@ public class OfficeResource {
 			This is method find by one Environment
 	 */
 	@GetMapping("/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public ResponseEntity<Office> findById(@PathVariable Long id) {
 		Optional<Office> env = envRepository.findById(id,2);
 		return env.isPresent() ? ResponseEntity.ok(env.get()) : ResponseEntity.notFound().build();
 	}
 	
-	
-//	@GetMapping("/teste/{name}")
-//	public Office findByName(@PathVariable String name) {
-//	    return envService.findByName(name);
-//	}
-//	  
-//	
-//	@GetMapping("/testes/{name}")
-//	public Collection<Office> findByNameLike(@PathVariable String name) {
-//	     return envService.findByNameLike(name);
-//	 }
-//	
-//
-//	
-//	@GetMapping("/testes3")
-//	public Collection<Office> find() {
-//	     return envService.find();
-//	}
-	
-	
+
 	
 	/**
 		This is method find by one office tree
 	*/
 	@GetMapping("/tree/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Collection<Office> findWpByIdTree(@PathVariable Long id) {
 		return envService.findWpByIdTree(id);
 	}
@@ -127,6 +115,7 @@ public class OfficeResource {
 		This is method find by one office template tree
 	*/
 	@GetMapping("/template/tree/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Collection<Office> findWpByIdTemplateTree(@PathVariable Long id) {
 		return envService.findWpByIdTemplateTree(id);
 	}

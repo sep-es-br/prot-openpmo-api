@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -67,7 +67,7 @@ public class WorkpackModelResource {
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@Transactional
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
 	public void delete(@PathVariable Long id) {
 		wpmRepository.deleteById(id);
 	}
@@ -78,7 +78,7 @@ public class WorkpackModelResource {
 	 * @throws Exception 
 	 */
 	@PutMapping("/{id}")
-	@Transactional
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
 	public ResponseEntity<WorkpackModel> update(@PathVariable  Long id,@Valid  @RequestBody WorkpackModel wpm)throws IllegalArgumentException {
 
 		List<PropertyProfile> prod = new ArrayList<PropertyProfile>();
@@ -114,12 +114,12 @@ public class WorkpackModelResource {
 	
 	
 	
-	@Transactional
+	
 	public Collection<Property> findProperties(Long id) {
 		return propertyService.findPropertyByIdPropertyProfile(id);
 	}
 	
-	@Transactional
+	
 	public void deleteProfile( Long id) {
 		propertyProfileRepository.deleteById(id);
 	}
@@ -130,7 +130,7 @@ public class WorkpackModelResource {
 		This method save WorkpackModel
 	 */
 	@PostMapping
-	@Transactional
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
 	public ResponseEntity<WorkpackModel> save( @Valid @RequestBody WorkpackModel wpm, HttpServletResponse response) {
 		WorkpackModel savedWpm = wpmRepository.save(wpm);
 		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedWpm.getId()));
@@ -142,7 +142,7 @@ public class WorkpackModelResource {
 	 * This method find by all WorkpackModels
 	 */
 	@GetMapping
-	@Transactional
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Iterable<WorkpackModel> findByAll() {
 		 return wpmRepository.findAll(2);
 	}
@@ -152,7 +152,7 @@ public class WorkpackModelResource {
 	 * This method find by all WorkpackModels
 	 */
 	@GetMapping("/listworkpackmodelsbyid/{id}/{depth")
-	@Transactional
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Iterable<WorkpackModel> findByAllById(@PathVariable Iterable<Long> id,int depth) {
 		 return wpmRepository.findAllById(id, depth);
 	}
@@ -162,7 +162,7 @@ public class WorkpackModelResource {
 			This method find by one WorkpackModels
 	 */
 	@GetMapping("/{id}/{depth}")
-	@Transactional
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public ResponseEntity<WorkpackModel> findById(@PathVariable Long id,@PathVariable int depth) {
 		Optional<WorkpackModel> wpm = wpmRepository.findById(id,depth);
 		return wpm.isPresent() ? ResponseEntity.ok(wpm.get()) : ResponseEntity.notFound().build();
@@ -173,7 +173,7 @@ public class WorkpackModelResource {
 		This method find by one WorkpackModels
 	*/
 	@GetMapping("/{id}")
-	@Transactional
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public ResponseEntity<WorkpackModel> findById(@PathVariable Long id) {
 	Optional<WorkpackModel> wpm = wpmRepository.findById(id,2);
 	return wpm.isPresent() ? ResponseEntity.ok(wpm.get()) : ResponseEntity.notFound().build();
@@ -185,7 +185,7 @@ public class WorkpackModelResource {
 		This method find by one or more WorkPackModels
 	*/
 	@GetMapping("/listworkpackmodels/{id}")
-	@Transactional
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Collection<WorkpackModel> findWpmByIdPlanStructure(@PathVariable Long id) {
 		return wpmService.findWpmByIdPlanStructure(id);
 	}
@@ -197,7 +197,7 @@ public class WorkpackModelResource {
 		This method find by one WorkpackModel
 	*/
 	@GetMapping("/tree/{id}")
-	@Transactional
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public ResponseEntity<WorkpackModel> findByIdWptm(@PathVariable Long id) {
 		Optional<WorkpackModel> wpm = wpmRepository.findById(id,-1);
 		return wpm.isPresent() ? ResponseEntity.ok(wpm.get()) : ResponseEntity.notFound().build();
@@ -209,7 +209,7 @@ public class WorkpackModelResource {
 	This method find by all properties of the WorkPackModels
 */
 	@GetMapping("/listpropertytypes")
-	@Transactional
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Object findAllPropertiesList() {
 		
 		List<String> properties = new ArrayList<>();
@@ -233,7 +233,7 @@ public class WorkpackModelResource {
 	 * This method returns a default workpackModel object
 	 */
 	@GetMapping("/default")
-	@Transactional
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public WorkpackModel getDefault() {
 		
 		WorkpackModel wpt = new WorkpackModel();

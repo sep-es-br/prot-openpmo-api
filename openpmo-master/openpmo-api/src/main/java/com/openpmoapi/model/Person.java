@@ -5,9 +5,11 @@ package com.openpmoapi.model;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.neo4j.ogm.annotation.NodeEntity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 /**
@@ -23,9 +25,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Person extends Actor{
 
 	
+	
+	private List<String> permissions = new ArrayList<String>();
+	
+	
 	private String userName;
 	
-	@JsonIgnore
+	
 	public String password;
 	
 	public String email;
@@ -64,7 +70,23 @@ public class Person extends Actor{
 	public void setAuthentication(String authentication) {
 		this.authentication = authentication;
 	}
-	
+
+	/**
+	 * @return the permissions
+	 */
+	public List<String> getPermissions() {
+		return permissions;
+	}
+
+	/**
+	 * @param permissions the permissions to set
+	 */
+	public void setPermissions(List<String> permissions) {
+		this.permissions = permissions;
+	}
+
+
+
 	
 	
 	

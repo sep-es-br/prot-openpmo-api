@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,6 +49,7 @@ public class OrganizationResource {
 	 * This is method delete one Organization
 	 */
 	@DeleteMapping("/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable Long id) {
 		organizationRepository.deleteById(id);
@@ -58,6 +60,7 @@ public class OrganizationResource {
 	 * This is method update Organization
 	 */
 	@PutMapping("/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
 	public ResponseEntity<Organization> update(@PathVariable Long id, @Valid @RequestBody Organization organization) {
 		Organization savedOrganization = organizationService.update(id, organization);
 		return ResponseEntity.ok(savedOrganization);
@@ -68,6 +71,7 @@ public class OrganizationResource {
 		This is method save Organization
 	 */
 	@PostMapping
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
 	public ResponseEntity<Organization> save(@Valid @RequestBody Organization organization, HttpServletResponse response) {
 		Organization savedOrganization = organizationRepository.save(organization);
 		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedOrganization.getId()));
@@ -79,6 +83,7 @@ public class OrganizationResource {
 	 * This is method find by all Organization
 	 */
 	@GetMapping
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Iterable<Organization> findByAll() {
 		 return organizationRepository.findAll(2);
 	}
@@ -88,6 +93,7 @@ public class OrganizationResource {
 			This is method find by one Organization
 	 */
 	@GetMapping("/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public ResponseEntity<Organization> findById(@PathVariable Long id) {
 		Optional<Organization> organization = organizationRepository.findById(id,2);
 		return organization.isPresent() ? ResponseEntity.ok(organization.get()) : ResponseEntity.notFound().build();
@@ -100,6 +106,7 @@ public class OrganizationResource {
 	 * 
 	 */
 	@GetMapping("/like/{name}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Collection<Organization> findByNameLike(@PathVariable String name) {
 	     return organizationService.findByNameLike(name);
 	 }
