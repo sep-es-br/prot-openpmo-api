@@ -18,23 +18,23 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class OpenpmoApiProperty {
 
 	
-	private String originPermitida = "http://localhost:4200";
+	private String allowedOrigin = "http://localhost:4200";
 
-	private final Seguranca seguranca = new Seguranca();
+	private final Security security = new Security();
 
-	public Seguranca getSeguranca() {
-		return seguranca;
+	public Security getSecurity() {
+		return security;
 	}
 
-	public String getOriginPermitida() {
-		return originPermitida;
+	public String getAllowedOrigin() {
+		return allowedOrigin;
 	}
 
-	public void setOriginPermitida(String originPermitida) {
-		this.originPermitida = originPermitida;
+	public void setAllowedOrigin(String allowedOrigin) {
+		this.allowedOrigin = allowedOrigin;
 	}
 
-	public static class Seguranca {
+	public static class Security {
 
 		private boolean enableHttps;
 

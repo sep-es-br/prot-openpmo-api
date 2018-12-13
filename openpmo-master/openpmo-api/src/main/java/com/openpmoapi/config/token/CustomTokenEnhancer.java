@@ -12,7 +12,7 @@ import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 
-import com.openpmoapi.security.UsuarioSistema;
+import com.openpmoapi.security.SystemUser;
 
 
 /**
@@ -26,10 +26,10 @@ public class CustomTokenEnhancer implements TokenEnhancer{
 	
 	@Override
 	public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
-		UsuarioSistema usuarioSistema = (UsuarioSistema) authentication.getPrincipal();
+		SystemUser systemUser = (SystemUser) authentication.getPrincipal();
 		
 		Map<String, Object> addInfo = new HashMap<>();
-		addInfo.put("name", usuarioSistema.getPerson().getName());
+		addInfo.put("name", systemUser.getPerson().getName());
 		
 		((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(addInfo);
 		return accessToken;
