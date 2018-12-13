@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -56,6 +57,7 @@ public class WorkpackResource{
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
 	public void delete(@PathVariable Long id) {
 		
 		Optional<Workpack> wp = findByIdWorkpack(id);
@@ -105,10 +107,9 @@ public class WorkpackResource{
 	 * 			This is the workpack that will be updated
 	 */
 	@PutMapping("/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
 	public ResponseEntity<Workpack> update(@PathVariable Long id, @Valid @RequestBody Workpack workpack) {
-		
 		Workpack wpSalvo = wpService.update(id, workpack);
-		
 		return ResponseEntity.ok(wpSalvo);
 	}
 	
@@ -125,14 +126,11 @@ public class WorkpackResource{
 	 * 			return the workpack saved
 	 */
 	@PostMapping
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
 	public ResponseEntity<Workpack> save(@Valid @RequestBody Workpack workpack, HttpServletResponse response) {
-		
 		for(int i = 0; i < workpack.getProperties().size();i++) {
-			
-			
 			workpack.getProperties().get(i).getLabels().add
 			(workpack.getProperties().get(i).getProfile().getType());
-			
 		}
 		
 		Workpack savedWorkPack = workPackRepository.save(workpack);
@@ -146,6 +144,7 @@ public class WorkpackResource{
 	 * This method find by all Workpacks
 	 */
 	@GetMapping
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Iterable<Workpack> findByAll() {
 		 return workPackRepository.findAll(2);
 	}
@@ -160,6 +159,7 @@ public class WorkpackResource{
 	 * 			Workpack 
 	 */
 	@GetMapping("/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public ResponseEntity<Workpack> findById(@PathVariable Long id) {
 		Optional<Workpack> workPack = workPackRepository.findById(id,1);
 		return workPack.isPresent() ? ResponseEntity.ok(workPack.get()) : ResponseEntity.notFound().build();
@@ -175,6 +175,7 @@ public class WorkpackResource{
 	 * 			Workpack services provides by the schema 
 	 */
 	@GetMapping("/listworkpacks/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Collection<Workpack> findWpByIdSchema(@PathVariable Long id) {
 		return wpService.findWpByIdSchema(id);
 	}
@@ -188,6 +189,7 @@ public class WorkpackResource{
 	 * @return
 	 */
 	@GetMapping("/tree/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Collection<Workpack> findWpByIdWorkpack(@PathVariable Long id) {
 		return wpService.findWpByIdWorkpack(id);
 	}
