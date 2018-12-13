@@ -12,7 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 * @author marcos.santos  
 * @since 2018-12-11
 */
-public class GeradorSenha {
+public class PasswordGenerator {
 
 	
 	
