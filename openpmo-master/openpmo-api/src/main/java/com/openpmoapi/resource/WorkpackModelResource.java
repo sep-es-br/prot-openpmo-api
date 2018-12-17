@@ -326,46 +326,23 @@ public class WorkpackModelResource {
 		
 		List<String> listRolesPerson = new ArrayList<>();
 		listRolesPerson.add("Manager");
-		listRolesPerson.add("TeamMember");
+		listRolesPerson.add("Team Member");
 		listRolesPerson.add("Sponsor");
 		listRolesPerson.add("Partner");
 		wpt.setPersonPossibleRoles(listRolesPerson);
 		
 		List<String> listRolesOrg = new ArrayList<>();
 		listRolesOrg.add("Manager");
-		listRolesOrg.add("TeamMember");
+		listRolesOrg.add("Team Member");
 		listRolesOrg.add("Sponsor");
 		listRolesOrg.add("Partner");
 		wpt.setOrgPossibleRoles(listRolesOrg);
-		
 		
 		return wpt;
 	}
 	
 
-	
-	
 
-/**
- * 
- * This method returns a default workpackModel object
- * 
- * @return
- */
-	@GetMapping("/possibleRoles")
-	@PreAuthorize("hasAuthority('USER') and #oauth2.hasScope('read')")
-	public List<String> getDefaultRoles() {
-		
-		  List <String> roleNames = new ArrayList<String>();
-		  
-		  roleNames.add("Manager");
-		  roleNames.add("TeamMember");
-		  roleNames.add("Sponsor");
-		  roleNames.add("Partner");
-		
-		  return roleNames;
-	}
-	
 	
 	
 
