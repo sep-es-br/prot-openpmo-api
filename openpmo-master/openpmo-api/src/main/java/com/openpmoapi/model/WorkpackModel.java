@@ -32,7 +32,12 @@ public class WorkpackModel {
 	
 	boolean manageStakeholders = true;
 	
-	private List<String> businessRoles = new ArrayList<String>();
+	
+	
+	private List<String> personPossibleRoles = new ArrayList<String>();
+	
+	private List<String> orgPossibleRoles = new ArrayList<String>();
+	
 	
 	
 	/**
@@ -103,25 +108,26 @@ public class WorkpackModel {
 	public void setProperties(List<PropertyProfile> properties) {
 		Properties = properties;
 	}
+
 	
-	
-	public List<String> getBusinessRoles() {
-		
-		this.businessRoles.add("Manager");
-		this.businessRoles.add("TeamMember");
-		this.businessRoles.add("Sponsor");
-		this.businessRoles.add("Partner");
-		
-		return businessRoles;
+	public List<String> getPersonPossibleRoles() {
+		return personPossibleRoles;
 	}
 
 	
-	public void setBusinessRoles(List<String> businessRoles) {
-		this.businessRoles = businessRoles;
+	public void setPersonPossibleRoles(List<String> personPossibleRoles) {
+		this.personPossibleRoles = personPossibleRoles;
 	}
+
 	
+	public List<String> getOrgPossibleRoles() {
+		return orgPossibleRoles;
+	}
+
 	
-	
+	public void setOrgPossibleRoles(List<String> orgPossibleRoles) {
+		this.orgPossibleRoles = orgPossibleRoles;
+	}
 
 	@Override
 	public int hashCode() {

@@ -87,7 +87,7 @@ public class WorkpackModelResource {
 	 * 			
 	 */
 	@PutMapping("/{id}")
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('USER') and #oauth2.hasScope('write')")
 	public ResponseEntity<WorkpackModel> update(@PathVariable  Long id,@Valid  @RequestBody WorkpackModel wpm)throws IllegalArgumentException {
 
 		List<PropertyProfile> prod = new ArrayList<PropertyProfile>();
@@ -142,8 +142,9 @@ public class WorkpackModelResource {
 	 * 			This is the answer of the HttpServletResponse
 	 */
 	@PostMapping
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('USER') and #oauth2.hasScope('write')")
 	public ResponseEntity<WorkpackModel> save( @Valid @RequestBody WorkpackModel wpm, HttpServletResponse response) {
+		
 		WorkpackModel savedWpm = wpmRepository.save(wpm);
 		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedWpm.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(wpmRepository.save(wpm));
@@ -155,7 +156,7 @@ public class WorkpackModelResource {
 	 * @return
 	 */
 	@GetMapping
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
+	@PreAuthorize("hasAuthority('USER') and #oauth2.hasScope('read')")
 	public Iterable<WorkpackModel> findByAll() {
 		 return wpmRepository.findAll(2);
 	}
@@ -172,7 +173,6 @@ public class WorkpackModelResource {
 
 	@GetMapping("/listworkpackmodelsbyid/{id}/{depth")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
-
 	public Iterable<WorkpackModel> findByAllById(@PathVariable Iterable<Long> id,int depth) {
 		 return wpmRepository.findAllById(id, depth);
 	}
@@ -237,7 +237,7 @@ public class WorkpackModelResource {
 	 * 			List of wpm
 	 */
 	@GetMapping("/tree/{id}")
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('USER') and #oauth2.hasScope('read')")
 	public ResponseEntity<WorkpackModel> findByIdWptm(@PathVariable Long id) {
 		Optional<WorkpackModel> wpm = wpmRepository.findById(id,-1);
 		return wpm.isPresent() ? ResponseEntity.ok(wpm.get()) : ResponseEntity.notFound().build();
@@ -251,7 +251,7 @@ public class WorkpackModelResource {
 	 * @return
 	 */
 	@GetMapping("/listpropertytypes")
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('USER') and #oauth2.hasScope('read')")
 	public Object findAllPropertiesList() {
 		
 		List<String> properties = new ArrayList<>();
@@ -278,7 +278,7 @@ public class WorkpackModelResource {
  * @return
  */
 	@GetMapping("/default")
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('USER') and #oauth2.hasScope('read')")
 	public WorkpackModel getDefault() {
 		
 		WorkpackModel wpt = new WorkpackModel();
@@ -319,14 +319,53 @@ public class WorkpackModelResource {
 		prop.addPossibleValue("Cancelled");
 		prop.addPossibleValue("Stopped");
 		prop.addPossibleValue("Active");
+		
 		props.add(prop);
 	
 		wpt.setPropertyProfiles(props);
+		
+		List<String> listRolesPerson = new ArrayList<>();
+		listRolesPerson.add("Manager");
+		listRolesPerson.add("TeamMember");
+		listRolesPerson.add("Sponsor");
+		listRolesPerson.add("Partner");
+		wpt.setPersonPossibleRoles(listRolesPerson);
+		
+		List<String> listRolesOrg = new ArrayList<>();
+		listRolesOrg.add("Manager");
+		listRolesOrg.add("TeamMember");
+		listRolesOrg.add("Sponsor");
+		listRolesOrg.add("Partner");
+		wpt.setOrgPossibleRoles(listRolesOrg);
+		
 		
 		return wpt;
 	}
 	
 
+	
+	
+
+/**
+ * 
+ * This method returns a default workpackModel object
+ * 
+ * @return
+ */
+	@GetMapping("/possibleRoles")
+	@PreAuthorize("hasAuthority('USER') and #oauth2.hasScope('read')")
+	public List<String> getDefaultRoles() {
+		
+		  List <String> roleNames = new ArrayList<String>();
+		  
+		  roleNames.add("Manager");
+		  roleNames.add("TeamMember");
+		  roleNames.add("Sponsor");
+		  roleNames.add("Partner");
+		
+		  return roleNames;
+	}
+	
 	
 	
 

@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -42,6 +43,19 @@ public class OAuthSecurityConfig extends WebSecurityConfigurerAdapter{
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+	
+	@Override
+    public void configure(WebSecurity web) throws Exception {
+       web.ignoring().antMatchers("/v2/api-docs",
+       		"/configuration/ui", 
+       		"/swagger-resources",
+       		"/configuration/security",
+        		"/swagger-ui.html",
+       		"/swagger-resources/configuration/ui", 
+       		"/swagger-resources/configuration/security",
+        		"/webjars/**");
+    }
+	
 	
 	
 }

@@ -15,7 +15,15 @@ public interface OrganizationRepository extends Neo4jRepository <Organization, L
 	
 	//Collection<Organization> findByNameLike(@Param("name") String name);
 	
-	@Query("MATCH (o:Organization) WHERE  lower(o.name) contains lower($name) RETURN o")
+//	@Query("MATCH (o:Organization) WHERE  lower(o.name) contains lower($name) RETURN o")
+//	Collection<Organization> findByNameLike(@Param("name") String name);
+//	
+	
+	
+	@Query("MATCH (o:Organization) WHERE  lower(o.name)  CONTAINS lower($name) or lower(o.fullName) CONTAINS lower($name) RETURN p ORDER BY o.name")
 	Collection<Organization> findByNameLike(@Param("name") String name);
+
+	
+	
 	
 }

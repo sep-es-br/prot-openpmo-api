@@ -49,14 +49,14 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 				.secret("$2a$10$zm4x6Zygn9rmvsYi8ATbBeE76.r.1z0PN.Tuh.LZry4QZG/r1TOiG") // @ngul@r0
 				.scopes("read", "write")
 				.authorizedGrantTypes("password", "refresh_token")
-				.accessTokenValiditySeconds(20)
+				.accessTokenValiditySeconds(3600)
 				.refreshTokenValiditySeconds(3600 * 24)
 			.and()
 				.withClient("mobile")
 				.secret("$2a$10$fmnfZeAidJD6G.FsTqEg5OGMu.4Z1UcHyE/PQdq5.A2eSv3TxYqOi") // m0b1l30
 				.scopes("read")
 				.authorizedGrantTypes("password", "refresh_token")
-				.accessTokenValiditySeconds(20)
+				.accessTokenValiditySeconds(3600)
 				.refreshTokenValiditySeconds(3600 * 24);
 	}
 	

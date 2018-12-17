@@ -12,6 +12,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,6 +48,8 @@ public class PersonResource {
 	private ApplicationEventPublisher publisher;
 	
 	
+	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+	
 	/**
 	 * This is method delete one Person
 	 * 
@@ -72,8 +75,11 @@ public class PersonResource {
 	 * 
 	 */
 	@PutMapping("/{id}")
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('USER') and #oauth2.hasScope('write')")
 	public ResponseEntity<Person> update(@PathVariable Long id, @Valid @RequestBody Person person) {
+		if (person.isResetPassword()) {
+			 person.setPassword(encoder.encode(person.getPassword())); 
+		}
 		Person savedPerson = personService.update(id, person);
 		return ResponseEntity.ok(savedPerson);
 	}
@@ -90,17 +96,16 @@ public class PersonResource {
 	 * 			This is the answer of the HttpServletResponse
 	 * 
 	 */
+	
 	@PostMapping
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('USER') and #oauth2.hasScope('write')")
 	public ResponseEntity<Person> save(@Valid @RequestBody Person person, HttpServletResponse response) {
+	    person.setPassword(encoder.encode(person.getPassword())); 	
 		Person savedPerson = personRepository.save(person);
 		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedPerson.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(personRepository.save(person));
 	}
 	
-	
-	
-	   // @PreAuthorize("hasAuthority('COMPANY_READ') and hasAuthority('DEPARTMENT_READ')")
 	
 	
 	/**

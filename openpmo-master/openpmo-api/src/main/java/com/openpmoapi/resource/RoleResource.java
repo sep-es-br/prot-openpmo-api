@@ -146,6 +146,34 @@ public class RoleResource {
 		return roleService.findAllByActorId(id);
 	}
 	
+	
+	
+//
+///**
+// * 
+// * This method returns a default workpackModel object
+// * 
+// * @return
+// */
+//	@GetMapping("/possibleRoles")
+//	@PreAuthorize("hasAuthority('USER') and #oauth2.hasScope('read')")
+//	public List<String> getDefault() {
+//		
+//		  List <String> roleNames = new ArrayList<String>();
+//		  
+//		  roleNames.add("Manager");
+//		  roleNames.add("TeamMember");
+//		  roleNames.add("Sponsor");
+//		  roleNames.add("Partner");
+//		
+//		  return roleNames;
+//	}
+//	
+//	
+	
+	
+	
+	
 
 	
 }
