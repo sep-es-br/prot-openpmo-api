@@ -18,14 +18,14 @@ import com.openpmoapi.model.Person;
 * @author marcos.santos  
 * @since 2018-12-11
 */
-public class UsuarioSistema  extends User{
+public class SystemUser  extends User{
 
 	
 	private static final long serialVersionUID = 1L;
 
 	private Person person;
 
-	public UsuarioSistema(Person person, Collection<? extends GrantedAuthority> authorities) {
+	public SystemUser(Person person, Collection<? extends GrantedAuthority> authorities) {
 		super(person.getUserName(), person.getPassword(), authorities);
 		this.person = person;
 	}
