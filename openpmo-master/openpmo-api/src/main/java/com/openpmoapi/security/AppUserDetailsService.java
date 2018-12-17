@@ -8,7 +8,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -32,6 +31,16 @@ public class AppUserDetailsService implements UserDetailsService{
 
 	@Autowired
 	private PersonRepository personRepository;
+	
+//	@Override
+//	 public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//	       User user = personRepository.findByUserName(username);
+//	        if (user != null) {
+//	            return user;
+//	        }
+//	        throw new UsernameNotFoundException(username);
+//	    }
+//	
 	
 
 	@Override

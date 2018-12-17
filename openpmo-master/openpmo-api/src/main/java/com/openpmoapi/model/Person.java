@@ -10,6 +10,10 @@ import java.util.List;
 
 import org.neo4j.ogm.annotation.NodeEntity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+
+
 
 
 /**
@@ -24,14 +28,13 @@ import org.neo4j.ogm.annotation.NodeEntity;
 @NodeEntity(label="Person")
 public class Person extends Actor{
 
-	
-	
 	private List<String> permissions = new ArrayList<String>();
 	
+	private boolean resetPassword;
 	
 	private String userName;
 	
-	
+	@JsonProperty
 	public String password;
 	
 	public String email;
@@ -84,6 +87,21 @@ public class Person extends Actor{
 	public void setPermissions(List<String> permissions) {
 		this.permissions = permissions;
 	}
+
+	/**
+	 * @return the resetPassword
+	 */
+	public boolean isResetPassword() {
+		return resetPassword;
+	}
+
+	/**
+	 * @param resetPassword the resetPassword to set
+	 */
+	public void setResetPassword(boolean resetPassword) {
+		this.resetPassword = resetPassword;
+	}
+
 
 
 
