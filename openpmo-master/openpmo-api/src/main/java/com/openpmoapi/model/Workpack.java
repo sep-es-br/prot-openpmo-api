@@ -35,19 +35,6 @@ public class Workpack extends Scope {
 	private WorkpackModel model;
 	
 	
-	/**
-	 * Relationship linking its People 
-	 */
-	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
-	private List<Person> people= new ArrayList<>();	
-	
-	
-	/**
-	 * Relationship linking its Organization 
-	 */
-	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
-	private List<Organization> organizations= new ArrayList<>();	
-	
 	
 	/**
 	 * Relationship linking its Costs 
@@ -90,25 +77,7 @@ public class Workpack extends Scope {
 		this.model = model;
 	}
 
-	
-	public List<Person> getPeople() {
-		return people;
-	}
-	
-	public void setPeople(List<Person> people) {
-		this.people = people;
-	}
 
-	
-	public List<Organization> getOrganizations() {
-		return organizations;
-	}
-	
-	public void setOrganizations(List<Organization> organizations) {
-		this.organizations = organizations;
-	}
-
-		
 	public List<Cost> getCosts() {
 		return costs;
 	}

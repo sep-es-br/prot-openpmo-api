@@ -4,12 +4,11 @@
 package com.openpmoapi.model;
 
 import org.neo4j.ogm.annotation.EndNode;
+import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
 * Type here a brief description of the class.
@@ -20,10 +19,12 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
 @RelationshipEntity(type="ACTS")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Role {
 
-	@Id  private Long id;
+
+	@Id @GeneratedValue
+	private Long id;
 	    
 	private ActorType actorType;
 	

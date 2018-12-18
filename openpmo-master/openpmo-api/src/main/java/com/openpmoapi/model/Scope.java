@@ -5,9 +5,10 @@ package com.openpmoapi.model;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.neo4j.ogm.annotation.GeneratedValue;
+import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
 *
@@ -21,9 +22,10 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
 @NodeEntity
-@JsonIdentityInfo( generator = ObjectIdGenerators.PropertyGenerator.class, property="id")
+//@JsonIdentityInfo( generator = ObjectIdGenerators.PropertyGenerator.class, property="id")
 public class Scope {
-
+	
+		@Id @GeneratedValue
 		private Long id;
 		
 		@NotNull

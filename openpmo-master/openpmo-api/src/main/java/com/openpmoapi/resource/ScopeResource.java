@@ -55,7 +55,7 @@ public class ScopeResource {
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') OR hasAuthority('USER') and #oauth2.hasScope('write')")
 	public void delete(@PathVariable Long id) {
 		scopeRepository.deleteById(id);
 	}
@@ -70,7 +70,7 @@ public class ScopeResource {
 	 * 			This is the new parameter that will be allocated in scope
 	 */
 	@PutMapping("/{id}")
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') OR hasAuthority('USER') and #oauth2.hasScope('write')")
 	public ResponseEntity<Scope> update(@PathVariable Long id, @Valid @RequestBody Scope scope) {
 		Scope savedScope = scopeService.update(id, scope);
 		return ResponseEntity.ok(savedScope);
@@ -86,7 +86,7 @@ public class ScopeResource {
 	 * 			This is the answer of the HttpServletResponse
 	 */
 	@PostMapping
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') OR hasAuthority('USER') and #oauth2.hasScope('write')")
 	public ResponseEntity<Scope> save(@Valid @RequestBody Scope scope, HttpServletResponse response) {
 		Scope savedScope = scopeRepository.save(scope);
 		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedScope.getId()));
@@ -98,7 +98,7 @@ public class ScopeResource {
 	 * This is method find by all Scope
 	 */
 	@GetMapping
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') OR hasAuthority('USER') and #oauth2.hasScope('read')")
 	public Collection<Scope> findByAll() {
 		Collection<Scope> scopes =  (Collection<Scope>) scopeRepository.findAll();
 		return scopes;
@@ -113,7 +113,7 @@ public class ScopeResource {
 	 *
 	 */
 	@GetMapping("/{id}")
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') OR hasAuthority('USER') and #oauth2.hasScope('read')")
 	public ResponseEntity<Scope> findById(@PathVariable Long id) {
 		Optional<Scope> scope = scopeRepository.findById(id,1);
 		return scope.isPresent() ? ResponseEntity.ok(scope.get()) : ResponseEntity.notFound().build();

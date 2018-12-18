@@ -30,21 +30,13 @@ public class WorkpackModel {
 	private String name;
 	
 	
-	boolean manageStakeholders = true;
-	
+	private boolean manageStakeholders = true;
 	
 	
 	private List<String> personPossibleRoles = new ArrayList<String>();
 	
 	private List<String> orgPossibleRoles = new ArrayList<String>();
 	
-	
-	
-	/**
-	 * Relationship linking its Organizations 
-	 */
-	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
-	private List<Stakeholder> stakeholders= new ArrayList<>();	
 	
 	
 	/**
@@ -77,13 +69,7 @@ public class WorkpackModel {
 		this.name = name;
 	}
 
-	public List<Stakeholder> getStakeholder() {
-		return stakeholders;
-	}
 	
-	public void setStakeholder(List<Stakeholder> stakeholder) {
-		this.stakeholders = stakeholder;
-	}
 	
 	public List<WorkpackModel> getComponents() {
 		return components;
@@ -100,14 +86,6 @@ public class WorkpackModel {
 		this.propertyProfiles = propertyProfiles;
 	}
 
-
-	private List<PropertyProfile> Properties = new ArrayList<>();
-	public List<PropertyProfile> getProperties() {
-		return Properties;
-	}
-	public void setProperties(List<PropertyProfile> properties) {
-		Properties = properties;
-	}
 
 	
 	public List<String> getPersonPossibleRoles() {
@@ -127,6 +105,25 @@ public class WorkpackModel {
 	
 	public void setOrgPossibleRoles(List<String> orgPossibleRoles) {
 		this.orgPossibleRoles = orgPossibleRoles;
+	}
+	
+	
+	
+	
+	
+
+	/**
+	 * @return the manageStakeholders
+	 */
+	public boolean isManageStakeholders() {
+		return manageStakeholders;
+	}
+
+	/**
+	 * @param manageStakeholders the manageStakeholders to set
+	 */
+	public void setManageStakeholders(boolean manageStakeholders) {
+		this.manageStakeholders = manageStakeholders;
 	}
 
 	@Override

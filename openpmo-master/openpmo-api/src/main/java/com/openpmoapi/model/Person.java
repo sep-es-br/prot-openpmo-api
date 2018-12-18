@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.neo4j.ogm.annotation.NodeEntity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 
@@ -34,7 +33,7 @@ public class Person extends Actor{
 	
 	private String userName;
 	
-	@JsonProperty
+	//@JsonProperty
 	public String password;
 	
 	public String email;

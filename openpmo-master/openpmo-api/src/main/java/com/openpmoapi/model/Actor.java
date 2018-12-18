@@ -8,9 +8,10 @@ package com.openpmoapi.model;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.neo4j.ogm.annotation.GeneratedValue;
+import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
 * This class represents the actor model
@@ -19,10 +20,12 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 * @since 2018-11-29
 */
 @NodeEntity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Actor {
 
-		Long id;
+		@Id @GeneratedValue
+		private Long id;
+		
 		
 		@NotNull
 		@Size(min=3,max=20)
