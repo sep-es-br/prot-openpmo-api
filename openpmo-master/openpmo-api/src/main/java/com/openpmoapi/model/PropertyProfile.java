@@ -38,6 +38,9 @@ public class PropertyProfile {
 	
 	private String value = "";
 	
+	
+	private LocalityType localityType;
+	
 	private int min = 0;
 	
 	private int max = -1;
@@ -56,6 +59,8 @@ public class PropertyProfile {
 	private boolean toDelete;
 	
 	private List<String> possibleValues = new ArrayList<>();
+	
+	
 	
 	
 	
@@ -173,6 +178,21 @@ public class PropertyProfile {
 	
    
 
+	
+	
+	
+/**
+	 * @return the localityType
+	 */
+	public LocalityType getLocalityType() {
+		return localityType;
+	}
+	/**
+	 * @param localityType the localityType to set
+	 */
+	public void setLocalityType(LocalityType localityType) {
+		this.localityType = localityType;
+	}
 @Override
 public boolean equals(Object obj) {
 	if (this == obj)

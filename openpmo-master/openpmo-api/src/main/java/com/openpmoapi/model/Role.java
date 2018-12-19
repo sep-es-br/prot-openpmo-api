@@ -10,6 +10,7 @@ import org.neo4j.ogm.annotation.RelationshipEntity;
 import org.neo4j.ogm.annotation.StartNode;
 
 
+
 /**
 * Type here a brief description of the class.
 *

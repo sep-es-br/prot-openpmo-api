@@ -129,12 +129,6 @@ public class OrganizationResource {
 	 * 			This is the name of the organization
 	 * 
 	 */
-//	@GetMapping("/like/{name}")
-//	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
-//	public Collection<Organization> findByNameLike(@PathVariable String name) {
-//	     return organizationService.findByNameLike(name);
-//	 }
-	
 	@GetMapping(path ="/like/{name}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
 	public Collection<Organization> findByNameLike(@PathVariable("name") String name) {

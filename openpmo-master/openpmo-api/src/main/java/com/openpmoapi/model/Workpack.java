@@ -2,11 +2,12 @@ package com.openpmoapi.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
 import org.neo4j.ogm.annotation.Relationship;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
 
@@ -17,6 +18,7 @@ import org.neo4j.ogm.annotation.Relationship;
 * @since 2018-jul-31
 */
 @NodeEntity(label="Workpack")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Workpack extends Scope {
 	
 	
@@ -48,6 +50,12 @@ public class Workpack extends Scope {
 	 */
 	@Relationship(type="IS_IN", direction=Relationship.INCOMING)
 	private List<Workpack> components = new ArrayList<>();
+	
+	
+	
+	@Relationship(type="IS_REFERENCED", direction=Relationship.INCOMING)
+    private List<GeoReference> geoReferences = new ArrayList<GeoReference>();
+	
 	
 	
 
@@ -94,6 +102,21 @@ public class Workpack extends Scope {
 	
 	
 	
+	
+		
+	
+	/**
+	 * @return the geoReferences
+	 */
+	public List<GeoReference> getGeoReferences() {
+		return geoReferences;
+	}
+	/**
+	 * @param geoReferences the geoReferences to set
+	 */
+	public void setGeoReferences(List<GeoReference> geoReferences) {
+		this.geoReferences = geoReferences;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

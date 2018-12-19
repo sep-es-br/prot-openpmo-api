@@ -12,8 +12,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.openpmoapi.model.Locale;
-import com.openpmoapi.repository.LocaleRepository;
+import com.openpmoapi.model.Locality;
+import com.openpmoapi.repository.LocalityRepository;
 
 
 /**
@@ -24,11 +24,11 @@ import com.openpmoapi.repository.LocaleRepository;
 */
 
 @Service
-public class LocaleService {
+public class LocalityService {
 
 	
 	@Autowired
-	private LocaleRepository localeRepository;
+	private LocalityRepository localityRepository;
 	
 	
 	/**
@@ -36,29 +36,29 @@ public class LocaleService {
 	 * this method verify if exits the data to update 
 	 * 
 	 * @return
-	 * 		savedLocale	
+	 * 		savedLocality	
 	 */
 	@Transactional(readOnly = false)
-	public Locale update(Long id, Locale locale) {
-		Locale savedLocale = findLocaleById(id);
-		BeanUtils.copyProperties(locale, savedLocale, "id", "locale");
-		return localeRepository.save(savedLocale);
+	public Locality update(Long id, Locality locality) {
+		Locality savedLocality = findLocalityById(id);
+		BeanUtils.copyProperties(locality, savedLocality, "id", "locality");
+		return localityRepository.save(savedLocality);
 	}
 	
 	
 	
 	/**
-	 * this method find by id a data type Locale, if not exist it treats the exception 
+	 * this method find by id a data type Locality, if not exist it treats the exception 
 	 * @return
-	 * 		savedLocale
+	 * 		savedLocality
 	 */
 	@Transactional(readOnly = true)
-	public Locale findLocaleById(Long id) {
-		Optional<Locale> savedLocale = localeRepository.findById(id);
-		if (!savedLocale.isPresent()) {
+	public Locality findLocalityById(Long id) {
+		Optional<Locality> savedLocality = localityRepository.findById(id);
+		if (!savedLocality.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
-		return savedLocale.get();
+		return savedLocality.get();
 	}
 	
 	
@@ -71,9 +71,9 @@ public class LocaleService {
 	 * 		locale
 	 */
 	@Transactional(readOnly = true)
-	public Locale findByName(String name) {
-		Locale locale = localeRepository.findByName(name);
-      return locale;
+	public Locality findByName(String name) {
+		Locality locality = localityRepository.findByName(name);
+      return locality;
 	}
 	
 	/**
@@ -83,9 +83,9 @@ public class LocaleService {
 	 * @return
 	 */
 	@Transactional(readOnly = true)
-    public Collection<Locale> findByNameLike(String name) {
-      Collection<Locale> locale = localeRepository.findByNameLike(name);
-      return locale;
+    public Collection<Locality> findByNameLike(String name) {
+      Collection<Locality> locality = localityRepository.findByNameLike(name);
+      return locality;
     }
 	
 	
