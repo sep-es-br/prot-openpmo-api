@@ -14,7 +14,7 @@ public enum LocalityType {
 	Country,
 	Region,
 	State,
-	Condate,
+	County,
 	City,
 	District,
 	Neighborhood,
