@@ -18,7 +18,7 @@ import org.neo4j.ogm.annotation.StartNode;
 * @since 2018-12-19
 */
 
-@RelationshipEntity(type="IS_REFERENCED")
+@RelationshipEntity(type="IS_REFERENCED_IN")
 public class GeoReference {
 
 	

@@ -46,20 +46,20 @@ public class Plan extends Scope {
 	@Relationship(type="IS_INSTANCE_OF", direction=Relationship.OUTGOING)
 	private PlanStructure structure;
 	
-	
-	/**
-	 * Relationship linking its People 
-	 */
-	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
-	private List<Person> people= new ArrayList<>();	
-	
-	
-	/**
-	 * Relationship linking its Organization 
-	 */
-	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
-	private List<Organization> organizations= new ArrayList<>();	
-	
+//	
+//	/**
+//	 * Relationship linking its People 
+//	 */
+//	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
+//	private List<Person> people= new ArrayList<>();	
+//	
+//	
+//	/**
+//	 * Relationship linking its Organization 
+//	 */
+//	@Relationship(type="PERFORMS_A_ROLE", direction=Relationship.INCOMING)
+//	private List<Organization> organizations= new ArrayList<>();	
+//	
 	
 	public Long getId() {
 		return id;
@@ -98,27 +98,6 @@ public class Plan extends Scope {
 	}
 	
 	
-
-	public List<Person> getPeople() {
-		return people;
-	}
-	
-	
-	public void setPeople(List<Person> people) {
-		this.people = people;
-	}
-
-	
-	
-	public List<Organization> getOrganizations() {
-		return organizations;
-	}
-
-	
-	public void setOrganizations(List<Organization> organizations) {
-		this.organizations = organizations;
-	}
-
 
 	
 	

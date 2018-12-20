@@ -71,7 +71,7 @@ public class WorkpackModelResource {
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('USER') and #oauth2.hasScope('write')")
 	public void delete(@PathVariable Long id) {
 		wpmRepository.deleteById(id);
 	}
@@ -263,6 +263,7 @@ public class WorkpackModelResource {
 		properties.add("Currency");
 		properties.add("Text area");
 		properties.add("Selection");
+		properties.add("Locality list");
 		
      return properties;
         		

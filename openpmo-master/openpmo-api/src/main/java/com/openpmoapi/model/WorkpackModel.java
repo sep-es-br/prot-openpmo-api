@@ -38,12 +38,6 @@ public class WorkpackModel {
 	private List<String> orgPossibleRoles = new ArrayList<String>();
 	
 	
-	
-	
-	
-	/**
-	 * Relationship linking its children 
-	 */
 	@Relationship(type="IS_IN", direction=Relationship.INCOMING)
 	private List<WorkpackModel> components = new ArrayList<>();
 	
@@ -51,8 +45,7 @@ public class WorkpackModel {
 	@Relationship(type="FEATURES", direction=Relationship.INCOMING)
 	private List<PropertyProfile> propertyProfiles = new ArrayList<>();
 	
-	
-	
+
 	
 	
 	

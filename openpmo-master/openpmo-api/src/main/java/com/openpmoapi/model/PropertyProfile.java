@@ -38,7 +38,6 @@ public class PropertyProfile {
 	
 	private String value = "";
 	
-	
 	private LocalityType localityType;
 	
 	private int min = 0;

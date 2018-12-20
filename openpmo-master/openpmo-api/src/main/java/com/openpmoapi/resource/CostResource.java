@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,6 +53,7 @@ public class CostResource {
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('USER') and #oauth2.hasScope('write')")
 	public void delete(@PathVariable Long id) {
 		costRepository.deleteById(id);
 	}
@@ -68,6 +70,7 @@ public class CostResource {
 	 * 
 	 */
 	@PutMapping("/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('USER') and #oauth2.hasScope('write')")
 	public ResponseEntity<Cost> update(@PathVariable Long id, @Valid @RequestBody Cost cost) {
 		Cost savedCost = costService.update(id, cost);
 		return ResponseEntity.ok(savedCost);
@@ -86,6 +89,7 @@ public class CostResource {
 	 * 
 	 */
 	@PostMapping
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('USER') and #oauth2.hasScope('write')")
 	public ResponseEntity<Cost> save(@Valid @RequestBody Cost cost, HttpServletResponse response) {
 		Cost savedCost = costRepository.save(cost);
 		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedCost.getId()));
@@ -97,6 +101,7 @@ public class CostResource {
 	 * This is method find by all Cost
 	 */
 	@GetMapping
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('USER') and #oauth2.hasScope('read')")
 	public Iterable<Cost> findByAll() {
 		 return costRepository.findAll(2);
 	}
@@ -110,6 +115,7 @@ public class CostResource {
 	 *
 	 */
 	@GetMapping("/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('USER') and #oauth2.hasScope('read')")
 	public ResponseEntity<Cost> findById(@PathVariable Long id) {
 		Optional<Cost> cost = costRepository.findById(id,2);
 		return cost.isPresent() ? ResponseEntity.ok(cost.get()) : ResponseEntity.notFound().build();

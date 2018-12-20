@@ -53,9 +53,8 @@ public class Workpack extends Scope {
 	
 	
 	
-	@Relationship(type="IS_REFERENCED", direction=Relationship.INCOMING)
+	@Relationship(type="IS_REFERENCED_IN", direction=Relationship.INCOMING)
     private List<GeoReference> geoReferences = new ArrayList<GeoReference>();
-	
 	
 	
 
@@ -100,10 +99,6 @@ public class Workpack extends Scope {
 		this.components = components;
 	}
 	
-	
-	
-	
-		
 	
 	/**
 	 * @return the geoReferences

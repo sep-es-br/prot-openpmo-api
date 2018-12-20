@@ -36,13 +36,25 @@ public class PlanStructure {
 	
 	private String fullName;
 	
+   
+	private  Period costBasePeriod;
 	
+	
+	
+    private List<CostStage> managedCostStages= new ArrayList<>();	
+    
+    
 	/**
 	 *    Relationship linking to the first level of workpackTemplate
 	 * in the schema 
 	 */
 	@Relationship(type="IS_ROOT_OF", direction=Relationship.INCOMING)
 	private List<WorkpackModel> workpackModels= new ArrayList<>();	
+	
+	
+	
+ 
+	
 	
 	
 	public Long getId() {
@@ -84,6 +96,34 @@ public class PlanStructure {
 	
 	
 	
+	/**
+	 * @return the costBasePeriod
+	 */
+	public Period getCostBasePeriod() {
+		return costBasePeriod;
+	}
+
+	/**
+	 * @param costBasePeriod the costBasePeriod to set
+	 */
+	public void setCostBasePeriod(Period costBasePeriod) {
+		this.costBasePeriod = costBasePeriod;
+	}
+
+	/**
+	 * @return the managedCostStages
+	 */
+	public List<CostStage> getManagedCostStages() {
+		return managedCostStages;
+	}
+
+	/**
+	 * @param managedCostStages the managedCostStages to set
+	 */
+	public void setManagedCostStages(List<CostStage> managedCostStages) {
+		this.managedCostStages = managedCostStages;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

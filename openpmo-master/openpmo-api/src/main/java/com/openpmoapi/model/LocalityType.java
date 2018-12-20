@@ -11,6 +11,8 @@ package com.openpmoapi.model;
 */
 public enum LocalityType {
 
+	
+	Any,
 	Country,
 	Region,
 	State,

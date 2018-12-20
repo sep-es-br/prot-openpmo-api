@@ -45,6 +45,7 @@ public class PlanStructureResource {
 	private ApplicationEventPublisher publisher;
 	
 	
+	
 	/**
 	 * This is method delete one PlanStructure
 	 * 
@@ -54,7 +55,7 @@ public class PlanStructureResource {
 	 */
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('USER') and #oauth2.hasScope('write')")
 	public void delete(@PathVariable Long id) {
 		planStructureRepository.deleteById(id);
 	}
@@ -71,7 +72,7 @@ public class PlanStructureResource {
 	 * 
 	 */
 	@PutMapping("/{id}")
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('USER') and #oauth2.hasScope('write')")
 	public ResponseEntity<PlanStructure> update(@PathVariable Long id, @Valid @RequestBody PlanStructure planStructure) {
 		PlanStructure savedPlanStructure = planStructureService.update(id, planStructure);
 		return ResponseEntity.ok(savedPlanStructure);
@@ -90,7 +91,7 @@ public class PlanStructureResource {
 	 * 
 	 */
 	@PostMapping
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('write')")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('USER') and #oauth2.hasScope('write')")
 	public ResponseEntity<PlanStructure> save(@Valid @RequestBody PlanStructure planStructure, HttpServletResponse response) {
 		PlanStructure savedPlanStructure = planStructureRepository.save(planStructure);
 		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedPlanStructure.getId()));
@@ -102,7 +103,7 @@ public class PlanStructureResource {
 	 * This method find by all PlanStructure
 	 */
 	@GetMapping
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('USER') and #oauth2.hasScope('read')")
 	public Iterable<PlanStructure> findByAll() {
 		 return planStructureRepository.findAll(2);
 	}
@@ -115,7 +116,7 @@ public class PlanStructureResource {
 	 *  		This is the id of the PlanStructure you want to find
 	 */
 	@GetMapping("/{id}")
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('USER') and #oauth2.hasScope('read')")
 	public ResponseEntity<PlanStructure> findById(@PathVariable Long id) {
 		Optional<PlanStructure> planStructure = planStructureRepository.findById(id,2);
 		return planStructure.isPresent() ? ResponseEntity.ok(planStructure.get()) : ResponseEntity.notFound().build();
@@ -130,7 +131,7 @@ public class PlanStructureResource {
 	 * 
 	 */
 	@GetMapping("/tree/{id}")
-	@PreAuthorize("hasAuthority('ADMINISTRATOR') and #oauth2.hasScope('read')")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('USER') and #oauth2.hasScope('read')")
 	public Collection<PlanStructure> findPlanSturctureTree(@PathVariable Long id) {
 		return planStructureService.findPlanStructureByIdTree(id);
 	}

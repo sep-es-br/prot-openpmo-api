@@ -38,7 +38,7 @@ public class Locality {
 	private Long Code;
 	
 	
-	@Relationship(type="IS_IN", direction=Relationship.INCOMING)
+	@Relationship(type="IS_IN", direction=Relationship.OUTGOING)
 	private Locality container;
 
 
