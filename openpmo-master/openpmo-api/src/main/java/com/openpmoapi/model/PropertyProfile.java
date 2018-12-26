@@ -38,11 +38,8 @@ public class PropertyProfile {
 	private int sortIndex = 0;
 	
 	private String value = "";
+
 	
-	
-	
-	
-	private LocalityType localityType;
 	
 	private int min = 0;
 	
@@ -64,7 +61,7 @@ public class PropertyProfile {
 	private List<String> possibleValues = new ArrayList<>();
 	
 	
-	@Relationship(type="IS_POSSIBLE_IN", direction=Relationship.OUTGOING)
+	@Relationship(type="IS_POSSIBLE_IN", direction=Relationship.INCOMING)
 	private List<Locality> possibleLocalities = new ArrayList<>();
 	
 	
@@ -196,19 +193,7 @@ public class PropertyProfile {
 
 	
 	
-	
-/**
-	 * @return the localityType
-	 */
-	public LocalityType getLocalityType() {
-		return localityType;
-	}
-	/**
-	 * @param localityType the localityType to set
-	 */
-	public void setLocalityType(LocalityType localityType) {
-		this.localityType = localityType;
-	}
+
 @Override
 public boolean equals(Object obj) {
 	if (this == obj)

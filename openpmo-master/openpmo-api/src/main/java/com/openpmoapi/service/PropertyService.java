@@ -55,6 +55,12 @@ public class PropertyService {
     }
 	
 	
+	@Transactional(readOnly = true)
+    public void deleteRelatetadLocality(Long idProperty,Long idLocality) {
+		 propertyRepository.deleteRelatetadLocality(idProperty,idLocality);
+    }
+	
+	
 	
 	
 }

@@ -37,6 +37,8 @@ public class Locality {
 	
 	private Long Code;
 	
+
+	
 	
 	@Relationship(type="IS_IN", direction=Relationship.OUTGOING)
 	private Locality container;
@@ -168,7 +170,8 @@ public class Locality {
 	public void setCode(Long code) {
 		Code = code;
 	}
-	
+
+
 	
 	
 	

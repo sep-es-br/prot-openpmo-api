@@ -20,7 +20,7 @@ public interface PropertyRepository extends Neo4jRepository <Property, Long>{
 	Optional<Property> findPropertyByIdProperty(@Param("id") Long id);
 	
 	
-	
-	
+	@Query("MATCH (p:Property)<-[r:IS_REFERENCED_BY]-(l:Locality) where id(p)={idProperty} and id(l)={idLocality} DELETE r")
+	public void deleteRelatetadLocality(@Param("idProperty") Long idProperty,@Param("idLocality") Long idLocality);
 	
 }

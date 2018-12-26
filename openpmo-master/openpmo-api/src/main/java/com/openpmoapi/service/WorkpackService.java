@@ -13,7 +13,10 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.openpmoapi.model.Locality;
+import com.openpmoapi.model.Property;
 import com.openpmoapi.model.Workpack;
+import com.openpmoapi.repository.PropertyRepository;
 import com.openpmoapi.repository.WorkpackRepository;
 
 
@@ -30,6 +33,17 @@ public class WorkpackService {
 	@Autowired
 	private WorkpackRepository wpRepository;
 	
+	@Autowired
+	private PropertyRepository pRepository;
+	
+	@Autowired
+	private PropertyService pService;
+	
+	
+	Property pf = null;
+	Locality lf = null;
+	Property sp =null;
+	Locality sl = null;
 	
 	
 	/**
@@ -41,10 +55,53 @@ public class WorkpackService {
 	 */
 	public Workpack update(Long id, Workpack workpack) {
 		
-		Workpack savedWp = buscarPessoaPeloCodigo(id);
+		 pf = null;
+		 lf = null; 
+		 sp = null;
+		 sl = null;
+		 
+		Workpack savedWp = findWorkpackById(id);
 		
+		savedWp.getProperties().forEach(savedProperty->{
+			
+			savedProperty.setLocalities(findPropertyById(savedProperty.getId()).getLocalities());
+
+			sp = savedProperty;
+			
+			savedProperty.getLocalities().forEach(savedLocality->{
+				
+				sl = savedLocality;
+				
+				workpack.getProperties().forEach(property->{
+				 	if(property.getId().equals(sp.getId())) {
+				 		pf = property; 		
+				 	}
+				});
+				
+				if(pf != null){
+					
+					pf.getLocalities().forEach(locality -> {
+						
+					 	if(locality.getId().equals(sl.getId())) {
+					 		lf = locality; 		
+					 	}
+					});
+					
+					if(lf == null){
+						deleteRelatetadLocality(sp.getId(),	sl.getId());
+					}
+				}
+			 });
+		 });
+		 
+		savedWp = findWorkpackById(id);
 		BeanUtils.copyProperties(workpack, savedWp, "id", "workpack");
 		return wpRepository.save(savedWp);
+
+	}
+	
+	public void deleteRelatetadLocality(Long idProperty, Long idLocality) {
+		pService.deleteRelatetadLocality(idProperty,idLocality);
 	}
 	
 	
@@ -53,13 +110,24 @@ public class WorkpackService {
 	 * @return
 	 * 		savedWp
 	 */
-	public Workpack buscarPessoaPeloCodigo(Long id) {
+	public Workpack findWorkpackById(Long id) {
 		Optional<Workpack> savedWp = wpRepository.findById(id);
 		if (!savedWp.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
 		return savedWp.get();
 	}
+	
+	
+	public Property findPropertyById(Long id) {
+		Optional<Property> savedP = pRepository.findById(id);
+		if (!savedP.isPresent()) {
+			throw new EmptyResultDataAccessException(1);
+		}
+		return savedP.get();
+	}
+	
+	
 	
 	/**
 	 * 

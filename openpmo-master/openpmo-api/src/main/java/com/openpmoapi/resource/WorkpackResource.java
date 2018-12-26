@@ -43,6 +43,8 @@ public class WorkpackResource{
 	@Autowired
 	private WorkpackService wpService;
 	
+	
+	
 	@Autowired
 	private ApplicationEventPublisher publisher;
 	
@@ -112,7 +114,7 @@ public class WorkpackResource{
 		Workpack wpSalvo = wpService.update(id, workpack);
 		return ResponseEntity.ok(wpSalvo);
 	}
-	
+
 	
 	/**
 	 * 
