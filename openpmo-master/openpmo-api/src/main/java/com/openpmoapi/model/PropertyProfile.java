@@ -9,6 +9,7 @@ import java.util.List;
 import org.neo4j.ogm.annotation.GeneratedValue;
 import org.neo4j.ogm.annotation.Id;
 import org.neo4j.ogm.annotation.NodeEntity;
+import org.neo4j.ogm.annotation.Relationship;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -38,6 +39,9 @@ public class PropertyProfile {
 	
 	private String value = "";
 	
+	
+	
+	
 	private LocalityType localityType;
 	
 	private int min = 0;
@@ -60,10 +64,23 @@ public class PropertyProfile {
 	private List<String> possibleValues = new ArrayList<>();
 	
 	
+	@Relationship(type="IS_POSSIBLE_IN", direction=Relationship.OUTGOING)
+	private List<Locality> possibleLocalities = new ArrayList<>();
 	
 	
 	
-	
+	/**
+	 * @return the possibleLocalities
+	 */
+	public List<Locality> getPossibleLocalities() {
+		return possibleLocalities;
+	}
+	/**
+	 * @param possibleLocalities the possibleLocalities to set
+	 */
+	public void setPossibleLocalities(List<Locality> possibleLocalities) {
+		this.possibleLocalities = possibleLocalities;
+	}
 	public Long getId() {
 		return id;
 	}

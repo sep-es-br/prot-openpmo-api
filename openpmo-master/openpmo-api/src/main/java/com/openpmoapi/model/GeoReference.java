@@ -25,7 +25,7 @@ public class GeoReference {
 	@Id @GeneratedValue
 	private Long id;
 	    
-	private PropertyProfile profile;
+	private Long profileId;
 	
 	@StartNode 
 	private Locality locality;
@@ -76,17 +76,18 @@ public class GeoReference {
 		this.workpack = workpack;
 	}
 	/**
-	 * @return the profile
+	 * @return the profileId
 	 */
-	public PropertyProfile getProfile() {
-		return profile;
+	public Long getProfileId() {
+		return profileId;
 	}
 	/**
-	 * @param profile the profile to set
+	 * @param profileId the profileId to set
 	 */
-	public void setProfile(PropertyProfile profile) {
-		this.profile = profile;
+	public void setProfileId(Long profileId) {
+		this.profileId = profileId;
 	}
+	
 	
 	
 	

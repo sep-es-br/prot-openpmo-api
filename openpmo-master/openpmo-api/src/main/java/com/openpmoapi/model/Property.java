@@ -44,6 +44,11 @@ public class Property {
 	private PropertyProfile profile;
 	
 	
+	@Relationship(type="IS_REFERENCED_BY", direction=Relationship.INCOMING)
+    private List<Locality> localities = new ArrayList<>();
+	
+	
+	
 	
 	public Long getId() {
 		return id;
@@ -89,6 +94,22 @@ public class Property {
 	
 	
 	
+	/**
+	 * @return the localities
+	 */
+	public List<Locality> getLocalities() {
+		return localities;
+	}
+
+
+	/**
+	 * @param localities the localities to set
+	 */
+	public void setLocalities(List<Locality> localities) {
+		this.localities = localities;
+	}
+
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

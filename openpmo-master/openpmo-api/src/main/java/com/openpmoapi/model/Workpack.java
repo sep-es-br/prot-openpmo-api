@@ -54,7 +54,7 @@ public class Workpack extends Scope {
 	
 	
 	@Relationship(type="IS_REFERENCED_IN", direction=Relationship.INCOMING)
-    private List<GeoReference> geoReferences = new ArrayList<GeoReference>();
+    private List<GeoReference> geoReferences = new ArrayList<>();
 	
 	
 
