@@ -10,7 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.openpmoapi.model.Locality;
+import com.openpmoapi.model.PropertyProfile;
 import com.openpmoapi.model.WorkpackModel;
+import com.openpmoapi.repository.PropertyProfileRepository;
 import com.openpmoapi.repository.WorkpackModelRepository;
 
 
@@ -29,6 +33,19 @@ public class WorkpackModelService {
 	private WorkpackModelRepository wpmRepository;
 	
 	
+	@Autowired
+	private PropertyProfileRepository pRepository;
+	
+	@Autowired
+	private PropertyProfileService pService;
+	
+	
+	PropertyProfile pf = null;
+	Locality lf = null;
+	PropertyProfile sp =null;
+	Locality sl = null;
+	
+	
 	 /**
 	
 	 * this method verify if exits the data to update 
@@ -38,10 +55,57 @@ public class WorkpackModelService {
 	 */
 	@Transactional
 	public WorkpackModel update(Long id, WorkpackModel wpm) {
-		WorkpackModel savedWpm = searchForPersonByCode(id);
-		BeanUtils.copyProperties(wpm, savedWpm, "id", "wptl");
+		
+		 pf = null;
+		 lf = null; 
+		 sp = null;
+		 sl = null;
+		
+		WorkpackModel savedWpm = searchForWpmByCode(id);
+		
+		savedWpm.getPropertyProfiles().forEach(savedPropertyProfile->{
+			
+			savedPropertyProfile.setPossibleLocalities(findPropertyProfileById(savedPropertyProfile.getId()).getPossibleLocalities());
+
+			sp = savedPropertyProfile;
+			
+			savedPropertyProfile.getPossibleLocalities().forEach(savedLocality->{
+				
+				sl = savedLocality;
+				
+				wpm.getPropertyProfiles().forEach(propertyProfile->{
+				 	if(propertyProfile.getId().equals(sp.getId())) {
+				 		pf = propertyProfile; 		
+				 	}
+				});
+				
+				if(pf != null){
+					
+					pf.getPossibleLocalities().forEach(locality -> {
+						
+					 	if(locality.getId().equals(sl.getId())) {
+					 		lf = locality; 		
+					 	}
+					});
+					
+					if(lf == null){
+						deleteRelatetadLocality(sp.getId(),	sl.getId());
+					}
+				}
+			 });
+		 });
+		 
+		savedWpm = searchForWpmByCode(id);
+		
+		BeanUtils.copyProperties(wpm, savedWpm, "id", "wpm");
 		return wpmRepository.save(savedWpm);
 	}
+	
+	
+	public void deleteRelatetadLocality(Long idPropertyP, Long idLocality) {
+		pService.deleteRelatetadLocality(idPropertyP,idLocality);
+	}
+	
 	
 	/**
 	 * @param id
@@ -52,7 +116,7 @@ public class WorkpackModelService {
 	 */
 	@Transactional
 	public WorkpackModel update(Long id, Optional<WorkpackModel> wpm) {
-		WorkpackModel wpmSalvo = searchForPersonByCode(id);
+		WorkpackModel wpmSalvo = searchForWpmByCode(id);
 		BeanUtils.copyProperties(wpm, wpmSalvo, "id", "wpm");
 		return wpmRepository.save(wpmSalvo);
 		
@@ -65,13 +129,26 @@ public class WorkpackModelService {
 	 * 		wpmSalvo
 	 */
 	@Transactional
-	public WorkpackModel searchForPersonByCode(Long id) {
+	public WorkpackModel searchForWpmByCode(Long id) {
 		Optional<WorkpackModel> wpmSalvo = wpmRepository.findById(id);
 		if (!wpmSalvo.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
 		return wpmSalvo.get();
 	}
+	
+	
+	
+	
+	
+	public PropertyProfile findPropertyProfileById(Long id) {
+		Optional<PropertyProfile> savedProfile = pRepository.findById(id);
+		if (!savedProfile.isPresent()) {
+			throw new EmptyResultDataAccessException(1);
+		}
+		return savedProfile.get();
+	}
+	
 	
 	/**
 	 * This method find a WorkpackModel by the id of the plan structure 
