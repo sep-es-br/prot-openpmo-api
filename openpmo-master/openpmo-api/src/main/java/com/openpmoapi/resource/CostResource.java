@@ -1,5 +1,6 @@
 package com.openpmoapi.resource;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -123,6 +124,18 @@ public class CostResource {
 	
 	  
 	
+	/**
+	 * This is method find by all costs, by the workpack id
+	 * 
+	 * @param id
+	 * 			This is the id of the cost that will be find
+	 * @return
+	 */
+	@GetMapping("/workpack/{id}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')  or hasAuthority('USER')  and #oauth2.hasScope('read')")
+	public Collection<Cost> findWpByIdWorkpack(@PathVariable Long id) {
+		return costService.findCostByIdWp(id);
+	}
 
 	
 }

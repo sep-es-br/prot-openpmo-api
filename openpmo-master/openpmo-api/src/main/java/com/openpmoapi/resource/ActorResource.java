@@ -136,7 +136,9 @@ public class ActorResource {
         return retorno;
 	}
 	
-	
+//	public EnumSet<Atributos> listarAtributos() {
+//	    return EnumSet.allOf(Atributos.class);
+//	}
 	
 	
 }

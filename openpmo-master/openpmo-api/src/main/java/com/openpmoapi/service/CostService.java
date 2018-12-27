@@ -3,6 +3,7 @@
  */
 package com.openpmoapi.service;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
@@ -63,7 +64,18 @@ public class CostService {
 	
 	
 
-	
+	/**
+	 * 
+	 * @param id
+	 * 		This is the id of the Workpack that will be find
+	 * @return
+	 * 		Collection of Costs
+	 */
+	@Transactional(readOnly = true)
+    public Collection<Cost> findCostByIdWp(Long id) {
+      Collection<Cost> costs = costRepository.findCostByWpId(id);
+      return costs;
+    }
 	
 	
 }
