@@ -12,13 +12,13 @@ package com.openpmoapi.model;
 public enum Period {
 
 	
-	day("day"),
-	month("month"),
-	two_month("two month"),
-	quarter("quarter"),
-	third ("third"),
-	half("half"),
-	year("year");
+	DAY("Day"),
+	MONTH("Month"),
+	TWO_MONTH("Two month"),
+	QUARTER("Quarter"),
+	THIRD("Third"),
+	HALF("Half"),
+	YEAR("Year");
 	
 	
 	

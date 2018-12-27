@@ -11,8 +11,35 @@ package com.openpmoapi.model;
 */
 public enum RoleCategory {
 
-	System,
-    Business
+	SYSTEM("System"),
+    BUSINESS("Business");
+
+    
+    
+    private String descricao;
+
 	
+	RoleCategory(String descricao){
+		
+		this.descricao = descricao;
+		
+	}
+	
+	
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	
+	
+	
+	
+    
+    
+    
 	
 }
+

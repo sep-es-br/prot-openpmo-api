@@ -11,13 +11,40 @@ package com.openpmoapi.model;
 */
 public enum CostStage {
 
-	planned,
-	estimated,
-	budgeted,
-	authorized,
-	commited,
-	actual
+	PLANNED("Planned"),
+	ESTIMATED("Estimated"),
+	BUDGETED("Budgeted"),
+	AUTHORIZED("Authorized"),
+	COMMITED("Commited"),
+	ACTUAL("Actual");
+	
+
+	private String descricao;
+	
+	CostStage(String descricao) {
+		
+		this.descricao = descricao;
+		
+	}
+
+	
+	public String getDescricao() {
+		return descricao;
+	}
+
+	
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
 }
+

@@ -29,7 +29,7 @@ public class CostEntry {
 	private Date date;
 	
 	
-	private String stage;
+	private CostStage stage;
 	
 	private double value;
 
@@ -61,17 +61,19 @@ public class CostEntry {
 		this.date = date;
 	}
 
+	
+
 	/**
 	 * @return the stage
 	 */
-	public String getStage() {
+	public CostStage getStage() {
 		return stage;
 	}
 
 	/**
 	 * @param stage the stage to set
 	 */
-	public void setStage(String stage) {
+	public void setStage(CostStage stage) {
 		this.stage = stage;
 	}
 

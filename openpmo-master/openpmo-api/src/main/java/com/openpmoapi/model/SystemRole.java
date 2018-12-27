@@ -11,9 +11,38 @@ package com.openpmoapi.model;
 */
 public enum SystemRole {
 
-	Admin,
-	User,
-	SuperAdmin
+	ADMIN("Admin"),
+	USER("User"),
+	SUPERADMIN("SuperAdmin");
+	
+	
+	
+	private String descricao;
+
+	
+	SystemRole(String descricao){
+		
+		
+		this.descricao = descricao;
+		
+		
+	}
+	
+	
+	public String getDescricao() {
+		return descricao;
+	}
+
+	
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 }

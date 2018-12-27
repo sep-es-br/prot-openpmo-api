@@ -1,7 +1,10 @@
 package com.openpmoapi.resource;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -21,6 +24,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.openpmoapi.event.FeatureCreatedEvent;
 import com.openpmoapi.model.Role;
+import com.openpmoapi.model.RoleCategory;
+import com.openpmoapi.model.SystemRole;
 import com.openpmoapi.repository.RoleRepository;
 import com.openpmoapi.service.RoleService;
 
@@ -147,5 +152,28 @@ public class RoleResource {
 	}
 	
 
+	@GetMapping("/listEnumCategory")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')  or hasAuthority('USER')   and #oauth2.hasScope('read')")
+	public List<String> listEnumCategory() {
+        List<RoleCategory> lista = Arrays.asList(RoleCategory.values());
+        List<String> retorno = new ArrayList<String>();
+        for (int i = 0; i < lista.size(); i++) {
+           retorno.add(lista.get(i).getDescricao());
+        }
+        return retorno;
+	}
+	
+	
+	@GetMapping("/listEnumSystem")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')  or hasAuthority('USER')   and #oauth2.hasScope('read')")
+	public List<String> listEnumSystem() {
+        List<SystemRole> lista = Arrays.asList(SystemRole.values());
+        List<String> retorno = new ArrayList<String>();
+        for (int i = 0; i < lista.size(); i++) {
+           retorno.add(lista.get(i).getDescricao());
+        }
+        return retorno;
+	}
+	
 	
 }

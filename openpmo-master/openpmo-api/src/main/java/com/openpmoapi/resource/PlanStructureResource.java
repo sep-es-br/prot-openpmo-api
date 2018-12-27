@@ -1,6 +1,9 @@
 package com.openpmoapi.resource;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.openpmoapi.event.FeatureCreatedEvent;
+import com.openpmoapi.model.Period;
 import com.openpmoapi.model.PlanStructure;
 import com.openpmoapi.repository.PlanStructureRepository;
 import com.openpmoapi.service.PlanStructureService;
@@ -135,5 +139,20 @@ public class PlanStructureResource {
 	public Collection<PlanStructure> findPlanSturctureTree(@PathVariable Long id) {
 		return planStructureService.findPlanStructureByIdTree(id);
 	}
+	
+	
+
+	@GetMapping("/listEnum")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')  or hasAuthority('USER')   and #oauth2.hasScope('read')")
+	public List<String> listEnum() {
+        List<Period> lista = Arrays.asList(Period.values());
+        List<String> retorno = new ArrayList<String>();
+        for (int i = 0; i < lista.size(); i++) {
+           retorno.add(lista.get(i).getDescricao());
+        }
+        return retorno;
+	}
+	
+	
 	
 }

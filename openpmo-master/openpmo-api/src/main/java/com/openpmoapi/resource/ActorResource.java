@@ -1,6 +1,9 @@
 package com.openpmoapi.resource;
 
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.openpmoapi.event.FeatureCreatedEvent;
 import com.openpmoapi.model.Actor;
+import com.openpmoapi.model.ActorType;
 import com.openpmoapi.repository.ActorRepository;
 import com.openpmoapi.service.ActorService;
 
@@ -121,6 +125,16 @@ public class ActorResource {
 	}
 	
 	
-
+	@GetMapping("/listEnum")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')  or hasAuthority('USER')   and #oauth2.hasScope('read')")
+	public List<String> listEnum() {
+        List<ActorType> lista = Arrays.asList(ActorType.values());
+        List<String> retorno = new ArrayList<String>();
+        for (int i = 0; i < lista.size(); i++) {
+           retorno.add(lista.get(i).getDescricao());
+        }
+        return retorno;
+	}
+	
 	
 }

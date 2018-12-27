@@ -1,5 +1,8 @@
 package com.openpmoapi.resource;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.openpmoapi.event.FeatureCreatedEvent;
 import com.openpmoapi.model.CostEntry;
+import com.openpmoapi.model.CostStage;
 import com.openpmoapi.repository.CostEntryRepository;
 import com.openpmoapi.service.CostEntryService;
 import io.swagger.annotations.Api;
@@ -118,6 +122,18 @@ public class CostEntryResource {
 	}
 	
 	  
+	
+	@GetMapping("/listEnum")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')  or hasAuthority('USER')   and #oauth2.hasScope('read')")
+	public List<String> listEnum() {
+        List<CostStage> lista = Arrays.asList(CostStage.values());
+        List<String> retorno = new ArrayList<String>();
+        for (int i = 0; i < lista.size(); i++) {
+           retorno.add(lista.get(i).getDescricao());
+        }
+        return retorno;
+	}
+	
 	
 
 	

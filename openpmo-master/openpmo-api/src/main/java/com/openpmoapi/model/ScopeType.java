@@ -11,10 +11,40 @@ package com.openpmoapi.model;
 */
 public enum ScopeType {
 
-   Office,
-   Plan,
-   Workpack
+   OFFICE("Office"),
+   PLAN("Plan"),
+   WORKPACK("Workpack");
 	
+   
+    private String descricao;
+
+
+    ScopeType(String descricao  ){
+    	
+    	this.descricao = descricao;
+    	
+    }
+    
+    
+	public String getDescricao() {
+		return descricao;
+	}
+	
+	
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	
+	
+  
+	
+	
+	
+	
+   
+   
+   
+   
 	
 }
 
