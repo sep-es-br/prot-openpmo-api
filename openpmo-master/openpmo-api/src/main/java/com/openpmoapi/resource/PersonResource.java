@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
@@ -78,8 +79,10 @@ public class PersonResource {
 	@PutMapping("/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('USER') and #oauth2.hasScope('write')")
 	public ResponseEntity<Person> update(@PathVariable Long id, @Valid @RequestBody Person person) {
-		if (person.isResetPassword()) {
-			 person.setPassword(encoder.encode(person.getPassword())); 
+		if(StringUtils.isNotBlank(person.getPassword())) {
+			if (person.isResetPassword()) {
+				 person.setPassword(encoder.encode(person.getPassword())); 
+			}
 		}
 		Person savedPerson = personService.update(id, person);
 		return ResponseEntity.ok(savedPerson);
@@ -102,7 +105,9 @@ public class PersonResource {
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('USER') and #oauth2.hasScope('write')")
 	@Transactional
 	public ResponseEntity<Person> save(@Valid @RequestBody Person person, HttpServletResponse response) {
-		person.setPassword(encoder.encode(person.getPassword())); 	
+		if(StringUtils.isNotBlank(person.getPassword())) {
+			person.setPassword(encoder.encode(person.getPassword())); 
+		}
 		Person savedPerson = personRepository.save(person);
 		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedPerson.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(personRepository.save(person));
