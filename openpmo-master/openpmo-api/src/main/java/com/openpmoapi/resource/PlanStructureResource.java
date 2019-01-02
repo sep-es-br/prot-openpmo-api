@@ -142,7 +142,7 @@ public class PlanStructureResource {
 	
 	
 
-	@GetMapping("/listEnum")
+	@GetMapping("/listenum")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR')  or hasAuthority('USER')   and #oauth2.hasScope('read')")
 	public List<String> listEnum() {
         List<Period> lista = Arrays.asList(Period.values());

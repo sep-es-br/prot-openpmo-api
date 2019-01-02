@@ -125,7 +125,7 @@ public class ScopeResource {
 
 
 
-	@GetMapping("/listEnum")
+	@GetMapping("/listenum")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR')  or hasAuthority('USER')   and #oauth2.hasScope('read')")
 	public List<String> listEnum() {
         List<ScopeType> lista = Arrays.asList(ScopeType.values());

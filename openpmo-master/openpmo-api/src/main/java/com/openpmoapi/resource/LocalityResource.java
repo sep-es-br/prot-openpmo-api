@@ -139,7 +139,7 @@ public class LocalityResource {
 	
 	
 	
-	@GetMapping("/listEnum")
+	@GetMapping("/listenum")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR')  or hasAuthority('USER')   and #oauth2.hasScope('read')")
 	public List<String> listEnum() {
         List<LocalityType> lista = Arrays.asList(LocalityType.values());

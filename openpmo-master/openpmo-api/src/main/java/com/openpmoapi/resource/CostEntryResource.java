@@ -123,7 +123,7 @@ public class CostEntryResource {
 	
 	  
 	
-	@GetMapping("/listEnum")
+	@GetMapping("/listenum")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR')  or hasAuthority('USER')   and #oauth2.hasScope('read')")
 	public List<String> listEnum() {
         List<CostStage> lista = Arrays.asList(CostStage.values());

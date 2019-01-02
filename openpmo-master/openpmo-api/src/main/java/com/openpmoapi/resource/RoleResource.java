@@ -152,7 +152,7 @@ public class RoleResource {
 	}
 	
 
-	@GetMapping("/listEnumCategory")
+	@GetMapping("/listenumcategory")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR')  or hasAuthority('USER')   and #oauth2.hasScope('read')")
 	public List<String> listEnumCategory() {
         List<RoleCategory> lista = Arrays.asList(RoleCategory.values());
@@ -164,7 +164,7 @@ public class RoleResource {
 	}
 	
 	
-	@GetMapping("/listEnumSystem")
+	@GetMapping("/listenumsystem")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR')  or hasAuthority('USER')   and #oauth2.hasScope('read')")
 	public List<String> listEnumSystem() {
         List<SystemRole> lista = Arrays.asList(SystemRole.values());

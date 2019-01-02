@@ -126,7 +126,7 @@ public class ActorResource {
 	}
 	
 	
-	@GetMapping("/listEnum")
+	@GetMapping("/listenum")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR')  or hasAuthority('USER')   and #oauth2.hasScope('read')")
 	public List<String> listEnum() {
         List<ActorType> lista = Arrays.asList(ActorType.values());
