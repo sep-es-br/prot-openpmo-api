@@ -102,14 +102,7 @@ public class PersonResource {
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('USER') and #oauth2.hasScope('write')")
 	@Transactional
 	public ResponseEntity<Person> save(@Valid @RequestBody Person person, HttpServletResponse response) {
-	   
-		
-		
 		person.setPassword(encoder.encode(person.getPassword())); 	
-		
-		
-		
-		
 		Person savedPerson = personRepository.save(person);
 		publisher.publishEvent(new FeatureCreatedEvent(this, response, savedPerson.getId()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(personRepository.save(person));

@@ -37,7 +37,7 @@ public class PlanStructure {
 	private String fullName;
 	
    
-	private  Period costBasePeriod;
+	private  String costBasePeriod;
 	
 	
 	
@@ -96,17 +96,18 @@ public class PlanStructure {
 	
 	
 	
+
 	/**
 	 * @return the costBasePeriod
 	 */
-	public Period getCostBasePeriod() {
+	public String getCostBasePeriod() {
 		return costBasePeriod;
 	}
 
 	/**
 	 * @param costBasePeriod the costBasePeriod to set
 	 */
-	public void setCostBasePeriod(Period costBasePeriod) {
+	public void setCostBasePeriod(String costBasePeriod) {
 		this.costBasePeriod = costBasePeriod;
 	}
 

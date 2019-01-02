@@ -21,6 +21,8 @@ public enum ActorType {
 		this.descricao = descricao;
 	}
 	
+
+	
 	private String descricao;
 	
 	

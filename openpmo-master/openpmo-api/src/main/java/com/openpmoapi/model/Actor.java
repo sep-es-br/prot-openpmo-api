@@ -37,7 +37,6 @@ public class Actor {
 		
 		private String address;
 		
-		private ActorType actorType;
 		
 //		@Relationship(type="ACTS")
 //	    private Collection <Role> roles;
@@ -79,20 +78,7 @@ public class Actor {
 			this.address = address;
 		}
 
-		/**
-		 * @return the actorType
-		 */
-		public ActorType getActorType() {
-			return actorType;
-		}
-
-		/**
-		 * @param actorType the actorType to set
-		 */
-		public void setActorType(ActorType actorType) {
-			this.actorType = actorType;
-		}
-		
+	
 	
 	
 }

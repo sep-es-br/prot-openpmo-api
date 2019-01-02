@@ -27,9 +27,9 @@ public class Role {
 	@Id @GeneratedValue
 	private Long id;
 	    
-	private ActorType actorType;
+	private String actorType;
 	
-	private ScopeType scopeType;
+	private String scopeType;
 	
 	private String name;
 	
@@ -46,24 +46,51 @@ public class Role {
 		return id;
 	}
 	
-	public ActorType getActorType() {
+	
+
+
+
+	/**
+	 * @return the actorType
+	 */
+	public String getActorType() {
 		return actorType;
 	}
 
 
-	public void setActorType(ActorType actorType) {
+
+
+
+	/**
+	 * @param actorType the actorType to set
+	 */
+	public void setActorType(String actorType) {
 		this.actorType = actorType;
 	}
 
-	public ScopeType getScopeType() {
+
+
+
+
+	/**
+	 * @return the scopeType
+	 */
+	public String getScopeType() {
 		return scopeType;
 	}
 
 
 
-	public void setScopeType(ScopeType scopeType) {
+
+
+	/**
+	 * @param scopeType the scopeType to set
+	 */
+	public void setScopeType(String scopeType) {
 		this.scopeType = scopeType;
 	}
+
+
 
 
 

@@ -33,7 +33,7 @@ public class Scope {
 		private String name;
 		
 		
-		private ScopeType ScopeType;
+		
 		
 //		@Relationship(type="ACTS",direction=Relationship.INCOMING)
 //	    private Collection <Role> roles;
@@ -50,15 +50,7 @@ public class Scope {
 		public void setName(String name) {
 			this.name = name;
 		}
-		
-		public ScopeType getScopeType() {
-			return ScopeType;
-		}
 
-		public void setScopeType(ScopeType scopeType) {
-			ScopeType = scopeType;
-		}
-		
 		
 		
 
