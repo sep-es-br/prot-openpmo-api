@@ -23,7 +23,7 @@ public class Locality {
 	@Id @GeneratedValue
 	private Long id;
 	
-	private LocalityType type;
+	private String type;
 	
 	private Long gps_lat;
 	
@@ -57,22 +57,6 @@ public class Locality {
 	 */
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-
-	/**
-	 * @return the type
-	 */
-	public LocalityType getType() {
-		return type;
-	}
-
-
-	/**
-	 * @param type the type to set
-	 */
-	public void setType(LocalityType type) {
-		this.type = type;
 	}
 
 
@@ -169,6 +153,22 @@ public class Locality {
 	 */
 	public void setCode(Long code) {
 		Code = code;
+	}
+
+
+	/**
+	 * @return the type
+	 */
+	public String getType() {
+		return type;
+	}
+
+
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(String type) {
+		this.type = type;
 	}
 
 

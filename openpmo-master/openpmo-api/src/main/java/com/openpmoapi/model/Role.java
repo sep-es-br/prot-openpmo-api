@@ -33,7 +33,7 @@ public class Role {
 	
 	private String name;
 	
-	private RoleCategory category;
+	private String category;
 	
 	@StartNode 
 	private Actor actor;
@@ -46,52 +46,27 @@ public class Role {
 		return id;
 	}
 	
-	
 
 
-
-	/**
-	 * @return the actorType
-	 */
 	public String getActorType() {
 		return actorType;
 	}
 
 
-
-
-
-	/**
-	 * @param actorType the actorType to set
-	 */
 	public void setActorType(String actorType) {
 		this.actorType = actorType;
 	}
 
 
 
-
-
-	/**
-	 * @return the scopeType
-	 */
 	public String getScopeType() {
 		return scopeType;
 	}
 
 
-
-
-
-	/**
-	 * @param scopeType the scopeType to set
-	 */
 	public void setScopeType(String scopeType) {
 		this.scopeType = scopeType;
 	}
-
-
-
 
 
 	public String getName() {
@@ -120,14 +95,16 @@ public class Role {
 	}
 
 
-	public RoleCategory getCategory() {
+	public String getCategory() {
 		return category;
 	}
 
-	
-	public void setCategory(RoleCategory category) {
+
+	public void setCategory(String category) {
 		this.category = category;
 	}
+
+
 
 
 	
