@@ -133,7 +133,7 @@ public class CostResource {
 	 */
 	@GetMapping("/workpack/{id}")
 	@PreAuthorize("hasAuthority('ADMINISTRATOR')  or hasAuthority('USER')  and #oauth2.hasScope('read')")
-	public Collection<Cost> findWpByIdWorkpack(@PathVariable Long id) {
+	public Collection<Cost> findCostByIdWp(@PathVariable Long id) {
 		return costService.findCostByIdWp(id);
 	}
 

@@ -3,6 +3,7 @@
  */
 package com.openpmoapi.service;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
@@ -27,7 +28,7 @@ public class ActorService {
 
 	
 	@Autowired
-	private ActorRepository ActorRepository;
+	private ActorRepository actorRepository;
 	
 	
 	/**
@@ -41,7 +42,7 @@ public class ActorService {
 	public Actor update(Long id, Actor actor) {
 		Actor savedActor = findActorById(id);
 		BeanUtils.copyProperties(actor, savedActor, "id", "actor");
-		return ActorRepository.save(savedActor);
+		return actorRepository.save(savedActor);
 	}
 	
 	
@@ -53,7 +54,7 @@ public class ActorService {
 	 */
 	@Transactional(readOnly = true)
 	public Actor findActorById(Long id) {
-		Optional<Actor> savedActor = ActorRepository.findById(id);
+		Optional<Actor> savedActor = actorRepository.findById(id);
 		if (!savedActor.isPresent()) {
 			throw new EmptyResultDataAccessException(1);
 		}
@@ -61,7 +62,19 @@ public class ActorService {
 	}
 	
 	
-
+	
+	/**
+	 * This method looks for names appearing within the collection PersonRoleAtWorkpack 
+	 * @param name
+	 * 		This is the name that will be find 
+	 * @return
+	 * 		a Collection of the PersonRoleAtWorkpack with similar names
+	 */
+	@Transactional(readOnly = true)
+    public Collection<Actor> findByNameLike(String name) {
+      Collection<Actor> actor = actorRepository.findByNameLike(name);
+      return actor;
+    }
 	
 	
 }

@@ -3,6 +3,7 @@ package com.openpmoapi.resource;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -139,6 +140,21 @@ public class ActorResource {
 //	public EnumSet<Atributos> listarAtributos() {
 //	    return EnumSet.allOf(Atributos.class);
 //	}
+	
+	
+	/**
+	 * This is method find by name Actor
+	 * 
+	 * @param name
+	 * 			This is the name of the Actor you want to find
+	 * 
+	 */
+	@GetMapping(path ="/like/{name}")
+	@PreAuthorize("hasAuthority('ADMINISTRATOR')  or hasAuthority('USER')   and #oauth2.hasScope('read')")
+	public Collection<Actor> findByNameLike(@PathVariable("name") String name) {
+		return actorService.findByNameLike(name);
+	 
+	}
 	
 	
 }
