@@ -116,7 +116,7 @@ public class PersonResource {
 	
 	
 	/**
-	 * This is method find by all Person
+	 * This method find by all Person
 	 */
 	@GetMapping
 	@PreAuthorize("hasAuthority('ADMINISTRATOR') or hasAuthority('USER') and #oauth2.hasScope('read')")

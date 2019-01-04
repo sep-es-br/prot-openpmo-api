@@ -18,7 +18,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class OpenpmoApiProperty {
 
 	
-	private String allowedOrigin = "http://localhost:4200";
+	private String allowedOrigin = "http://ss07.planejamento.es.gov.br";
+			//"http://localhost:4200";
 
 	private final Security security = new Security();
 
